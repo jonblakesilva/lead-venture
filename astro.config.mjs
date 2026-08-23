@@ -6,7 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://theleadventure.com",
+  site: "https://yourdomain.com", // CUSTOMIZE: replace with your actual domain
   integrations: [mdx(), sitemap(), icon()],
   vite: {
     plugins: [tailwindcss()],
