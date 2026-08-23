@@ -1,0 +1,186 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+import Cta from "@/components/cta.astro";
+import FaqAccordion from "@/components/faqaccordion.astro";
+
+// CUSTOMIZE: Edit these packages to match your real service offerings.
+// You can change names, features, and pricing to fit your business model.
+// If you do custom/quote-based pricing, set price to "Custom Quote" and remove the period.
+const packages = [
+  {
+    name: "Basic",
+    price: "Starting at $XX",
+    period: "per visit",
+    description: "Perfect for homeowners who need occasional service without a long-term commitment.",
+    popular: false,
+    features: [
+      "Single-visit service",
+      "Standard [service type]",
+      "Cleanup included",
+      "Satisfaction guaranteed",
+      "Schedule anytime",
+    ],
+    cta: { text: "Get a Quote", href: "/contact" },
+  },
+  {
+    name: "Standard",
+    price: "Starting at $XX",
+    period: "per month",
+    description: "Our most popular plan for homeowners who want consistent, reliable service.",
+    popular: true,
+    features: [
+      "Everything in Basic",
+      "Bi-weekly or monthly service",
+      "Priority scheduling",
+      "Seasonal adjustments",
+      "Dedicated service team",
+      "Free re-service if not satisfied",
+    ],
+    cta: { text: "Get a Quote", href: "/contact" },
+  },
+  {
+    name: "Premium",
+    price: "Custom Quote",
+    period: "",
+    description: "Full-service plan for larger properties or commercial accounts with specific needs.",
+    popular: false,
+    features: [
+      "Everything in Standard",
+      "Weekly service available",
+      "Commercial properties welcome",
+      "Custom service schedule",
+      "Dedicated account manager",
+      "Priority emergency response",
+      "Volume pricing available",
+    ],
+    cta: { text: "Contact Us", href: "/contact" },
+  },
+];
+
+const pricingFaqs = [
+  {
+    question: "Do you require a contract?",
+    answer: "No long-term contracts required for most services. Recurring service plans are month-to-month and can be paused or cancelled anytime with reasonable notice.",
+  },
+  {
+    question: "How do I get an accurate price?",
+    answer: `Every property is different, so we give individualized quotes. Contact us at ${business.phone} or fill out the form and we'll provide a free, detailed estimate with no obligation.`,
+  },
+  {
+    question: "Are there any hidden fees?",
+    answer: "Never. The price we quote is the price you pay. We'll always tell you about any additional costs before starting work, and we require your approval before proceeding.",
+  },
+  {
+    question: "Do you offer discounts?",
+    answer: "We offer discounts for recurring service plans and for referrals. Ask us about our current promotions when you request your quote.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept cash, check, and all major credit cards. Payment is typically due upon completion, but we can discuss billing arrangements for recurring accounts.",
+  },
+];
+---
+
+<Layout
+  title="Pricing & Service Plans"
+  description={`Transparent pricing for ${business.niche} services in ${business.city}, ${business.state}. No hidden fees. Free estimates. Call ${business.phone}.`}
+>
+  <!-- Header -->
+  <section class="bg-primary-900 text-white py-16 lg:py-20">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-2xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Pricing</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Simple, Honest Pricing
+        </h1>
+        <p class="text-white/70 text-lg mt-4 leading-relaxed">
+          No hidden fees. No surprise charges. We give you a clear quote before any work begins.
+          Every plan includes our {business.guaranteeText.toLowerCase()}.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing cards -->
+  <section class="py-20 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {packages.map((pkg, i) => (
+          <div
+            class:list={[
+              "relative flex flex-col rounded-2xl border-2 p-8",
+              pkg.popular
+                ? "border-accent-500 bg-white shadow-[var(--shadow-card-hover)]"
+                : "border-neutral-200 bg-white",
+            ]}
+            data-aos="fade-up"
+            data-aos-delay={(i + 1) * 100}
+          >
+            {pkg.popular && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span class="bg-accent-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-sm">
+                  Most Popular
+                </span>
+              </div>
+            )}
+
+            <div class="mb-6">
+              <h3 class="font-heading font-bold text-xl text-primary-900">{pkg.name}</h3>
+              <div class="mt-3 flex items-baseline gap-1">
+                <span class="font-heading font-bold text-3xl text-primary-900">{pkg.price}</span>
+                {pkg.period && <span class="text-neutral-500 text-sm">{pkg.period}</span>}
+              </div>
+              <p class="text-neutral-500 text-sm mt-2 leading-relaxed">{pkg.description}</p>
+            </div>
+
+            <ul class="space-y-3 flex-1 mb-8">
+              {pkg.features.map((feature) => (
+                <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={pkg.cta.href}
+              class:list={[
+                "block w-full text-center font-bold py-3.5 rounded-xl transition-colors text-sm",
+                pkg.popular
+                  ? "bg-accent-500 hover:bg-accent-600 text-white"
+                  : "border-2 border-primary-800 text-primary-800 hover:bg-primary-50",
+              ]}
+            >
+              {pkg.cta.text}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-neutral-400 text-sm mt-8" data-aos="fade-up">
+        All prices are estimates. Contact us for an exact quote tailored to your property.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing FAQ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-heading text-3xl lg:text-4xl font-bold text-primary-900">Pricing Questions</h2>
+        <p class="text-neutral-500 text-lg mt-3">
+          Still have questions? Call us at{" "}
+          <a href={`tel:${business.phoneRaw}`} class="text-accent-600 font-semibold hover:underline">{business.phone}</a>.
+        </p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <FaqAccordion items={pricingFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Layout>

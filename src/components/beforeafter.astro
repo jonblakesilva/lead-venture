@@ -1,0 +1,111 @@
+---
+import { business } from "@/config/business";
+
+const projects = [
+  {
+    label: `${business.primaryServices[0]} — Before & After`,
+    delay: 0,
+  },
+  {
+    label: `${business.primaryServices[1]} — Before & After`,
+    delay: 100,
+  },
+  {
+    label: `${business.primaryServices[2]} — Before & After`,
+    delay: 200,
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-white">
+  <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+
+    <!-- Section heading -->
+    <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+      <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">Proof of Quality</p>
+      <h2 class="font-heading text-4xl lg:text-5xl font-bold text-primary-900 leading-tight">
+        Our Work Speaks for Itself
+      </h2>
+      <p class="text-neutral-500 text-lg mt-4 leading-relaxed">
+        Real projects, real results. See the transformation we deliver for our customers.
+      </p>
+    </div>
+
+    <!-- Project cards grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+      {projects.map((project) => (
+        <div
+          data-aos="fade-up"
+          data-aos-delay={project.delay}
+          class="group"
+        >
+          <!--
+            CUSTOMIZE: Replace the div backgrounds below with real before/after photos.
+            To use images:
+              <img src="/images/before-project-1.jpg" alt="Before" class="w-full h-full object-cover" />
+            Place photos in public/images/ folder.
+            Remove the placeholder gradient divs and replace them with <img> tags.
+          -->
+
+          <!-- Card wrapper -->
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
+
+            <!-- Before half (left) -->
+            <div class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-br from-neutral-300 via-neutral-400 to-neutral-500">
+              <!-- Placeholder texture overlay -->
+              <div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0,0,0,0.15) 4px, rgba(0,0,0,0.15) 8px);"></div>
+            </div>
+
+            <!-- After half (right) -->
+            <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-bl from-primary-700 via-primary-800 to-primary-900">
+              <!-- Subtle shine overlay -->
+              <div class="absolute inset-0 opacity-10 bg-gradient-to-t from-transparent to-white"></div>
+            </div>
+
+            <!-- Center divider line -->
+            <div class="absolute inset-y-0 left-1/2 w-0.5 bg-white/50 z-10"></div>
+
+            <!-- "Before" badge -->
+            <span class="absolute top-3 left-3 z-20 bg-black/50 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-sm">
+              Before
+            </span>
+
+            <!-- "After" badge -->
+            <span class="absolute top-3 right-3 z-20 bg-primary-600/80 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-sm">
+              After
+            </span>
+
+            <!-- Star rating badge -->
+            <span class="absolute top-3 left-1/2 -translate-x-1/2 z-20 bg-accent-500 text-white text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap shadow-md">
+              ⭐ 5.0
+            </span>
+
+            <!-- Bottom info overlay -->
+            <div class="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+              <p class="text-white font-semibold text-sm leading-tight">{project.label}</p>
+              <p class="text-white/60 text-xs mt-0.5">Completed by {business.name}</p>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="300">
+      <p class="text-neutral-500 text-base mb-5">
+        See what we can do for your property
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-base"
+      >
+        Get Your Free Quote
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

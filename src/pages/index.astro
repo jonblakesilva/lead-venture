@@ -1,0 +1,86 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hero.astro";
+import TrustBar from "@/components/trustbar.astro";
+import Features from "@/components/features.astro";
+import HowItWorks from "@/components/howitworks.astro";
+import Stats from "@/components/stats.astro";
+import Testimonials from "@/components/testimonials.astro";
+import FaqAccordion from "@/components/faqaccordion.astro";
+import Cta from "@/components/cta.astro";
+import MobileCallBar from "@/components/mobilecallbar.astro";
+import BeforeAfter from "@/components/beforeafter.astro";
+import { business } from "@/config/business";
+
+const homeFaqs = [
+  {
+    question: "Do you offer free estimates?",
+    answer: `Yes — all estimates are completely free and come with no obligation. Call us at ${business.phone} or fill out the form and we'll respond the same business day.`,
+  },
+  {
+    question: "Are you licensed and insured?",
+    answer: `Absolutely. ${business.name} is fully licensed, bonded, and insured. License # ${business.licenseNumber}. You can request proof of insurance at any time.`,
+  },
+  {
+    question: "How quickly can you schedule service?",
+    answer: `We typically schedule within 1–3 business days, and offer same-day or next-day service for urgent needs when availability allows. Call us at ${business.phone} for fast scheduling.`,
+  },
+  {
+    question: "What areas do you serve?",
+    answer: `We serve ${business.city}, ${business.state} and surrounding communities within a ${business.serviceRadius}. Check our Service Areas page for the full list, or call us to confirm coverage for your address.`,
+  },
+  {
+    question: "Do you guarantee your work?",
+    answer: `Yes. We stand behind every job with our ${business.guaranteeText}. If you're not satisfied with the results, contact us and we'll make it right at no additional charge.`,
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept cash, check, and all major credit cards (Visa, Mastercard, American Express, Discover). Payment is due upon completion of work unless otherwise arranged.",
+  },
+];
+---
+
+<Layout title="">
+  <Hero />
+  <TrustBar />
+  <Features />
+  <HowItWorks />
+  <Stats />
+  <Testimonials />
+  <BeforeAfter />
+
+  <!-- FAQ section -->
+  <section class="py-20 lg:py-28 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div data-aos="fade-up">
+          <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">FAQ</p>
+          <h2 class="font-heading text-4xl lg:text-5xl font-bold text-primary-900 leading-tight">
+            Common Questions
+          </h2>
+          <p class="text-neutral-500 text-lg mt-4 leading-relaxed">
+            Have a question we didn't cover? Call us at{" "}
+            <a href={`tel:${business.phoneRaw}`} class="text-accent-600 font-semibold hover:underline">
+              {business.phone}
+            </a>{" "}
+            and we're happy to help.
+          </p>
+          <div class="mt-8">
+            <a
+              href="/contact"
+              class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm"
+            >
+              Get a Free Quote
+            </a>
+          </div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <FaqAccordion items={homeFaqs} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+  <MobileCallBar />
+</Layout>

@@ -1,0 +1,132 @@
+---
+import { business } from "@/config/business";
+
+const navLinks = [
+  { title: "Services",      path: "/services" },
+  { title: "Service Areas", path: "/service-areas" },
+  { title: "About",         path: "/about" },
+  { title: "Pricing",       path: "/pricing" },
+  { title: "Blog",          path: "/blog" },
+  { title: "Contact",       path: "/contact" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+    <div class="flex items-center justify-between h-16 lg:h-18">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 shrink-0" aria-label={business.name}>
+        <span class="font-heading font-bold text-xl text-primary-900 leading-none">
+          {business.name}
+        </span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="hidden lg:flex items-center gap-1" role="list">
+        {navLinks.map((item) => (
+          <li>
+            <a
+              href={item.path}
+              class:list={[
+                "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150",
+                currentPath.startsWith(item.path) && item.path !== "/"
+                  ? "text-accent-600 bg-accent-50"
+                  : "text-neutral-600 hover:text-primary-900 hover:bg-neutral-100",
+              ]}
+            >
+              {item.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a
+          href={`tel:${business.phoneRaw}`}
+          class="flex items-center gap-1.5 text-sm font-semibold text-primary-800 hover:text-accent-600 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+          </svg>
+          {business.phone}
+        </a>
+        <a
+          href="/contact"
+          class="bg-accent-500 hover:bg-accent-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-sm"
+        >
+          Get Free Quote
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 rounded-md text-neutral-600 hover:text-primary-900 hover:bg-neutral-100 transition-colors"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle menu"
+      >
+        <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-neutral-200 py-4">
+      <ul class="flex flex-col gap-1" role="list">
+        {navLinks.map((item) => (
+          <li>
+            <a
+              href={item.path}
+              class="block px-3 py-2.5 rounded-md text-base font-medium text-neutral-700 hover:text-primary-900 hover:bg-neutral-100 transition-colors"
+            >
+              {item.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-4 pt-4 border-t border-neutral-200 flex flex-col gap-3">
+        <a
+          href={`tel:${business.phoneRaw}`}
+          class="flex items-center justify-center gap-2 w-full border-2 border-primary-800 text-primary-800 font-semibold py-3 rounded-lg hover:bg-primary-50 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+          </svg>
+          Call {business.phone}
+        </a>
+        <a
+          href="/contact"
+          class="block w-full bg-accent-500 hover:bg-accent-600 text-white text-center font-semibold py-3 rounded-lg transition-colors"
+        >
+          Get Free Quote
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script is:inline>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("menu-icon-open");
+  const iconClose = document.getElementById("menu-icon-close");
+
+  if (btn && menu) {
+    btn.addEventListener("click", () => {
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      iconOpen.classList.toggle("hidden", !isOpen);
+      iconClose.classList.toggle("hidden", isOpen);
+      btn.setAttribute("aria-expanded", String(!isOpen));
+    });
+  }
+</script>

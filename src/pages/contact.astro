@@ -1,0 +1,232 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+---
+
+<Layout
+  title="Contact Us"
+  description={`Contact ${business.name} for a free quote on ${business.niche} services in ${business.city}, ${business.state}. Call ${business.phone} or fill out our form.`}
+>
+  <!-- Page header -->
+  <section class="bg-primary-900 text-white py-16 lg:py-20">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-2xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Get In Touch</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Request a Free Quote
+        </h1>
+        <p class="text-white/70 text-lg mt-4 leading-relaxed">
+          Fill out the form or give us a call. We respond to all inquiries within one business day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="grid lg:grid-cols-5 gap-16">
+
+        <!-- Contact info column -->
+        <div class="lg:col-span-2" data-aos="fade-up">
+          <h2 class="font-heading text-2xl font-bold text-primary-900 mb-6">Get in Touch</h2>
+
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-primary-900 text-sm">Phone</div>
+                <a href={`tel:${business.phoneRaw}`} class="text-accent-600 hover:text-accent-700 font-medium transition-colors">
+                  {business.phone}
+                </a>
+                <p class="text-neutral-500 text-xs mt-1">Mon–Sat 7am–7pm, Sun by appointment</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-primary-900 text-sm">Email</div>
+                <a href={`mailto:${business.email}`} class="text-accent-600 hover:text-accent-700 font-medium transition-colors">
+                  {business.email}
+                </a>
+                <p class="text-neutral-500 text-xs mt-1">We reply within 1 business day</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-primary-900 text-sm">Service Area</div>
+                <p class="text-neutral-700 font-medium">{business.city}, {business.state}</p>
+                <p class="text-neutral-500 text-xs mt-1">{business.serviceRadius} · <a href="/service-areas" class="text-accent-600 hover:underline">View all areas</a></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust signals -->
+          <div class="mt-10 p-6 bg-neutral-50 border border-neutral-200 rounded-2xl">
+            <h3 class="font-semibold text-primary-900 text-sm mb-4">Why Customers Choose Us</h3>
+            <ul class="space-y-2.5">
+              {[
+                `Rated ${business.rating}/5 by ${business.reviewCount}+ customers`,
+                "Free, no-obligation estimates",
+                business.guaranteeText,
+                "Licensed & fully insured",
+                "Same & next-day availability",
+              ].map((item) => (
+                <li class="flex items-center gap-2 text-sm text-neutral-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contact form column -->
+        <div class="lg:col-span-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 lg:p-10">
+            <h2 class="font-heading text-2xl font-bold text-primary-900 mb-2">Tell Us About Your Project</h2>
+            <p class="text-neutral-500 text-sm mb-8">All fields are optional except your contact info. We'll call to get any additional details.</p>
+
+            <!-- REPLACE access_key with your web3forms key: https://web3forms.com -->
+            <form
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              id="contact-form"
+              class="space-y-5"
+              novalidate
+            >
+              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+              <input type="hidden" name="subject" value={`New Contact Form Submission — ${business.name}`} />
+              <input type="hidden" name="redirect" value="/thank-you" />
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-neutral-700 mb-1.5">Full Name <span class="text-error">*</span></label>
+                  <input
+                    id="name" type="text" name="name" required placeholder="Jane Smith"
+                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
+                  />
+                </div>
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-neutral-700 mb-1.5">Phone Number <span class="text-error">*</span></label>
+                  <input
+                    id="phone" type="tel" name="phone" required placeholder="(555) 555-5555"
+                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1.5">Email Address</label>
+                <input
+                  id="email" type="email" name="email" placeholder="jane@example.com"
+                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
+                />
+              </div>
+
+              <div>
+                <label for="service" class="block text-sm font-medium text-neutral-700 mb-1.5">Service Interested In</label>
+                <select
+                  id="service" name="service"
+                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
+                >
+                  <option value="">Select a service (optional)</option>
+                  {business.primaryServices.map((s) => (
+                    <option value={s}>{s}</option>
+                  ))}
+                  <option value="Not sure">Not sure — need advice</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="message" class="block text-sm font-medium text-neutral-700 mb-1.5">Tell Us More</label>
+                <textarea
+                  id="message" name="message" rows="4"
+                  placeholder="Describe the work needed, your address, or anything else that will help us give you an accurate quote…"
+                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition resize-none bg-white"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                id="contact-submit"
+                class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 rounded-xl transition-colors duration-200 text-base"
+              >
+                Send My Request →
+              </button>
+
+              <p class="text-xs text-neutral-400 text-center">
+                By submitting, you agree to our{" "}
+                <a href="/privacy" class="underline hover:text-neutral-600">Privacy Policy</a>.
+                We never share your info.
+              </p>
+
+              <div id="contact-result" class="hidden text-center py-3 rounded-lg text-sm font-medium"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  const form = document.getElementById("contact-form");
+  const result = document.getElementById("contact-result");
+  const submitBtn = document.getElementById("contact-submit");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.textContent = "Sending…";
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+      // If web3forms redirect is set, it handles the redirect itself.
+      // For AJAX, remove the redirect hidden field or handle accordingly.
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        });
+        const data = await res.json();
+        result.classList.remove("hidden");
+        if (res.ok) {
+          result.className = "text-center py-3 rounded-lg text-sm font-medium bg-green-50 text-green-700";
+          result.textContent = "✓ Message received! We'll be in touch soon.";
+          form.reset();
+          // Optional: redirect to thank you page
+          // window.location.href = "/thank-you";
+        } else {
+          result.className = "text-center py-3 rounded-lg text-sm font-medium bg-red-50 text-red-700";
+          result.textContent = data.message || "Something went wrong. Please call us directly.";
+        }
+      } catch {
+        result.classList.remove("hidden");
+        result.className = "text-center py-3 rounded-lg text-sm font-medium bg-red-50 text-red-700";
+        result.textContent = "Error sending. Please call " + "{business.phone}" + " directly.";
+      }
+      submitBtn.textContent = "Send My Request →";
+      submitBtn.disabled = false;
+    });
+  }
+</script>

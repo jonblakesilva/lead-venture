@@ -1,0 +1,36 @@
+---
+import { business } from "@/config/business";
+---
+
+<!-- Sticky mobile call bar — hidden on desktop, always visible on mobile -->
+<div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t-2 border-neutral-200 shadow-[0_-4px_20px_rgb(0,0,0/0.12)]">
+  <div class="grid grid-cols-2 divide-x divide-neutral-200">
+    <a
+      href={`tel:${business.phoneRaw}`}
+      class="flex flex-col items-center justify-center py-3 gap-0.5 bg-primary-900 text-white hover:bg-primary-800 transition-colors active:bg-primary-700"
+    >
+      <!-- Phone icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+      </svg>
+      <span class="text-xs font-bold uppercase tracking-wide">Call Now</span>
+      <span class="text-[10px] text-white/60">{business.phone}</span>
+    </a>
+    <a
+      href="/contact"
+      class="flex flex-col items-center justify-center py-3 gap-0.5 bg-accent-500 text-white hover:bg-accent-600 transition-colors active:bg-accent-700"
+    >
+      <!-- Quote/document icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+      </svg>
+      <span class="text-xs font-bold uppercase tracking-wide">Free Quote</span>
+      <span class="text-[10px] text-white/80">No obligation</span>
+    </a>
+  </div>
+  <!-- Safe area padding for iPhone notch/home bar -->
+  <div class="h-safe-area-inset-bottom bg-white"></div>
+</div>
+
+<!-- Spacer so content isn't hidden behind the bar on mobile -->
+<div class="lg:hidden h-16"></div>

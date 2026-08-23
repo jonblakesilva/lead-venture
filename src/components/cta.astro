@@ -1,0 +1,38 @@
+---
+import { business } from "@/config/business";
+---
+
+<section class="bg-accent-500 py-20 lg:py-24">
+  <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight" data-aos="fade-up">
+        Ready to Get Started?
+      </h2>
+      <p class="text-white/80 text-lg mt-5 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+        Get your free, no-obligation quote today. We respond fast — usually the same business day.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10" data-aos="fade-up" data-aos-delay="200">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-accent-700 font-bold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+        >
+          Get a Free Quote
+        </a>
+        <a
+          href={`tel:${business.phoneRaw}`}
+          class="inline-flex items-center justify-center gap-2 bg-accent-700 hover:bg-accent-800 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+          </svg>
+          Call {business.phone}
+        </a>
+      </div>
+
+      <p class="text-white/60 text-sm mt-6" data-aos="fade-up" data-aos-delay="300">
+        {business.guaranteeText} · Licensed & Insured · Serving {business.city} and {business.serviceRadius}
+      </p>
+    </div>
+  </div>
+</section>

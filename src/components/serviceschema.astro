@@ -1,0 +1,25 @@
+---
+import { business } from "@/config/business";
+
+interface Props {
+  serviceName: string;
+  serviceDescription: string;
+}
+
+const { serviceName, serviceDescription } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: serviceName,
+  description: serviceDescription,
+  provider: {
+    "@type": "LocalBusiness",
+    name: business.name,
+    telephone: business.phone,
+  },
+  areaServed: `${business.city}, ${business.state} — ${business.serviceRadius}`,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

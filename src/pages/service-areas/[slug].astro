@@ -1,0 +1,168 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import LocalBusinessSchema from "@/components/localbusinessschema.astro";
+import { business } from "@/config/business";
+
+export async function getStaticPaths() {
+  const locations = await getCollection("locations", ({ data }) => !data.draft);
+  return locations.map((location) => ({
+    params: { slug: location.data.urlSlug },
+    props: { location },
+  }));
+}
+
+const { location } = Astro.props;
+const { Content } = await render(location);
+
+const services = (await getCollection("services", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const otherLocations = (await getCollection("locations", ({ data }) => !data.draft))
+  .filter((l) => l.data.urlSlug !== location.data.urlSlug)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title={`${business.niche} in ${location.data.city}, ${location.data.state}`}
+  description={
+    location.data.shortDesc ??
+    `${business.name} provides ${business.niche} services in ${location.data.city}, ${location.data.state}. Free estimates — call ${business.phone}.`
+  }
+>
+  <Fragment slot="head">
+    <LocalBusinessSchema areaServed={`${location.data.city}, ${location.data.state}`} />
+  </Fragment>
+
+  <!-- Header -->
+  <section class="bg-primary-900 text-white py-16 lg:py-20">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <nav class="text-sm text-white/50 mb-6 flex items-center gap-2">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span>›</span>
+        <a href="/service-areas" class="hover:text-white transition-colors">Service Areas</a>
+        <span>›</span>
+        <span class="text-white/80">{location.data.city}, {location.data.state}</span>
+      </nav>
+
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-accent-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+            {business.niche} in {location.data.city}, {location.data.state}
+          </h1>
+          <p class="text-white/70 text-lg mt-2">
+            Local service you can count on — serving {location.data.city} and surrounding areas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-(--breakpoint-xl) mx-auto px-5 py-16">
+    <div class="grid lg:grid-cols-3 gap-12">
+
+      <!-- Main content -->
+      <div class="lg:col-span-2">
+        <div class="prose prose-neutral max-w-none prose-headings:font-heading prose-headings:text-primary-900 prose-a:text-accent-600">
+          <Content />
+        </div>
+
+        <!-- Services in this area -->
+        <div class="mt-12 bg-neutral-50 border border-neutral-200 rounded-2xl p-8">
+          <h2 class="font-heading text-2xl font-bold text-primary-900 mb-6">
+            Services Available in {location.data.city}
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {services.map((service) => (
+              <a
+                href={`/services/${service.data.urlSlug}`}
+                class="flex items-center gap-3 p-4 bg-white rounded-xl border border-neutral-200 hover:border-accent-300 hover:shadow-sm transition-all group"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-sm font-medium text-neutral-800 group-hover:text-primary-900">{service.data.title}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Trust signals for local page -->
+        <div class="mt-8 grid sm:grid-cols-3 gap-4">
+          {[
+            { label: "Free Estimates", sub: "No obligation quotes" },
+            { label: business.guaranteeText, sub: "Or we make it right" },
+            { label: "Licensed & Insured", sub: `Lic # ${business.licenseNumber}` },
+          ].map((item) => (
+            <div class="bg-primary-50 border border-primary-100 rounded-xl p-5 text-center">
+              <div class="font-semibold text-primary-900 text-sm">{item.label}</div>
+              <div class="text-neutral-500 text-xs mt-1">{item.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+        <!-- CTA card -->
+        <div class="bg-primary-900 text-white rounded-2xl p-7 sticky top-24">
+          <h3 class="font-heading font-bold text-xl mb-2">
+            Serving {location.data.city}, {location.data.state}
+          </h3>
+          <p class="text-white/70 text-sm mb-6 leading-relaxed">
+            Get a free quote for service in {location.data.city}. We respond within one business day.
+          </p>
+
+          <a
+            href={`tel:${business.phoneRaw}`}
+            class="flex items-center justify-center gap-2 w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-3.5 rounded-xl transition-colors text-base mb-3"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+            </svg>
+            {business.phone}
+          </a>
+          <a
+            href="/contact"
+            class="flex items-center justify-center w-full border-2 border-white/30 hover:border-white/60 text-white font-semibold py-3 rounded-xl transition-colors text-sm"
+          >
+            Request Online →
+          </a>
+        </div>
+
+        <!-- Other locations -->
+        {otherLocations.length > 0 && (
+          <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-6">
+            <h3 class="font-semibold text-primary-900 text-sm uppercase tracking-wide mb-4">Other Areas We Serve</h3>
+            <ul class="space-y-2">
+              {otherLocations.map((loc) => (
+                <li>
+                  <a
+                    href={`/service-areas/${loc.data.urlSlug}`}
+                    class="flex items-center gap-2 text-sm text-neutral-700 hover:text-accent-600 transition-colors py-1"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-neutral-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    {loc.data.city}, {loc.data.state}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href="/service-areas" class="text-xs text-accent-600 font-medium hover:underline mt-2 block">
+                  View all service areas →
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </div>
+</Layout>

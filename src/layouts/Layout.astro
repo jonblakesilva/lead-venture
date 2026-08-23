@@ -1,0 +1,119 @@
+---
+import { SEO } from "astro-seo";
+import { ViewTransitions } from 'astro:transitions';
+import Footer from "@/components/footer.astro";
+import Navbar from "@/components/navbar/navbar.astro";
+import OrganizationSchema from "@/components/organizationschema.astro";
+import { business } from "@/config/business";
+import "@fontsource-variable/inter/index.css";
+import "@fontsource-variable/outfit/index.css";
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const resolvedImageWithDomain = new URL("/opengraph.jpg", Astro.site).toString();
+const { title, description } = Astro.props;
+
+const makeTitle = title
+  ? `${title} | ${business.name}`
+  : `${business.name} — ${business.niche} in ${business.city}, ${business.state}`;
+
+const makeDescription =
+  description ??
+  `${business.name} provides professional ${business.niche} services in ${business.city}, ${business.state} and surrounding areas. ${business.guaranteeText}. Call ${business.phone} for a free quote.`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={makeTitle}
+      description={makeDescription}
+      canonical={canonicalURL}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: makeTitle,
+          image: resolvedImageWithDomain,
+        },
+        image: { alt: makeTitle },
+      }}
+    />
+    <slot name="head" />
+    <OrganizationSchema />
+    <ViewTransitions />
+    <!-- Cloudflare Web Analytics — get your token at dash.cloudflare.com > Web Analytics -->
+    <!-- Replace REPLACE_WITH_CF_TOKEN with your actual token -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "REPLACE_WITH_CF_TOKEN"}'></script>
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script is:inline>
+      (function () {
+        // Sticky nav shadow
+        const nav = document.getElementById("site-nav");
+        if (nav) {
+          window.addEventListener("scroll", () => {
+            nav.classList.toggle("scrolled", window.scrollY > 10);
+          }, { passive: true });
+        }
+
+        // Animated counters
+        const counters = document.querySelectorAll("[data-counter]");
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target;
+              const target = parseInt(el.getAttribute("data-counter"), 10);
+              const suffix = el.getAttribute("data-suffix") || "";
+              const duration = 1800;
+              const steps = 60;
+              const increment = target / steps;
+              let current = 0;
+              const timer = setInterval(() => {
+                current = Math.min(current + increment, target);
+                el.textContent = Math.floor(current).toLocaleString() + suffix;
+                if (current >= target) clearInterval(timer);
+              }, duration / steps);
+              counterObserver.unobserve(el);
+            });
+          },
+          { threshold: 0.5 }
+        );
+        counters.forEach((el) => counterObserver.observe(el));
+      })();
+    </script>
+
+    <script>
+      import AOS from 'aos';
+      import 'aos/dist/aos.css';
+
+      function initAOS() {
+        AOS.init({
+          duration: 650,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 50,
+        });
+      }
+
+      document.addEventListener('astro:page-load', initAOS);
+      initAOS();
+    </script>
+  </body>
+</html>

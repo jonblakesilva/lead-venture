@@ -1,0 +1,37 @@
+# Your Business Name — Home Services
+
+> Professional home services in Your City, ST and the surrounding 30 mile radius.
+
+## About
+Your Business Name is a licensed and insured home services company based in Your City, ST. Founded in 2010, we have been delivering professional, reliable service with a 100% Satisfaction Guarantee. We serve residential and commercial customers across a 30 mile radius.
+
+## Services
+- Service One: Our first core service offering — delivered with professionalism and care.
+- Service Two: Our second core service offering — handled from start to finish.
+- Service Three: Our third core service offering — tailored to your specific needs.
+- Emergency Service: Fast-response priority scheduling for urgent situations — call us now for availability.
+
+## Service Area
+Your City, ST and a 30 mile radius service area
+
+## Contact
+- Phone: (555) 555-5555
+- Email: hello@yourbusiness.com
+- Quote: /contact
+
+## Key Pages
+- /services — Full list of services offered
+- /service-areas — Cities and towns we serve
+- /about — About the business
+- /contact — Request a free quote
+- /pricing — Service packages and pricing
+- /blog — Tips and guides
+- /tools/cost-estimator — Instant price estimate tool
+
+## Trust Signals
+- Licensed and insured
+- Satisfaction guaranteed
+- Free estimates
+- 15+ years in business
+- 500+ jobs completed
+- Rated 4.9/5 by 200+ customers

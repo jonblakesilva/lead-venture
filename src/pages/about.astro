@@ -1,0 +1,153 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+import Cta from "@/components/cta.astro";
+
+const values = [
+  {
+    title: "Honest Pricing",
+    description: "We give you a clear, itemized quote before any work begins. The price you're quoted is the price you pay — no surprise add-ons.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  },
+  {
+    title: "Reliable Scheduling",
+    description: "We show up when we say we will. If anything changes, we call you ahead of time — because your time is as valuable as ours.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  },
+  {
+    title: "Quality Workmanship",
+    description: "Every job is done by trained, experienced technicians. We don't cut corners — we take pride in the quality of every single project.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>`,
+  },
+  {
+    title: "Local & Community-Focused",
+    description: `We live and work in the ${business.city} area. We're not a national franchise — we're your neighbors, and we care about our community's reputation.`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+  },
+  {
+    title: "Guaranteed Satisfaction",
+    description: `${business.guaranteeText}. If you're not happy with the result, we'll come back and make it right — no arguments, no extra charges.`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`,
+  },
+  {
+    title: "Fully Licensed & Insured",
+    description: `License # ${business.licenseNumber}. We carry full liability insurance and workers' compensation, so you're always protected when we're on your property.`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+  },
+];
+---
+
+<Layout
+  title="About Us"
+  description={`Learn about ${business.name} — a locally owned ${business.niche} company serving ${business.city}, ${business.state} since ${business.yearFounded}.`}
+>
+  <!-- Hero -->
+  <section class="bg-primary-900 text-white py-20 lg:py-24">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-3xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">About Us</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Locally Owned. Community Trusted.
+        </h1>
+        <p class="text-white/70 text-lg mt-5 leading-relaxed max-w-2xl">
+          {business.name} has served the {business.city} area since {business.yearFounded}.
+          We started as a small operation with one goal: do the work right and treat every customer
+          the way we'd want to be treated. That hasn't changed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-up">
+          <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">Our Story</p>
+          <h2 class="font-heading text-3xl lg:text-4xl font-bold text-primary-900 leading-tight">
+            Built on Referrals and Repeat Business
+          </h2>
+          <div class="space-y-4 text-neutral-600 leading-relaxed mt-6">
+            <p>
+              <!-- CUSTOMIZE: Replace this with your real founding story. -->
+              {business.name} was founded in {business.yearFounded} with a simple belief: the best
+              marketing is a job done so well that customers tell their neighbors. More than {business.stats.yearsInBusiness} years
+              later, that's still how we grow.
+            </p>
+            <p>
+              We're not a franchise and we don't sub-contract our core work. When you hire us, the
+              team that shows up is trained, background-checked, and held to our standards — because
+              our name is on every job.
+            </p>
+            <p>
+              <!-- CUSTOMIZE: Add a personal detail about the owner or founding team. -->
+              [OWNER NAME], the founder, still [oversees/handles] [specific aspect of the business].
+              That hands-on approach is what keeps our quality consistent.
+            </p>
+          </div>
+        </div>
+
+        <!-- Stats card -->
+        <div data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-primary-900 text-white rounded-2xl p-10 grid grid-cols-2 gap-8">
+            <div class="text-center">
+              <div class="font-heading font-bold text-5xl text-accent-400">{business.stats.jobsCompleted}+</div>
+              <div class="text-white/60 text-sm mt-2">Jobs Completed</div>
+            </div>
+            <div class="text-center">
+              <div class="font-heading font-bold text-5xl text-accent-400">{business.stats.yearsInBusiness}+</div>
+              <div class="text-white/60 text-sm mt-2">Years in Business</div>
+            </div>
+            <div class="text-center">
+              <div class="font-heading font-bold text-5xl text-accent-400">{business.rating}</div>
+              <div class="text-white/60 text-sm mt-2">Google Rating</div>
+            </div>
+            <div class="text-center">
+              <div class="font-heading font-bold text-5xl text-accent-400">{business.stats.satisfactionRate}%</div>
+              <div class="text-white/60 text-sm mt-2">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-2xl mx-auto text-center" data-aos="fade-up">
+        <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">Why Choose Us</p>
+        <h2 class="font-heading text-4xl font-bold text-primary-900">What We Stand For</h2>
+        <p class="text-neutral-500 text-lg mt-4">
+          These aren't slogans — they're the standards we hold ourselves to on every single job.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+        {values.map((v, i) => (
+          <div class="bg-white border border-neutral-200 rounded-2xl p-7" data-aos="fade-up" data-aos-delay={Math.min(i + 1, 6) * 100}>
+            <div class="w-11 h-11 bg-primary-50 text-primary-700 rounded-xl flex items-center justify-center mb-4" set:html={v.icon} />
+            <h3 class="font-heading font-bold text-lg text-primary-900 mb-2">{v.title}</h3>
+            <p class="text-neutral-500 text-sm leading-relaxed">{v.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area callout -->
+  <section class="py-16 bg-white border-t border-neutral-200">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5 text-center" data-aos="fade-up">
+      <h2 class="font-heading text-2xl font-bold text-primary-900">
+        Serving {business.city}, {business.state} and Surrounding Areas
+      </h2>
+      <p class="text-neutral-500 mt-3 text-base">
+        We cover a {business.serviceRadius} from {business.city}. Check our{" "}
+        <a href="/service-areas" class="text-accent-600 font-semibold hover:underline">service areas page</a>{" "}
+        to confirm coverage for your address.
+      </p>
+    </div>
+  </section>
+
+  <Cta />
+</Layout>
