@@ -23,11 +23,18 @@ export const business = {
   zip: "00000",
   serviceRadius: "30 mile radius", // e.g. "50 miles", "metro area"
 
+  // ── Google ──
+  // placeId: get it from Google Maps → Share → copy the Place ID, or use
+  //   https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+  // Enable "Places API (New)" and "Maps Embed API" in Google Cloud Console.
+  // Set GOOGLE_PLACES_API_KEY and PUBLIC_GOOGLE_MAPS_KEY in Cloudflare env vars.
+  placeId: "",      // e.g. "ChIJN1t_tDeuEmsRUsoyG83frY4"
+
   // ── Social ──
   socials: {
     facebook:  "",   // full URL: https://facebook.com/yourbusiness
     instagram: "",   // full URL: https://instagram.com/yourbusiness
-    google:    "",   // Google Business Profile URL (for review link)
+    google:    "",   // Google Business Profile URL (for review link CTA)
     nextdoor:  "",   // Nextdoor business page URL
   },
 

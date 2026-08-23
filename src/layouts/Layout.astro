@@ -1,6 +1,6 @@
 ---
 import { SEO } from "astro-seo";
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import Footer from "@/components/footer.astro";
 import Navbar from "@/components/navbar/navbar.astro";
 import OrganizationSchema from "@/components/organizationschema.astro";
@@ -50,7 +50,7 @@ const makeDescription =
     />
     <slot name="head" />
     <OrganizationSchema />
-    <ViewTransitions />
+    <ClientRouter />
     <!-- Cloudflare Web Analytics — get your token at dash.cloudflare.com > Web Analytics -->
     <!-- Replace REPLACE_WITH_CF_TOKEN with your actual token -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "REPLACE_WITH_CF_TOKEN"}'></script>
