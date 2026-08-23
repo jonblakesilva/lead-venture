@@ -1,0 +1,295 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+
+// CUSTOMIZE: Replace these with real job photos.
+// Each item: { src, alt, label, category }
+// category must match one of the filter buttons below.
+const photos = [
+  {
+    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Completed job — before",
+    label: "Full-property cleanup",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Landscaping work completed",
+    label: "Lawn restoration",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Trimming completed project",
+    label: "Tree trimming",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Large removal job",
+    label: "Tree removal",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Stump before grinding",
+    label: "Stump removal",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Before pruning",
+    label: "Canopy pruning",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Clean yard after service",
+    label: "Post-service cleanup",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Crew working on large project",
+    label: "Commercial project",
+    category: "all",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&h=500&q=80",
+    alt: "Happy customer with crew",
+    label: "Satisfied customer",
+    category: "all",
+  },
+];
+
+// CUSTOMIZE: Add category filter labels that match your services.
+// Set value to "all" for the catch-all, then add per-service slugs.
+const filters = [
+  { label: "All Work", value: "all" },
+  // { label: "Tree Removal",   value: "tree-removal" },
+  // { label: "Trimming",       value: "trimming" },
+  // { label: "Stump Grinding", value: "stump" },
+];
+---
+
+<Layout
+  title="Project Gallery"
+  description={`See our work. Real photos from real jobs completed by ${business.name} in ${business.city}, ${business.state} and surrounding areas.`}
+>
+  <!-- Header -->
+  <section class="bg-primary-900 text-white py-16 lg:py-20">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-2xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Our Work</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Project Gallery
+        </h1>
+        <p class="text-white/70 text-lg mt-4 leading-relaxed">
+          Browse real photos from jobs we've completed across {business.city} and the surrounding area.
+          Every project is a reflection of our commitment to quality.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <div class="bg-accent-500 text-white py-4">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="flex flex-wrap items-center justify-center gap-8 text-sm font-semibold">
+        <span>{business.stats.jobsCompleted.toLocaleString()}+ Jobs Completed</span>
+        <span class="hidden sm:block text-white/40">|</span>
+        <span>Rated {business.rating}/5 Stars</span>
+        <span class="hidden sm:block text-white/40">|</span>
+        <span>{business.reviewCount}+ Reviews</span>
+        <span class="hidden sm:block text-white/40">|</span>
+        <span>{business.guaranteeText}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <section class="py-16 lg:py-20 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+
+      <!-- Filter buttons (only show if multiple categories defined) -->
+      {filters.length > 1 && (
+        <div class="flex flex-wrap gap-2 mb-10 justify-center" id="gallery-filters">
+          {filters.map((f, i) => (
+            <button
+              data-filter={f.value}
+              class:list={[
+                "px-5 py-2 rounded-full text-sm font-semibold border-2 transition-colors duration-150",
+                i === 0
+                  ? "bg-primary-900 text-white border-primary-900"
+                  : "border-neutral-300 text-neutral-600 hover:border-primary-900 hover:text-primary-900",
+              ]}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <!-- Photo grid -->
+      <div
+        id="gallery-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
+      >
+        {photos.map((photo, i) => (
+          <div
+            data-category={photo.category}
+            data-aos="fade-up"
+            data-aos-delay={(i % 3) * 75}
+            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer bg-neutral-200 aspect-[4/3] shadow-sm hover:shadow-lg transition-shadow duration-300"
+            onclick={`openLightbox(${i})`}
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute bottom-0 left-0 right-0 p-4">
+                <p class="text-white font-semibold text-sm">{photo.label}</p>
+                <p class="text-white/60 text-xs mt-0.5">{business.name}</p>
+              </div>
+            </div>
+            <!-- Zoom icon -->
+            <div class="absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
+              </svg>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="text-center mt-14" data-aos="fade-up">
+        <p class="text-neutral-500 text-base mb-5">Ready for results like these on your property?</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+          >
+            Get Your Free Quote
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href={`tel:${business.phoneRaw}`}
+            class="inline-flex items-center gap-2 border-2 border-primary-800 text-primary-800 hover:bg-primary-50 font-bold px-8 py-4 rounded-xl transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
+            </svg>
+            {business.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- Lightbox overlay -->
+<div
+  id="lightbox"
+  class="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4 hidden"
+  onclick="closeLightbox(event)"
+>
+  <button
+    onclick="closeLightbox()"
+    class="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+    aria-label="Close"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+  <button
+    id="lb-prev"
+    onclick="lightboxNav(-1)"
+    class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+    aria-label="Previous"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  <button
+    id="lb-next"
+    onclick="lightboxNav(1)"
+    class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+    aria-label="Next"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+  <div class="max-w-4xl w-full">
+    <img id="lb-img" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-xl" />
+    <p id="lb-caption" class="text-white/70 text-sm text-center mt-3"></p>
+  </div>
+</div>
+
+<script is:inline>
+  const photos = [
+    { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85", label: "Full-property cleanup" },
+    { src: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=85", label: "Lawn restoration" },
+    { src: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=85", label: "Tree trimming" },
+    { src: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85", label: "Tree removal" },
+    { src: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1200&q=85", label: "Stump removal" },
+    { src: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?auto=format&fit=crop&w=1200&q=85", label: "Canopy pruning" },
+    { src: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=1200&q=85", label: "Post-service cleanup" },
+    { src: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1200&q=85", label: "Commercial project" },
+    { src: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=85", label: "Satisfied customer" },
+  ];
+
+  let current = 0;
+
+  function openLightbox(i) {
+    current = i;
+    updateLightbox();
+    document.getElementById("lightbox").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById("lightbox")) return;
+    document.getElementById("lightbox").classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  function lightboxNav(dir) {
+    current = (current + dir + photos.length) % photos.length;
+    updateLightbox();
+  }
+
+  function updateLightbox() {
+    document.getElementById("lb-img").src = photos[current].src;
+    document.getElementById("lb-img").alt = photos[current].label;
+    document.getElementById("lb-caption").textContent = photos[current].label;
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (document.getElementById("lightbox").classList.contains("hidden")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft")  lightboxNav(-1);
+    if (e.key === "ArrowRight") lightboxNav(1);
+  });
+
+  // Filter buttons
+  const filterBtns = document.querySelectorAll("[data-filter]");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.replace("bg-primary-900", "bg-transparent"));
+      btn.classList.add("bg-primary-900", "text-white", "border-primary-900");
+      const val = btn.dataset.filter;
+      document.querySelectorAll(".gallery-item").forEach(item => {
+        item.style.display = (val === "all" || item.dataset.category === val) ? "" : "none";
+      });
+    });
+  });
+</script>

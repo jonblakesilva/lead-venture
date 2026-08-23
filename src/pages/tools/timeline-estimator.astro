@@ -1,0 +1,168 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+---
+
+<Layout
+  title="Project Timeline Estimator"
+  description={`Find out how long your ${business.niche} project will take. Free timeline estimator from ${business.name} in ${business.city}, ${business.state}.`}
+>
+  <section class="bg-primary-900 text-white py-16">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-2xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Free Tool</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Project Timeline Estimator
+        </h1>
+        <p class="text-white/70 text-lg mt-4">
+          Estimate how long your project will take based on job type and size. Actual timelines vary — call for a firm schedule.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="grid lg:grid-cols-2 gap-12 items-start max-w-4xl mx-auto">
+
+        <!-- Tool -->
+        <div class="bg-white rounded-2xl border border-neutral-200 p-8 shadow-[var(--shadow-card)]">
+          <h2 class="font-heading font-bold text-xl text-primary-900 mb-6">Estimate Your Timeline</h2>
+
+          <div class="space-y-6" id="timeline-tool">
+            <div>
+              <label for="jobType" class="block text-sm font-medium text-neutral-700 mb-2">
+                <!-- CUSTOMIZE: Replace with your service types -->
+                Job type
+              </label>
+              <select id="jobType" class="w-full border border-neutral-300 rounded-lg px-4 py-3 text-neutral-900 focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 focus:outline-none bg-white text-sm">
+                <option value="small">Small job (single tree / simple task)</option>
+                <option value="medium" selected>Medium job (2–4 trees / multi-area)</option>
+                <option value="large">Large job (5+ trees / full property)</option>
+                <option value="emergency">Emergency / storm response</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="propertySize" class="block text-sm font-medium text-neutral-700 mb-2">
+                Property type
+              </label>
+              <select id="propertySize" class="w-full border border-neutral-300 rounded-lg px-4 py-3 text-neutral-900 focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 focus:outline-none bg-white text-sm">
+                <option value="residential" selected>Residential</option>
+                <option value="commercial">Commercial</option>
+                <option value="rural">Rural / acreage</option>
+              </select>
+            </div>
+
+            <!-- Output -->
+            <div class="bg-neutral-50 rounded-xl p-6 border border-neutral-200">
+              <p class="text-sm text-neutral-500 mb-1">Estimated job duration</p>
+              <p id="durationOutput" class="font-heading font-bold text-4xl text-primary-900">2–4 hours</p>
+              <p id="crewOutput" class="text-neutral-500 text-sm mt-2">Typical crew: 3 people</p>
+              <p class="text-xs text-neutral-400 mt-2">
+                Actual time depends on site conditions, equipment access, and specific requirements.
+              </p>
+            </div>
+
+            <a
+              href="/contact"
+              class="block w-full text-center bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 rounded-xl transition-colors"
+            >
+              Schedule My Project
+            </a>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="space-y-6">
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-primary-900 mb-3">What Affects Your Timeline?</h2>
+            <p class="text-neutral-600 leading-relaxed text-sm">
+              <!-- CUSTOMIZE: Adjust this copy for your specific service. -->
+              Several factors influence how long a job takes: the number and size of trees or work areas,
+              equipment access on your property, the complexity of the work, and how close structures or
+              power lines are. Our crew gives you a firm time estimate before any work begins.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            {[
+              { title: "We show up on time", desc: "Your scheduled window is the time we arrive — not a 4-hour range." },
+              { title: "One visit, done right", desc: "We bring the right crew and equipment to finish the job in a single visit whenever possible." },
+              { title: "Site left clean", desc: "Cleanup is included. We don't leave until the property is spotless." },
+            ].map((item) => (
+              <div class="flex gap-3">
+                <div class="w-8 h-8 bg-accent-100 text-accent-600 rounded-lg flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-primary-900 text-sm">{item.title}</div>
+                  <div class="text-neutral-500 text-xs mt-0.5">{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="bg-primary-900 text-white rounded-xl p-6">
+            <p class="font-semibold text-sm mb-2">Get an exact timeline:</p>
+            <a href={`tel:${business.phoneRaw}`} class="text-accent-300 hover:text-accent-200 font-bold text-xl transition-colors">
+              {business.phone}
+            </a>
+            <p class="text-white/50 text-xs mt-1">Mon–Sat 7am–7pm</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // CUSTOMIZE: Adjust these durations and crew sizes for your actual service.
+  type JobType = "small" | "medium" | "large" | "emergency";
+  type PropertyType = "residential" | "commercial" | "rural";
+
+  const DURATIONS: Record<JobType, Record<PropertyType, { time: string; crew: string }>> = {
+    small: {
+      residential: { time: "1–2 hours",  crew: "2 people" },
+      commercial:  { time: "2–3 hours",  crew: "2–3 people" },
+      rural:       { time: "2–4 hours",  crew: "2–3 people" },
+    },
+    medium: {
+      residential: { time: "3–5 hours",  crew: "3 people" },
+      commercial:  { time: "4–6 hours",  crew: "3–4 people" },
+      rural:       { time: "4–8 hours",  crew: "3–4 people" },
+    },
+    large: {
+      residential: { time: "1–2 days",   crew: "4–5 people" },
+      commercial:  { time: "2–3 days",   crew: "4–5 people" },
+      rural:       { time: "2–4 days",   crew: "4–6 people" },
+    },
+    emergency: {
+      residential: { time: "2–4 hours",  crew: "3–4 people" },
+      commercial:  { time: "2–5 hours",  crew: "3–5 people" },
+      rural:       { time: "3–6 hours",  crew: "3–5 people" },
+    },
+  };
+
+  const jobTypeEl     = document.getElementById("jobType") as HTMLSelectElement;
+  const propertySizeEl = document.getElementById("propertySize") as HTMLSelectElement;
+  const durationOut   = document.getElementById("durationOutput") as HTMLParagraphElement;
+  const crewOut       = document.getElementById("crewOutput") as HTMLParagraphElement;
+
+  function update() {
+    const jt = jobTypeEl.value as JobType;
+    const ps = propertySizeEl.value as PropertyType;
+    const result = DURATIONS[jt]?.[ps];
+    if (result) {
+      durationOut.textContent = result.time;
+      crewOut.textContent = `Typical crew: ${result.crew}`;
+    }
+  }
+
+  jobTypeEl.addEventListener("change", update);
+  propertySizeEl.addEventListener("change", update);
+  update();
+</script>

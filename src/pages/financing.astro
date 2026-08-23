@@ -1,0 +1,268 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+import FaqAccordion from "@/components/faqaccordion.astro";
+
+// CUSTOMIZE: Edit these financing options to match what you actually offer.
+// If you partner with a specific lender (Hearth, GreenSky, etc.), replace
+// the partner name and link in the CTA section below.
+const options = [
+  {
+    title: "Monthly Payment Plans",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+    description: "Break your project into manageable monthly payments. Terms from 12 to 60 months available based on credit approval.",
+    highlights: [
+      "Payments as low as $XX/month",
+      "No prepayment penalties",
+      "Fixed interest rate — no surprises",
+      "Quick online application",
+    ],
+    badge: "Most Popular",
+    popular: true,
+  },
+  {
+    title: "Deferred Payment",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    description: "Get the work done now, pay later. Many customers qualify for 90-day deferred payment plans.",
+    highlights: [
+      "No payments for 90 days",
+      "Work starts immediately",
+      "Subject to credit approval",
+      "Great for seasonal timing",
+    ],
+    badge: null,
+    popular: false,
+  },
+  {
+    title: "Same-as-Cash",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    description: "Pay zero interest if paid in full within the promotional period. Ideal for customers who want flexibility without paying extra.",
+    highlights: [
+      "0% interest for 12 months",
+      "No interest if paid in full",
+      "Minimum monthly payment required",
+      "Subject to credit approval",
+    ],
+    badge: null,
+    popular: false,
+  },
+];
+
+const steps = [
+  {
+    step: "01",
+    title: "Get Your Free Quote",
+    desc: "We visit your property, assess the job, and give you a firm written estimate at no charge.",
+  },
+  {
+    step: "02",
+    title: "Apply in Minutes",
+    desc: "Fill out a simple online application. Most applicants receive a decision within seconds.",
+  },
+  {
+    step: "03",
+    title: "We Get to Work",
+    desc: "Once approved, we schedule your project immediately. No waiting, no delays.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What credit score do I need to qualify?",
+    answer: "Financing is available to customers with a wide range of credit histories. Many of our financing partners offer options for fair and good credit, not just excellent credit. The application takes 2 minutes and doesn't affect your credit score to check.",
+  },
+  {
+    question: "Does applying hurt my credit score?",
+    answer: "The initial pre-qualification uses a soft credit pull, which does not affect your score. A hard pull only occurs if you accept a financing offer.",
+  },
+  {
+    question: "How much can I finance?",
+    answer: `Financing is available for projects from $500 to $XX,000, depending on your credit profile. Contact us at ${business.phone} for questions about larger projects.`,
+  },
+  {
+    question: "Can I pay off early?",
+    answer: "Yes. There are no prepayment penalties on any of our financing options. Pay it off early and you'll only pay interest for the time you actually used the money.",
+  },
+  {
+    question: "What if I'm not approved?",
+    answer: "If you're not approved through our primary financing partner, we'll work with you on alternative options — including a deposit-plus-balance payment structure or connecting you with other lenders.",
+  },
+  {
+    question: "Is financing available for emergency jobs?",
+    answer: "Yes. We can process financing approvals the same day in most cases, so emergency work can be financed even when you need us right away.",
+  },
+];
+---
+
+<Layout
+  title="Financing Options"
+  description={`Flexible financing for ${business.niche} services in ${business.city}, ${business.state}. Monthly payments, deferred options, and 0% interest plans available. Call ${business.phone}.`}
+>
+
+  <!-- Header -->
+  <section class="bg-primary-900 text-white py-16 lg:py-20">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-2xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Financing</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Don't Let Cost Stop You
+        </h1>
+        <p class="text-white/70 text-lg mt-4 leading-relaxed">
+          We offer flexible financing so you can get the work done now and pay on a schedule
+          that works for your budget. No surprises, no pressure.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-md text-sm"
+          >
+            Apply for Financing
+          </a>
+          <a
+            href={`tel:${business.phoneRaw}`}
+            class="inline-flex items-center gap-2 border-2 border-white/30 hover:border-white text-white font-semibold px-7 py-3.5 rounded-xl transition-colors text-sm"
+          >
+            {business.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust bar -->
+  <div class="bg-accent-500 text-white py-4">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="flex flex-wrap items-center justify-center gap-8 text-sm font-semibold">
+        <span>Fast Approval — Minutes, Not Days</span>
+        <span class="hidden sm:block text-white/40">|</span>
+        <span>Soft Pull Doesn't Affect Credit</span>
+        <span class="hidden sm:block text-white/40">|</span>
+        <span>No Prepayment Penalties</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financing options -->
+  <section class="py-16 lg:py-20 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+        <h2 class="font-heading text-3xl lg:text-4xl font-bold text-primary-900">Financing Options</h2>
+        <p class="text-neutral-500 text-lg mt-3">
+          Choose the plan that fits your situation. We'll help you pick the best option when you call.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {options.map((opt, i) => (
+          <div
+            class:list={[
+              "relative bg-white rounded-2xl border-2 p-7 flex flex-col shadow-sm",
+              opt.popular ? "border-accent-500 shadow-[var(--shadow-card-hover)]" : "border-neutral-200",
+            ]}
+            data-aos="fade-up"
+            data-aos-delay={(i + 1) * 100}
+          >
+            {opt.badge && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span class="bg-accent-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">
+                  {opt.badge}
+                </span>
+              </div>
+            )}
+
+            <div class="w-11 h-11 bg-primary-100 text-primary-700 rounded-xl flex items-center justify-center mb-5"
+              set:html={opt.icon} />
+
+            <h3 class="font-heading font-bold text-xl text-primary-900 mb-2">{opt.title}</h3>
+            <p class="text-neutral-500 text-sm leading-relaxed mb-6">{opt.description}</p>
+
+            <ul class="space-y-2.5 flex-1 mb-7">
+              {opt.highlights.map((h) => (
+                <li class="flex items-center gap-2.5 text-sm text-neutral-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {h}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="/contact"
+              class:list={[
+                "block w-full text-center font-bold py-3.5 rounded-xl transition-colors text-sm",
+                opt.popular
+                  ? "bg-accent-500 hover:bg-accent-600 text-white"
+                  : "border-2 border-primary-800 text-primary-800 hover:bg-primary-50",
+              ]}
+            >
+              Learn More
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-neutral-400 text-xs mt-8" data-aos="fade-up">
+        Financing is subject to credit approval. Terms and availability may vary.
+        <!-- CUSTOMIZE: Add your lender name/disclosure here -->
+      </p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+        <h2 class="font-heading text-3xl lg:text-4xl font-bold text-primary-900">How It Works</h2>
+        <p class="text-neutral-500 text-lg mt-3">From first call to finished project in three simple steps.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {steps.map((s, i) => (
+          <div class="text-center" data-aos="fade-up" data-aos-delay={(i + 1) * 100}>
+            <div class="w-16 h-16 bg-primary-900 text-white rounded-2xl flex items-center justify-center mx-auto mb-5">
+              <span class="font-heading font-bold text-xl">{s.step}</span>
+            </div>
+            <h3 class="font-heading font-bold text-primary-900 text-lg mb-2">{s.title}</h3>
+            <p class="text-neutral-500 text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Financing FAQ -->
+  <section class="py-16 lg:py-20 bg-neutral-50">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-heading text-3xl lg:text-4xl font-bold text-primary-900">Financing Questions</h2>
+        <p class="text-neutral-500 text-lg mt-3">
+          Still have questions? Call us at{" "}
+          <a href={`tel:${business.phoneRaw}`} class="text-accent-600 font-semibold hover:underline">{business.phone}</a>.
+        </p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <FaqAccordion items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply CTA -->
+  <section class="py-16 bg-primary-900 text-white text-center">
+    <div class="max-w-2xl mx-auto px-5" data-aos="fade-up">
+      <h2 class="font-heading text-3xl lg:text-4xl font-bold">Ready to Get Started?</h2>
+      <p class="text-white/70 text-lg mt-4">
+        Get your free estimate first — then we'll walk you through financing options that fit your budget.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center mt-8">
+        <a href="/contact" class="bg-accent-500 hover:bg-accent-600 text-white font-bold px-8 py-4 rounded-xl transition-colors shadow-md">
+          Request a Free Estimate
+        </a>
+        <a href={`tel:${business.phoneRaw}`} class="border-2 border-white/30 hover:border-white text-white font-bold px-8 py-4 rounded-xl transition-colors">
+          {business.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
