@@ -5,14 +5,28 @@ const projects = [
   {
     label: `${business.primaryServices[0]} — Before & After`,
     delay: 0,
+    // Replace with real before/after WebP images in public/images/
+    // e.g. before: "/images/service-one-before.webp"
+    before: "",
+    beforeAlt: `${business.primaryServices[0]} job before — ${business.name}`,
+    after: "",
+    afterAlt: `${business.primaryServices[0]} job after — ${business.name}`,
   },
   {
     label: `${business.primaryServices[1]} — Before & After`,
     delay: 100,
+    before: "",
+    beforeAlt: `${business.primaryServices[1]} job before — ${business.name}`,
+    after: "",
+    afterAlt: `${business.primaryServices[1]} job after — ${business.name}`,
   },
   {
     label: `${business.primaryServices[2]} — Before & After`,
     delay: 200,
+    before: "",
+    beforeAlt: `${business.primaryServices[2]} job before — ${business.name}`,
+    after: "",
+    afterAlt: `${business.primaryServices[2]} job after — ${business.name}`,
   },
 ];
 ---
@@ -39,27 +53,42 @@ const projects = [
           data-aos-delay={project.delay}
           class="group"
         >
-          <!--
-            CUSTOMIZE: Replace the div backgrounds below with real before/after photos.
-            To use images:
-              <img src="/images/before-project-1.jpg" alt="Before" class="w-full h-full object-cover" />
-            Place photos in public/images/ folder.
-            Remove the placeholder gradient divs and replace them with <img> tags.
-          -->
-
           <!-- Card wrapper -->
           <div class="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
 
             <!-- Before half (left) -->
-            <div class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-br from-neutral-300 via-neutral-400 to-neutral-500">
-              <!-- Placeholder texture overlay -->
-              <div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0,0,0,0.15) 4px, rgba(0,0,0,0.15) 8px);"></div>
+            <div class="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+              {project.before ? (
+                <img
+                  src={project.before}
+                  alt={project.beforeAlt}
+                  class="absolute inset-0 w-[200%] h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-neutral-300 via-neutral-400 to-neutral-500">
+                  <div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(0,0,0,0.15) 4px, rgba(0,0,0,0.15) 8px);"></div>
+                </div>
+              )}
             </div>
 
             <!-- After half (right) -->
-            <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-bl from-primary-700 via-primary-800 to-primary-900">
-              <!-- Subtle shine overlay -->
-              <div class="absolute inset-0 opacity-10 bg-gradient-to-t from-transparent to-white"></div>
+            <div class="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+              {project.after ? (
+                <img
+                  src={project.after}
+                  alt={project.afterAlt}
+                  class="absolute inset-0 w-[200%] h-full object-cover"
+                  style="right: 0; left: auto;"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-bl from-primary-700 via-primary-800 to-primary-900">
+                  <div class="absolute inset-0 opacity-10 bg-gradient-to-t from-transparent to-white"></div>
+                </div>
+              )}
             </div>
 
             <!-- Center divider line -->

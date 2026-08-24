@@ -86,6 +86,21 @@ const faqItems = [
     </div>
   </section>
 
+  <!-- Service hero image -->
+  {service.data.image?.src && (
+    <div class="w-full h-56 md:h-72 lg:h-80 overflow-hidden">
+      <img
+        src={service.data.image.src}
+        alt={service.data.image.alt}
+        class="w-full h-full object-cover"
+        width="1200"
+        height="500"
+        loading="eager"
+        decoding="sync"
+      />
+    </div>
+  )}
+
   <div class="max-w-(--breakpoint-xl) mx-auto px-5 py-16">
     <div class="grid lg:grid-cols-3 gap-12">
 

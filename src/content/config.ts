@@ -39,6 +39,7 @@ const servicesCollection = defineCollection({
     shortDesc: z.string(), // used on the services listing/cards + meta description
     icon: z.string().optional(), // icon name from astro-icon (bx/uil sets)
     order: z.number().default(0), // controls listing order
+    image: z.object({ src: z.string(), alt: z.string() }).optional(),
   }),
 });
 
