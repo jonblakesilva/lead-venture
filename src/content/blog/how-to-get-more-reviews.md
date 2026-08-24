@@ -12,7 +12,7 @@ author: "The Lead Venture"
 tags: [reviews, reputation, local-seo]
 ---
 
-Getting consistent 5-star reviews is one of the highest-leverage activities for any local service business. Reviews build trust, improve your Google ranking, and close more jobs — often before you even pick up the phone.
+Getting consistent 5-star reviews is one of the highest-leverage activities for any local service business. Reviews build trust, improve your Google ranking, and close more jobs, often before you even pick up the phone.
 
 ## Why Reviews Matter More Than You Think
 

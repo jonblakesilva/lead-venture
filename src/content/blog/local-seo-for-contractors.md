@@ -57,7 +57,7 @@ Links from other local websites tell Google you're established in your community
 
 ## How Long Does It Take?
 
-Honest answer: 3–6 months to see meaningful movement for competitive keywords; faster for less competitive niches and smaller markets. Local SEO compounds over time — the businesses that started 2 years ago have a big head start, but you can close the gap with consistent effort.
+Honest answer: 3 to 6 months to see meaningful movement for competitive keywords; faster for less competitive niches and smaller markets. Local SEO compounds over time — the businesses that started 2 years ago have a big head start, but you can close the gap with consistent effort.
 
 ---
 
