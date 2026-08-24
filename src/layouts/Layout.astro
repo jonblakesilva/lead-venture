@@ -1,6 +1,7 @@
 ---
 import { SEO } from "astro-seo";
 import { ClientRouter } from 'astro:transitions';
+import ExitPopup from "@/components/exitpopup.astro";
 import Footer from "@/components/footer.astro";
 import Navbar from "@/components/navbar/navbar.astro";
 import OrganizationSchema from "@/components/organizationschema.astro";
@@ -61,6 +62,7 @@ const makeDescription =
       <slot />
     </main>
     <Footer />
+    <ExitPopup />
 
     <script is:inline>
       (function () {

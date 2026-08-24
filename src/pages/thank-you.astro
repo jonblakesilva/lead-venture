@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import ReviewCta from "@/components/reviewcta.astro";
 import { business } from "@/config/business";
 ---
 
@@ -57,9 +58,11 @@ import { business } from "@/config/business";
         </a>
       </div>
 
+      <ReviewCta />
+
       <a
         href="/"
-        class="inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-accent-600 transition-colors text-sm"
+        class="inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-accent-600 transition-colors text-sm mt-6 block"
       >
         ← Back to Home
       </a>
