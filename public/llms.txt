@@ -24,6 +24,7 @@ Your City, ST and a 30 mile radius service area
 - /service-areas — Cities and towns we serve
 - /about — About the business
 - /contact — Request a free quote
+# CUSTOMIZE: remove this line if the site does not have a pricing page
 - /pricing — Service packages and pricing
 - /blog — Tips and guides
 - /tools/cost-estimator — Instant price estimate tool

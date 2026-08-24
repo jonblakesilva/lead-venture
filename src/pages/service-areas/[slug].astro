@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import LocalBusinessSchema from "@/components/localbusinessschema.astro";
 import FaqAccordion from "@/components/faqaccordion.astro";
 import { business } from "@/config/business";
 
@@ -68,10 +67,6 @@ const faqItems = [
     `${business.name} provides ${business.niche} services in ${location.data.city}, ${location.data.state}. Free estimates — call ${business.phone}.`
   }
 >
-  <Fragment slot="head">
-    <LocalBusinessSchema areaServed={`${location.data.city}, ${location.data.state}`} />
-  </Fragment>
-
   <!-- Header -->
   <section class="bg-primary-900 text-white py-16 lg:py-20">
     <div class="max-w-(--breakpoint-xl) mx-auto px-5">

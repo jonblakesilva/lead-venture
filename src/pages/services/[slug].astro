@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import LocalBusinessSchema from "@/components/localbusinessschema.astro";
 import ServiceSchema from "@/components/serviceschema.astro";
 import FaqAccordion from "@/components/faqaccordion.astro";
 import { Icon } from "astro-icon/components";
@@ -57,7 +56,6 @@ const faqItems = [
   description={service.data.shortDesc}
 >
   <Fragment slot="head">
-    <LocalBusinessSchema />
     <ServiceSchema
       serviceName={service.data.title}
       serviceDescription={service.data.shortDesc}
