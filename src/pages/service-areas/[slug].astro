@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import LocalBusinessSchema from "@/components/localbusinessschema.astro";
+import FaqAccordion from "@/components/faqaccordion.astro";
 import { business } from "@/config/business";
 
 export async function getStaticPaths() {
@@ -26,6 +27,36 @@ const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 const mapSrc = mapsKey
   ? `https://www.google.com/maps/embed/v1/search?key=${mapsKey}&q=${encodeURIComponent(business.name + " " + location.data.city + " " + location.data.state)}&zoom=12`
   : null;
+
+const city = location.data.city;
+const state = location.data.state;
+
+const faqItems = [
+  {
+    question: `Do you provide ${business.niche.toLowerCase()} in ${city}, ${state}?`,
+    answer: `Yes — ${city} is within our regular service area. ${business.name} serves ${city} and the surrounding communities. We typically schedule within 1–3 business days, and prioritize same-day response for emergencies.`,
+  },
+  {
+    question: `What services are available in ${city}?`,
+    answer: `We offer the full range of ${business.niche.toLowerCase()} services in ${city} for residential and commercial properties. Contact us to discuss your specific needs and get a free estimate.`,
+  },
+  {
+    question: `How much does service cost in ${city}, ${state}?`,
+    answer: `Cost depends on the scope of work and site conditions. We provide free, no-obligation estimates for every job. Call us at ${business.phone} or fill out our contact form and we'll get back to you the same business day.`,
+  },
+  {
+    question: `Are you licensed and insured in ${city}?`,
+    answer: `Yes. ${business.name} is fully licensed and insured, including general liability and workers' compensation coverage. You're protected on every job.`,
+  },
+  {
+    question: `How quickly do you respond to emergencies in ${city}?`,
+    answer: `Emergency calls get top priority. Call us directly at ${business.phone} — we aim to respond same day for true emergencies and will work with you to assess the situation as quickly as possible.`,
+  },
+  {
+    question: `Do you offer free estimates in ${city}?`,
+    answer: `Yes — all estimates are completely free and come with no obligation. We'll assess the job in person, walk you through the work required, and give you a firm price before anything begins.`,
+  },
+];
 ---
 
 <Layout
@@ -86,10 +117,10 @@ const mapSrc = mapsKey
             </h2>
             <div class="rounded-2xl overflow-hidden border border-neutral-200 shadow-sm">
               <iframe
-                title={`Glass City Tree Service serving ${location.data.city}, ${location.data.state}`}
+                title={`${business.name} serving ${city}, ${state}`}
                 src={mapSrc}
                 width="100%"
-                height="350"
+                height="380"
                 style="border:0;"
                 allowfullscreen
                 loading="lazy"
@@ -124,13 +155,21 @@ const mapSrc = mapsKey
           {[
             { label: "Free Estimates", sub: "No obligation quotes" },
             { label: business.guaranteeText, sub: "Or we make it right" },
-            { label: "Licensed & Insured", sub: `Lic # ${business.licenseNumber}` },
+            { label: "Licensed & Insured", sub: business.licenseNumber ? `Lic # ${business.licenseNumber}` : "Fully bonded" },
           ].map((item) => (
             <div class="bg-primary-50 border border-primary-100 rounded-xl p-5 text-center">
               <div class="font-semibold text-primary-900 text-sm">{item.label}</div>
               <div class="text-neutral-500 text-xs mt-1">{item.sub}</div>
             </div>
           ))}
+        </div>
+
+        <!-- FAQs -->
+        <div class="mt-14">
+          <h2 class="font-heading text-3xl font-bold text-primary-900 mb-8">
+            Frequently Asked Questions — {city} {business.niche}
+          </h2>
+          <FaqAccordion items={faqItems} />
         </div>
       </div>
 

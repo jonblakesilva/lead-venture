@@ -23,6 +23,11 @@ const allServices = (await getCollection("services", ({ data }) => !data.draft))
   .filter((s) => s.data.urlSlug !== service.data.urlSlug)
   .sort((a, b) => a.data.order - b.data.order);
 
+const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
+const mapSrc = mapsKey
+  ? `https://www.google.com/maps/embed/v1/search?key=${mapsKey}&q=${encodeURIComponent(business.name + " " + business.city + " " + business.state)}&zoom=11`
+  : null;
+
 const faqItems = [
   {
     question: `How much does ${service.data.title.toLowerCase()} cost?`,
@@ -49,7 +54,7 @@ const faqItems = [
 
 <Layout
   title={service.data.title}
-  description={`${service.data.shortDesc} ${business.name} serves ${business.city}, ${business.state} and surrounding areas. Free estimates — call ${business.phone}.`}
+  description={service.data.shortDesc}
 >
   <Fragment slot="head">
     <LocalBusinessSchema />
@@ -117,6 +122,31 @@ const faqItems = [
           </h2>
           <FaqAccordion items={faqItems} />
         </div>
+
+        <!-- Service Area Map -->
+        {mapSrc && (
+          <div class="mt-12">
+            <h2 class="font-heading text-xl font-bold text-primary-900 mb-4">
+              Serving {business.city} & Surrounding Areas
+            </h2>
+            <div class="rounded-2xl overflow-hidden border border-neutral-200 shadow-sm">
+              <iframe
+                title={`${business.name} — ${service.data.title} service area`}
+                src={mapSrc}
+                width="100%"
+                height="360"
+                style="border:0;"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <p class="text-sm text-neutral-500 mt-3">
+              We serve {business.city} and surrounding communities.{" "}
+              <a href="/service-areas" class="text-accent-600 hover:underline">View all service areas →</a>
+            </p>
+          </div>
+        )}
       </div>
 
       <!-- Sidebar -->
