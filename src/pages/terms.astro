@@ -72,7 +72,7 @@ const lastUpdated   = "January 1, 2025"; // CUSTOMIZE: update when you revise th
 
         <h2>7. Liability</h2>
         <p>
-          {business.name} carries liability insurance and operates in compliance with all applicable local and state licensing requirements (License # {business.licenseNumber}).
+          {business.name} carries liability insurance and operates in compliance with all applicable local and state licensing requirements{business.licenseNumber ? ` (License # ${business.licenseNumber})` : ""}.
           We are not liable for:
         </p>
         <ul>

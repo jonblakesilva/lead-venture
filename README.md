@@ -10,13 +10,13 @@ A modern, production-ready Astro website template built for local service busine
 
 - **Complete page set** — Home, About, Services, Service Areas, Pricing, Contact, Blog, Privacy Policy, Terms of Service, Thank You, 404
 - **CRO-optimized homepage** — Hero with inline quote form, trust bar, services grid, how it works, stats counter, testimonials, before/after gallery, FAQ, and CTA
-- **SEO-ready** — Schema.org LocalBusiness, AggregateRating, Review, and Service structured data
+- **SEO-ready** — Schema.org LocalBusiness, AggregateRating, Service, and FAQPage structured data
 - **Scroll animations** — AOS (Animate On Scroll) with Astro View Transitions
 - **Sticky mobile call bar** — Fixed bottom bar with Call Now + Free Quote buttons (mobile only)
 - **Before/after gallery** — Swap in real project photos with one line of code
 - **Content Collections** — Add services and service areas as Markdown files
 - **Single config file** — All business info (name, phone, address, reviews, etc.) in `src/config/business.ts`
-- **Cloudflare Web Analytics** — Drop in your token and done
+- **Cloudflare Web Analytics** — Set `CF_ANALYTICS_TOKEN` env var and done
 - **llms.txt** — AI crawler-friendly site description
 - **Tailwind CSS v4** — Custom navy + orange design system, easy to retheme
 
@@ -90,7 +90,7 @@ Place photos in `public/images/`.
 
 ### 5. Wire up Cloudflare Analytics
 
-In `src/layouts/Layout.astro`, replace `REPLACE_WITH_CF_TOKEN` with your token from [dash.cloudflare.com](https://dash.cloudflare.com).
+Set `CF_ANALYTICS_TOKEN` in your Cloudflare Pages environment variables (Settings → Environment Variables). Get your token from [dash.cloudflare.com](https://dash.cloudflare.com) → Web Analytics. No code changes needed — the analytics script loads automatically when the variable is set, and is omitted entirely when it isn't.
 
 ### 6. Update the site URL
 

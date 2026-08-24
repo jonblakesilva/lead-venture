@@ -53,9 +53,10 @@ const makeDescription =
     <slot name="head" />
     <OrganizationSchema />
     <ClientRouter />
-    <!-- Cloudflare Web Analytics — get your token at dash.cloudflare.com > Web Analytics -->
-    <!-- Replace REPLACE_WITH_CF_TOKEN with your actual token -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "REPLACE_WITH_CF_TOKEN"}'></script>
+    <!-- Cloudflare Web Analytics — set CF_ANALYTICS_TOKEN in your environment variables -->
+    {import.meta.env.CF_ANALYTICS_TOKEN && (
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${import.meta.env.CF_ANALYTICS_TOKEN}"}`}></script>
+    )}
   </head>
   <body>
     <Navbar />

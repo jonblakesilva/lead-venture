@@ -23,7 +23,7 @@ const homeFaqs = [
   },
   {
     question: "Are you licensed and insured?",
-    answer: `Absolutely. ${business.name} is fully licensed, bonded, and insured. License # ${business.licenseNumber}. You can request proof of insurance at any time.`,
+    answer: `Absolutely. ${business.name} is fully licensed, bonded, and insured${business.licenseNumber ? ` (License # ${business.licenseNumber})` : ""}. You can request proof of insurance at any time.`,
   },
   {
     question: "How quickly can you schedule service?",
