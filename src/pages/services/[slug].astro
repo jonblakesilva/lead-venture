@@ -25,7 +25,7 @@ const allServices = (await getCollection("services", ({ data }) => !data.draft))
 
 const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 const mapSrc = mapsKey
-  ? `https://www.google.com/maps/embed/v1/search?key=${mapsKey}&q=${encodeURIComponent(business.name + " " + business.city + " " + business.state)}&zoom=11`
+  ? `https://www.google.com/maps/embed/v1/view?key=${mapsKey}&center=${business.lat},${business.lng}&zoom=10`
   : null;
 
 const faqItems = [

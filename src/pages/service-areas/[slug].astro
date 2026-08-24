@@ -25,7 +25,7 @@ const otherLocations = (await getCollection("locations", ({ data }) => !data.dra
 
 const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
 const mapSrc = mapsKey
-  ? `https://www.google.com/maps/embed/v1/search?key=${mapsKey}&q=${encodeURIComponent(business.name + " " + location.data.city + " " + location.data.state)}&zoom=12`
+  ? `https://www.google.com/maps/embed/v1/search?key=${mapsKey}&q=${encodeURIComponent(location.data.city + ", " + location.data.state)}&zoom=12`
   : null;
 
 const city = location.data.city;

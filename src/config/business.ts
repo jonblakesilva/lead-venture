@@ -22,6 +22,8 @@ export const business = {
   state: "ST",
   zip: "00000",
   serviceRadius: "30 mile radius", // e.g. "50 miles", "metro area"
+  lat: 41.6638,   // city center coordinates for map embeds — update per client
+  lng: -83.5552,
 
   // ── Google ──
   // placeId: get it from Google Maps → Share → copy the Place ID, or use
