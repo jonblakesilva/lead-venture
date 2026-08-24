@@ -30,3 +30,6 @@ jobs:
           # Placeholders so build doesn't fail when env vars aren't set in CI
           PUBLIC_GOOGLE_MAPS_KEY: ""
           CF_ANALYTICS_TOKEN: ""
+
+      - name: Check for placeholders
+        run: node scripts/check-placeholders.js
