@@ -2,8 +2,11 @@
 import { business } from "@/config/business";
 ---
 
-<!-- Sticky mobile call bar — hidden on desktop, always visible on mobile -->
-<div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t-2 border-neutral-200 shadow-[0_-4px_20px_rgb(0,0,0/0.12)]">
+<!-- Sticky mobile call bar — hidden on desktop, slides up after 20% scroll on mobile -->
+<div
+  id="mobile-call-bar"
+  class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t-2 border-neutral-200 shadow-[0_-4px_20px_rgb(0,0,0/0.12)] translate-y-full transition-transform duration-300"
+>
   <div class="grid grid-cols-3">
 
     <!-- Call Now -->
@@ -44,5 +47,24 @@ import { business } from "@/config/business";
   <div class="h-safe-area-inset-bottom bg-white"></div>
 </div>
 
-<!-- Spacer so content isn't hidden behind the bar on mobile -->
-<div class="lg:hidden h-14"></div>
+<!-- Spacer — keeps content from being clipped once bar is visible -->
+<div id="mobile-call-bar-spacer" class="lg:hidden h-14 opacity-0 pointer-events-none"></div>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById("mobile-call-bar");
+    var spacer = document.getElementById("mobile-call-bar-spacer");
+    if (!bar) return;
+
+    function onScroll() {
+      // Show after the user scrolls 20% of total page height
+      var threshold = document.documentElement.scrollHeight * 0.20;
+      var past = window.scrollY >= threshold;
+      bar.classList.toggle("translate-y-full", !past);
+      if (spacer) spacer.classList.toggle("opacity-0", !past);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // run once on load in case page is pre-scrolled
+  })();
+</script>
