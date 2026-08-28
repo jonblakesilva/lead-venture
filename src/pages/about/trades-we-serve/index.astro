@@ -4,21 +4,9 @@ import { Icon } from "astro-icon/components";
 import FaqAccordion from "@/components/faqaccordion.astro";
 import ReviewWidget from "@/components/ReviewWidget.astro";
 import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { tradeData, tradeSlugs } from "@/data/trades";
 
-const trades = [
-  { name: "Roofing", slug: "roofing", icon: "lucide:home" },
-  { name: "HVAC", slug: "hvac", icon: "lucide:wind" },
-  { name: "Electrical", slug: "electrical", icon: "lucide:zap" },
-  { name: "Plumbing", slug: "plumbing", icon: "lucide:droplet" },
-  { name: "Lawn Care & Mowing", slug: "lawn-care", icon: "lucide:scissors" },
-  { name: "Tree Service", slug: "tree-service", icon: "lucide:tree-pine" },
-  { name: "Landscaping", slug: "landscaping", icon: "lucide:sun" },
-  { name: "Painting", slug: "painting", icon: "lucide:paintbrush" },
-  { name: "Remodeling", slug: "remodeling", icon: "lucide:hammer" },
-  { name: "General Contractors", slug: "general-contractors", icon: "lucide:wrench" },
-  { name: "Junk Removal", slug: "junk-removal", icon: "lucide:truck" },
-  { name: "Pest Control", slug: "pest-control", icon: "lucide:shield-alert" },
-];
+const trades = tradeSlugs.map((slug) => ({ name: tradeData[slug].name, slug, icon: tradeData[slug].icon }));
 
 const faqs = [
   { question: "Do my guys in the field need to learn a complicated app?", answer: "Not at all. The mobile app is designed to be as simple as your phone's native texting app. Your team can easily see their schedule, tap to call customers, and send review requests with a single button." },
