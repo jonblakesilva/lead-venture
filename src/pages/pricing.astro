@@ -32,9 +32,47 @@ const faqs = [
   { question: "What happens after the first spots are filled?", answer: "We cap new partner spots to keep quality high and ensure every client still gets real attention. When space opens up, the waitlist receives priority access." },
   { question: "What happens to my data if I cancel?", answer: "You keep your website assets and content. We will walk you through the handoff steps and make sure your business isn't left with an unusable setup." },
 ];
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: `${business.name} Pricing`,
+  itemListElement: plans.map((plan) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: plan.name,
+      description: plan.value,
+      provider: {
+        "@type": "LocalBusiness",
+        name: business.name,
+      },
+      offers: {
+        "@type": "Offer",
+        price: plan.price.replace(/[^\d.]/g, ""),
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+    },
+  })),
+  mainEntity: {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
+};
 ---
 
 <Layout title="Simple Pricing" description={`See transparent pricing for ${business.name} website design, review systems, AI follow-up, and local lead-generation services.`}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
+  </Fragment>
   <section class="bg-[#1A1D27] py-16 text-white md:py-20">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="max-w-3xl">

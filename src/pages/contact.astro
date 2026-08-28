@@ -1,12 +1,35 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { business } from "@/config/business";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: `${business.name} Contact Page`,
+  description: `Request a free quote from ${business.name} for ${business.niche} services in ${business.city}, ${business.state}.`,
+  url: `${business.website}/contact`,
+  mainEntity: {
+    "@type": "Organization",
+    name: business.name,
+    telephone: business.phone,
+    email: business.email,
+    areaServed: business.serviceAreas,
+  },
+  potentialAction: {
+    "@type": "CommunicateAction",
+    target: `${business.website}/contact`,
+    name: "Request a quote",
+  },
+};
 ---
 
 <Layout
   title="Contact Us"
   description={`Contact ${business.name} for a free quote on ${business.niche} services in ${business.city}, ${business.state}. Call ${business.phone} or fill out our form.`}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(contactSchema)} />
+  </Fragment>
   <!-- Page header -->
   <section class="bg-primary-900 text-white py-16 lg:py-20">
     <div class="max-w-(--breakpoint-xl) mx-auto px-5">

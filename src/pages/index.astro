@@ -2,9 +2,44 @@
 import Layout from "@/layouts/Layout.astro";
 import { business } from "@/config/business";
 import RoiCalculator from "@/components/RoiCalculator";
+
+const homepageFaqs = [
+  {
+    question: "What does The Lead Venture actually do for contractors?",
+    answer: "We build and manage the digital growth system for home service businesses, including lead-generation websites, local SEO, review automation, AI follow-up, and conversion-focused messaging.",
+  },
+  {
+    question: "Do you work with roofing, landscaping, plumbing, and other trade businesses?",
+    answer: "Yes. The Lead Venture helps contractors across local home service industries generate more qualified leads and convert more inbound calls into booked jobs.",
+  },
+  {
+    question: "How fast can a contractor get started?",
+    answer: "Most clients launch within a few days once content, assets, and goals are aligned. The process is built to be fast, simple, and low-friction.",
+  },
+  {
+    question: "Is there a contract or long-term commitment?",
+    answer: "No. The Lead Venture is designed to be low-risk and transparent, with simple pricing and no long-term lock-in required.",
+  },
+];
+
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homepageFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 ---
 
 <Layout title="Run Your Contracting Business Like a Pro" description="Automate your leads, fill your calendar, and get more 5-star reviews. Built by operators, not marketers.">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} />
+  </Fragment>
   <section class="relative overflow-hidden bg-[#1A1D27] py-16 text-white md:py-24">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.08),transparent_35%)]"></div>
     <div class="relative mx-auto max-w-(--breakpoint-xl) px-5">
@@ -285,6 +320,24 @@ import RoiCalculator from "@/components/RoiCalculator";
 
   <section class="bg-white py-20">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">FAQ</p>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Answers to the biggest contractor marketing questions</h2>
+      </div>
+
+      <div class="mx-auto max-w-4xl space-y-4">
+        {homepageFaqs.map((faq) => (
+          <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-xl font-bold text-primary-900">{faq.question}</h3>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="mx-auto max-w-4xl rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
         <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Why The Hell Is It Free?</h2>
         <div class="mt-6 space-y-4 text-lg text-slate-700">
@@ -293,7 +346,7 @@ import RoiCalculator from "@/components/RoiCalculator";
           <p>If the site doesn’t make you money, you leave, and we lose. We’re putting our own skin in the game.</p>
           <p class="font-bold text-primary-900">We Only Win When You Win.</p>
         </div>
-
+ 
         <div class="mt-8 flex justify-center">
           <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Claim Your Free Build</a>
         </div>
