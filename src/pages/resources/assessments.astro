@@ -128,7 +128,7 @@ const questionList = categories.flatMap((category) =>
   <ReviewWidget />
 </Layout>
 
-<script>
+<script define:vars={{ categories }}>
   const questions = [];
   categories.forEach((category) => {
     category.questions.forEach((question) => {
