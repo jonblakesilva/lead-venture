@@ -53,8 +53,12 @@ const makeDescription =
     <meta name="keywords" content={`${business.niche}, ${business.city}, ${business.state}, ${business.name}, lead generation, local SEO, website design, review system, AI receptionist`} />
     <meta name="author" content={business.name} />
     <meta name="theme-color" content="#111827" />
+    <meta property="og:description" content={makeDescription} />
     <meta property="og:site_name" content={business.name} />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:image:alt" content={makeTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="article:publisher" content={business.name} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={makeTitle} />
     <meta name="twitter:description" content={makeDescription} />
