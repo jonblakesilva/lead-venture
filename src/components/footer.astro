@@ -1,159 +1,100 @@
 ---
 import { business } from "@/config/business";
-import { getCollection } from "astro:content";
-
-const services = (await getCollection("services", ({ data }) => !data.draft))
-  .sort((a, b) => a.data.order - b.data.order);
 
 const year = new Date().getFullYear();
 
-const companyLinks = [
-  { title: "About Us",      path: "/about" },
-  { title: "Products",      path: "/products" },
-  { title: "Pricing",       path: "/pricing" },
-  { title: "Resources",     path: "/resources" },
-  { title: "Proof",         path: "/proof" },
-  { title: "Free Tools",    path: "/tools" },
-  { title: "Blog",          path: "/blog" },
-  { title: "Contact",       path: "/contact" },
+const quickLinks = [
+  { title: "How It Works", path: "/about/how-it-works" },
+  { title: "Meet the Team", path: "/about/team" },
+  { title: "Trades We Serve", path: "/about/trades-we-serve" },
+  { title: "Calculators", path: "/resources/calculators" },
+  { title: "Case Studies", path: "/proof/case-studies" },
+  { title: "Testimonials", path: "/proof/testimonials" },
+  { title: "Contact", path: "/contact" },
 ];
 ---
 
-<footer class="bg-primary-900 text-white">
-  <!-- Main footer -->
-  <div class="max-w-(--breakpoint-xl) mx-auto px-5 py-16 lg:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-
-      <!-- Col 1: Brand -->
-      <div class="lg:col-span-1">
-        <a href="/" class="inline-block">
-          <span class="font-heading font-bold text-2xl text-white">{business.name}</span>
-        </a>
-        <p class="text-white/60 text-sm leading-relaxed mt-3 max-w-xs">
-          {business.tagline}
-        </p>
-
-        <!-- Contact info -->
-        <div class="mt-6 space-y-2">
-          <a
-            href={`tel:${business.phoneRaw}`}
-            class="flex items-center gap-2 text-white/80 hover:text-accent-300 text-sm transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 text-accent-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
-            </svg>
-            {business.phone}
+<footer class="bg-[#13151D] py-16 text-white">
+  <div class="mx-auto grid max-w-(--breakpoint-xl) grid-cols-1 gap-8 px-5 md:grid-cols-4">
+    <!-- Brand -->
+    <div class="space-y-4">
+      <a href="/" class="inline-block">
+        <span class="font-heading text-2xl font-bold text-white">{business.name}</span>
+      </a>
+      <p class="text-sm text-white/60">Built tough for local service businesses.</p>
+      {business.socials.facebook && (
+        <div class="flex items-center gap-3 pt-4">
+          <a href={business.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition-colors hover:bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a
-            href={`mailto:${business.email}`}
-            class="flex items-center gap-2 text-white/80 hover:text-accent-300 text-sm transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-            {business.email}
-          </a>
-          <div class="flex items-start gap-2 text-white/60 text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 mt-0.5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            {business.city}, {business.state} {business.zip}<br/>
-            <span class="text-white/40 text-xs">{business.serviceRadius}</span>
-          </div>
         </div>
+      )}
+    </div>
 
-        <!-- Social links -->
-        {(business.socials.facebook || business.socials.instagram) && (
-          <div class="flex gap-3 mt-6">
-            {business.socials.facebook && (
-              <a href={business.socials.facebook} target="_blank" rel="noopener noreferrer"
-                class="w-8 h-8 bg-white/10 hover:bg-accent-500 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-                </svg>
-              </a>
-            )}
-            {business.socials.instagram && (
-              <a href={business.socials.instagram} target="_blank" rel="noopener noreferrer"
-                class="w-8 h-8 bg-white/10 hover:bg-accent-500 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-              </a>
-            )}
+    <!-- Contact -->
+    <div class="space-y-4">
+      <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Contact Us</h4>
+      <ul class="space-y-3 text-sm text-white/60">
+        <li class="flex gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1 shrink-0"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a href={`tel:${business.phoneRaw}`} class="transition-colors hover:text-white">{business.phone}</a>
+        </li>
+        <li class="flex gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1 shrink-0"><path d="M4 4h16c2 0 3 1 3 3v10c0 2-1 3-3 3H4c-2 0-3-1-3-3V7c0-2 1-3 3-3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="flex flex-col">
+            <a href={`mailto:${business.secondaryEmail}`} class="transition-colors hover:text-white">{business.secondaryEmail}</a>
+            <a href={`mailto:${business.email}`} class="transition-colors hover:text-white">{business.email}</a>
           </div>
+        </li>
+        <li class="flex gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1 shrink-0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>{business.address.streetAddress},<br/>{business.address.addressLocality}, {business.address.addressRegion} {business.address.postalCode}, US</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Products -->
+    <div class="space-y-4">
+      <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Products</h4>
+      <ul class="space-y-2 text-sm text-white/60">
+        {business.products.map((product) => (
+          <li><a href={`/products/${product.slug}`} class="transition-colors hover:text-white">{product.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="space-y-4">
+      <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h4>
+      <ul class="space-y-2 text-sm text-white/60">
+        {quickLinks.map((link) => (
+          <li><a href={link.path} class="transition-colors hover:text-white">{link.title}</a></li>
+        ))}
+        {business.directoryUrl && (
+          <li><a href={business.directoryUrl} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-white">Get Listed on the Directory</a></li>
         )}
-      </div>
-
-      <!-- Col 2: Company links -->
-      <div>
-        <h3 class="font-heading font-bold text-sm uppercase tracking-widest text-white/40 mb-5">Company</h3>
-        <ul class="space-y-2.5">
-          {companyLinks.map((link) => (
-            <li>
-              <a href={link.path} class="text-white/70 hover:text-white text-sm transition-colors">
-                {link.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Col 3: Services -->
-      <div>
-        <h3 class="font-heading font-bold text-sm uppercase tracking-widest text-white/40 mb-5">Services</h3>
-        <ul class="space-y-2.5">
-          {services.map((service) => (
-            <li>
-              <a href={`/services/${service.data.urlSlug}`} class="text-white/70 hover:text-white text-sm transition-colors">
-                {service.data.title}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href="/services" class="text-accent-400 hover:text-accent-300 text-sm transition-colors font-medium">
-              All Services →
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Col 4: License badge -->
-      <div>
-        <h3 class="font-heading font-bold text-sm uppercase tracking-widest text-white/40 mb-5">Why We Win</h3>
-        <ul class="space-y-2.5">
-          <li class="text-white/70 text-sm">Fast launch</li>
-          <li class="text-white/70 text-sm">Higher-quality lead flow</li>
-          <li class="text-white/70 text-sm">Built for local service brands</li>
-        </ul>
-
-        {business.licenseNumber && (
-          <div class="mt-8 p-3 bg-white/5 rounded-lg border border-white/10">
-            <p class="text-white/40 text-xs">Licensed & Insured</p>
-            <p class="text-white/70 text-xs font-mono mt-0.5">Lic # {business.licenseNumber}</p>
-          </div>
+        {business.crmLoginUrl && (
+          <li><a href={business.crmLoginUrl} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-white">Login to CRM</a></li>
         )}
-      </div>
+      </ul>
     </div>
   </div>
 
-  <!-- Bottom bar -->
-  <div class="border-t border-white/10">
-    <div class="max-w-(--breakpoint-xl) mx-auto px-5 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-white/40 text-xs">
-        © {year} {business.name}. All rights reserved.
-      </p>
-      <div class="flex gap-5">
-        <a href="/privacy" class="text-white/40 hover:text-white/70 text-xs transition-colors">Privacy Policy</a>
-        <a href="/terms" class="text-white/40 hover:text-white/70 text-xs transition-colors">Terms of Service</a>
-        <a href="/sitemap-index.xml" class="text-white/40 hover:text-white/70 text-xs transition-colors">Sitemap</a>
+  <div class="mx-auto mt-12 flex max-w-(--breakpoint-xl) flex-col items-center gap-8 border-t border-white/10 px-5 pt-8 text-center text-sm text-white/60">
+    <div class="max-w-4xl space-y-4 text-xs opacity-80">
+      <p>Disclaimer: The information provided on this website, including cost estimates, checklists, and guides, is for informational purposes only. It is not professional advice. Actual project costs may vary based on specific conditions, contractor availability, and material prices. Always consult with a licensed and insured professional before making decisions or starting a project.</p>
+      <p>Disclaimer: Sales figures and results stated above are my personal results and those of my clients. Please understand my results are not typical. I'm not implying you'll duplicate them (or do anything for that matter). The average person who buys any "how to" information gets little to no results. I'm using these references for example purposes only. Your results will vary and depend on many factors including but not limited to your background, experience, and work ethic. All business entails risk as well as massive and consistent effort and action. If you're not willing to accept that, please DO NOT submit your information.</p>
+      <p>This site is not a part of the Facebook website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
+      <p>This site is not a part of Google, LLC or any Google properties. This site is NOT endorsed by Google in any way. GOOGLE is a trademark of GOOGLE, LLC.</p>
+      <p>We are not an affiliate network and we do not sell or participate in buying leads. We build custom local SEO website engines directly for service-based businesses.</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <div class="flex space-x-4">
+        <a href="https://contractorhub.homeprosohio.com/privacy-policy" target="_blank" rel="noopener noreferrer" class="hover:text-white">Privacy Policy</a>
+        <a href="https://contractorhub.homeprosohio.com/terms-of-service" target="_blank" rel="noopener noreferrer" class="hover:text-white">Terms of Service</a>
+        <a href="/sitemap-index.xml" class="hover:text-white">Sitemap</a>
       </div>
-      <a href="https://theleadventure.com" target="_blank" rel="noopener noreferrer" class="text-white/30 hover:text-white/60 text-xs transition-colors">
-        Built by The Lead Venture
-      </a>
+      <p>© {year} Jonathan Blake LLC DBA {business.name}. All rights reserved.</p>
     </div>
   </div>
 </footer>

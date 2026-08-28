@@ -1,0 +1,92 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import ReviewWidget from "@/components/ReviewWidget.astro";
+
+const allTestimonials = [
+  {
+    name: "John Smith",
+    trade: "Roofing Contractor",
+    text: "The Lead Venture completely transformed how we handle incoming calls. We no longer miss leads when we're on the roof.",
+  },
+  {
+    name: "Sarah Jenkins",
+    trade: "HVAC Services",
+    text: "Our Google reviews doubled in the first month. The automated system makes it so easy for customers to leave feedback.",
+  },
+  {
+    name: "Mike Dawson",
+    trade: "Landscaping & Lawn Care",
+    text: "Having the CRM on my phone means I can quote jobs and send invoices from the truck. Game changer.",
+  },
+  {
+    name: "David Miller",
+    trade: "Plumbing",
+    text: "The missed call text-back feature alone paid for the system in the first week. Highly recommend.",
+  },
+  {
+    name: "Robert Chase",
+    trade: "Electrical",
+    text: "Before this, I was using 4 different apps to run my business. Now it's all in one place. Best decision I've made.",
+  },
+  {
+    name: "Amanda Vance",
+    trade: "Painting",
+    text: "The new website looks incredibly professional and actually gets people to call us. We look like the biggest painters in town.",
+  },
+];
+---
+
+<Layout title="Testimonials & Reviews" description="What trade businesses are saying about The Lead Venture.">
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white md:py-28">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading text-4xl font-bold md:text-6xl">What Our Contractors Say</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/80">
+        Don't just take our word for it. Hear from the business owners using The Lead Venture every day.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-neutral-50 py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {allTestimonials.map((t) => (
+          <div class="flex flex-col rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
+            <div class="mb-6 flex gap-1">
+              {Array.from({ length: 5 }).map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-400" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+            <blockquote class="mb-8 flex-1 text-lg text-neutral-700">"{t.text}"</blockquote>
+            <div>
+              <div class="font-bold text-primary-900">{t.name}</div>
+              <div class="text-sm text-neutral-500">{t.trade}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mb-8 text-center">
+        <h2 class="font-heading text-3xl font-bold text-primary-900">See What Others Are Saying</h2>
+      </div>
+      <ReviewWidget />
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-24 text-center text-white">
+    <div class="mx-auto max-w-3xl px-5">
+      <h2 class="font-heading text-3xl font-bold md:text-5xl">Ready to Join Them?</h2>
+      <a href="/contact" class="mt-10 inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Request a Website
+      </a>
+    </div>
+  </section>
+</Layout>

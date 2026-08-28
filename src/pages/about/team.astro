@@ -1,57 +1,94 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { business } from "@/config/business";
 
-const teamMembers = [
+const founders = [
   {
-    name: "Operations Lead",
-    role: "Strategy & Growth",
-    bio: "Hands-on in the sales, funnel, and retention strategy behind every client engagement — focused on meaningful growth rather than vanity metrics.",
+    name: "Tye Norden",
+    role: "Co-Founder",
+    image: "https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/ac4470f1-66de-4a33-b18e-2842f005e148.jpeg",
+    paragraphs: [
+      "Tye is the co-founder of The Lead Venture, where he leads sales. He holds a bachelor's degree in marketing and has spent 5 years in sales, including selling millions in direct sales and $1.3 million in roofing alone. He's worked both sides of the business, production and sales, so he understands firsthand what it actually takes to close the deal and deliver on it.",
+      "Tye is currently building his third successful business, on top of running a multi six-figure-a-year super affiliate business and owning real estate investments. That mix of experience — direct sales, affiliate marketing, and real estate — gives him a wide-angle view of what actually drives growth for a business, not just theory.",
+      "At The Lead Venture, Tye brings that same results-first approach to helping local service businesses sell more, close faster, and grow with confidence.",
+    ],
   },
   {
-    name: "Creative Lead",
-    role: "Messaging & Design",
-    bio: "Builds the conversion-focused website, sales pages, and customer experience touches that keep the brand aligned and high-converting.",
+    name: "Jonathan Blake",
+    role: "Co-Founder",
+    image: "https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/babb3410-7d25-4408-8cd3-f11a437f4b38.jpg",
+    paragraphs: [
+      "I grew up severely dyslexic and barely scraped through school. The traditional path wasn't built for me, so I built my own. I discovered online marketing and self-education, and it changed everything.",
+      "In 2015, I started a tree service. I didn't just learn how to cut trees, I had to learn how to survive. I struggled for years figuring out how to market, sell, create irresistible offers, and build websites that actually converted. Once I cracked the code, I scaled it to mid-six figures a year until 2020.",
+      "Then I pivoted to the cutthroat roofing niche. I knocked on 25,000 doors, had over 8,000 conversations, set 1,000+ leads, and sold $1.3 million in residential roofing in my very first year.",
+      "Today, I help run a multi-million dollar lawn care and landscaping business, and I've personally closed over $600k in one-on-one sales in just the last 6 months. I don't just build websites; I build revenue engines based on a decade of bleeding in the trenches of local service businesses.",
+    ],
   },
-  {
-    name: "Support Team",
-    role: "Delivery & Optimization",
-    bio: "Keeps the systems running smoothly, monitoring campaigns, lead flow, and optimization opportunities so nothing goes stale.",
-  },
+];
+
+const journey = [
+  { year: "2015", title: "In the Trenches", desc: "Building a tree service from scratch. Learning the hard lessons of local marketing, sales, and survival." },
+  { year: "2020", title: "The Pivot", desc: "Scaling into the cutthroat roofing niche. Knocking 25,000 doors, generating 1,000+ leads, and closing $1.3M in year one." },
+  { year: "2022", title: "Mastering Sales", desc: "Selling millions in direct sales. Combining field production experience with high-ticket closing strategies." },
+  { year: "Today", title: "The Lead Venture", desc: "Building rugged, high-converting revenue engines for local service businesses to dominate their markets." },
 ];
 ---
 
-<Layout
-  title="Our Team"
-  description={`Meet the team behind ${business.name}, a growth partner for local service brands focused on lead generation, conversion, and retention.`}
->
-  <section class="bg-primary-900 text-white py-16 lg:py-20">
-    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
-      <div class="max-w-3xl">
-        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Our team</p>
-        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
-          Specialists in local growth systems.
+<Layout title="Meet the Team" description="We Know The Grind Because We've Lived It — meet the founders of The Lead Venture.">
+  <section class="bg-[#1A1D27] py-24 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mb-16 text-center">
+        <h1 class="font-heading text-4xl font-black uppercase leading-tight tracking-tight md:text-6xl">
+          We Know The Grind Because <span class="text-accent-400">We've Lived It.</span>
         </h1>
-        <p class="text-white/70 text-lg mt-5 leading-relaxed">
-          We combine strategy, creative, and conversion design to help local service businesses win more work without adding more chaos.
-        </p>
       </div>
-    </div>
-  </section>
 
-  <section class="py-20 bg-neutral-50">
-    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
-      <div class="grid lg:grid-cols-3 gap-8">
-        {teamMembers.map((member) => (
-          <div class="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm">
-            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-100 text-2xl font-bold text-accent-700">
-              {member.name.slice(0, 1)}
+      <div class="mx-auto max-w-5xl space-y-20">
+        {founders.map((founder, i) => (
+          <div class={`grid items-center gap-12 md:grid-cols-2 ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}>
+            <div class="space-y-6 text-lg leading-relaxed text-white/80">
+              <h2 class="mb-4 flex items-center gap-3 text-3xl font-bold text-white">
+                {founder.name}
+                <span class="rounded-full bg-accent-500/10 px-3 py-1 text-sm font-semibold uppercase tracking-wider text-accent-400">{founder.role}</span>
+              </h2>
+              {founder.paragraphs.map((p) => <p>{p}</p>)}
             </div>
-            <h2 class="mt-6 text-2xl font-bold text-primary-900">{member.name}</h2>
-            <p class="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{member.role}</p>
-            <p class="mt-4 text-neutral-600 leading-relaxed">{member.bio}</p>
+            <div class="relative min-h-[400px]">
+              <div class="absolute inset-0 -z-10 scale-90 rounded-full bg-accent-500/20 blur-[60px]"></div>
+              <img
+                src={founder.image}
+                alt={`${founder.name} — Co-Founder`}
+                loading="lazy"
+                class="h-full w-full rounded-3xl border border-white/10 object-cover shadow-2xl"
+              />
+            </div>
           </div>
         ))}
+      </div>
+
+      <div class="mx-auto mt-32 max-w-4xl">
+        <h3 class="mb-16 text-center text-3xl font-bold uppercase tracking-tight">The Journey</h3>
+        <div class="relative ml-4 space-y-12 border-l-2 border-accent-500/30 md:ml-[50%]">
+          {journey.map((item, i) => (
+            <div class="relative pl-8 md:pl-0">
+              <div class={i % 2 === 0 ? "md:-ml-[100%] md:w-[calc(100%-2rem)] md:pr-12 md:text-right" : "md:w-[calc(100%-2rem)] md:pl-12"}>
+                <div class="absolute left-[-9px] top-1 h-4 w-4 rounded-full bg-accent-500 shadow-[0_0_15px_rgba(255,138,30,0.6)]"></div>
+                <div class="mb-1 text-xl font-bold text-accent-400">{item.year}</div>
+                <h4 class="mb-2 text-xl font-bold text-white">{item.title}</h4>
+                <p class="text-white/70">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="relative mx-auto mt-20 max-w-3xl rounded-lg border border-accent-500/50 bg-white/5 p-8 text-center md:p-12">
+        <h3 class="mb-4 text-2xl font-bold uppercase">P.S. If you're a skimmer, here's the bottom line:</h3>
+        <p class="mb-8 text-lg leading-relaxed text-white/80">
+          We are fully building out your complete, rugged, local SEO website engine completely free of charge. Your custom preview link will hit your inbox in 24 to 72 hours. There is no catch, no long-term contracts, and no obligation. If you love the site and want to push it live to start dominating your local market, you just cover the secure cloud hosting framework or let us deploy it seamlessly for you.
+        </p>
+        <a href="/contact" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-500 px-10 py-4 text-base font-bold uppercase tracking-wide text-white transition hover:bg-accent-600 sm:w-auto">
+          Claim Your Free Build →
+        </a>
       </div>
     </div>
   </section>

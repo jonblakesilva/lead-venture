@@ -6,204 +6,257 @@ const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: `${business.name} Contact Page`,
-  description: `Request a free quote from ${business.name} for ${business.niche} services in ${business.city}, ${business.state}.`,
+  description: "Claim your free custom website build from The Lead Venture, or get in touch.",
   url: `${business.website}/contact`,
   mainEntity: {
     "@type": "Organization",
     name: business.name,
     telephone: business.phone,
     email: business.email,
-    areaServed: business.serviceAreas,
   },
-  potentialAction: {
-    "@type": "CommunicateAction",
-    target: `${business.website}/contact`,
-    name: "Request a quote",
-  },
+};
+
+const trades = [
+  "Roofing", "HVAC", "Plumbing", "Electrical", "Landscaping / Lawn Care", "Tree Service", "Painting",
+  "Pest Control", "Pool Service", "House Cleaning", "Fencing", "Concrete / Masonry",
+  "Remodeling / General Contractor", "Garage Door", "Gutters", "Solar", "Junk Removal / Hauling",
+  "Moving", "Window & Door", "Flooring", "Other",
+];
+
+const tradeServicesMap: Record<string, string> = {
+  "Roofing": "1. Roof Replacement\n2. Roof Repair\n3. Gutters\n4. Siding",
+  "HVAC": "1. AC Installation\n2. AC Repair\n3. Furnace Installation\n4. Furnace Repair",
+  "Plumbing": "1. Emergency Plumbing\n2. Water Heater Installation\n3. Drain Cleaning\n4. Leak Repair",
+  "Electrical": "1. Panel Upgrades\n2. Lighting Installation\n3. Outlet Repair\n4. Generator Installation",
+  "Landscaping / Lawn Care": "1. Lawn Maintenance\n2. Landscape Design\n3. Hardscaping\n4. Mulch & Cleanups",
+  "Tree Service": "1. Tree Removal\n2. Tree Trimming\n3. Stump Grinding\n4. Emergency Service",
+  "Painting": "1. Exterior Painting\n2. Interior Painting\n3. Cabinet Refinishing\n4. Deck Staining",
+  "Pest Control": "1. General Pest Control\n2. Termite Treatment\n3. Mosquito Control\n4. Rodent Exclusion",
+  "Pool Service": "1. Weekly Maintenance\n2. Pool Cleaning\n3. Equipment Repair\n4. Pool Opening/Closing",
+  "House Cleaning": "1. Standard Cleaning\n2. Deep Cleaning\n3. Move-In/Move-Out\n4. Recurring Service",
+  "Fencing": "1. Wood Fencing\n2. Vinyl Fencing\n3. Chain Link\n4. Fence Repair",
+  "Concrete / Masonry": "1. Driveways\n2. Patios\n3. Walkways\n4. Retaining Walls",
+  "Remodeling / General Contractor": "1. Kitchen Remodel\n2. Bathroom Remodel\n3. Basement Finishing\n4. Home Additions",
+  "Garage Door": "1. Door Repair\n2. Spring Replacement\n3. Opener Installation\n4. New Door Installation",
+  "Gutters": "1. Gutter Installation\n2. Gutter Cleaning\n3. Gutter Guards\n4. Gutter Repair",
+  "Solar": "1. Solar Panel Installation\n2. Solar Battery Backup\n3. System Maintenance\n4. Roof Replacement & Solar",
+  "Junk Removal / Hauling": "1. Furniture Removal\n2. Appliance Removal\n3. Estate Cleanout\n4. Construction Debris",
+  "Moving": "1. Local Moving\n2. Long Distance Moving\n3. Packing Services\n4. Commercial Moving",
+  "Window & Door": "1. Window Replacement\n2. Entry Doors\n3. Patio Doors\n4. Window Repair",
+  "Flooring": "1. Hardwood Installation\n2. LVP/Laminate\n3. Carpet Installation\n4. Floor Refinishing",
 };
 ---
 
-<Layout
-  title="Contact Us"
-  description={`Contact ${business.name} for a free quote on ${business.niche} services in ${business.city}, ${business.state}. Call ${business.phone} or fill out our form.`}
->
+<Layout title="Contact Us" description="Get in touch with The Lead Venture to claim your free custom website build or see how we can help your contracting business grow.">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(contactSchema)} />
   </Fragment>
-  <!-- Page header -->
-  <section class="bg-primary-900 text-white py-16 lg:py-20">
-    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
-      <div class="max-w-2xl">
-        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Get In Touch</p>
-        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
-          Request a Free Quote
-        </h1>
-        <p class="text-white/70 text-lg mt-4 leading-relaxed">
-          Tell us what you're trying to fix, and we'll tell you exactly where the biggest opportunities are for your business.
-        </p>
-      </div>
+
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading text-4xl font-bold md:text-6xl">Request a Website</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/80">
+        Fill out the form below with your business information, and we'll get started on building your modern, high-converting website.
+      </p>
     </div>
   </section>
 
-  <section class="py-16 lg:py-20 bg-white">
-    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
-      <div class="grid lg:grid-cols-5 gap-16">
+  <section class="bg-neutral-50 py-16 lg:py-24">
+    <div class="mx-auto flex max-w-(--breakpoint-xl) flex-col gap-12 px-5 lg:flex-row">
+      <!-- Form -->
+      <div class="relative flex flex-1 flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-8 shadow-xl md:p-12">
+        <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent-500 to-accent-500/40"></div>
 
-        <!-- Contact info column -->
-        <div class="lg:col-span-2" data-aos="fade-up">
-          <h2 class="font-heading text-2xl font-bold text-primary-900 mb-6">Get in Touch</h2>
-
-          <div class="space-y-5">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="font-semibold text-primary-900 text-sm">Phone</div>
-                <a href={`tel:${business.phoneRaw}`} class="text-accent-600 hover:text-accent-700 font-medium transition-colors">
-                  {business.phone}
-                </a>
-                <p class="text-neutral-500 text-xs mt-1">Mon–Sat 7am–7pm, Sun by appointment</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="font-semibold text-primary-900 text-sm">Email</div>
-                <a href={`mailto:${business.email}`} class="text-accent-600 hover:text-accent-700 font-medium transition-colors">
-                  {business.email}
-                </a>
-                <p class="text-neutral-500 text-xs mt-1">We reply within 1 business day</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="font-semibold text-primary-900 text-sm">Service Area</div>
-                <p class="text-neutral-700 font-medium">{business.city}, {business.state}</p>
-                <p class="text-neutral-500 text-xs mt-1">{business.serviceRadius} · We typically serve nearby homeowners and businesses within this radius.</p>
-              </div>
-            </div>
+        <div class="mb-8">
+          <div class="mb-2 flex justify-between text-sm font-medium text-neutral-500">
+            <span id="cf-step-label">Step 1 of 4</span>
+            <span id="cf-progress-label">25% Completed</span>
           </div>
-
-          <!-- Trust signals -->
-          <div class="mt-10 p-6 bg-neutral-50 border border-neutral-200 rounded-2xl">
-            <h3 class="font-semibold text-primary-900 text-sm mb-4">Why Customers Choose Us</h3>
-            <ul class="space-y-2.5">
-              {[
-                `Rated ${business.rating}/5 by ${business.reviewCount}+ customers`,
-                "Free, no-obligation estimates",
-                business.guaranteeText,
-                "Licensed & fully insured",
-                "Same & next-day availability",
-              ].map((item) => (
-                <li class="flex items-center gap-2 text-sm text-neutral-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <div class="h-2 w-full rounded-full bg-neutral-200">
+            <div id="cf-progress-bar" class="h-2 rounded-full bg-accent-500 transition-all duration-300 ease-in-out" style="width: 25%"></div>
           </div>
         </div>
 
-        <!-- Contact form column -->
-        <div class="lg:col-span-3" data-aos="fade-up" data-aos-delay="200">
-          <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 lg:p-10">
-            <h2 class="font-heading text-2xl font-bold text-primary-900 mb-2">Tell Us About Your Project</h2>
-            <p class="text-neutral-500 text-sm mb-8">All fields are optional except your contact info. This form is ready for your live endpoint when you're ready to wire it up.</p>
+        <form id="cf-form" class="flex flex-1 flex-col space-y-8" novalidate data-tracking-id="tk_4c5f3faa87164ad48bf64c86de2eaa2b" data-location-id="6B4reCngPYfDkJwOtiM0">
+          <!-- Step 1 -->
+          <div id="cf-step-1" class="cf-step space-y-6">
+            <h3 class="mb-4 text-2xl font-bold text-primary-900">Let's start with the basics.</h3>
 
-            <form
-             action="https://api.web3forms.com/submit"
-             method="POST"
-             id="contact-form"
-             class="space-y-5"
-             novalidate
-             data-phone={business.phone}
-            >
-             <input type="hidden" name="access_key" value="" />
-              <input type="hidden" name="subject" value={`New Contact Form Submission — ${business.name}`} />
-              <input type="hidden" name="redirect" value="/thank-you" />
-              <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+            <div class="space-y-2">
+              <label for="trade" class="text-lg font-medium text-neutral-700">What is your trade or industry? *</label>
+              <select id="trade" name="trade" required class="h-12 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-accent-500">
+                <option value="">Select your trade...</option>
+                {trades.map((t) => <option value={t}>{t}</option>)}
+              </select>
+            </div>
 
-              <div class="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label for="name" class="block text-sm font-medium text-neutral-700 mb-1.5">Full Name <span class="text-error">*</span></label>
-                  <input
-                    id="name" type="text" name="name" required placeholder="Jane Smith"
-                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
-                  />
-                </div>
-                <div>
-                  <label for="phone" class="block text-sm font-medium text-neutral-700 mb-1.5">Phone Number <span class="text-error">*</span></label>
-                  <input
-                    id="phone" type="tel" name="phone" required placeholder="(555) 555-5555"
-                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
-                  />
-                </div>
+            <div class="space-y-2 pt-4">
+              <span class="text-lg font-medium text-neutral-700">How long have you been in business? *</span>
+              <div class="mt-2 flex flex-wrap gap-3" id="cf-years-group">
+                {["0 to 1 year", "2 to 3 years", "5+ years"].map((option) => (
+                  <button type="button" data-years={option} class="cf-years-btn rounded-md border border-neutral-300 bg-white px-4 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-100">
+                    {option}
+                  </button>
+                ))}
               </div>
+              <input type="hidden" name="yearsInBusiness" id="yearsInBusiness" required />
+            </div>
 
-              <div>
-                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1.5">Email Address</label>
-                <input
-                  id="email" type="email" name="email" placeholder="jane@example.com"
-                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
-                />
+            <div class="space-y-2 pt-4">
+              <label for="businessName" class="text-lg font-medium text-neutral-700">What is your business name? *</label>
+              <input id="businessName" name="businessName" required placeholder="Doe Roofing & Exteriors" class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div id="cf-step-2" class="cf-step hidden space-y-6">
+            <h3 class="mb-4 text-2xl font-bold text-primary-900">Where and what do you serve?</h3>
+
+            <div class="relative space-y-2">
+              <label for="serviceArea" class="text-lg font-medium text-neutral-700">Main Service Area / City *</label>
+              <input id="serviceArea" name="serviceArea" required autocomplete="off" placeholder="e.g., Columbus, Ohio and surrounding suburbs" class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
+              <ul id="cf-area-suggestions" class="absolute z-10 mt-1 hidden max-h-60 w-full overflow-auto rounded-md border border-neutral-300 bg-white shadow-lg"></ul>
+            </div>
+
+            <div class="space-y-2 pt-4">
+              <label for="gmbName" class="text-lg font-medium text-neutral-700">Exact Google Business Profile Name or Link</label>
+              <input id="gmbName" name="gmbName" placeholder="e.g., Doe Roofing & Exteriors of Columbus, or https://..." class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
+              <p class="text-sm text-neutral-500">This helps us audit your current local SEO standing. If you don't have one, just put N/A.</p>
+            </div>
+
+            <div class="space-y-2 pt-4">
+              <label for="mainServices" class="text-lg font-medium text-neutral-700">What are your top 3-5 services? *</label>
+              <textarea id="mainServices" name="mainServices" required placeholder="1. Roof Replacement, 2. Roof Repair, 3. Gutters, 4. Siding" class="min-h-[100px] w-full rounded-md border border-neutral-300 px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500"></textarea>
+              <p class="text-sm text-neutral-500">We will build dedicated SEO pages for these services.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div id="cf-step-3" class="cf-step hidden space-y-6">
+            <h3 class="mb-4 text-2xl font-bold text-primary-900">Tell us about your current setup.</h3>
+
+            <div class="space-y-2">
+              <label for="currentWebsite" class="text-lg font-medium text-neutral-700">Current Website (if you have one)</label>
+              <input id="currentWebsite" name="currentWebsite" type="url" placeholder="https://www.yourwebsite.com" class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
+            </div>
+
+            <div class="space-y-2 pt-4">
+              <label for="details" class="text-lg font-medium text-neutral-700">Websites you like, top 3 competitors, special requests, etc.</label>
+              <textarea id="details" name="details" placeholder="Tell us about what makes you different, list any websites you like the look of, or name your top competitors." class="min-h-[120px] w-full rounded-md border border-neutral-300 px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500"></textarea>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div id="cf-step-4" class="cf-step hidden space-y-6">
+            <h3 class="mb-4 text-2xl font-bold text-primary-900">Where should we send the details?</h3>
+
+            <div class="space-y-2">
+              <label for="fullName" class="text-lg font-medium text-neutral-700">Full Name *</label>
+              <input id="fullName" name="fullName" required placeholder="John Doe" class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 pt-2 md:grid-cols-2">
+              <div class="space-y-2">
+                <label for="email" class="text-lg font-medium text-neutral-700">Best Email *</label>
+                <input id="email" name="email" type="email" required placeholder="john@example.com" class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
               </div>
-
-              <div>
-                <label for="service" class="block text-sm font-medium text-neutral-700 mb-1.5">Service Interested In</label>
-                <select
-                  id="service" name="service"
-                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition bg-white"
-                >
-                  <option value="">Select a service (optional)</option>
-                  {business.primaryServices.map((s) => (
-                    <option value={s}>{s}</option>
-                  ))}
-                  <option value="Not sure">Not sure — need advice</option>
-                </select>
+              <div class="space-y-2">
+                <label for="phone" class="text-lg font-medium text-neutral-700">Best Phone Number *</label>
+                <input id="phone" name="phone" type="tel" required placeholder="(555) 123-4567" class="h-12 w-full rounded-md border border-neutral-300 px-3 text-lg focus:outline-none focus:ring-2 focus:ring-accent-500" />
               </div>
+            </div>
 
-              <div>
-                <label for="message" class="block text-sm font-medium text-neutral-700 mb-1.5">Tell Us More</label>
-                <textarea
-                  id="message" name="message" rows="4"
-                  placeholder="Describe the work needed, your address, or anything else that will help us give you an accurate quote…"
-                  class="w-full px-4 py-3 border border-neutral-300 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition resize-none bg-white"
-                ></textarea>
+            <div class="space-y-4 pt-6">
+              <div class="mb-2 flex items-center gap-2 text-sm font-medium text-neutral-700">
+                We respect your privacy and will never spam you.
               </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="revenueAudit" name="revenueAudit" checked class="mt-1 h-5 w-5 shrink-0 rounded border-neutral-300 text-accent-500 focus:ring-accent-500" />
+                <label for="revenueAudit" class="cursor-pointer text-base font-normal leading-relaxed text-neutral-700">
+                  Yes, send me a free revenue leak audit to my email
+                </label>
+              </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="a2pSupport" name="a2pSupport" required class="mt-1 h-5 w-5 shrink-0 rounded border-neutral-300 text-accent-500 focus:ring-accent-500" />
+                <label for="a2pSupport" class="cursor-pointer text-sm font-normal leading-relaxed text-neutral-500">
+                  By checking this box, I consent to receive non-marketing text messages from Jonathan Blake LLC DBA The Lead Venture about customer support & appointment notifications. Message frequency varies; message & data rates may apply. Text HELP for assistance, reply STOP to opt out.
+                </label>
+              </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="a2pPromo" name="a2pPromo" required class="mt-1 h-5 w-5 shrink-0 rounded border-neutral-300 text-accent-500 focus:ring-accent-500" />
+                <label for="a2pPromo" class="cursor-pointer text-sm font-normal leading-relaxed text-neutral-500">
+                  By checking this box, I consent to receive marketing and promotional messages, including special offers, discounts, and new product updates, from Jonathan Blake LLC DBA The Lead Venture at the phone number provided. Frequency may vary. Message & data rates may apply. Text HELP for assistance, reply STOP to opt out.
+                </label>
+              </div>
+            </div>
+          </div>
 
-              <button
-                type="submit"
-                id="contact-submit"
-                class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 rounded-xl transition-colors duration-200 text-base"
-              >
-                Send My Request →
-              </button>
+          <!-- Success state -->
+          <div id="cf-success" class="hidden flex-1 flex-col items-center justify-center space-y-4 py-12 text-center">
+            <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent-100 text-accent-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-bold text-primary-900">Request Received!</h3>
+            <p class="mx-auto max-w-md text-lg text-neutral-600">
+              Thank you for submitting your request. Our team will review your details and get in touch with you shortly.
+            </p>
+            <div class="mx-auto mt-8 flex w-full max-w-sm flex-col gap-3">
+              <a href="/proof/case-studies" class="h-12 w-full rounded-md bg-accent-500 text-center leading-[3rem] text-white font-semibold hover:bg-accent-600">View Recent Case Studies</a>
+              <a href="/resources/revenue-leak-calculator" class="h-12 w-full rounded-md border border-neutral-300 text-center leading-[3rem] font-semibold text-neutral-700 hover:bg-neutral-50">Try the $50K Leak Finder</a>
+              <a href="/resources" class="h-12 w-full rounded-md border border-neutral-300 text-center leading-[3rem] font-semibold text-neutral-700 hover:bg-neutral-50">Use the ROI Calculator</a>
+            </div>
+          </div>
 
-              <p class="text-xs text-neutral-400 text-center">
-                By submitting, you agree to our{" "}
-                <a href="/privacy" class="underline hover:text-neutral-600">Privacy Policy</a>.
-                We never share your info.
-              </p>
+          <div id="cf-nav" class="mt-auto flex items-center justify-between border-t pt-8">
+            <button type="button" id="cf-back" disabled class="h-12 rounded-md border border-neutral-300 px-6 font-medium text-neutral-700 hover:bg-neutral-50 disabled:invisible">
+              ← Back
+            </button>
+            <button type="button" id="cf-next" class="h-12 rounded-md bg-accent-500 px-8 text-lg font-semibold text-white hover:bg-accent-600">
+              Next Step →
+            </button>
+            <button type="submit" id="cf-submit" class="hidden h-12 rounded-md bg-accent-500 px-8 text-lg font-semibold text-white hover:bg-accent-600">
+              Submit Request & Lock In Rate
+            </button>
+          </div>
+        </form>
+      </div>
 
-              <div id="contact-result" class="hidden text-center py-3 rounded-lg text-sm font-medium"></div>
-            </form>
+      <!-- Social proof sidebar -->
+      <div class="w-full space-y-6 lg:w-[350px]">
+        <div class="rounded-2xl border border-accent-200 bg-accent-50 p-6 text-center">
+          <div class="mb-4 inline-block rounded-full bg-accent-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+            Limited Availability
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary-900">Founding Member Rate</h3>
+          <p class="mb-4 text-sm text-neutral-600">
+            We are currently onboarding our first 50 Founding Members. By submitting this request, you lock in the discounted lifetime rate.
+          </p>
+          <div class="mb-2 h-2.5 w-full overflow-hidden rounded-full border bg-white">
+            <div class="h-2.5 rounded-full bg-accent-500" style="width: 74%"></div>
+          </div>
+          <p class="text-xs font-bold text-primary-900">37 of 50 Spots Filled</p>
+        </div>
+
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
+          <div class="mb-4 flex items-center gap-2">
+            <div class="text-sm font-bold text-primary-900">★★★★★ 200+ Contractors</div>
+          </div>
+          <p class="mb-6 text-sm text-neutral-600">
+            Join hundreds of local service businesses that have scaled their revenue and automated their leads with The Lead Venture.
+          </p>
+          <ul class="mb-6 space-y-3 text-sm text-neutral-600">
+            <li>✓ $0 upfront, live in 24-72 hours</li>
+            <li>✓ Capped at 10 new partners a month</li>
+            <li>✓ Built by actual trade operators</li>
+            <li>✓ 40+ websites launched and counting</li>
+            <li>✓ No contracts. Cancel anytime.</li>
+            <li>✓ Average client stays 30+ months</li>
+          </ul>
+          <div class="border-l-2 border-accent-500 pl-4">
+            <p class="mb-2 text-sm italic text-primary-900">"The missed call text-back feature alone paid for the system in the first week. Highly recommend."</p>
+            <p class="text-xs font-bold text-neutral-500">— David M., Plumbing</p>
           </div>
         </div>
       </div>
@@ -211,45 +264,195 @@ const contactSchema = {
   </section>
 </Layout>
 
-<script is:inline>
-  const form = document.getElementById("contact-form");
-  const result = document.getElementById("contact-result");
-  const submitBtn = document.getElementById("contact-submit");
+<script define:vars={{ tradeServicesMap }}>
+  const totalSteps = 4;
+  let step = 1;
 
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      submitBtn.textContent = "Sending…";
-      submitBtn.disabled = true;
+  const form = document.getElementById("cf-form");
+  const stepLabel = document.getElementById("cf-step-label");
+  const progressLabel = document.getElementById("cf-progress-label");
+  const progressBar = document.getElementById("cf-progress-bar");
+  const backBtn = document.getElementById("cf-back");
+  const nextBtn = document.getElementById("cf-next");
+  const submitBtn = document.getElementById("cf-submit");
+  const successEl = document.getElementById("cf-success");
+  const nav = document.getElementById("cf-nav");
 
-      const formData = new FormData(form);
-      // If web3forms redirect is set, it handles the redirect itself.
-      // For AJAX, remove the redirect hidden field or handle accordingly.
-      try {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(Object.fromEntries(formData)),
-        });
-        const data = await res.json();
-        result.classList.remove("hidden");
-        if (res.ok) {
-          result.className = "text-center py-3 rounded-lg text-sm font-medium bg-green-50 text-green-700";
-          result.textContent = "✓ Message received! We'll be in touch soon.";
-          form.reset();
-          // Optional: redirect to thank you page
-          // window.location.href = "/thank-you";
-        } else {
-          result.className = "text-center py-3 rounded-lg text-sm font-medium bg-red-50 text-red-700";
-          result.textContent = data.message || "Something went wrong. Please call us directly.";
-        }
-      } catch {
-        result.classList.remove("hidden");
-        result.className = "text-center py-3 rounded-lg text-sm font-medium bg-red-50 text-red-700";
-        result.textContent = "Error sending. Please call " + (form.dataset.phone || "us") + " directly.";
-      }
-      submitBtn.textContent = "Send My Request →";
-      submitBtn.disabled = false;
+  function renderStep() {
+    document.querySelectorAll(".cf-step").forEach((el) => {
+      el.classList.toggle("hidden", el.id !== `cf-step-${step}`);
     });
+    stepLabel.textContent = `Step ${step} of ${totalSteps}`;
+    progressLabel.textContent = `${Math.round((step / totalSteps) * 100)}% Completed`;
+    progressBar.style.width = `${(step / totalSteps) * 100}%`;
+    backBtn.disabled = step === 1;
+    nextBtn.classList.toggle("hidden", step === totalSteps);
+    submitBtn.classList.toggle("hidden", step !== totalSteps);
   }
+
+  function currentStepValid() {
+    const stepEl = document.getElementById(`cf-step-${step}`);
+    const inputs = stepEl.querySelectorAll("input, textarea, select");
+    for (const input of inputs) {
+      if (!input.checkValidity()) {
+        input.reportValidity();
+        return false;
+      }
+    }
+    if (step === 1 && !document.getElementById("yearsInBusiness").value) {
+      alert("Please select how long you have been in business.");
+      return false;
+    }
+    return true;
+  }
+
+  nextBtn?.addEventListener("click", () => {
+    if (!currentStepValid()) return;
+    step = Math.min(step + 1, totalSteps);
+    renderStep();
+  });
+
+  backBtn?.addEventListener("click", () => {
+    step = Math.max(step - 1, 1);
+    renderStep();
+  });
+
+  // Trade -> auto-fill main services
+  const tradeSelect = document.getElementById("trade");
+  const mainServices = document.getElementById("mainServices");
+  tradeSelect?.addEventListener("change", () => {
+    const preset = tradeServicesMap[tradeSelect.value];
+    if (preset) mainServices.value = preset;
+  });
+
+  // Years-in-business toggle buttons
+  document.querySelectorAll(".cf-years-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.getElementById("yearsInBusiness").value = btn.dataset.years;
+      document.querySelectorAll(".cf-years-btn").forEach((b) => {
+        b.classList.toggle("bg-accent-500", b === btn);
+        b.classList.toggle("text-white", b === btn);
+        b.classList.toggle("border-accent-500", b === btn);
+      });
+    });
+  });
+
+  // Service area autocomplete (OpenStreetMap Nominatim, no key required)
+  const areaInput = document.getElementById("serviceArea");
+  const suggestionsList = document.getElementById("cf-area-suggestions");
+  let areaTimeout;
+  areaInput?.addEventListener("input", () => {
+    clearTimeout(areaTimeout);
+    const query = areaInput.value;
+    if (query.length <= 2) {
+      suggestionsList.classList.add("hidden");
+      return;
+    }
+    areaTimeout = setTimeout(async () => {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=us,ca&featuretype=city`);
+        const data = await res.json();
+        suggestionsList.innerHTML = "";
+        data.slice(0, 5).forEach((place) => {
+          const li = document.createElement("li");
+          li.className = "cursor-pointer border-b px-4 py-3 text-sm last:border-0 hover:bg-neutral-100";
+          li.textContent = place.display_name;
+          li.addEventListener("click", () => {
+            areaInput.value = place.display_name.split(",").slice(0, 2).join(",");
+            suggestionsList.classList.add("hidden");
+          });
+          suggestionsList.appendChild(li);
+        });
+        suggestionsList.classList.toggle("hidden", data.length === 0);
+      } catch {
+        suggestionsList.classList.add("hidden");
+      }
+    }, 300);
+  });
+  document.addEventListener("click", (e) => {
+    if (!areaInput?.contains(e.target) && !suggestionsList?.contains(e.target)) {
+      suggestionsList?.classList.add("hidden");
+    }
+  });
+
+  // Submit
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!currentStepValid()) return;
+    submitBtn.textContent = "Submitting…";
+    submitBtn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    const trackingPayload = {
+      type: "external_form_submission",
+      timestamp: Date.now(),
+      formId: "claim-free-website",
+      name: "Claim Free Website",
+      formData: {
+        name: data.fullName,
+        first_name: (data.fullName || "").split(" ")[0] || "",
+        last_name: (data.fullName || "").split(" ").slice(1).join(" ") || "",
+        email: data.email,
+        phone: data.phone,
+        organization: data.businessName,
+        website: data.currentWebsite,
+        trade: data.trade,
+        yearsInBusiness: data.yearsInBusiness,
+        serviceArea: data.serviceArea,
+        gmbName: data.gmbName,
+        mainServices: data.mainServices,
+        details: data.details,
+        revenueAudit: data.revenueAudit === "on" ? "Yes" : "No",
+        a2pSupport: data.a2pSupport === "on" ? "Yes" : "No",
+        a2pPromo: data.a2pPromo === "on" ? "Yes" : "No",
+      },
+      formLabels: {
+        name: "Full Name",
+        email: "Best Email",
+        phone: "Best Phone Number",
+        organization: "Business Name",
+        website: "Current Website",
+        trade: "What is your trade or industry?",
+        yearsInBusiness: "How long have you been in business?",
+        serviceArea: "Main Service Area / City",
+        gmbName: "Exact Google Business Profile Name or Link",
+        mainServices: "What are your top 3-5 services?",
+        details: "Websites you like, top 3 competitors, special requests, etc.",
+        revenueAudit: "Would you like a free revenue leak audit sent to your email?",
+        a2pSupport: "Consent to support & appt texts",
+        a2pPromo: "Consent to promo texts",
+      },
+      url: window.location.href,
+      title: document.title,
+      path: window.location.pathname,
+      userAgent: navigator.userAgent,
+      trackingId: form.dataset.trackingId,
+      locationId: form.dataset.locationId,
+      sessionId: crypto.randomUUID(),
+      properties: {
+        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "mobile" : "desktop",
+        source: "astro_site",
+        formName: "Claim Free Website",
+      },
+    };
+
+    try {
+      const body = new FormData();
+      body.append("event", JSON.stringify(trackingPayload));
+      await fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
+        method: "POST",
+        headers: { version: "2021-07-28" },
+        body,
+      });
+    } catch {
+      // Fail silently — still show success so the visitor isn't blocked.
+    }
+
+    document.querySelectorAll(".cf-step").forEach((el) => el.classList.add("hidden"));
+    nav.classList.add("hidden");
+    successEl.classList.remove("hidden");
+    successEl.classList.add("flex");
+  });
+
+  renderStep();
 </script>

@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+
+const caseStudies = (await getCollection("case-studies", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Case Studies" description="Real metrics and client success stories across roofing, HVAC, plumbing, landscaping, and more — from local service businesses that switched to The Lead Venture.">
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white md:py-28">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading text-4xl font-bold md:text-6xl">Case Studies</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/80">
+        Real results from local trade businesses that made the switch to a platform built specifically for them.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-neutral-50 py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="grid gap-8 md:grid-cols-2">
+        {caseStudies.map((study) => (
+          <a href={`/proof/${study.data.urlSlug}`} class="group flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-lg">
+            {study.data.image && (
+              <div class="relative flex aspect-[4/3] items-center justify-center overflow-hidden border-b bg-neutral-100 p-6">
+                <img
+                  src={study.data.image}
+                  alt={study.data.title}
+                  loading="lazy"
+                  class="h-full w-full object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            )}
+            <div class="flex flex-1 flex-col p-8">
+              <div class="mb-4 inline-flex w-fit items-center rounded-full border border-accent-200 bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700">
+                {study.data.badge}
+              </div>
+              <h2 class="mb-3 font-heading text-2xl font-bold text-primary-900 line-clamp-2">{study.data.title}</h2>
+              <p class="mb-8 flex-1 text-neutral-600 line-clamp-3">{study.data.excerpt}</p>
+              <div class="w-full rounded-full border border-neutral-200 py-3 text-center text-sm font-semibold text-primary-900 transition-colors group-hover:bg-primary-900 group-hover:text-white group-hover:border-primary-900">
+                Read Case Study →
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-24 text-center text-white">
+    <div class="mx-auto max-w-3xl px-5">
+      <h2 class="font-heading text-3xl font-bold tracking-tight md:text-5xl">Want These Results For Your Business?</h2>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/80">
+        Stop losing jobs to competitors with faster sites and more reviews. Let us build your growth engine.
+      </p>
+      <a href="/contact" class="mt-10 inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Request a Website & SEO Review
+      </a>
+    </div>
+  </section>
+</Layout>

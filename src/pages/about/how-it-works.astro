@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import HeroVideo from "@/components/HeroVideo.astro";
+
+const steps = [
+  {
+    number: 1,
+    title: "Demo Call",
+    duration: "~20 minutes",
+    desc: "We'll jump on a quick, no-pressure call to look at your current setup. We'll show you exactly how the system works for your specific trade, answer your questions, and see if it's a good fit. No hard selling, just a straightforward conversation between business owners.",
+  },
+  {
+    number: 2,
+    title: "System Buildout",
+    duration: "3-7 days",
+    desc: "You go back to running your business while our team goes to work. We build your new website, set up your missed-call text back, configure your review campaigns, and get your mobile app ready. It's completely done-for-you.",
+  },
+  {
+    number: 3,
+    title: "Launch Call",
+    duration: "~25 minutes",
+    desc: "We get back on a call to hand over the keys. We'll make sure the app is installed on your phone, show you how to respond to your first lead, and flip the switch to make everything live. From here on out, you're running a modern, streamlined operation.",
+  },
+];
+---
+
+<Layout title="How It Works" description="A simple, done-for-you process to get your business growing faster.">
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading text-4xl font-bold md:text-6xl">How It Works</h1>
+      <p class="mx-auto mt-6 mb-12 max-w-2xl text-xl text-white/80">
+        A simple, done-for-you process to get your business growing faster.
+      </p>
+      <HeroVideo src="https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/c0d59bec-d221-4eef-a987-9cdba06f740f.mp4" />
+    </div>
+  </section>
+
+  <section class="bg-white py-24">
+    <div class="relative mx-auto max-w-3xl px-5">
+      <div class="absolute bottom-0 left-12 top-0 hidden w-0.5 bg-neutral-200 md:block"></div>
+      <div class="relative space-y-16">
+        {steps.map((step) => (
+          <div class="flex flex-col items-start gap-8 md:flex-row">
+            <div class="mx-auto z-10 flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 border-white bg-primary-900 text-4xl font-bold text-white shadow-xl md:mx-0">
+              {step.number}
+            </div>
+            <div class="flex-1 rounded-2xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm">
+              <h3 class="mb-4 text-center text-2xl font-bold text-primary-900 md:text-left">{step.title}</h3>
+              <div class="mb-4 inline-block rounded-full bg-neutral-200 px-3 py-1 text-sm font-medium text-neutral-600">
+                {step.duration}
+              </div>
+              <p class="text-lg text-neutral-600">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-[#1A1D27] py-24 text-center text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <h2 class="mb-6 font-heading text-4xl font-bold">Ready to Take Step 1?</h2>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Book a Demo Call
+      </a>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+</Layout>

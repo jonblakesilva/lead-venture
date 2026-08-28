@@ -4,6 +4,8 @@ import { ClientRouter } from 'astro:transitions';
 import Footer from "@/components/footer.astro";
 import Navbar from "@/components/navbar/navbar.astro";
 import OrganizationSchema from "@/components/organizationschema.astro";
+import MobileCallBar from "@/components/mobilecallbar.astro";
+import ExitPopup from "@/components/exitpopup.astro";
 import { business } from "@/config/business";
 import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/outfit/index.css";
@@ -79,6 +81,8 @@ const makeDescription =
       <slot />
     </main>
     <Footer />
+    <MobileCallBar />
+    <ExitPopup />
 
     <script is:inline>
       (function () {

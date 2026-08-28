@@ -94,6 +94,17 @@
   a { text-decoration: none; }
 }
 
+/* Headings inherit color, but the base rule above forces navy on every
+   h1–h6 regardless of ancestor. Force white back on dark-background
+   sections so headings stay legible instead of navy-on-navy. */
+[class*="bg-[#1A1D27]"] :is(h1, h2, h3, h4, h5, h6),
+[class*="bg-[#13151D]"] :is(h1, h2, h3, h4, h5, h6),
+[class*="bg-[#2d2d38]"] :is(h1, h2, h3, h4, h5, h6),
+.bg-primary-900 :is(h1, h2, h3, h4, h5, h6),
+[class*="bg-primary-900"] :is(h1, h2, h3, h4, h5, h6) {
+  color: #ffffff;
+}
+
 /* ── Keyframes ──────────────────────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
