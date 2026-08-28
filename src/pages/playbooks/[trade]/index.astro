@@ -1,0 +1,77 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { tradeData, tradeSlugs } from "@/data/trades";
+import { playbookTopics, playbookSlugs } from "@/data/playbooks";
+import { tradeJobProfiles } from "@/data/trade-job-profiles";
+
+export function getStaticPaths() {
+  return tradeSlugs.map((slug) => ({ params: { trade: slug } }));
+}
+
+const { trade: tradeSlug } = Astro.params;
+const trade = tradeData[tradeSlug as keyof typeof tradeData];
+const profile = tradeJobProfiles[tradeSlug as keyof typeof tradeJobProfiles];
+
+const topics = playbookSlugs.map((slug) => {
+  const topic = playbookTopics[slug];
+  return { slug, title: topic.title, icon: topic.icon, tagline: topic.tagline(trade, profile) };
+});
+---
+
+<Layout title={`Growth Playbooks for ${trade.name} Companies`} description={`14 free growth playbooks for ${trade.name.toLowerCase()} businesses — lead generation, sales, retention, operations, financing, and more.`}>
+  <section class="relative overflow-hidden border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,138,30,0.1)_0%,#1A1D27_70%)]"></div>
+    <div class="relative z-10 mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <nav class="mb-6 flex items-center justify-center gap-2 text-sm text-white/50">
+        <a href="/" class="transition-colors hover:text-white">Home</a>
+        <span>›</span>
+        <a href="/playbooks" class="transition-colors hover:text-white">Playbooks</a>
+      </nav>
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent-500/20">
+        <Icon name={trade.icon} class="h-8 w-8 text-accent-400" />
+      </div>
+      <h1 class="font-heading mb-6 text-4xl font-bold tracking-tight md:text-6xl">
+        Growth Playbooks for <span class="text-accent-400">{trade.name}</span> Companies
+      </h1>
+      <p class="mx-auto max-w-2xl text-xl text-white/80">
+        14 in-depth playbooks built around real {trade.name.toLowerCase()} job values, customers, and terminology — not generic advice.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {topics.map((topic) => (
+          <a href={`/playbooks/${tradeSlug}/${topic.slug}`} class="group flex flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-500/10">
+              <Icon name={topic.icon} class="h-6 w-6 text-accent-500" />
+            </div>
+            <h2 class="mb-3 text-xl font-bold text-slate-900">{topic.title}</h2>
+            <p class="flex-1 text-sm leading-relaxed text-slate-600">{topic.tagline}</p>
+            <div class="mt-6 text-sm font-semibold text-accent-600">Read the playbook →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-slate-200 bg-slate-50 py-16 text-center">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <a href="/playbooks" class="text-sm font-semibold text-accent-600 hover:text-accent-700">← Browse playbooks for other trades</a>
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-[#1A1D27] py-24 text-center text-white">
+    <div class="mx-auto max-w-2xl px-5">
+      <h2 class="mb-4 font-heading text-3xl font-bold md:text-4xl">Want Us to Run This For You?</h2>
+      <p class="mb-10 text-lg text-white/70">
+        These playbooks tell you what to do. Our team builds the {trade.name.toLowerCase()} website, systems, and follow-up that actually do it — automatically.
+      </p>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Get Your Free Marketing Audit
+      </a>
+    </div>
+  </section>
+</Layout>

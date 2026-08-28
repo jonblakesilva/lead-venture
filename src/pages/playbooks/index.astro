@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { tradeData, tradeSlugs } from "@/data/trades";
+import { playbookTopics, playbookSlugs } from "@/data/playbooks";
+
+const trades = tradeSlugs.map((slug) => ({ slug, name: tradeData[slug].name, icon: tradeData[slug].icon }));
+const topics = playbookSlugs.map((slug) => ({ slug, title: playbookTopics[slug].title, icon: playbookTopics[slug].icon }));
+---
+
+<Layout title="Growth Playbooks" description="Free, in-depth growth playbooks for home service and trade businesses — lead generation, sales, retention, operations, financing, and more, customized for your trade.">
+  <section class="relative overflow-hidden border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,138,30,0.1)_0%,#1A1D27_70%)]"></div>
+    <div class="relative z-10 mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Free Resources</p>
+      <h1 class="font-heading mb-6 text-4xl font-bold tracking-tight md:text-6xl">Growth Playbooks for Trade Businesses</h1>
+      <p class="mx-auto max-w-2xl text-xl text-white/80">
+        14 in-depth playbooks — lead generation, sales, retention, operations, financing, and more — each built around the real numbers and terminology of your specific trade.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-12 max-w-2xl text-center">
+        <h2 class="font-heading mb-4 text-3xl font-bold text-slate-900">Pick your trade</h2>
+        <p class="text-lg text-slate-600">Every playbook is written with your average job value, your typical customers, and your language — not generic advice.</p>
+      </div>
+      <div class="mx-auto grid max-w-5xl grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {trades.map((trade) => (
+          <a href={`/playbooks/${trade.slug}`} class="group flex flex-col items-center justify-center gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-colors hover:border-accent-500">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 transition-colors group-hover:bg-accent-500/10">
+              <Icon name={trade.icon} class="h-8 w-8 text-accent-500" />
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">{trade.name}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-slate-200 bg-slate-50 py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-12 max-w-2xl text-center">
+        <h2 class="font-heading mb-4 text-3xl font-bold text-slate-900">14 Playbooks, Every Angle of Growth</h2>
+        <p class="text-lg text-slate-600">From your first lead to a business someone would want to buy.</p>
+      </div>
+      <div class="mx-auto grid max-w-5xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {topics.map((topic) => (
+          <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
+            <Icon name={topic.icon} class="h-6 w-6 shrink-0 text-accent-500" />
+            <span class="text-sm font-semibold text-slate-800">{topic.title}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-[#1A1D27] py-24 text-center text-white">
+    <div class="mx-auto max-w-2xl px-5">
+      <h2 class="mb-4 font-heading text-3xl font-bold md:text-4xl">Want Us to Run This For You?</h2>
+      <p class="mb-10 text-lg text-white/70">
+        These playbooks tell you what to do. Our team builds the website, systems, and follow-up that actually do it — automatically.
+      </p>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Get Your Free Marketing Audit
+      </a>
+    </div>
+  </section>
+</Layout>
