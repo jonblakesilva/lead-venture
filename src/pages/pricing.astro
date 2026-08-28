@@ -6,31 +6,31 @@ const plans = [
   {
     name: "Starter",
     price: "$49",
-    value: "For businesses wanting a cleaner online presence and a better first impression.",
+    value: "A clean customer-facing website that gets you online fast and makes your service business look more credible from day one.",
     features: ["Custom lead-gen website", "Mobile-first design", "Basic SEO setup", "Lead form + call tracking", "Monthly optimization review"],
     featured: false,
   },
   {
     name: "Growth",
     price: "$97",
-    value: "The most popular path for local service brands ready to turn website traffic into booked work.",
+    value: "The most popular option for contractors who need better conversion, faster follow-up, and more review momentum without agency headaches.",
     features: ["Everything in Starter", "AI text-to-lead follow-up", "Review request automation", "Google Business Profile optimization", "Conversion reporting dashboard"],
     featured: true,
   },
   {
     name: "Full Suite",
     price: "$297",
-    value: "Built for contractors who want the full system working together: lead capture, follow-up, and automation.",
+    value: "For businesses ready to run a complete local marketing system: web, reviews, AI receptionist, and nurture campaigns working together.",
     features: ["Everything in Growth", "AI receptionist + missed-call recovery", "Advanced CRM + automation setup", "Re-marketing and lead nurturing", "Priority support and strategy calls"],
     featured: false,
   },
 ];
 
 const faqs = [
-  { question: "Is there really no contract?", answer: "Yes. We keep it simple and low-risk. No long-term lock-in, no dragged-out setup fees, and no pressure to stay if the system isn?t working." },
-  { question: "Can I change plans later?", answer: "Absolutely. Most contractors start with one package and upgrade as their volume grows. We can move you to a more complete plan without starting from scratch." },
-  { question: "What happens after the first 50 spots are filled?", answer: "We cap new partner spots to keep the quality high and make sure each client still gets the attention they need. The waitlist opens when space becomes available again." },
-  { question: "What happens to my data if I cancel?", answer: "You keep your website assets and content. We?ll walk you through any handoff steps and make sure you?re not left with a half-built mess." },
+  { question: "Is there really no contract?", answer: "Yes. We keep it simple and low-risk. No long-term lock-in, no setup fee trap, and no pressure to stay if the system isn't delivering." },
+  { question: "Can I change plans later?", answer: "Absolutely. Most contractors start with one package and upgrade as their lead flow grows. We can expand the system without starting over from scratch." },
+  { question: "What happens after the first spots are filled?", answer: "We cap new partner spots to keep quality high and ensure every client still gets real attention. When space opens up, the waitlist receives priority access." },
+  { question: "What happens to my data if I cancel?", answer: "You keep your website assets and content. We will walk you through the handoff steps and make sure your business isn't left with an unusable setup." },
 ];
 ---
 
@@ -39,9 +39,9 @@ const faqs = [
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="max-w-3xl">
         <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Simple, transparent pricing</p>
-        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">The system that makes growth easier ? without the agency mess.</h1>
+        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">The system that makes growth easier without the agency mess.</h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-          Choose the plan that matches your business today and grow into a bigger system when you?re ready. No guesswork, no bloated retainers, no sales pressure.
+          Choose the plan that matches your business today and scale into a fuller system when you're ready. No bloated retainers, no hidden fees, no pressure.
         </p>
       </div>
     </div>
@@ -67,7 +67,7 @@ const faqs = [
             <ul class="mt-8 space-y-3">
               {plan.features.map((feature) => (
                 <li class="flex items-start gap-3">
-                  <span class:list={["mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold", plan.featured ? "bg-white/10 text-accent-300" : "bg-accent-100 text-accent-700"]}>?</span>
+                  <span class:list={["mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold", plan.featured ? "bg-white/10 text-accent-300" : "bg-accent-100 text-accent-700"]}>✓</span>
                   <span class:list={["text-sm", plan.featured ? "text-white/85" : "text-slate-700"]}>{feature}</span>
                 </li>
               ))}
@@ -88,11 +88,11 @@ const faqs = [
         <div class="mt-10 grid gap-6 md:grid-cols-2">
           <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
             <div class="text-sm font-semibold uppercase tracking-[0.15em] text-accent-600">The performance guarantee</div>
-            <p class="mt-4 text-slate-700">We?ll double your investment in month one, or we?ll keep working until we do. That?s the accountability standard we stand by.</p>
+            <p class="mt-4 text-slate-700">We double your investment in month one, or we keep working until we do. That's the accountability standard we stand behind.</p>
           </div>
           <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
             <div class="text-sm font-semibold uppercase tracking-[0.15em] text-accent-600">The no-regrets guarantee</div>
-            <p class="mt-4 text-slate-700">If you don?t love the system after 14 days, walk away and pay nothing. No hard feelings, no bait-and-switch, no wasted time.</p>
+            <p class="mt-4 text-slate-700">If you don't love the system after 14 days, walk away and pay nothing. No hard feelings, no bait-and-switch, no wasted time.</p>
           </div>
         </div>
       </div>

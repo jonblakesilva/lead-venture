@@ -47,9 +47,9 @@ const features = [
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="max-w-3xl">
         <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">The growth stack</p>
-        <h1 class="font-heading text-4xl font-bold leading-tight md:text-5xl">Built to turn attention into booked work.</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-          Every piece of the lead engine is intentionally designed around the same goal: more qualified opportunities, faster follow-up, and a cleaner customer journey from first click to first job.
+        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">Built to turn attention into booked work.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+          Every piece of the system is designed around the same goal: more qualified leads, faster follow-up, and less chaos in your sales process.
         </p>
       </div>
     </div>
@@ -59,11 +59,11 @@ const features = [
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
         {features.map((feature) => (
-          <div class="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div class="rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm">
             <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-100 text-2xl">{feature.icon}</div>
             <h2 class="text-2xl font-bold text-primary-900">{feature.title}</h2>
             <p class="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{feature.subtitle}</p>
-            <p class="mt-4 text-slate-600 leading-relaxed">{feature.description}</p>
+            <p class="mt-4 text-base leading-relaxed text-slate-600">{feature.description}</p>
           </div>
         ))}
       </div>
@@ -72,17 +72,47 @@ const features = [
 
   <section class="bg-white py-20">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="rounded-3xl bg-[#1A1D27] p-8 text-white shadow-xl lg:p-12">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">How it works</p>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">One system. More booked jobs.</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-6">
+          <div class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">01</div>
+          <h3 class="text-2xl font-bold text-primary-900">Get found</h3>
+          <p class="mt-3 text-slate-600">Your site and local visibility work together so homeowners find you when they need your service.</p>
+        </div>
+        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-6">
+          <div class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">02</div>
+          <h3 class="text-2xl font-bold text-primary-900">Convert faster</h3>
+          <p class="mt-3 text-slate-600">Clear offers, trust signals, and faster response logic help people book instead of bouncing.</p>
+        </div>
+        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-6">
+          <div class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">03</div>
+          <h3 class="text-2xl font-bold text-primary-900">Stay in control</h3>
+          <p class="mt-3 text-slate-600">AI follow-up, review generation, and reporting keep your pipeline moving even when your crew is on-site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-xl lg:p-12">
         <div class="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">The result</p>
-            <h2 class="font-heading text-4xl font-bold leading-tight md:text-5xl">More opportunities. Less manual chasing.</h2>
+            <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-5xl">More opportunities. Less manual chasing.</h2>
           </div>
           <div class="space-y-4 text-lg text-white/80">
             <p>• Stronger visibility in your service area</p>
             <p>• Faster lead response times and better follow-up</p>
-            <p>• A reliable review and trust system that grows with you</p>
+            <p>• A review and trust system that compounds over time</p>
           </div>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Book a strategy call</a>
+          <a href="/pricing" class="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white transition hover:bg-white/10">See pricing</a>
         </div>
       </div>
     </div>

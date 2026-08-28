@@ -16,7 +16,7 @@ import { business } from "@/config/business";
           Request a Free Quote
         </h1>
         <p class="text-white/70 text-lg mt-4 leading-relaxed">
-          Fill out the form or give us a call. We respond to all inquiries within one business day, and the final webhook will be connected once the live endpoint is ready.
+          Tell us what you're trying to fix, and we'll tell you exactly where the biggest opportunities are for your business.
         </p>
       </div>
     </div>
@@ -102,18 +102,17 @@ import { business } from "@/config/business";
         <div class="lg:col-span-3" data-aos="fade-up" data-aos-delay="200">
           <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 lg:p-10">
             <h2 class="font-heading text-2xl font-bold text-primary-900 mb-2">Tell Us About Your Project</h2>
-            <p class="text-neutral-500 text-sm mb-8">All fields are optional except your contact info. The live webhook is not connected yet, so this is ready to plug in when the endpoint is active.</p>
+            <p class="text-neutral-500 text-sm mb-8">All fields are optional except your contact info. This form is ready for your live endpoint when you're ready to wire it up.</p>
 
-            <!-- REPLACE access_key with your web3forms key: https://web3forms.com -->
             <form
-              action="https://api.web3forms.com/submit"
-              method="POST"
-              id="contact-form"
-              class="space-y-5"
-              novalidate
-              data-phone={business.phone}
+             action="https://api.web3forms.com/submit"
+             method="POST"
+             id="contact-form"
+             class="space-y-5"
+             novalidate
+             data-phone={business.phone}
             >
-              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+             <input type="hidden" name="access_key" value="" />
               <input type="hidden" name="subject" value={`New Contact Form Submission — ${business.name}`} />
               <input type="hidden" name="redirect" value="/thank-you" />
               <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
