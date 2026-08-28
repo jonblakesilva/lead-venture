@@ -1,9 +1,6 @@
 ---
-import { getCollection } from "astro:content";
 import { business } from "@/config/business";
-
-const services = (await getCollection("services", ({ data }) => !data.draft))
-  .sort((a, b) => a.data.order - b.data.order);
+import Dropdown from "./dropdown.astro";
 
 const currentPath = Astro.url.pathname;
 
@@ -11,40 +8,110 @@ function isActive(path: string) {
   if (path === "/") return currentPath === "/";
   return currentPath === path || currentPath.startsWith(path + "/");
 }
+
+const productLinks = business.products.map((p) => ({ title: p.name, path: `/products/${p.slug}` }));
+const proofLinks = [
+  { title: "Case Studies", path: "/proof/case-studies" },
+  { title: "Testimonials", path: "/proof/testimonials" },
+];
+const resourceLinks = [
+  { title: "$50K Leak Finder", path: "/resources/revenue-leak-calculator" },
+  { title: "ROI Calculator", path: "/resources/calculators" },
+  { title: "Assessments", path: "/resources/assessments" },
+];
+const aboutLinks = [
+  { title: "Trades We Serve", path: "/about/trades-we-serve" },
+  { title: "How It Works", path: "/about/how-it-works" },
+  { title: "Meet the Team", path: "/about/team" },
+  { title: "Partners", path: "/about/partners" },
+];
+
+const mobileGroups = [
+  { title: "Products", links: productLinks },
+  { title: "Proof", links: proofLinks },
+  { title: "Resources", links: resourceLinks },
+  { title: "About", links: aboutLinks },
+];
 ---
 
-<nav id="site-nav" aria-label="Main navigation" class="bg-[#181d2a] text-white">
+<nav id="site-nav" aria-label="Main navigation" class="sticky top-0 z-50 border-b border-white/10 bg-[#1A1D27] text-white">
   <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-    <div class="flex h-16 items-center justify-between">
-      <a href="/" class="flex items-center gap-2 shrink-0" aria-label={business.name}>
+    <div class="flex h-16 items-center justify-between gap-6">
+      <a href="/" class="flex shrink-0 items-center gap-2" aria-label={business.name}>
         <span class="font-heading text-xl font-black leading-none text-white">{business.name}</span>
       </a>
 
-      <button
-        id="mobile-menu-btn"
-        class="rounded-md p-2 text-white/90 transition-colors hover:bg-white/5 hover:text-white"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Toggle menu"
-      >
-        <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
+      <ul class="hidden items-center gap-1 lg:flex" role="list">
+        <li>
+          <a href="/" class:list={["rounded-md px-3 py-2 text-sm font-medium transition-colors", isActive("/") && currentPath === "/" ? "text-white" : "text-white/80 hover:text-white"]}>
+            Home
+          </a>
+        </li>
+        <Dropdown title="Products" children={productLinks} />
+        <li>
+          <a href="/pricing" class:list={["rounded-md px-3 py-2 text-sm font-medium transition-colors", isActive("/pricing") ? "text-white" : "text-white/80 hover:text-white"]}>
+            Pricing
+          </a>
+        </li>
+        <Dropdown title="Proof" children={proofLinks} />
+        <Dropdown title="Resources" children={resourceLinks} />
+        <Dropdown title="About" lastItem children={aboutLinks} />
+      </ul>
+
+      <div class="flex items-center gap-4">
+        <a href={business.crmLoginUrl} target="_blank" rel="noopener noreferrer" class="hidden text-sm font-medium text-white/80 hover:text-white lg:block">
+          Log In
+        </a>
+        <a href="/contact" class="hidden flex-col items-center gap-0.5 rounded-full bg-accent-500 px-5 py-2 text-center leading-tight transition hover:bg-accent-600 lg:flex">
+          <span class="text-[14px] font-bold">Claim my free build</span>
+          <span class="text-[10px] font-medium text-white/70">Try free for 14 days</span>
+        </a>
+
+        <button
+          id="mobile-menu-btn"
+          class="rounded-md p-2 text-white/90 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle menu"
+        >
+          <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div id="mobile-menu" class="hidden border-t border-white/10 py-4 lg:hidden">
+      <a href="/contact" class="mb-4 flex w-full flex-col items-center justify-center rounded-xl bg-accent-500 py-3 text-center transition-colors hover:bg-accent-600">
+        <span class="mb-0.5 block text-[16px] font-bold leading-tight">Claim my free build</span>
+        <span class="block text-[12px] font-semibold leading-tight text-white/80">Try free for 14 days</span>
+      </a>
       <ul class="flex flex-col gap-1" role="list">
-        {[{ title: "Home", path: "/" }, { title: "Services", path: "/services" }, { title: "Pricing", path: "/pricing" }, { title: "Proof", path: "/proof" }, { title: "Resources", path: "/resources" }, { title: "About", path: "/about" }, { title: "Contact", path: "/contact" }].map((item) => (
-          <li>
-            <a href={item.path} class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">
-              {item.title}
-            </a>
+        <li>
+          <a href="/" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Home</a>
+        </li>
+        {mobileGroups.map((group) => (
+          <li class="py-2">
+            <div class="mb-2 px-3 text-sm font-medium uppercase tracking-wider text-white/50">{group.title}</div>
+            <div class="space-y-1 pl-4">
+              {group.links.map((link) => (
+                <a href={link.path} class="block rounded-md px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white">{link.title}</a>
+              ))}
+            </div>
           </li>
         ))}
+        <li>
+          <a href="/pricing" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Pricing</a>
+        </li>
+        <li>
+          <a href="/contact" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Contact</a>
+        </li>
+        <li>
+          <a href={business.crmLoginUrl} target="_blank" rel="noopener noreferrer" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Log In</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -65,7 +132,6 @@ function isActive(path: string) {
 
     if (!btn || !menu) return;
 
-    // Reset state
     menu.classList.add("hidden");
     iconOpen?.classList.remove("hidden");
     iconClose?.classList.add("hidden");
@@ -78,17 +144,8 @@ function isActive(path: string) {
       iconClose?.classList.toggle("hidden", !nowOpen);
       btn.setAttribute("aria-expanded", String(nowOpen));
     }, { signal });
-
-    document.querySelectorAll<HTMLButtonElement>("[data-accordion-toggle]").forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        const panel = document.getElementById(trigger.dataset.accordionToggle ?? "");
-        if (!panel) return;
-        panel.classList.toggle("hidden");
-        trigger.querySelector("[data-chevron]")?.classList.toggle("rotate-180");
-      }, { signal });
-    });
   }
 
   document.addEventListener("astro:page-load", initMobileNav);
-  initMobileNav(); // cover initial load if astro:page-load has already fired
+  initMobileNav();
 </script>

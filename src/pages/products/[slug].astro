@@ -1,0 +1,270 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { Icon } from "astro-icon/components";
+
+const featureData = {
+  website: {
+    name: "Modern Website",
+    headline: "Turn Traffic into High-Paying Jobs",
+    highlightWord: "High-Paying",
+    subheadline: "Launch a lightning-fast, mobile-optimized website that instantly builds trust and captures more leads while you sleep.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/5101161f-1f6b-4949-b9f8-4a9d65ca85c4.png",
+    stats: [
+      { value: "75%", label: "of consumers judge credibility by website design" },
+      { value: "94%", label: "of first impressions are design-related" },
+      { value: "57%", label: "won't recommend a business with a poor mobile site" },
+    ],
+    caseStudyLink: "/proof/website-rebuild-case-study",
+    caseStudyTitle: "Read the Website Case Study",
+    cards: [
+      { icon: "lucide:layout", title: "Mobile Optimized", desc: "Looks perfect on every device, especially phones where most of your customers are searching." },
+      { icon: "lucide:arrow-right", title: "Lead Capture", desc: "Strategic forms and call buttons designed specifically to get the phone ringing." },
+      { icon: "lucide:check-circle-2", title: "Fast Loading", desc: "Lightning-fast code that Google loves, helping you rank higher automatically." },
+      { icon: "lucide:map-pin", title: "Local SEO Ready", desc: "Built with the exact structure needed to dominate your local service area." },
+    ],
+  },
+  "mobile-app": {
+    name: "Business Mobile App",
+    headline: "Run Your Entire Business From Your Pocket",
+    highlightWord: "Business",
+    subheadline: "Stop being tied to a desk. Manage leads, dispatch your crew, and collect payments directly from the job site.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/1e8bf1c1-f136-46bc-8625-ab1ede39a28b.png",
+    stats: [
+      { value: "85%", label: "of owners use smartphones to manage tasks" },
+      { value: "94%", label: "say mobile devices make them more efficient" },
+      { value: "47%", label: "couldn't survive without business apps" },
+    ],
+    cards: [
+      { icon: "lucide:smartphone", title: "Pocket Office", desc: "Carry your entire business in your pocket. Manage leads from the truck or the job site." },
+      { icon: "lucide:message-square", title: "Unified Inbox", desc: "Texts, emails, Facebook messages, and Google chats all in one single conversation thread." },
+      { icon: "lucide:layout", title: "Calendar Sync", desc: "View your schedule, book new jobs, and dispatch team members on the go." },
+      { icon: "lucide:star", title: "Instant Reviews", desc: "Send a review request text the second you finish the job, while the customer is happiest." },
+      { icon: "lucide:credit-card", title: "POS System", desc: "Connect your POS system and take payments directly from the app while on the job site." },
+      { icon: "lucide:camera", title: "Social Media Scheduler", desc: "Replace CompanyCam. Manage job photos and schedule social media posts right from the field." },
+    ],
+  },
+  reviews: {
+    name: "5-Star Review System",
+    headline: "Dominate Your Market With 5-Star Reviews",
+    highlightWord: "5-Star",
+    subheadline: "Automate your review requests to build an unbeatable reputation, rank higher on Google Maps, and win jobs before you even quote them.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/21fa6495-6da1-4344-b113-474f0d5ef741.png",
+    stats: [
+      { value: "97%", label: "read local reviews before visiting" },
+      { value: "57%", label: "only use a business with 4+ stars" },
+      { value: "9%", label: "revenue boost per one-star increase" },
+    ],
+    caseStudyLink: "/proof/reputation-case-study",
+    caseStudyTitle: "Read the Reputation Case Study",
+    cards: [
+      { icon: "lucide:star", title: "Auto-Requests", desc: "System automatically texts customers asking for a review after the job is marked complete." },
+      { icon: "lucide:message-square", title: "Filter Bad Feedback", desc: "Unhappy customers are directed to a private feedback form instead of public Google reviews." },
+      { icon: "lucide:map-pin", title: "Map Pack Boost", desc: "Consistent 5-star reviews are the #1 way to rank higher in the Google Maps local pack." },
+      { icon: "lucide:layout", title: "Reputation Dashboard", desc: "Monitor all your reviews across the web from one central dashboard." },
+    ],
+  },
+  "missed-call-text-back": {
+    name: "Missed Call Text-Back",
+    headline: "Never Lose Another Job to Voicemail",
+    highlightWord: "Job",
+    subheadline: "Instantly text back missed calls, capture leads 24/7, and book more appointments without lifting a finger.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/c3a1cc7e-f0ca-4319-8412-e18f35e7f309.png",
+    stats: [
+      { value: "78%", label: "Buy from the first company to respond." },
+      { value: "85%", label: "Of callers who reach voicemail never call back." },
+      { value: "<10s", label: "Average automated text response." },
+      { value: "24/7", label: "Lead capture — even after hours." },
+      { value: "21×", label: "More likely to qualify a lead by responding within 5 minutes." },
+      { value: "100×", label: "Higher chance of contacting a lead within 5 mins vs. 30 mins." },
+      { value: "0", label: "Missed opportunities. Every missed call gets an instant text." },
+    ],
+    caseStudyLink: "/proof/speed-to-lead-case-study",
+    caseStudyTitle: "Read the Speed-to-Lead Case Study",
+    cards: [
+      { icon: "lucide:smartphone", title: "Instant Response", desc: "Instantly text back callers when you miss their call so they don't call a competitor." },
+      { icon: "lucide:message-square", title: "Custom Messaging", desc: "Personalize your auto-response to sound like a real person, capturing the lead immediately." },
+      { icon: "lucide:check-circle-2", title: "24/7 Coverage", desc: "Never miss a lead, even after hours, on weekends, or when you're on the roof." },
+      { icon: "lucide:megaphone", title: "Lead Capture", desc: "Automatically pull their phone number into your CRM so you can follow up later." },
+    ],
+  },
+  "local-seo": {
+    name: "Local SEO",
+    headline: "Rank #1 on Google for Your Local Services",
+    highlightWord: "Rank #1",
+    subheadline: "Get found exactly when customers are searching. Dominate the Map Pack, drive free traffic, and stop relying on expensive lead sites.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/d371f79f-7d92-48b3-af71-fdd790709aa4.png",
+    stats: [
+      { value: "46%", label: "of all Google searches have local intent" },
+      { value: "88%", label: "of local mobile searchers call within a day" },
+      { value: "900%", label: "growth in 'near me' searches" },
+    ],
+    caseStudyLink: "/proof/seo-case-study",
+    caseStudyTitle: "Read the Local SEO Case Study",
+    cards: [
+      { icon: "lucide:map-pin", title: "Google Business Optimization", desc: "We fully optimize your profile to rank higher in the coveted Google Map Pack." },
+      { icon: "lucide:layout", title: "Citation Building", desc: "Get listed on top directories to build authority and trust with search engines." },
+      { icon: "lucide:star", title: "Map Pack Visibility", desc: "Dominate local search results so customers find you before your competitors." },
+      { icon: "lucide:check-circle-2", title: "Keyword Ranking", desc: "Target the exact services people are searching for in your specific service area." },
+    ],
+  },
+  "rev-gen-campaigns": {
+    name: "Revenue Campaigns",
+    headline: "Turn Past Customers Into Instant Cash Flow",
+    highlightWord: "Cash Flow",
+    subheadline: "Launch one-click email and SMS campaigns that reactivate old leads, drive repeat business, and fill your schedule on demand.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/c17c583d-a6ea-4eb4-b312-1489d9caa75d.png",
+    stats: [
+      { value: "5-25x", label: "more expensive to acquire a new customer" },
+      { value: "67%", label: "more spent by repeat customers" },
+      { value: "25-95%", label: "profit boost from a 5% retention increase" },
+    ],
+    caseStudyLink: "/proof/reactivation-case-study",
+    caseStudyTitle: "Read the Reactivation Case Study",
+    cards: [
+      { icon: "lucide:megaphone", title: "Email & SMS Campaigns", desc: "Reach your entire customer base with one click for seasonal specials and promotions." },
+      { icon: "lucide:message-square", title: "Seasonal Promotions", desc: "Easily launch campaigns for spring cleanups, winterizations, or holiday specials." },
+      { icon: "lucide:star", title: "Customer Retention", desc: "Keep your business top-of-mind so past customers call you again and refer friends." },
+      { icon: "lucide:arrow-right", title: "One-Click Send", desc: "Pre-built templates make it effortless to launch a campaign that generates immediate revenue." },
+    ],
+  },
+  "3-click-ad-system": {
+    name: "3-Click Ad System",
+    headline: "Launch High-Converting Facebook & Google Ads in Seconds",
+    highlightWord: "Facebook & Google",
+    subheadline: "Stop burning money on agency ad fees. Launch proven, pre-built ad campaigns on Meta and Google in just 3 clicks directly from your dashboard.",
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/997d77ac-88de-4c95-8255-032efbe16a24.png",
+    stats: [
+      { value: "3 Clicks", label: "to launch a full ad campaign" },
+      { value: "50+", label: "pre-tested high-converting ad templates" },
+      { value: "100%", label: "automated lead capture & follow-up" },
+    ],
+    cards: [
+      { icon: "lucide:megaphone", title: "Pre-Built Templates", desc: "Proven ad copy, graphics, and targeting built specifically for trade contractors." },
+      { icon: "lucide:smartphone", title: "Meta & Google Ads", desc: "Run targeted ads on Facebook, Instagram, and Google Search from one central platform." },
+      { icon: "lucide:check-circle-2", title: "3-Click Launch", desc: "No complex ad manager setups. Select your trade, set your budget, and click launch." },
+      { icon: "lucide:message-square", title: "Auto-Nurture Leads", desc: "Leads automatically flow directly into your CRM with instant SMS follow-up." },
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "website" } },
+    { params: { slug: "mobile-app" } },
+    { params: { slug: "reviews" } },
+    { params: { slug: "missed-call-text-back" } },
+    { params: { slug: "local-seo" } },
+    { params: { slug: "rev-gen-campaigns" } },
+    { params: { slug: "3-click-ad-system" } },
+  ];
+}
+
+const { slug } = Astro.params;
+const feature = featureData[slug as keyof typeof featureData] ?? featureData.website;
+const [pre, post] = feature.headline.split(feature.highlightWord);
+---
+
+<Layout title={`${feature.name} for Local Contractors`} description={feature.subheadline}>
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="grid items-center gap-12 md:grid-cols-2">
+        <div class="space-y-8">
+          <h1 class="font-heading text-5xl font-bold leading-tight md:text-6xl">
+            {pre}<span class="text-accent-400">{feature.highlightWord}</span>{post}
+          </h1>
+          <p class="text-xl leading-relaxed text-white/75">{feature.subheadline}</p>
+
+          <div class={`grid gap-4 ${feature.stats.length > 3 ? "sm:grid-cols-2" : ""}`}>
+            {feature.stats.map((stat) => (
+              <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4">
+                <div class="shrink-0 text-3xl font-bold text-accent-400">{stat.value}</div>
+                <div class="text-sm text-white/70">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {feature.caseStudyLink && (
+            <div class="pt-4">
+              <a href={feature.caseStudyLink} class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+                {feature.caseStudyTitle} <Icon name="lucide:arrow-right" class="h-4 w-4" />
+              </a>
+            </div>
+          )}
+        </div>
+        <div class="rounded-2xl bg-white/5 p-8">
+          <div class="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/10 shadow-2xl">
+            <img src={feature.image} alt={`${feature.name} Mockup`} class="h-full w-full object-contain p-4" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mb-16 text-center">
+        <h2 class="font-heading text-4xl font-bold text-primary-900">What is the {feature.name}?</h2>
+      </div>
+      <div class={`grid gap-8 md:grid-cols-2 ${feature.cards.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+        {feature.cards.map((card) => (
+          <div class="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+            <Icon name={card.icon} class="mb-4 h-10 w-10 text-accent-500" />
+            <h3 class="mb-2 text-xl font-bold text-primary-900">{card.title}</h3>
+            <p class="text-neutral-600">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-[#1A1D27] py-16 text-center text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <h2 class="mb-6 font-heading text-3xl font-bold">Want to schedule a time to talk?</h2>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Request a Website
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-neutral-50 py-24">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mb-16 text-center">
+        <h2 class="font-heading text-4xl font-bold text-primary-900">How Do I Join The Lead Venture?</h2>
+      </div>
+      <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-3">
+        {[
+          { step: 1, title: "Demo Call", desc: "~20 min, no pressure. We'll show you how it works for your trade." },
+          { step: 2, title: "System Buildout", desc: "~7-10 days. We do all the heavy lifting and build your custom setup." },
+          { step: 3, title: "Launch Call", desc: "~25 min walkthrough. We hand over the keys and you start growing." },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-900 text-2xl font-bold text-white">
+              {item.step}
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-primary-900">{item.title}</h3>
+            <p class="text-neutral-600">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-24 text-center text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <h2 class="mb-6 font-heading text-4xl font-bold">Ready to Get {feature.name}?</h2>
+      <a href="/contact" class="mb-8 inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Request a Website
+      </a>
+      <div class="flex flex-col items-center gap-3 text-sm text-white/70">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> $0 upfront, live in 24-72 hours</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> 40+ websites launched and counting</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Average client stays 30+ months</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+</Layout>

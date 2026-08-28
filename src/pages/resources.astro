@@ -1,12 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { business } from "@/config/business";
+import RoiCalculator from "@/components/RoiCalculator";
 
 const tools = [
-  { title: "Revenue Leak Calculator", description: "Estimate the monthly value of missed calls, slow follow-up, cold leads, and lost reactivations.", href: "/revenue-leak-calculator" },
-  { title: "Savings Calculator", description: "See how much you could recover by improving response speed and lead follow-up systems.", href: "/tools/savings-calculator" },
-  { title: "Timeline Estimator", description: "Project the expected effect of a stronger local lead system across your sales funnel.", href: "/tools/timeline-estimator" },
-  { title: "Cost Estimator", description: "Compare the cost of a modern lead engine with the cost of lost revenue from manual follow-up.", href: "/tools/cost-estimator" },
+  { title: "$50K Leak Finder", description: "Estimate the monthly value of missed calls, slow follow-up, cold leads, and lost reactivations.", href: "/resources/revenue-leak-calculator" },
+  { title: "Assessments", description: "Take our free Business Growth Score assessment to find where your company is leaking revenue.", href: "/resources/assessments" },
 ];
 ---
 
@@ -20,7 +19,7 @@ const tools = [
           See what lost calls, slow response times, weak follow-up, and old leads are actually costing your business. These tools help uncover the biggest opportunities fast.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/revenue-leak-calculator" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-6 text-sm font-semibold text-white transition hover:bg-accent-600">Use the leak finder</a>
+          <a href="/resources/revenue-leak-calculator" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-6 text-sm font-semibold text-white transition hover:bg-accent-600">Use the leak finder</a>
           <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition hover:bg-white/10">Get a custom quote</a>
         </div>
       </div>
@@ -39,6 +38,28 @@ const tools = [
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 border-b text-center">
+    <div class="mx-auto max-w-3xl px-5">
+      <h2 class="mb-6 font-heading text-3xl font-bold text-primary-900">Want to See Real Results?</h2>
+      <p class="mb-10 text-xl text-slate-600">
+        We've helped local service businesses double their calls, boost their page speed from 62 to 98, and grow from 48 to 156 reviews in under 120 days.
+      </p>
+      <a href="/proof/case-studies" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">
+        View All Case Studies
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-16">
+    <div class="mx-auto max-w-5xl px-5">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 font-heading text-3xl font-bold text-primary-900">Revenue Recovery Calculators</h2>
+        <p class="text-slate-600">Adjust the sliders to see how much revenue you could recover with automation.</p>
+      </div>
+      <RoiCalculator client:load />
     </div>
   </section>
 

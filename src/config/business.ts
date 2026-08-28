@@ -16,18 +16,21 @@ export const business = {
   phone: "+1 (419) 548-5543",
   phoneRaw: "14195485543",
   email: "mail@theleadventure.com",
+  secondaryEmail: "mail@homeprosohio.com",
+  directoryUrl: "https://homeprosohio.com",
+  crmLoginUrl: "https://app.theleadventure.com",
   address: {
-    streetAddress: "Canton, OH",
+    streetAddress: "6545 Market Ave. North STE 100",
     addressLocality: "Canton",
     addressRegion: "OH",
-    postalCode: "44702",
+    postalCode: "44127",
     addressCountry: "US",
   },
 
   // ── Location ──
   city: "Canton",
   state: "OH",
-  zip: "44702",
+  zip: "44127",
   serviceRadius: "Ohio and surrounding markets",
   serviceAreas: [
     "Canton, OH",
@@ -45,7 +48,7 @@ export const business = {
 
   // ── Social ──
   socials: {
-    facebook: "",
+    facebook: "https://www.facebook.com/theleadventure",
     instagram: "",
     google: "",
     nextdoor: "",
@@ -85,13 +88,23 @@ export const business = {
     citiesServed: 12,
   },
 
-  // ── Services (short list for footer quick-links) ──
+  // ── Products (nav dropdown, footer quick-links, /products index) ──
   primaryServices: [
     "Modern Website",
+    "Business Mobile App",
     "5-Star Review System",
-    "Missed Call Text Back",
+    "Missed Call Text-Back",
     "Local SEO",
-    "AI Receptionist",
-    "Re-Marketing Campaigns",
+    "Revenue Campaigns",
+    "3-Click Ad System",
+  ],
+  products: [
+    { name: "Modern Website", slug: "website" },
+    { name: "Business Mobile App", slug: "mobile-app" },
+    { name: "5-Star Review System", slug: "reviews" },
+    { name: "Missed Call Text-Back", slug: "missed-call-text-back" },
+    { name: "Local SEO", slug: "local-seo" },
+    { name: "Revenue Campaigns", slug: "rev-gen-campaigns" },
+    { name: "3-Click Ad System", slug: "3-click-ad-system" },
   ],
 };
