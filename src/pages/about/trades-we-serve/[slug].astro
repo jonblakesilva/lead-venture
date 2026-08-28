@@ -1,557 +1,332 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { Icon } from "astro-icon/components";
 
-const tradeData = {
+const tradeData: Record<string, {
+  name: string;
+  icon: string;
+  highlightWord: string;
+  heroSub: string;
+  stats: { value: string; label: string }[];
+  benefits: { icon: string; title: string; desc: string }[];
+}> = {
   roofing: {
-    name: 'Roofing',
-    badge: 'Storm-season specialists',
-    heroSub: 'Turn weather-driven demand into booked replacements and repairs with a website and lead system built for roofers who need speed, proof, and trust.',
-    summaryTitle: 'Why roofing businesses lose revenue',
-    summary: 'Most roofers still get buried by slow response times, weak review collection, and websites that do not immediately build trust when a storm hits. The first company that feels credible wins the job.',
+    name: "Roofing",
+    icon: "lucide:home",
+    highlightWord: "Roofing",
+    heroSub: "Get more roof replacements and repairs with our all-in-one growth platform built specifically for roofers.",
     stats: [
-      { value: '82%', label: 'of homeowners research roofers online before calling' },
-      { value: '3x', label: 'more leak-free demand when your website is built for urgency' },
-      { value: '5-Star', label: 'reviews are the deciding factor for high-ticket repairs' },
-    ],
-    pains: [
-      'Storm leads hit fast and vanish if you are slow to answer.',
-      'Insurance and replacement prospects want immediate proof before they book.',
-      'Without automated review requests, your reputation stays flat after every job.',
+      { value: "82%", label: "of homeowners research roofers online before calling" },
+      { value: "3x", label: "more leads with a modern, fast-loading website" },
+      { value: "5-Star", label: "reviews are the #1 deciding factor for high-ticket jobs" },
     ],
     benefits: [
-      'Faster follow-up on emergency calls and insurance leads',
-      'Stronger local visibility during storm season and peak periods',
-      'A review engine that turns each completed job into future trust',
-      'More premium quoting conversations from serious homeowners',
+      { icon: "lucide:trending-up", title: "More High-Ticket Jobs", desc: "Position your roofing company as the premium choice in your market with a professional online presence." },
+      { icon: "lucide:check-circle-2", title: "Automated Review Requests", desc: "Get more 5-star reviews from happy homeowners automatically after every completed roof." },
+      { icon: "lucide:users", title: "Never Miss a Storm Lead", desc: "Our Missed Call Text-Back ensures you capture every frantic homeowner calling after a storm." },
+      { icon: "lucide:arrow-right", title: "Re-Marketing Campaigns", desc: "Easily reach out to past repair customers when it's time for a full replacement." },
     ],
-    focusPanels: [
-      { title: 'Lead urgency', text: 'The moment a storm hits, homeowners are searching and comparing. Your site and response system need to move at the pace of the market.' },
-      { title: 'Proof & trust', text: 'Before they hire, they need examples, reviews, and confidence that your team is reliable and insured.' },
-      { title: 'Service follow-up', text: 'We automate review check-ins, missed-call responses, and reactivation outreach to keep your pipeline warm.' },
-      { title: 'High-ticket conversion', text: 'The system is designed to attract the homeowners who are ready to invest in larger replacements.',
-      },
-    ],
-    systemTitle: 'Roofing lead engine',
-    systemBullets: [
-      'Capture urgent storm leads from search and form submissions before competitors do.',
-      'Use a cleaner, faster site flow that helps homeowners understand your process and pricing.',
-      'Turn every completed job into social proof with automated review requests and proof-based follow-up.',
-      'Nurture past leads with targeted campaigns instead of letting cold prospects disappear.',
-    ],
-    ctaText: 'Book a roofing strategy call',
   },
   hvac: {
-    name: 'HVAC',
-    badge: 'Emergency service specialists',
-    heroSub: 'Keep your techs busy year-round with a stronger HVAC lead engine, quicker answers, and a smarter service follow-up process.',
-    summaryTitle: 'Why HVAC companies lose bookings',
-    summary: 'Most HVAC brands are still losing jobs to the first company that answers the phone, even when their service is excellent. That means faster response and stronger follow-up matters as much as the work itself.',
+    name: "HVAC",
+    icon: "lucide:wind",
+    highlightWord: "HVAC",
+    heroSub: "Keep your techs busy year-round with predictable lead flow and automated follow-ups.",
     stats: [
-      { value: '78%', label: 'of emergency HVAC calls go to the first company that answers' },
-      { value: '65%', label: 'of customers will sign a maintenance agreement if asked' },
-      { value: '24/7', label: 'lead capture is essential during heating and cooling emergencies' },
-    ],
-    pains: [
-      'Emergency calls happen after hours and are lost without a proper response system.',
-      'Service agreement opportunities are missed when the sales follow-up is too slow.',
-      'Families want fast proof that your company is dependable, clean, and professional.',
+      { value: "78%", label: "of emergency HVAC calls go to the first company that answers" },
+      { value: "65%", label: "of customers will sign a maintenance agreement if asked" },
+      { value: "24/7", label: "lead capture is essential for heating/cooling emergencies" },
     ],
     benefits: [
-      '24/7 lead capture so no after-hours call goes cold',
-      'Maintenance and seasonal campaign follow-up to keep revenue steady',
-      'Better credibility through reviews and localized proof',
-      'Smarter mobile communication that reduces missed opportunities',
+      { icon: "lucide:trending-up", title: "Dominate Emergency Calls", desc: "Missed Call Text-Back means you never lose an emergency install to a competitor because you were on the other line." },
+      { icon: "lucide:check-circle-2", title: "Maintenance Memberships", desc: "Use our SMS campaigns to remind past customers about seasonal tune-ups and sell more agreements." },
+      { icon: "lucide:users", title: "Tech-Friendly Mobile App", desc: "Your techs can request reviews right from the driveway while the customer is thrilled with the cold air." },
+      { icon: "lucide:arrow-right", title: "Local SEO Supremacy", desc: "Rank higher when homeowners furiously search 'AC repair near me' in the middle of July." },
     ],
-    focusPanels: [
-      { title: 'Emergency capture', text: 'When a unit fails in the middle of the night, homeowners are not shopping around. They are looking for the quickest answer.' },
-      { title: 'Retention engine', text: 'HVAC revenue gets stronger when service plans and seasonal reminders are tied into the same workflow.' },
-      { title: 'Trust signals', text: 'Customer reviews, financing options, and service language build confidence before the first quote.' },
-      { title: 'Crew efficiency', text: 'The better your front-end system, the more time your technicians spend on the work instead of chasing leads.' },
-    ],
-    systemTitle: 'HVAC conversion system',
-    systemBullets: [
-      'Answer calls after dark, on weekends, and during peak demand without dropping the lead.',
-      'Create a review flow that keeps your reputation strong after installation and tune-ups.',
-      'Turn seasonal service reminders into recurring revenue instead of one-and-done visits.',
-      'Build trust quickly with proof, clear service pages, and faster follow-up.',
-    ],
-    ctaText: 'Book an HVAC growth call',
   },
   electrical: {
-    name: 'Electrical',
-    badge: 'Trust-first specialists',
-    heroSub: 'Spark more growth with a system built to capture lead intent, build trust fast, and turn local searches into booked electrical work.',
-    summaryTitle: 'Why electrical businesses stall out',
-    summary: 'Electricians often lose leads not because the work is bad, but because prospects do not feel comfortable enough to book quickly. Reviews, clarity, and response speed matter just as much as your skill level.',
+    name: "Electrical",
+    icon: "lucide:zap",
+    highlightWord: "Electrical",
+    heroSub: "Spark more growth with a system designed to capture leads and build trust in your local market.",
     stats: [
-      { value: '89%', label: 'of customers check reviews before hiring an electrician' },
-      { value: '4.5+', label: 'star rating is the trust threshold most homeowners expect' },
-      { value: '60%', label: 'increase in repeat business with better automation and trust signals' },
-    ],
-    pains: [
-      'Homeowners want certainty before they hire someone to touch their electrical system.',
-      'Local competition is high, and slow follow-up costs the job before you ever speak to them.',
-      'Service upgrades and panel work are often missed when your messaging does not build confidence.',
+      { value: "89%", label: "of customers check reviews before hiring an electrician" },
+      { value: "4.5+", label: "star rating is required for most homeowners to trust you" },
+      { value: "60%", label: "increase in repeat business with automated follow-ups" },
     ],
     benefits: [
-      'Faster lead response for urgent service and panel work',
-      'More trust through reviews, proof, and cleaner site messaging',
-      'Better qualification without making the customer feel chased',
-      'Stronger long-term retention and repeat service opportunities',
+      { icon: "lucide:trending-up", title: "Build Instant Trust", desc: "Showcase your licensing, insurance, and 5-star reviews prominently to win high-value rewiring jobs." },
+      { icon: "lucide:check-circle-2", title: "Capture Every Lead", desc: "Whether it's a panel upgrade or a simple fixture install, never miss an inquiry with instant text responses." },
+      { icon: "lucide:users", title: "Effortless Communication", desc: "Manage all customer messages, questions, and quote requests from one simple inbox." },
+      { icon: "lucide:arrow-right", title: "Stay Top of Mind", desc: "Send targeted campaigns for seasonal safety inspections or smart home upgrades." },
     ],
-    focusPanels: [
-      { title: 'Trust architecture', text: 'Electrical work requires confidence. The site and proof need to make the customer feel safe before they reach out.' },
-      { title: 'Lead velocity', text: 'Your intake flow should be built for urgent requests, panel issues, and same-day service calls.' },
-      { title: 'Repeat revenue', text: 'Follow-ups for electrical maintenance, service upgrades, and tune-ups keep your calendar full.' },
-      { title: 'Referral growth', text: 'Homeowners who had a good experience are more likely to refer family and friends when the follow-up feels polished.' },
-    ],
-    systemTitle: 'Electrical lead engine',
-    systemBullets: [
-      'Create a clearer, higher-trust online presence that says you are licensed, experienced, and reliable.',
-      'Capture more service calls with optimized forms, quick call handling, and strong local messaging.',
-      'Ask for reviews at the right time so your reputation keeps rising with each project.',
-      'Keep past customers warm with service reminders, referral touchpoints, and follow-up flows.',
-    ],
-    ctaText: 'Book an electrical growth call',
   },
   plumbing: {
-    name: 'Plumbing',
-    badge: 'Urgent-service specialists',
-    heroSub: 'Stop leaks in the sales funnel and dominate local emergency plumbing searches with a faster, more trustworthy online experience.',
-    summaryTitle: 'Why plumbing businesses miss revenue',
-    summary: 'The plumbing market rewards the first company that feels dependable and responsive. If your website is slow, unclear, or hard to trust, the opportunity gets handed to someone else.',
+    name: "Plumbing",
+    icon: "lucide:droplet",
+    highlightWord: "Plumbing",
+    heroSub: "Stop the leaks in your sales funnel and dominate local emergency plumbing searches.",
     stats: [
-      { value: '85%', label: 'of plumbing searches are urgent “near me” queries' },
-      { value: '1st', label: 'to respond wins the job 78% of the time' },
-      { value: '90%', label: 'of consumers read local reviews before calling a plumber' },
-    ],
-    pains: [
-      'Urgent calls are time-sensitive, and slow follow-up means lost jobs.',
-      'Many prospects shop based on trust signals before they even speak to a plumber.',
-      'Water heater, sewer, and drain jobs need a cleaner quote and follow-up flow to close.',
+      { value: "85%", label: "of plumbing searches are urgent 'near me' queries" },
+      { value: "1st", label: "to respond wins the job 78% of the time" },
+      { value: "90%", label: "of consumers read local reviews before calling a plumber" },
     ],
     benefits: [
-      'Win time-sensitive emergency jobs before competitors do',
-      'Build stronger local map-pack visibility and trust',
-      'Turn completed work into proof-driven reputation growth',
-      'Follow up on seasonal and maintenance opportunities not just emergency calls',
+      { icon: "lucide:trending-up", title: "Win Emergency Jobs", desc: "Our Missed Call Text-Back engages panicked homeowners instantly, stopping them from calling the next plumber on Google." },
+      { icon: "lucide:check-circle-2", title: "Rank in the Map Pack", desc: "Local SEO optimization ensures you show up when a pipe bursts at 2 AM." },
+      { icon: "lucide:users", title: "Job-Site Review Generation", desc: "Easily text a review link the moment the drain is cleared and the customer is relieved." },
+      { icon: "lucide:arrow-right", title: "Water Heater Campaigns", desc: "Automatically follow up with past customers when their water heaters are nearing the end of their lifespan." },
     ],
-    focusPanels: [
-      { title: 'Urgency response', text: 'Plumbing jobs do not wait. A fast response system is essential when customers are trying to stop damage.' },
-      { title: 'Local search', text: 'People search “plumber near me” when the problem is active, so your site must match that urgency.' },
-      { title: 'Job-site trust', text: 'Reviews, photos, and proof of professionalism reduce hesitation on emergency calls.' },
-      { title: 'Maintenance pipeline', text: 'Water heaters and drain cleaning create repeating revenue when your follow-up is consistent.' },
-    ],
-    systemTitle: 'Plumbing sales engine',
-    systemBullets: [
-      'Turn emergency search traffic into faster quote requests and booked jobs.',
-      'Increase response speed with a more efficient intake and follow-up system.',
-      'Generate strong review momentum from completed work and service calls.',
-      'Convert seasonal and maintenance follow-up into long-term recurring work.',
-    ],
-    ctaText: 'Book a plumbing growth call',
   },
-  'lawn-care': {
-    name: 'Lawn Care & Mowing',
-    badge: 'Route-density specialists',
-    heroSub: 'Grow retention, improve route density, and turn local visibility into recurring lawn care revenue with a more consistent follow-up system.',
-    summaryTitle: 'Why lawn care businesses lose recurring revenue',
-    summary: 'Lawn care brands often win the first sale and then struggle to keep customers engaged, rebook, or collect reviews. The real pricing power comes from retention and neighborhood coverage.',
+  "lawn-care": {
+    name: "Lawn Care & Mowing",
+    icon: "lucide:scissors",
+    highlightWord: "Lawn Care",
+    heroSub: "Grow your route density and automate your customer communication.",
     stats: [
-      { value: '70%', label: 'of lawn care customers want text message communication' },
-      { value: '5x', label: 'more likely to retain customers with consistent updates and reminders' },
-      { value: '80%', label: 'of new business comes from strong local visibility and referrals' },
-    ],
-    pains: [
-      'Customers want easy communication, not long call chains or confusing scheduling.',
-      'Route density suffers when follow-up and rebooking are not organized.',
-      'Without a recurring-care flow, one-time cleanup jobs rarely become long-term relationships.',
+      { value: "70%", label: "of lawn care customers want text message communication" },
+      { value: "5x", label: "more likely to retain customers with regular updates" },
+      { value: "80%", label: "of new business comes from local neighborhood visibility" },
     ],
     benefits: [
-      'Better retention through proactive communication and reminders',
-      'More route efficiency from more organized intake and follow-up',
-      'Higher review volume from recurring customer relationships',
-      'Stronger neighborhood-based lead generation and word-of-mouth',
+      { icon: "lucide:trending-up", title: "Increase Route Density", desc: "Use targeted campaigns to offer specials to neighbors of your current clients." },
+      { icon: "lucide:check-circle-2", title: "Automated Upsells", desc: "Easily text your mowing list about aeration, overseeding, or fall cleanups with one click." },
+      { icon: "lucide:users", title: "Seamless Communication", desc: "Handle weather delays and schedule changes instantly via mass SMS." },
+      { icon: "lucide:arrow-right", title: "Collect Reviews on Autopilot", desc: "Build a massive review moat that makes you the obvious choice in your service area." },
     ],
-    focusPanels: [
-      { title: 'Recurring retention', text: 'Lawn care wins when the customer feels looked after and scheduled without friction.' },
-      { title: 'Neighborhood growth', text: 'People want a local lawn company they trust in their block or nearby area.' },
-      { title: 'Easy communication', text: 'Texting, reminders, and quote follow-up often outperform a conventional sales process.' },
-      { title: 'Rebook flow', text: 'Most customer value is not in the first mow — it is in the recurring relationship that keeps the route full.' },
-    ],
-    systemTitle: 'Lawn care retention engine',
-    systemBullets: [
-      'Create a clear local brand presence so homeowners know who to call for ongoing service.',
-      'Automate updates, reminders, and quote follow-up to make retention easier for your team.',
-      'Make review requests part of your end-of-service flow so your reputation grows with route volume.',
-      'Design the website around recurring service offers and easy quote request conversion.',
-    ],
-    ctaText: 'Book a lawn care growth call',
   },
-  'tree-service': {
-    name: 'Tree Service',
-    badge: 'High-ticket specialists',
-    heroSub: 'Branch out and secure more removals, trimming, and storm-response jobs with a site and follow-up system designed to earn trust quickly.',
-    summaryTitle: 'Why tree service businesses struggle to scale',
-    summary: 'Tree work sells on trust, proof, and immediate response. Homeowners often have a shrinking decision window during storms and will choose the company that feels experienced, insured, and easy to reach.',
+  "tree-service": {
+    name: "Tree Service",
+    icon: "lucide:tree-pine",
+    highlightWord: "Tree Service",
+    heroSub: "Branch out and secure more high-ticket removals and pruning jobs.",
     stats: [
-      { value: '88%', label: 'of homeowners want proof of insurance before hiring' },
-      { value: '3x', label: 'higher conversion when before-and-after proof is visible on the site' },
-      { value: '75%', label: 'of emergency storm jobs go to the fastest responder' },
-    ],
-    pains: [
-      'Storm work requires immediate response, but many firms still lose leads in the follow-up gap.',
-      'High-ticket jobs need stronger trust signals than a generic website can provide.',
-      'Projects are often won or lost based on how credibly the site presents your experience.',
+      { value: "88%", label: "of homeowners want proof of insurance on your website" },
+      { value: "3x", label: "higher conversion rate with professional before/after galleries" },
+      { value: "75%", label: "of emergency storm jobs go to the fastest responder" },
     ],
     benefits: [
-      'Turn emergency and seasonal demand into more booked jobs',
-      'Show off project proof, certifications, and trust signals more effectively',
-      'Collect strong reviews after each large job',
-      'Build a more premium brand that commands better rates',
+      { icon: "lucide:trending-up", title: "Showcase Your Expertise", desc: "A modern website that perfectly displays your heavy equipment, safety record, and massive takedowns." },
+      { icon: "lucide:check-circle-2", title: "Dominate Storm Season", desc: "Missed Call Text-Back ensures you capture leads when high winds hit and the phone is ringing off the hook." },
+      { icon: "lucide:users", title: "High-Ticket Trust", desc: "Automated review requests build the 5-star reputation needed to close $5k+ removal jobs." },
+      { icon: "lucide:arrow-right", title: "Seasonal Campaigns", desc: "Remind past customers about winter pruning or deep root fertilization." },
     ],
-    focusPanels: [
-      { title: 'Storm urgency', text: 'When a branch or tree is at risk, the first company to feel credible and fast often wins the call.' },
-      { title: 'Proof-first selling', text: 'Details, photos, and customer proof matter when the job is dangerous or expensive.' },
-      { title: 'Premium positioning', text: 'A strong site helps justify higher pricing and attract better-fit clients.' },
-      { title: 'Retention scheduling', text: 'Seasonal pruning, removals, and maintenance create a strong recurring revenue lane when handled correctly.' },
-    ],
-    systemTitle: 'Tree service growth engine',
-    systemBullets: [
-      'Design a site that makes your experience, safety, and insurance feel obvious from the first scroll.',
-      'Capture storm and emergency demand with a faster, stronger intake flow.',
-      'Use proof-driven follow-up to support conversion on higher-ticket jobs.',
-      'Create a repeatable cycle of reviews, referrals, and seasonal follow-up to stabilize revenue.',
-    ],
-    ctaText: 'Book a tree service strategy call',
   },
   landscaping: {
-    name: 'Landscaping',
-    badge: 'Outdoor luxury specialists',
-    heroSub: 'Turn design-build leads into premium outdoor living projects with a stronger brand presence and a clearer path to quote requests.',
-    summaryTitle: 'Why landscaping businesses struggle to grow',
-    summary: 'Landscaping companies often have the work quality but not the online flow to convert interest into booked design jobs. People want to see the finished result before they trust you with a bigger investment.',
+    name: "Landscaping",
+    icon: "lucide:sun",
+    highlightWord: "Landscaping",
+    heroSub: "Turn more design-build leads into profitable outdoor living projects.",
     stats: [
-      { value: '94%', label: 'of first impressions are influenced by the website design and photos' },
-      { value: '68%', label: 'of consumers will pay more for a company with strong reviews and proof' },
-      { value: '2x', label: 'more quote requests when your portfolio and quote flow are stronger' },
-    ],
-    pains: [
-      'Visual proof matters more than generic sales copy in landscaping.',
-      'People want to see jobs before they call, and often ghost if the site feels thin.',
-      'Seasonal demand is inconsistent unless you build a better lead follow-up system.',
+      { value: "94%", label: "of first impressions are based on your website's visual design" },
+      { value: "68%", label: "of consumers are willing to pay more for a company with great reviews" },
+      { value: "2x", label: "more leads with clear, built-in quote request forms" },
     ],
     benefits: [
-      'More high-value design-build leads coming through the site',
-      'Sharper portfolio presentation that helps people envision the work',
-      'A sales flow that moves quickly from browse to quote request',
-      'Strong review and referral momentum for premium projects',
+      { icon: "lucide:trending-up", title: "Stunning Portfolios", desc: "We build websites that make your hardscaping and outdoor living projects look irresistible." },
+      { icon: "lucide:check-circle-2", title: "Streamlined Lead Capture", desc: "Qualify leads before you drive out to the property with smart intake forms." },
+      { icon: "lucide:users", title: "Client Communication", desc: "Keep homeowners updated on project timelines via text right from the mobile app." },
+      { icon: "lucide:arrow-right", title: "Referral Engine", desc: "Automated follow-ups to turn thrilled clients into your best referral sources." },
     ],
-    focusPanels: [
-      { title: 'Portfolio-driven sales', text: 'Customers buy the outcome. The better your photo flow and design presentation, the easier it is to close.' },
-      { title: 'Premium pricing', text: 'Sharper positioning helps justify better rates for outdoor transformations and upgrades.' },
-      { title: 'Seasonal campaigns', text: 'Spring, summer, and fall campaigns can be tied into a reliable lead capture process.' },
-      { title: 'Follow-up quality', text: 'Not every quote request is ready immediately, so the follow-up system should keep them engaged.' },
-    ],
-    systemTitle: 'Landscaping lead engine',
-    systemBullets: [
-      'Turn the website into a visual sales tool that makes the work feel premium and trustworthy.',
-      'Capture more quote requests with easier paths to call, text, or request an estimate.',
-      'Use review and project proof to make the customer feel confident before they commit.',
-      'Keep warm leads moving through seasonal offers and reactivation reminders.',
-    ],
-    ctaText: 'Book a landscaping growth call',
   },
   painting: {
-    name: 'Painting',
-    badge: 'Portfolio-driven specialists',
-    heroSub: 'Turn curb appeal into booked jobs and more referrals with a better online sales flow and stronger trust signals.',
-    summaryTitle: 'Why painting businesses lose jobs',
-    summary: 'Painting is a visual business, and too many companies still rely on generic marketing instead of building a portfolio-first presence. The buyer wants proof, speed, and confidence before they say yes.',
+    name: "Painting",
+    icon: "lucide:paintbrush",
+    highlightWord: "Painting",
+    heroSub: "Color your market with a dominant online presence and automated lead follow-up.",
     stats: [
-      { value: '85%', label: 'of homeowners ask for multiple paint quotes before hiring' },
-      { value: '4.8/5', label: 'average rating needed for premium paint work' },
-      { value: '2x', label: 'more quote requests when the portfolio and review flow are stronger' },
-    ],
-    pains: [
-      'Visual proof and before-and-after work matter more than long sales copy.',
-      'Customers compare quotes quickly and need confidence that your crew is reliable.',
-      'It is easy to lose leads if the follow-up feels too slow or too generic.',
+      { value: "81%", label: "of customers check Google Maps before hiring a painter" },
+      { value: "73%", label: "of leads are lost due to slow response times" },
+      { value: "4x", label: "more likely to close a quote if you follow up within 5 minutes" },
     ],
     benefits: [
-      'A more polished portfolio that helps the customer picture the final result',
-      'Faster quote conversion through cleaner and more trust-building pages',
-      'More review momentum after each completed residential project',
-      'Better referral flow from satisfied homeowners and property managers',
+      { icon: "lucide:trending-up", title: "Instant Quote Follow-ups", desc: "Never let a hot lead cool down. Automate your follow-ups after sending an estimate." },
+      { icon: "lucide:check-circle-2", title: "Visual Proof", desc: "A fast, modern website that beautifully showcases your interior and exterior transformations." },
+      { icon: "lucide:users", title: "Review Generation", desc: "Automatically ask for a review the moment the tape comes off and the customer is amazed." },
+      { icon: "lucide:arrow-right", title: "Re-Engage Past Clients", desc: "Send an email campaign to past interior clients offering exterior specials in the spring." },
     ],
-    focusPanels: [
-      { title: 'Portfolio selling', text: 'Before-and-after work is where most painting sales start, so the site needs to showcase the transformation clearly.' },
-      { title: 'Quote comparison', text: 'Homeowners talk to multiple painters. A stronger brand and cleaner estimate flow help you stand out.' },
-      { title: 'Review speed', text: 'Fast follow-up after a paint job can convert homeowners into repeat and referral business.' },
-      { title: 'Local trust', text: 'Presentation, professionalism, and reviews can be the difference between a second look and a lost quote.' },
-    ],
-    systemTitle: 'Painting conversion engine',
-    systemBullets: [
-      'Design the site around the work itself so homeowners can see the quality and consistency quickly.',
-      'Capture more quote requests with clear service pages and an easier intake process.',
-      'Ask for reviews at the right time so the reputation grows with each finished project.',
-      'Keep warm leads engaged with check-in and referral-style follow-up after the job completes.',
-    ],
-    ctaText: 'Book a painting strategy call',
   },
   remodeling: {
-    name: 'Remodeling',
-    badge: 'Premium project specialists',
-    heroSub: 'Stand out in a crowded market and win bigger remodeling jobs through stronger proof, cleaner sales flow, and a more premium online presence.',
-    summaryTitle: 'Why remodeling businesses lose bigger jobs',
-    summary: 'Remodeling is a trust-heavy business. Buyers want to see process, results, and proof before they invest in a larger project. Generic marketing does not sell premium work well enough.',
+    name: "Remodeling",
+    icon: "lucide:hammer",
+    highlightWord: "Remodeling",
+    heroSub: "Build a pipeline of high-budget kitchen, bath, and home addition projects.",
     stats: [
-      { value: '91%', label: 'of homeowners look at photos before they call' },
-      { value: '3x', label: 'higher value when the website showcases process and proof' },
-      { value: '5-Star', label: 'reputation matters more on high-ticket projects' },
-    ],
-    pains: [
-      'High-value projects require more proof and more confidence than a standard portfolio website alone can provide.',
-      'Owners often wait too long to follow up with a lead that was genuinely interested.',
-      'Without strong social proof, premium design and remodel work can feel riskier than it should.',
+      { value: "92%", label: "of homeowners research extensively before a major remodel" },
+      { value: "85%", label: "trust online reviews as much as personal recommendations" },
+      { value: "3x", label: "higher close rate with professional, consistent communication" },
     ],
     benefits: [
-      'Position the brand as premium and easy to trust',
-      'More qualified leads from homeowners ready to invest',
-      'A cleaner quote and follow-up process for higher-dollar projects',
-      'Repeat and referral opportunities from satisfied clients and future remodel cycles',
+      { icon: "lucide:trending-up", title: "Premium Brand Positioning", desc: "A website that reflects the high quality of your craftsmanship and justifies your pricing." },
+      { icon: "lucide:check-circle-2", title: "Lead Qualification", desc: "Filter out tire-kickers with smart forms that ask for budget ranges and project timelines." },
+      { icon: "lucide:users", title: "Project Milestone Updates", desc: "Use the mobile app to easily text clients updates and photos from the job site." },
+      { icon: "lucide:arrow-right", title: "Reputation Management", desc: "Build a fortress of 5-star reviews that makes you the safest choice for a $50k+ project." },
     ],
-    focusPanels: [
-      { title: 'Premium positioning', text: 'People buy the confidence, design quality, and process clarity as much as the final result.' },
-      { title: 'Photo-driven trust', text: 'Before-and-after visuals, process storytelling, and strong reviews reduce hesitation on larger projects.' },
-      { title: 'Sales qualification', text: 'A better lead flow helps filter serious homeowners from casual browsers.' },
-      { title: 'Retention loops', text: 'Past clients and referrals often become your next premium project when follow-up is intentional.' },
-    ],
-    systemTitle: 'Remodeling growth engine',
-    systemBullets: [
-      'Use the website as a premium sales asset, not just a brochure for the business.',
-      'Build a sales process that keeps serious leads warm and moving toward the estimate.',
-      'Use proof and reviews to reduce friction on larger projects and better-priced work.',
-      'Create a long-term pipeline from referrals, repeat work, and strong project follow-up.',
-    ],
-    ctaText: 'Book a remodeling growth call',
   },
-  'general-contractors': {
-    name: 'General Contractors',
-    badge: 'Credibility specialists',
-    heroSub: 'Give homeowners confidence before they ever pick up the phone and make it easier for serious projects to move from interest to estimate.',
-    summaryTitle: 'Why general contractors need stronger positioning',
-    summary: 'General contractors win on trust, clarity, and professionalism. If your online presence feels weak or unclear, owners get nervous even before they talk to your team.',
+  "general-contractors": {
+    name: "General Contractors",
+    icon: "lucide:wrench",
+    highlightWord: "General Contractors",
+    heroSub: "Streamline your lead flow and manage client communication from anywhere.",
     stats: [
-      { value: '72%', label: 'of homeowners want clear proof of licensing and experience before hiring' },
-      { value: '2x', label: 'more likelihood of booking with a polished, trustworthy website' },
-      { value: '5-star', label: 'reputation is essential for large project trust' },
-    ],
-    pains: [
-      'Bigger jobs need stronger trust and clearer messaging than many contractor sites provide.',
-      'Clients are comparing teams before they reach out, so the first impression matters.',
-      'Lead follow-up often falls apart when projects are complex and quotes are multiple-step.',
+      { value: "88%", label: "of clients demand transparency and fast communication" },
+      { value: "70%", label: "of GC leads come from local search and reviews" },
+      { value: "5x", label: "return on investment from basic local SEO optimization" },
     ],
     benefits: [
-      'A more convincing online presence that works as a credibility tool',
-      'Stronger lead qualification and more serious quote conversations',
-      'A more polished follow-up system for larger jobs and multi-step sales',
-      'More referrals and upsell opportunities from reliable project delivery',
+      { icon: "lucide:trending-up", title: "Centralized Communication", desc: "Keep all client texts, emails, and calls in one unified inbox so nothing falls through the cracks." },
+      { icon: "lucide:check-circle-2", title: "Professional Web Presence", desc: "Showcase your versatility, licensing, and completed projects to build immediate authority." },
+      { icon: "lucide:users", title: "Automated Review Collection", desc: "Consistently gather reviews across all project types to boost your overall Google ranking." },
+      { icon: "lucide:arrow-right", title: "Missed Call Protection", desc: "When you're busy on a job site, the system automatically texts back new inquiries to capture the lead." },
     ],
-    focusPanels: [
-      { title: 'Credibility first', text: 'Customers need a company that feels experienced, licensed, and professional before they trust the estimate.' },
-      { title: 'Clear quote process', text: 'A premium and easier-to-understand quote process reduces uncertainty and decision friction.' },
-      { title: 'Referral engine', text: 'Longer project relationships often produce higher-value referrals and repeat work.' },
-      { title: 'Service consistency', text: 'Strong systems create less friction between inquiry, quote, and scheduled work.' },
-    ],
-    systemTitle: 'General contractor sales engine',
-    systemBullets: [
-      'Create a site that feels organized, credible, and designed for larger project conversations.',
-      'Capture serious leads with clearer service pages, trust signals, and a stronger intake flow.',
-      'Use reviews and proof to reduce uncertainty before the quote is even sent.',
-      'Keep leads moving through a structured nurture process instead of allowing them to go quiet.',
-    ],
-    ctaText: 'Book a contractor growth call',
   },
-  'junk-removal': {
-    name: 'Junk Removal',
-    badge: 'Fast-response specialists',
-    heroSub: 'Turn urgent cleanup calls into booked work with a faster response system and stronger customer trust from the first click.',
-    summaryTitle: 'Why junk removal companies lose jobs',
-    summary: 'Most junk removal demand is urgent and local. If your site feels generic, slow, or untrustworthy, the buyer moves on to the next company. Fast response and social proof matter more than almost anything else.',
+  "junk-removal": {
+    name: "Junk Removal",
+    icon: "lucide:truck",
+    highlightWord: "Junk Removal",
+    heroSub: "Haul in more jobs with a system built for speed and local visibility.",
     stats: [
-      { value: '80%', label: 'of junk-removal leads are generated from “near me” searches' },
-      { value: '1st', label: 'to respond wins more than half of these calls' },
-      { value: '96%', label: 'of customers check reviews before trusting a disposal company' },
-    ],
-    pains: [
-      'Urgency is everything, and slow follow-up kills a large percentage of calls.',
-      'Customers need to trust the crew, pricing, and safety before they book.',
-      'Without a strong review engine, the business looks smaller than it really is.',
+      { value: "82%", label: "of junk removal searches are immediate need ('near me')" },
+      { value: "1st", label: "responder wins the job the vast majority of the time" },
+      { value: "90%", label: "of consumers check reviews to ensure you are legitimate" },
     ],
     benefits: [
-      'Faster response on urgent cleanup and hauling jobs',
-      'More credibility through reviews and simple reputation flow',
-      'Cleaner quote requests and smoother scheduling conversations',
-      'A stronger local presence in the neighborhoods where you already work',
+      { icon: "lucide:trending-up", title: "Lightning Fast Responses", desc: "Missed Call Text-Back is a game-changer. If you're driving the truck, the system texts the lead instantly." },
+      { icon: "lucide:check-circle-2", title: "Local Map Pack Dominance", desc: "Optimize your Google Business Profile to show up first when people need clutter gone now." },
+      { icon: "lucide:users", title: "Frictionless Booking", desc: "Mobile-optimized websites with clear 'Text us a photo for a quote' calls to action." },
+      { icon: "lucide:arrow-right", title: "B2B Campaigns", desc: "Easily run campaigns targeting local property managers and real estate agents for recurring work." },
     ],
-    focusPanels: [
-      { title: 'Urgent pickup flow', text: 'This business lives on fast turnarounds. A lead that sits too long often becomes a missed appointment.' },
-      { title: 'Trust and safety', text: 'Customers want to know the crew is professional, respectful, and insurance-ready.' },
-      { title: 'Mobile-first communication', text: 'Easy quoting and consistent texting keep the customer moving without friction.' },
-      { title: 'Review momentum', text: 'A simple review system turns each completed job into more local demand.' },
-    ],
-    systemTitle: 'Junk removal lead engine',
-    systemBullets: [
-      'Make your response flow faster than the slow-moving competition so urgent jobs are captured quickly.',
-      'Build a cleaner site message around safety, professionalism, and easy scheduling.',
-      'Use review generation to raise trust and close more pickup jobs.',
-      'Keep past customers engaged for repeat and referral opportunities.',
-    ],
-    ctaText: 'Book a junk removal growth call',
   },
-  'pest-control': {
-    name: 'Pest Control',
-    badge: 'Recurring revenue specialists',
-    heroSub: 'Capture recurring service demand, improve retention, and turn seasonal interest into steady pest control revenue with a more systemized lead flow.',
-    summaryTitle: 'Why pest control businesses lose retention',
-    summary: 'Pest control is a recurring-service business, but many firms still rely on one-off lead generation instead of building a retention engine. The strongest operators keep the funnel full with service plans and follow-up.',
+  "pest-control": {
+    name: "Pest Control",
+    icon: "lucide:shield-alert",
+    highlightWord: "Pest Control",
+    heroSub: "Exterminate the competition with automated marketing and instant lead response.",
     stats: [
-      { value: '60%', label: 'of pest control customers need recurring service' },
-      { value: '4.5+', label: 'star reviews are essential for credibility' },
-      { value: '2x', label: 'higher retention with plan-based follow-up and messaging' },
-    ],
-    pains: [
-      'Many leads do not convert because the follow-up is not structured around service plans.',
-      'Seasonal demand needs a system to make reappointment and recurring treatment easier.',
-      'Trust signals can make the difference between a quick quote and a missed opportunity.',
+      { value: "79%", label: "of pest control searches result in a phone call" },
+      { value: "65%", label: "of revenue comes from recurring maintenance plans" },
+      { value: "88%", label: "of customers read reviews before letting someone in their home" },
     ],
     benefits: [
-      'More recurring revenue with better service plan follow-up',
-      'Faster quote capture for urgent pest issues',
-      'More trust-driven conversions through reviews and proof',
-      'Stronger retention through automated reminders and messaging',
+      { icon: "lucide:trending-up", title: "Capture Panicked Leads", desc: "When someone sees a roach, they want help NOW. Missed Call Text-Back ensures you get the job even if you miss the call." },
+      { icon: "lucide:check-circle-2", title: "Sell More Subscriptions", desc: "Use automated campaigns to upsell one-time spray customers into quarterly maintenance plans." },
+      { icon: "lucide:users", title: "Build Unshakable Trust", desc: "Automate review requests to show new customers you are safe, reliable, and effective." },
+      { icon: "lucide:arrow-right", title: "Seasonal Promos", desc: "One-click text campaigns for mosquito season, termite inspections, or rodent control." },
     ],
-    focusPanels: [
-      { title: 'Retention model', text: 'The biggest revenue isn’t from one call — it is from the recurring relationship attached to your service plans.' },
-      { title: 'Seasonal urgency', text: 'Pest issues spike when the season changes, so timely response and follow-up matter.' },
-      { title: 'Trust signals', text: 'Customers want to feel comfortable letting your team into their home or business.' },
-      { title: 'Review flow', text: 'A strong review process turns each service visit into future credibility and more local demand.' },
-    ],
-    systemTitle: 'Pest control retention engine',
-    systemBullets: [
-      'Build a lead flow designed around actual customer intent: emergency service, prevention, and recurring treatment plans.',
-      'Use a faster intake and follow-up flow to capture more seasonal and urgent calls.',
-      'Turn reviews and service quality into a reliable reputation loop for future conversions.',
-      'Keep customers on a recurring schedule instead of relying on reactive, one-time demand only.',
-    ],
-    ctaText: 'Book a pest control growth call',
   },
 };
 
 export function getStaticPaths() {
-  return [
-    { params: { slug: 'roofing' } },
-    { params: { slug: 'hvac' } },
-    { params: { slug: 'electrical' } },
-    { params: { slug: 'plumbing' } },
-    { params: { slug: 'lawn-care' } },
-    { params: { slug: 'tree-service' } },
-    { params: { slug: 'landscaping' } },
-    { params: { slug: 'painting' } },
-    { params: { slug: 'remodeling' } },
-    { params: { slug: 'general-contractors' } },
-    { params: { slug: 'junk-removal' } },
-    { params: { slug: 'pest-control' } },
+  const slugs = [
+    "roofing",
+    "hvac",
+    "electrical",
+    "plumbing",
+    "lawn-care",
+    "tree-service",
+    "landscaping",
+    "painting",
+    "remodeling",
+    "general-contractors",
+    "junk-removal",
+    "pest-control",
   ];
+  return slugs.map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
 const trade = tradeData[slug as keyof typeof tradeData] ?? tradeData.roofing;
+
+const joinSteps = [
+  { step: "1", title: "Demo Call", desc: "A quick 20-minute chat to see if we're a good fit. No pressure, no hard selling." },
+  { step: "2", title: "System Buildout", desc: "We spend 7-10 days building your custom website and setting up your CRM." },
+  { step: "3", title: "Launch Call", desc: "A 25-minute walkthrough to hand over the keys and show you how to use the app." },
+];
 ---
 
-<Layout title={`${trade.name} Growth System`} description={`See how ${trade.name} businesses can generate more leads, reviews, and booked jobs with The Lead Venture.`}>
-  <section class="bg-primary-900 py-16 text-white lg:py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="max-w-3xl">
-        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">{trade.badge}</p>
-        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">{trade.name}</h1>
-        <p class="mt-6 max-w-2xl text-lg text-white/80">{trade.heroSub}</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-6 text-sm font-semibold text-white transition hover:bg-accent-600">{trade.ctaText}</a>
-          <a href="/about/trades-we-serve" class="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition hover:bg-white/10">All trade services</a>
-        </div>
+<Layout title={`${trade.name} Websites & Local Marketing`} description={trade.heroSub}>
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent-500/20">
+        <Icon name={trade.icon} class="h-8 w-8 text-accent-400" />
+      </div>
+      <h1 class="mx-auto max-w-4xl font-heading text-4xl font-bold text-white md:text-6xl">
+        The Ultimate Growth Platform for <span class="text-accent-400">{trade.highlightWord}</span> Businesses
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/70">{trade.heroSub}</p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">Request a Website</a>
+        <a href="/pricing" class="inline-flex h-14 items-center justify-center rounded-full border border-white/20 px-8 text-lg font-semibold text-white transition hover:bg-white/10">View Pricing</a>
       </div>
     </div>
   </section>
 
-  <section class="bg-white py-16">
+  <section class="border-b border-neutral-200 bg-neutral-50 py-16">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="mb-10 max-w-3xl">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">The problem</p>
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">{trade.summaryTitle}</h2>
-        <p class="mt-4 text-lg leading-relaxed text-slate-600">{trade.summary}</p>
-      </div>
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
         {trade.stats.map((stat) => (
-          <div class="rounded-[24px] border border-neutral-200 bg-neutral-50 p-6 text-center shadow-sm">
-            <div class="font-heading text-4xl font-black text-primary-900">{stat.value}</div>
-            <div class="mt-3 text-sm leading-relaxed text-neutral-600">{stat.label}</div>
+          <div class="space-y-2 text-center">
+            <div class="font-heading text-5xl font-bold text-accent-500">{stat.value}</div>
+            <p class="font-medium text-neutral-600">{stat.label}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="bg-neutral-50 py-20">
+  <section class="bg-white py-24">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="grid gap-8 lg:grid-cols-2">
-        <div>
-          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">What we fix</p>
-          <h2 class="font-heading text-3xl font-bold text-primary-900 md:text-4xl">The bottlenecks preventing more booked work</h2>
-          <div class="mt-8 space-y-4">
-            {trade.pains.map((pain) => (
-              <div class="flex gap-4 rounded-[22px] border border-neutral-200 bg-white p-5 shadow-sm">
-                <div class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-accent-100 text-sm font-bold text-accent-700">!</div>
-                <div class="text-lg font-medium text-neutral-700">{pain}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="rounded-[30px] bg-primary-900 p-8 text-white shadow-lg">
-          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">The fix</p>
-          <h3 class="mt-4 text-3xl font-black leading-tight">{trade.systemTitle}</h3>
-          <ul class="mt-6 space-y-3 text-white/80">
-            {trade.systemBullets.map((bullet) => (
-              <li>• {bullet}</li>
-            ))}
-          </ul>
-          <a href="/contact" class="mt-8 inline-flex rounded-xl bg-accent-500 px-6 py-3 font-semibold text-white transition hover:bg-accent-600">
-            {trade.ctaText}
-          </a>
-        </div>
+      <div class="mb-16 text-center">
+        <h2 class="mb-4 font-heading text-3xl font-bold text-primary-900 md:text-4xl">Why The Lead Venture for {trade.name}?</h2>
+        <p class="mx-auto max-w-2xl text-lg text-neutral-600">Everything you need to dominate your local market, built into one simple system.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="bg-white py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="mx-auto mb-12 max-w-3xl text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">Why it works</p>
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">The system built around this trade</h2>
-      </div>
-      <div class="grid gap-6 md:grid-cols-2">
-        {trade.focusPanels.map((panel) => (
-          <div class="rounded-[28px] border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
-            <h3 class="text-2xl font-bold text-primary-900">{panel.title}</h3>
-            <p class="mt-3 text-base leading-relaxed text-slate-600">{panel.text}</p>
+      <div class="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+        {trade.benefits.map((benefit) => (
+          <div class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
+            <Icon name={benefit.icon} class="mb-6 h-10 w-10 text-accent-500" />
+            <h3 class="mb-3 text-xl font-bold text-primary-900">{benefit.title}</h3>
+            <p class="leading-relaxed text-neutral-600">{benefit.desc}</p>
           </div>
         ))}
       </div>
-      <div class="mt-12 flex justify-center">
-        <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-primary-900 px-8 text-base font-semibold text-white transition hover:bg-primary-800">{trade.ctaText}</a>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-[#1A1D27] py-16 text-center">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <h2 class="mb-6 font-heading text-2xl font-bold text-white md:text-3xl">Ready to scale your {trade.name.toLowerCase()} business?</h2>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">Schedule a Time to Talk</a>
+    </div>
+  </section>
+
+  <section class="bg-neutral-50 py-24">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mb-16 text-center">
+        <h2 class="mb-4 font-heading text-3xl font-bold text-primary-900 md:text-4xl">How Do I Join?</h2>
+        <p class="text-lg text-neutral-600">Three simple steps to launch your new growth engine.</p>
+      </div>
+      <div class="relative mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
+        <div class="absolute left-1/6 right-1/6 top-12 hidden h-0.5 bg-neutral-200 md:block"></div>
+        {joinSteps.map((item) => (
+          <div class="relative z-10 flex flex-col items-center rounded-xl border border-neutral-200 bg-white p-6 text-center shadow-sm md:border-none md:bg-transparent md:p-0 md:shadow-none">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-900 text-2xl font-bold text-white shadow-lg">
+              {item.step}
+            </div>
+            <h3 class="mb-3 text-xl font-bold text-primary-900">{item.title}</h3>
+            <p class="text-neutral-600">{item.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
+
+  <section class="bg-[#1A1D27] py-24 text-center">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <h2 class="mb-6 font-heading text-4xl font-bold text-white">Ready to Get Started?</h2>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">Request a Website</a>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
 </Layout>
