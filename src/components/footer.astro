@@ -5,16 +5,14 @@ import { getCollection } from "astro:content";
 const services = (await getCollection("services", ({ data }) => !data.draft))
   .sort((a, b) => a.data.order - b.data.order);
 
-const locations = (await getCollection("locations", ({ data }) => !data.draft))
-  .sort((a, b) => a.data.order - b.data.order);
-
 const year = new Date().getFullYear();
 
 const companyLinks = [
   { title: "About Us",      path: "/about" },
-  { title: "Gallery",       path: "/gallery" },
+  { title: "Products",      path: "/products" },
+  { title: "Pricing",       path: "/pricing" },
+  { title: "Resources",     path: "/resources" },
   { title: "Proof",         path: "/proof" },
-  { title: "Financing",     path: "/financing" },
   { title: "Free Tools",    path: "/tools" },
   { title: "Blog",          path: "/blog" },
   { title: "Contact",       path: "/contact" },
@@ -123,25 +121,15 @@ const companyLinks = [
         </ul>
       </div>
 
-      <!-- Col 4: Service Areas -->
+      <!-- Col 4: License badge -->
       <div>
-        <h3 class="font-heading font-bold text-sm uppercase tracking-widest text-white/40 mb-5">Service Areas</h3>
+        <h3 class="font-heading font-bold text-sm uppercase tracking-widest text-white/40 mb-5">Why We Win</h3>
         <ul class="space-y-2.5">
-          {locations.map((location) => (
-            <li>
-              <a href={`/service-areas/${location.data.urlSlug}`} class="text-white/70 hover:text-white text-sm transition-colors">
-                {location.data.city}, {location.data.state}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href="/service-areas" class="text-accent-400 hover:text-accent-300 text-sm transition-colors font-medium">
-              All Areas →
-            </a>
-          </li>
+          <li class="text-white/70 text-sm">Fast launch</li>
+          <li class="text-white/70 text-sm">Higher-quality lead flow</li>
+          <li class="text-white/70 text-sm">Built for local service brands</li>
         </ul>
 
-        <!-- License badge -->
         {business.licenseNumber && (
           <div class="mt-8 p-3 bg-white/5 rounded-lg border border-white/10">
             <p class="text-white/40 text-xs">Licensed & Insured</p>

@@ -1,0 +1,287 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ReviewWidget from "@/components/ReviewWidget.astro";
+
+const categories = [
+  {
+    name: "Get Found",
+    questions: [
+      {
+        q: "Is your Google Business Profile fully claimed, optimized, and active?",
+        exp: "This includes categories, photos, posts, and keeping it updated, not just claiming it once.",
+        tip: "Claim and fully build out your Google Business Profile, categories, photos, services, and posts. An incomplete or unclaimed profile means Google has nothing to show searchers, and you lose free visibility that costs nothing but time.",
+      },
+      {
+        q: "Does your website actually get indexed and found on Google?",
+        exp: "A site can look fine and still be invisible to search if it's not built or crawled correctly.",
+        tip: "Check Google Search Console for indexing errors. A website that isn't indexed can't generate leads no matter how good it looks; this is foundational and should be fixed before anything else.",
+      },
+      {
+        q: "Are you running consistent, tracked advertising (online or offline)?",
+        exp: "Consistent means it runs on a schedule, tracked means you know what each dollar produced.",
+        tip: "Start with one channel (Google, Facebook, or direct mail) and track cost-per-lead from day one. Untracked ad spend is just a guess, and guessing gets expensive fast.",
+      },
+      {
+        q: "How fast do you respond to new leads and missed calls?",
+        exp: "Minutes matter here. Businesses that respond within 5 minutes convert dramatically more than those that wait even 30.",
+        tip: "Set up automated instant response for missed calls, texts, and form fills. Leads contacted within 5 minutes are up to 100x more likely to convert than those contacted after 30 minutes; this is one of the highest-leverage fixes available.",
+      },
+    ],
+  },
+  {
+    name: "Get Paid More",
+    questions: [
+      {
+        q: "Does your team consistently offer upsells or add-ons at the point of sale?",
+        exp: "This means it happens every time, not just when someone remembers to ask.",
+        tip: "Build a simple, standard upsell script or checklist your team uses on every job. Even a 10–20% attach rate on add-ons meaningfully increases average ticket size without needing a single new customer.",
+      },
+      {
+        q: "Are your prices based on the value you provide, not fear of losing the job?",
+        exp: "Underpricing out of fear is one of the most common silent profit leaks in service businesses.",
+        tip: "Review your pricing against the actual value and outcome you deliver, not just your cost to deliver it. Many service businesses are underpriced by 15–30% simply because they never revisited pricing after their first year.",
+      },
+      {
+        q: "Do you offer packaged or bundled services to increase the average ticket?",
+        exp: "Think seasonal packages, maintenance plans, or tiered service levels.",
+        tip: "Create one simple bundle or maintenance plan that combines your most common services at a slight discount. Bundling increases average ticket and makes repeat business automatic instead of optional.",
+      },
+      {
+        q: "Do you actively track and work to increase your average ticket size?",
+        exp: "If you don't know this number, you can't know if you're improving it.",
+        tip: "Start tracking average ticket size monthly. What gets measured gets managed, and most businesses find easy wins the moment they start actually looking at this number.",
+      },
+    ],
+  },
+  {
+    name: "Get Them Back",
+    questions: [
+      {
+        q: "Do you have an active, ongoing system for generating new reviews?",
+        exp: "Ongoing means ongoing, not a one-time push you did two years ago.",
+        tip: "Set up an automated review request that fires after every job or appointment. Businesses running this consistently often add 100+ reviews within months, and reviews directly influence both trust and Google rankings.",
+      },
+      {
+        q: "Do you have a system for staying in touch with past customers?",
+        exp: "This means ongoing communication, not just their name sitting in a database.",
+        tip: "Set up a simple recurring email or text touchpoint (seasonal tips, reminders, or offers) so past customers hear from you regularly. Silence is the main reason repeat customers quietly drift to a competitor.",
+      },
+      {
+        q: "Do you actively ask for and incentivize referrals?",
+        exp: "Hoping happy customers mention you isn't a referral system.",
+        tip: "Set up a simple double-sided referral incentive, both the referrer and the new customer get something. This turns word-of-mouth from a happy accident into a predictable, repeatable source of new business.",
+      },
+      {
+        q: "Have you run a reactivation campaign to past customers in the last 6 months?",
+        exp: "A reactivation campaign is a targeted offer sent to your existing list to bring dormant customers back.",
+        tip: "Run one targeted offer to your full customer list this quarter. This is usually the single fastest revenue win available, since these people already know and trust you, they just need a reason to come back.",
+      },
+    ],
+  },
+];
+
+const questionList = categories.flatMap((category) =>
+  category.questions.map((question) => ({ ...question, category: category.name }))
+);
+---
+
+<Layout
+  title="Business Growth Score"
+  description="Take the local business growth score assessment to find where your company is leaking revenue and what to fix first."
+>
+  <div class="min-h-screen bg-[#13151D] py-20 text-white">
+    <div class="mx-auto max-w-4xl px-4">
+      <div class="mb-12 text-center">
+        <h1 class="mb-4 font-heading text-4xl font-bold md:text-5xl">Your Growth Score</h1>
+      </div>
+
+      <div id="quiz-shell" class="rounded-3xl border border-white/10 bg-[#1A1D27] p-6 shadow-2xl md:p-10">
+        <div class="mb-6">
+          <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
+            <div id="progress-bar" class="h-full w-0 rounded-full bg-accent-500 transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <div id="question-card" class="space-y-6">
+          <p id="question-category" class="text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Get Found</p>
+          <h2 id="question-text" class="text-2xl font-bold leading-tight md:text-3xl"></h2>
+          <p id="question-exp" class="text-base text-white/70 md:text-lg"></p>
+          <div id="answers" class="grid gap-3 sm:grid-cols-2"></div>
+        </div>
+
+        <div class="mt-8 flex items-center justify-between gap-3">
+          <button id="back-btn" type="button" class="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30">
+            Back
+          </button>
+          <button id="next-btn" type="button" class="rounded-lg bg-accent-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-accent-600">
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div id="results-shell" class="hidden rounded-3xl border border-white/10 bg-[#1A1D27] p-6 shadow-2xl md:p-10">
+        <div id="results-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <ReviewWidget />
+</Layout>
+
+<script>
+  const questions = [];
+  categories.forEach((category) => {
+    category.questions.forEach((question) => {
+      questions.push({ ...question, category: category.name });
+    });
+  });
+
+  const state = {
+    currentStep: 0,
+    scores: Array(questions.length).fill(0),
+  };
+
+  const options = [
+    { value: 1, label: 'Not at all' },
+    { value: 2, label: 'Somewhat' },
+    { value: 3, label: 'Mostly' },
+    { value: 4, label: 'Very well' },
+  ];
+
+  const questionCategory = document.getElementById('question-category');
+  const questionText = document.getElementById('question-text');
+  const questionExp = document.getElementById('question-exp');
+  const answers = document.getElementById('answers');
+  const backBtn = document.getElementById('back-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const progressBar = document.getElementById('progress-bar');
+  const quizShell = document.getElementById('quiz-shell');
+  const resultsShell = document.getElementById('results-shell');
+  const resultsContent = document.getElementById('results-content');
+
+  function renderQuestion() {
+    const q = questions[state.currentStep];
+    const progress = ((state.currentStep + 1) / questions.length) * 100;
+
+    if (questionCategory) questionCategory.textContent = q.category;
+    if (questionText) questionText.textContent = q.q;
+    if (questionExp) questionExp.textContent = q.exp;
+    if (progressBar) progressBar.style.width = `${progress}%`;
+
+    if (answers) {
+      answers.innerHTML = '';
+      options.forEach((option) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `rounded-2xl border px-4 py-4 text-left transition ${state.scores[state.currentStep] === option.value ? 'border-accent-500 bg-accent-500/10 text-white' : 'border-white/10 bg-white/5 text-white/80 hover:border-white/30 hover:bg-white/10'}`;
+        button.textContent = option.label;
+        button.addEventListener('click', () => {
+          state.scores[state.currentStep] = option.value;
+          renderQuestion();
+        });
+        answers.appendChild(button);
+      });
+    }
+
+    if (backBtn) backBtn.disabled = state.currentStep === 0;
+    if (nextBtn) {
+      nextBtn.textContent = state.currentStep === questions.length - 1 ? 'See Results' : 'Next';
+      nextBtn.disabled = state.scores[state.currentStep] === 0;
+    }
+  }
+
+  function calculateResults() {
+    const totalScore = state.scores.reduce((sum, score) => sum + score, 0);
+
+    let status = {
+      title: 'Leaking Revenue',
+      desc: 'Your business is currently losing leads, jobs, and repeat customers due to missing systems.',
+    };
+
+    if (totalScore >= 90) {
+      status = {
+        title: 'Growth Operator',
+        desc: 'You have strong systems in place. Now it\'s about scaling and optimization.',
+      };
+    } else if (totalScore >= 50) {
+      status = {
+        title: 'Untapped Potential',
+        desc: 'You have a foundation, but you\'re leaving significant revenue on the table.',
+      };
+    }
+
+    const scoredQuestions = questions.map((question, index) => ({ ...question, score: state.scores[index], index }));
+    const lowestScores = [...scoredQuestions].sort((a, b) => a.score - b.score).slice(0, 3);
+
+    const categoryScores = categories.map((category) => {
+      const categoryQuestions = questions.filter((question) => question.category === category.name);
+      const score = categoryQuestions.reduce((sum, question) => sum + state.scores[questions.indexOf(question)], 0);
+      return { name: category.name, score };
+    });
+
+    return { totalScore, categoryScores, status, lowestScores };
+  }
+
+  function showResults() {
+    const { totalScore, categoryScores, status, lowestScores } = calculateResults();
+
+    if (quizShell) quizShell.classList.add('hidden');
+    if (resultsShell) resultsShell.classList.remove('hidden');
+    if (resultsContent) {
+      resultsContent.innerHTML = `
+        <div class="mb-8 text-center">
+          <h2 class="text-3xl font-bold md:text-4xl">${status.title}</h2>
+          <div class="mt-4 inline-flex items-center rounded-full bg-accent-500/10 px-4 py-2 text-2xl font-black text-accent-400">${totalScore}/160</div>
+          <p class="mt-4 text-lg text-white/70">${status.desc}</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          ${categoryScores.map((category) => `
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent-400">${category.name}</p>
+              <div class="mt-3 text-3xl font-black text-white">${category.score}</div>
+              <div class="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
+                <div class="h-full rounded-full bg-accent-500" style="width: ${(category.score / 32) * 100}%"></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="mt-10">
+          <h3 class="mb-4 text-2xl font-bold">Top priorities to fix first</h3>
+          <div class="space-y-4">
+            ${lowestScores.map((item) => `
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-accent-400">${item.category}</p>
+                <h4 class="mt-2 text-xl font-bold text-white">${item.q}</h4>
+                <p class="mt-3 text-white/70">${item.tip}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (state.currentStep < questions.length - 1) {
+        state.currentStep += 1;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+  }
+
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      if (state.currentStep > 0) {
+        state.currentStep -= 1;
+        renderQuestion();
+      }
+    });
+  }
+
+  renderQuestion();
+</script>

@@ -1,123 +1,303 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/components/hero.astro";
-import TrustBar from "@/components/trustbar.astro";
-import Features from "@/components/features.astro";
-import HowItWorks from "@/components/howitworks.astro";
-import Stats from "@/components/stats.astro";
-import Testimonials from "@/components/testimonials.astro";
-import FaqAccordion from "@/components/faqaccordion.astro";
-import Cta from "@/components/cta.astro";
-import BeforeAfter from "@/components/beforeafter.astro";
 import { business } from "@/config/business";
-
-const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_KEY;
-const serviceAreaMapSrc = mapsKey
-  ? `https://www.google.com/maps/embed/v1/view?key=${mapsKey}&center=${business.lat},${business.lng}&zoom=10`
-  : null;
-
-const homeFaqs = [
-  {
-    question: "Do you offer free estimates?",
-    answer: `Yes — all estimates are completely free and come with no obligation. Call us at ${business.phone} or fill out the form and we'll respond the same business day.`,
-  },
-  {
-    question: "Are you licensed and insured?",
-    answer: `Absolutely. ${business.name} is fully licensed, bonded, and insured${business.licenseNumber ? ` (License # ${business.licenseNumber})` : ""}. You can request proof of insurance at any time.`,
-  },
-  {
-    question: "How quickly can you schedule service?",
-    answer: `We typically schedule within 1–3 business days, and offer same-day or next-day service for urgent needs when availability allows. Call us at ${business.phone} for fast scheduling.`,
-  },
-  {
-    question: "What areas do you serve?",
-    answer: `We serve ${business.city}, ${business.state} and surrounding communities within a ${business.serviceRadius}. Check our Service Areas page for the full list, or call us to confirm coverage for your address.`,
-  },
-  {
-    question: "Do you guarantee your work?",
-    answer: `Yes. We stand behind every job with our ${business.guaranteeText}. If you're not satisfied with the results, contact us and we'll make it right at no additional charge.`,
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept cash, check, and all major credit cards (Visa, Mastercard, American Express, Discover). Payment is due upon completion of work unless otherwise arranged.",
-  },
-];
+import RoiCalculator from "@/components/RoiCalculator";
 ---
 
-<Layout title="">
-  <Hero />
-  <TrustBar />
-  <Features />
-  <HowItWorks />
-  <Stats />
-  <Testimonials />
-  <BeforeAfter />
+<Layout title="Run Your Contracting Business Like a Pro" description="Automate your leads, fill your calendar, and get more 5-star reviews. Built by operators, not marketers.">
+  <section class="relative overflow-hidden bg-[#1A1D27] py-16 text-white md:py-24">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.08),transparent_35%)]"></div>
+    <div class="relative mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto max-w-5xl text-center">
+        <div class="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/80">
+          <span class="mr-2 h-2 w-2 rounded-full bg-accent-400"></span>
+          Trusted by Contractors Nationwide
+        </div>
 
-  <!-- FAQ section -->
-  <section class="py-20 lg:py-28 bg-neutral-50">
-    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-        <div data-aos="fade-up">
-          <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">FAQ</p>
-          <h2 class="font-heading text-4xl lg:text-5xl font-bold text-primary-900 leading-tight">
-            Common Questions
-          </h2>
-          <p class="text-neutral-500 text-lg mt-4 leading-relaxed">
-            Have a question we didn't cover? Call us at{" "}
-            <a href={`tel:${business.phoneRaw}`} class="text-accent-600 font-semibold hover:underline">
-              {business.phone}
-            </a>{" "}
-            and we're happy to help.
-          </p>
-          <div class="mt-8">
-            <a
-              href="/contact"
-              class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm"
-            >
-              Get a Free Quote
-            </a>
+        <h1 class="mx-auto max-w-[13ch] font-heading text-5xl font-black leading-[0.92] tracking-[-0.06em] md:text-7xl lg:text-[5.5rem]">
+          Run Your Contracting Business Like a <span class="text-accent-400">Pro</span>
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-white/75 md:text-2xl">
+          Automate your leads, fill your calendar, and get more 5-star reviews. Built by operators, not marketers.
+        </p>
+
+        <div class="mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur-sm">
+          <div class="rounded-[22px] bg-[#2d2d38] p-2 text-left text-white/60">
+            <div class="mb-2 text-sm font-medium">Turn Your Sound On 🔊</div>
+            <video class="w-full rounded-xl object-cover" src="https://assets.cdn.filesafe.space/6B4reCngPYfDkJwOtiM0/media/6a668161fddfeb1aa9f45292.mp4" autoplay muted loop playsinline></video>
           </div>
         </div>
-        <div data-aos="fade-up" data-aos-delay="200">
-          <FaqAccordion items={homeFaqs} />
+
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="/about" class="inline-flex h-12 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-base font-semibold text-white transition hover:bg-white/10">
+            Watch Demo
+          </a>
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">
+            Request a Website
+          </a>
+        </div>
+
+        <div class="mt-10 flex flex-col items-center gap-4 text-sm text-white/70">
+          <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> $0 upfront, live in 24-72 hours</div>
+            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> 40+ websites launched and counting</div>
+            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> Average client stays 30+ months</div>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> No contracts. No risk. Cancel anytime.</div>
+            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> Built by actual trade operators</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Service Area Map -->
-  {serviceAreaMapSrc && (
-    <section class="py-20 lg:py-28 bg-white">
-      <div class="max-w-(--breakpoint-xl) mx-auto px-5">
-        <div class="text-center mb-10" data-aos="fade-up">
-          <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">Where We Work</p>
-          <h2 class="font-heading text-4xl lg:text-5xl font-bold text-primary-900 leading-tight">
-            Serving {business.city} & the Surrounding Area
-          </h2>
-          <p class="text-neutral-500 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-            We cover {business.city} and communities within a {business.serviceRadius}. Call us to confirm we serve your address.
-          </p>
+  <section class="bg-[#F8F9FA] py-20 text-slate-900">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <div class="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">
+          OUR SERVICES
         </div>
-        <div class="rounded-2xl overflow-hidden border border-neutral-200 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-          <iframe
-            title={`${business.name} service area map`}
-            src={serviceAreaMapSrc}
-            width="100%"
-            height="420"
-            style="border:0;"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-6xl">
+          Everything You Need to <span class="text-accent-500">Dominate</span> Your Market
+        </h2>
+        <p class="mt-5 text-lg text-slate-600 md:text-xl">
+          Stop losing leads and leaving money on the table. Our proven systems help contractors get more calls, win more jobs, and grow faster.
+        </p>
+      </div>
+
+      <div class="mx-auto max-w-6xl space-y-8">
+        <div class="grid gap-8 rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm md:p-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+          <div class="overflow-hidden rounded-[24px] border border-slate-200 bg-slate-100 p-4 shadow-inner">
+            <img src="https://vibe.filesafe.space/1784488008583527960/attachments/90bca715-6a15-4871-b89e-afb50442bf13.png" alt="Modern Website Mockup" class="h-full w-full rounded-[18px] object-cover shadow-lg" />
+          </div>
+          <div>
+            <div class="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">Modern Website</div>
+            <h3 class="font-heading text-3xl font-bold text-primary-900 md:text-4xl">Professional, mobile-first websites built to convert visitors.</h3>
+            <p class="mt-4 text-lg text-slate-600">Stand out from competitors with stunning design that captures leads 24/7.</p>
+            <ul class="mt-6 space-y-3 text-slate-700">
+              <li>• Mobile-responsive design</li>
+              <li>• Built-in lead capture forms</li>
+              <li>• Fast loading speeds</li>
+              <li>• SEO optimized</li>
+            </ul>
+          </div>
         </div>
-        <div class="mt-8 text-center">
-          <a href="/service-areas" class="inline-flex items-center gap-2 text-accent-600 font-semibold hover:underline text-sm">
-            View all service areas →
-          </a>
+
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-100 text-xl">⭐</div>
+              <h3 class="text-2xl font-bold text-primary-900">5-Star Review Funnel</h3>
+            </div>
+            <p class="text-slate-600">Automated system that turns happy customers into 5-star Google reviews. Build the reputation that wins more jobs and dominates your local market.</p>
+            <ul class="mt-6 space-y-2 text-slate-700">
+              <li>• Automated review requests</li>
+              <li>• Negative feedback filtered</li>
+              <li>• Google review boost</li>
+              <li>• Reputation monitoring</li>
+            </ul>
+          </div>
+
+          <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-100 text-xl">📲</div>
+              <h3 class="text-2xl font-bold text-primary-900">Missed Call Text Back</h3>
+            </div>
+            <p class="text-slate-600">Never lose a lead again. When you miss a call, an instant text is sent automatically keeping that customer engaged until you can follow up.</p>
+            <ul class="mt-6 space-y-2 text-slate-700">
+              <li>• Instant text response</li>
+              <li>• Custom messaging</li>
+              <li>• Lead capture</li>
+              <li>• 24/7 coverage</li>
+            </ul>
+          </div>
+
+          <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-100 text-xl">💰</div>
+              <h3 class="text-2xl font-bold text-primary-900">Revenue Campaigns</h3>
+            </div>
+            <p class="text-slate-600">Stay top-of-mind with past customers through strategic email and SMS campaigns that drive repeat business and referrals.</p>
+            <ul class="mt-6 space-y-2 text-slate-700">
+              <li>• Email campaigns</li>
+              <li>• Seasonal promotions</li>
+              <li>• SMS marketing</li>
+              <li>• Customer retention</li>
+            </ul>
+          </div>
+
+          <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-100 text-xl">📍</div>
+              <h3 class="text-2xl font-bold text-primary-900">Local SEO</h3>
+            </div>
+            <p class="text-slate-600">Dominate local search results so customers find you first. Get more calls from people in your area who are ready to hire.</p>
+            <ul class="mt-6 space-y-2 text-slate-700">
+              <li>• Google Business optimization</li>
+              <li>• Citation building</li>
+              <li>• Local keyword ranking</li>
+              <li>• Map pack visibility</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
-  <Cta />
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <div class="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">LIMITED TIME EXTRAS</div>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Exclusive Founding Member Bonuses</h2>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-7 shadow-sm">
+          <div class="mb-4 inline-flex items-center rounded-full bg-accent-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-accent-700">Bonus #1</div>
+          <h3 class="text-2xl font-bold text-primary-900">Optimized GMB Profile</h3>
+          <div class="mt-2 text-lg font-semibold text-accent-600">$500 Value</div>
+          <p class="mt-4 text-slate-600">We'll fully optimize your Google My Business profile to help you rank higher in the map pack, driving more organic local calls to your business.</p>
+        </div>
+        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-7 shadow-sm">
+          <div class="mb-4 inline-flex items-center rounded-full bg-accent-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-accent-700">Bonus #2</div>
+          <h3 class="text-2xl font-bold text-primary-900">30 Days of DFY Content</h3>
+          <div class="mt-2 text-lg font-semibold text-accent-600">$1,000 Value</div>
+          <p class="mt-4 text-slate-600">A full month of done-for-you social media content tailored to your brand to build trust and authority in your local market without lifting a finger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <div class="mb-4 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-white/70">NEW SERVICE</div>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-5xl">AI Voice & Conversational Agents</h2>
+      </div>
+
+      <div class="mx-auto max-w-4xl rounded-[32px] border border-white/10 bg-white/5 p-8 text-center shadow-xl">
+        <p class="text-lg text-white/75 md:text-xl">24/7 AI-powered agents that answer calls, follow up with leads via text, book appointments, and qualify prospects — even when you're on the job site. Never miss another opportunity.</p>
+        <div class="mt-8 grid gap-4 text-left sm:grid-cols-2 md:grid-cols-4">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">✔</div><div class="mt-2 text-sm text-white/80">Answer calls 24/7</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">✔</div><div class="mt-2 text-sm text-white/80">Follow up with leads</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">✔</div><div class="mt-2 text-sm text-white/80">Book appointments</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">✔</div><div class="mt-2 text-sm text-white/80">Qualify prospects</div></div>
+        </div>
+        <div class="mt-8 flex justify-center">
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Request a Website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F8F9FA] py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <div class="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">REAL RESULTS</div>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">The Difference a Modern System Makes</h2>
+        <p class="mt-4 text-lg text-slate-600">See how we transform outdated websites into automated lead-generation machines.</p>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-2">
+        <div class="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-4 text-lg font-semibold text-slate-700">Before: The "Ugly" Roofing Site</div>
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="Old, outdated website" class="h-64 w-full rounded-[20px] object-cover" />
+          <div class="mt-5 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Monthly Traffic</div><div class="mt-2 text-2xl font-bold text-primary-900">450</div></div>
+            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Lead Conversion Rate</div><div class="mt-2 text-2xl font-bold text-primary-900">1.2%</div></div>
+            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Leads Generated</div><div class="mt-2 text-2xl font-bold text-primary-900">5 / mo</div></div>
+          </div>
+        </div>
+
+        <div class="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-4 text-lg font-semibold text-slate-700">After: The Lead Venture System</div>
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" alt="Modern high-converting roofing website" class="h-64 w-full rounded-[20px] object-cover" />
+          <div class="mt-5 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Monthly Traffic</div><div class="mt-2 text-2xl font-bold text-primary-900">1,200</div></div>
+            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Lead Conversion Rate</div><div class="mt-2 text-2xl font-bold text-primary-900">8.5%</div></div>
+            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Leads Generated</div><div class="mt-2 text-2xl font-bold text-primary-900">102 / mo</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F6F6F4] py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-8 max-w-3xl text-center">
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Revenue Recovery Calculator</h2>
+        <p class="mt-4 text-lg text-slate-600">See what missed calls, slow responses, and cold leads are actually costing your business each month.</p>
+      </div>
+      <div class="mx-auto max-w-6xl rounded-[32px] border border-slate-200 bg-white p-4 shadow-xl md:p-6">
+        <RoiCalculator client:load />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F1F3F7] py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">The Lead Venture vs. Traditional Agencies</h2>
+        <p class="mt-4 text-lg text-slate-600">Why contractors are ditching expensive marketing retainers for our all-in-one growth platform.</p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="mb-6 text-2xl font-bold text-primary-900">Traditional Marketing Agency</div>
+          <ul class="space-y-4 text-slate-700">
+            <li class="flex gap-3"><span class="text-lg text-red-500">✕</span><div><strong class="font-bold">Expensive retainers</strong> ($2k-$5k+/mo) + ad spend</div></li>
+            <li class="flex gap-3"><span class="text-lg text-red-500">✕</span><div><strong class="font-bold">12-month contracts</strong> that lock you in</div></li>
+            <li class="flex gap-3"><span class="text-lg text-red-500">✕</span><div><strong class="font-bold">Focus on vanity metrics</strong> (clicks, impressions)</div></li>
+            <li class="flex gap-3"><span class="text-lg text-red-500">✕</span><div><strong class="font-bold">Slow turnaround</strong> (3-6 months to launch)</div></li>
+            <li class="flex gap-3"><span class="text-lg text-red-500">✕</span><div><strong class="font-bold">They own your assets</strong> if you leave</div></li>
+          </ul>
+        </div>
+
+        <div class="rounded-[30px] border border-slate-200 bg-primary-900 p-6 text-white shadow-sm">
+          <div class="mb-6 text-2xl font-bold text-white">{business.name}</div>
+          <ul class="space-y-4 text-white/85">
+            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Flat, affordable monthly fee</strong> ($0 upfront, live in 24-72 hours)</div></li>
+            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">No contracts. No risk.</strong> Cancel anytime.</div></li>
+            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Built by operators</strong> who've run a multi-million dollar trade business, not just marketers.</div></li>
+            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Capped at 10 new partners a month</strong>, so you get real attention.</div></li>
+            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Average client stays with us 30+ months</strong></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto max-w-4xl rounded-[32px] border border-white/10 bg-white/5 p-8 text-center shadow-xl md:p-12">
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-5xl">Backed by a double guarantee</h2>
+        <p class="mt-5 text-lg text-white/75">Double your investment in month one, or we work for free until we do. Don't love it after 14 days? Walk away, no cost, no hassle.</p>
+        <div class="mt-8 grid gap-4 text-left md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">No long-term contracts.</div><div class="mt-2 text-sm text-white/75">We earn your business every single month.</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">No setup fees.</div><div class="mt-2 text-sm text-white/75">You only pay the flat monthly rate.</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4"><div class="text-sm font-semibold text-accent-400">Cancel anytime.</div><div class="mt-2 text-sm text-white/75">If our system doesn't save you time and help you close more jobs, you can walk away with zero penalties.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto max-w-4xl rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Why The Hell Is It Free?</h2>
+        <div class="mt-6 space-y-4 text-lg text-slate-700">
+          <p>We know contractors are skeptical. You get pitched by marketing agencies 10 times a day promising the moon.</p>
+          <p>Here’s the truth: the website build, custom copy, and asset engineering are 100% free. You only cover the secure monthly cloud hosting and optimization framework, or have us handle the live deployment for you.</p>
+          <p>If the site doesn’t make you money, you leave, and we lose. We’re putting our own skin in the game.</p>
+          <p class="font-bold text-primary-900">We Only Win When You Win.</p>
+        </div>
+
+        <div class="mt-8 flex justify-center">
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Claim Your Free Build</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

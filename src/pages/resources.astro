@@ -1,0 +1,59 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+
+const tools = [
+  { title: "Revenue Leak Calculator", description: "Estimate the monthly value of missed calls, slow follow-up, cold leads, and lost reactivations.", href: "/revenue-leak-calculator" },
+  { title: "Savings Calculator", description: "See how much you could recover by improving response speed and lead follow-up systems.", href: "/tools/savings-calculator" },
+  { title: "Timeline Estimator", description: "Project the expected effect of a stronger local lead system across your sales funnel.", href: "/tools/timeline-estimator" },
+  { title: "Cost Estimator", description: "Compare the cost of a modern lead engine with the cost of lost revenue from manual follow-up.", href: "/tools/cost-estimator" },
+];
+---
+
+<Layout title="Free Revenue Tools" description={`Use ${business.name} calculators to estimate missed call cost, lead recovery opportunity, and the revenue impact of better follow-up.`}>
+  <section class="bg-[#1A1D27] py-16 text-white md:py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="max-w-3xl">
+        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Resources</p>
+        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">Revenue recovery calculators built for contractor businesses.</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+          See what lost calls, slow response times, weak follow-up, and old leads are actually costing your business. These tools are designed to surface the biggest opportunities fast.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/revenue-leak-calculator" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-6 text-sm font-semibold text-white transition hover:bg-accent-600">Use the leak finder</a>
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition hover:bg-white/10">Get a custom quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f6f7f9] py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="grid gap-6 md:grid-cols-2">
+        {tools.map((tool) => (
+          <a href={tool.href} class="group rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent-100 text-lg font-bold text-accent-700">?</div>
+            <h2 class="text-2xl font-bold text-primary-900">{tool.title}</h2>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{tool.description}</p>
+            <div class="mt-6 text-sm font-semibold text-accent-600">Open tool ?</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-4xl px-5">
+      <div class="rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">Want real results?</p>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">If the numbers point to missed revenue, we can fix it.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-slate-600">
+          Most local service businesses don?t need more traffic ? they need a better conversion system. Our goal is to shrink the time between first call and booked job while improving the customer experience from the first touch.
+        </p>
+        <div class="mt-8 flex justify-center">
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Book a strategy call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

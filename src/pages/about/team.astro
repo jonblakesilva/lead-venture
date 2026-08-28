@@ -1,0 +1,58 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { business } from "@/config/business";
+
+const teamMembers = [
+  {
+    name: "Operations Lead",
+    role: "Strategy & Growth",
+    bio: "Hands-on in the sales, funnel, and retention strategy behind every client engagement — focused on meaningful growth rather than vanity metrics.",
+  },
+  {
+    name: "Creative Lead",
+    role: "Messaging & Design",
+    bio: "Builds the conversion-focused website, sales pages, and customer experience touches that keep the brand aligned and high-converting.",
+  },
+  {
+    name: "Support Team",
+    role: "Delivery & Optimization",
+    bio: "Keeps the systems running smoothly, monitoring campaigns, lead flow, and optimization opportunities so nothing goes stale.",
+  },
+];
+---
+
+<Layout
+  title="Our Team"
+  description={`Meet the team behind ${business.name}, a growth partner for local service brands focused on lead generation, conversion, and retention.`}
+>
+  <section class="bg-primary-900 text-white py-16 lg:py-20">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="max-w-3xl">
+        <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-4">Our team</p>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Specialists in local growth systems.
+        </h1>
+        <p class="text-white/70 text-lg mt-5 leading-relaxed">
+          We combine strategy, creative, and conversion design to help local service businesses win more work without adding more chaos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-neutral-50">
+    <div class="max-w-(--breakpoint-xl) mx-auto px-5">
+      <div class="grid lg:grid-cols-3 gap-8">
+        {teamMembers.map((member) => (
+          <div class="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm">
+            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-100 text-2xl font-bold text-accent-700">
+              {member.name.slice(0, 1)}
+            </div>
+            <h2 class="mt-6 text-2xl font-bold text-primary-900">{member.name}</h2>
+            <p class="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{member.role}</p>
+            <p class="mt-4 text-neutral-600 leading-relaxed">{member.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

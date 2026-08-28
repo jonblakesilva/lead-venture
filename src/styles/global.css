@@ -133,11 +133,11 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: white;
+  background: #181d2a;
   transition: box-shadow 0.25s ease, background 0.25s ease;
 }
 #site-nav.scrolled {
-  box-shadow: var(--shadow-nav);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* ── Performance ────────────────────────────────────────── */

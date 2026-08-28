@@ -1,16 +1,12 @@
 ---
 draft: false
-city: "Your City"
-state: "ST"
-urlSlug: "your-city-st"
-shortDesc: "Professional services for homeowners and businesses throughout Your City, ST."
+city: "Canton"
+state: "OH"
+urlSlug: "canton-oh"
+shortDesc: "Helping local businesses in Canton, OH turn more local visibility into booked work and stronger customer trust."
 order: 1
 ---
 
-<!-- CUSTOMIZE: Replace "Your City" with the real city name throughout this file.
-     Write a unique 2-3 sentence description specific to this city.
-     Mention local landmarks, neighborhoods, or characteristics where relevant. -->
+Canton is a strong local market for businesses that need a louder digital presence and a more consistent lead flow. We work with service-based companies and local brands that want better visibility, faster follow-up, and a smoother path from first click to first customer conversation.
 
-We're proud to serve customers throughout Your City, ST. Our team is familiar with the neighborhoods and properties in this area, which means we show up knowing what to expect and get the job done efficiently.
-
-Whether you're in [neighborhood/area 1], [neighborhood/area 2], or anywhere else in Your City, we offer the same responsive service and honest pricing. [Add one sentence about why this area is important to you — e.g. "Many of our team members live here and we take pride in keeping our community well-maintained."]
+Whether you're in downtown Canton, nearby subdivisions, or surrounding communities, we bring the same local focus and practical strategy. We understand the needs of this market and build systems that help businesses stand out without unnecessary complexity.

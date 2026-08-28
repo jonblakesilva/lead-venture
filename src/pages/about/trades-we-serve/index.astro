@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const trades = [
+  { slug: 'roofing', name: 'Roofing', description: 'Dominate storm-season demand and win more high-ticket roof replacements.' },
+  { slug: 'hvac', name: 'HVAC', description: 'Capture emergency calls and turn maintenance into recurring revenue.' },
+  { slug: 'electrical', name: 'Electrical', description: 'Build trust fast and close more rewiring, panel, and service upgrades.' },
+  { slug: 'plumbing', name: 'Plumbing', description: 'Win urgent calls with faster response and better local visibility.' },
+  { slug: 'lawn-care', name: 'Lawn Care & Mowing', description: 'Increase route density and retain more customers with text-based follow-up.' },
+  { slug: 'tree-service', name: 'Tree Service', description: 'Showcase expertise and convert storm-demand into booked removals.' },
+  { slug: 'landscaping', name: 'Landscaping', description: 'Turn design-build leads into a consistent flow of premium outdoor projects.' },
+  { slug: 'painting', name: 'Painting', description: 'Make your portfolio and reviews do the selling for you.' },
+  { slug: 'remodeling', name: 'Remodeling', description: 'Position your company as the premium choice for larger home projects.' },
+  { slug: 'general-contractors', name: 'General Contractors', description: 'Give homeowners confidence before they ever pick up the phone.' },
+  { slug: 'junk-removal', name: 'Junk Removal', description: 'Turn urgent cleanup calls into revenue with faster follow-up.' },
+  { slug: 'pest-control', name: 'Pest Control', description: 'Capture recurring service demand and boost retention with automation.' },
+];
+---
+
+<Layout title="Trades We Serve" description="See the trades and home-services businesses The Lead Venture helps grow through better websites, reviews, and lead follow-up systems.">
+  <section class="bg-primary-900 py-16 text-white lg:py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="max-w-3xl">
+        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Trades we serve</p>
+        <h1 class="font-heading text-4xl font-bold leading-tight md:text-5xl">Built for home-service businesses that need more predictable lead flow.</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-50 py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {trades.map((trade) => (
+          <a href={`/about/trades-we-serve/${trade.slug}`} class="rounded-3xl border border-neutral-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-100 text-2xl">⚡</div>
+            <h2 class="text-2xl font-bold text-primary-900">{trade.name}</h2>
+            <p class="mt-4 text-neutral-600 leading-relaxed">{trade.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

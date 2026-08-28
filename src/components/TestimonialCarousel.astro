@@ -1,0 +1,137 @@
+---
+const testimonials = [
+  {
+    id: 1,
+    name: 'Brandon',
+    trade: 'Local Remodeling Business',
+    text: 'The Lead Venture completely transformed how we handle incoming calls. We no longer miss leads when we\'re on the roof.',
+    videoUrl: 'https://assets.cdn.filesafe.space/6B4reCngPYfDkJwOtiM0/media/6a650632666f9dc90bfc1fe5.mp4',
+  },
+  {
+    id: 2,
+    name: 'Jamie',
+    trade: 'Daycare',
+    text: 'Our Google reviews doubled in the first month. The automated system makes it so easy for customers to leave feedback.',
+    videoUrl: 'https://assets.cdn.filesafe.space/6B4reCngPYfDkJwOtiM0/media/6a65059f666f9dc90bfbc30e.mov',
+  },
+  {
+    id: 3,
+    name: 'Mike Dawson',
+    trade: 'Landscaping & Lawn Care',
+    text: 'Having the CRM on my phone means I can quote jobs and send invoices from the truck. Game changer.',
+    image: 'https://vibe.filesafe.space/1784488008583527960/assets/cf9efae0-17c9-4191-94cd-5b5b667eb476.jpg',
+  },
+  {
+    id: 4,
+    name: 'David Miller',
+    trade: 'Plumbing',
+    text: 'The missed call text-back feature alone paid for the system in the first week. Highly recommend.',
+    image: 'https://vibe.filesafe.space/1784488008583527960/assets/8482d7ca-17b7-4b11-9978-a31bf33c0df7.jpg',
+  },
+];
+---
+
+<section class="bg-[#1A1D27] py-24 text-white">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="mb-16 text-center">
+      <div class="mb-4 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-white/80">
+        CLIENT TESTIMONIALS
+      </div>
+      <h2 class="mb-4 font-display text-4xl font-bold tracking-tight md:text-5xl">
+        What Our <span class="text-accent-400">Contractors</span> Say
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-white/60">
+        Don't just take our word for it. Watch real contractors share how The Lead Venture transformed their businesses.
+      </p>
+    </div>
+
+    <div class="relative mx-auto max-w-6xl">
+      <div class="overflow-hidden">
+        <div id="testimonial-track" class="flex gap-6 transition-transform duration-500 ease-in-out">
+          {testimonials.map((t) => (
+            <div class="w-full shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:w-[calc(33.333%-1rem)]">
+              <div class="relative aspect-[9/16] overflow-hidden">
+                {t.videoUrl ? (
+                  <div class="h-full w-full bg-black">
+                    <video src={t.videoUrl} class="h-full w-full object-cover" preload="metadata" playsinline controls></video>
+                  </div>
+                ) : (
+                  <>
+                    <img src={t.image} alt={t.name} loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent-500/90 text-white shadow-lg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3l14 9-14 9V3z" fill="currentColor"/></svg>
+                      </div>
+                    </div>
+                  </>
+                )}
+                <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                  <div class="mb-1 text-lg font-bold text-white">{t.name}</div>
+                  <div class="text-sm text-white/70">{t.trade}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 flex items-center justify-center gap-6">
+        <button type="button" id="testimonial-prev" class="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-transparent text-white transition hover:bg-white/10" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current"><path d="M15 18l-6-6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="flex gap-3">
+          {testimonials.map((_, i) => (
+            <button type="button" data-index={i} class="testimonial-dot h-2.5 w-2.5 rounded-full bg-white/20 transition-colors" aria-label={`View testimonial ${i + 1}`}></button>
+          ))}
+        </div>
+
+        <button type="button" id="testimonial-next" class="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-transparent text-white transition hover:bg-white/10" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('testimonial-track');
+  const dots = Array.from(document.querySelectorAll('.testimonial-dot'));
+  const prevBtn = document.getElementById('testimonial-prev');
+  const nextBtn = document.getElementById('testimonial-next');
+
+  if (track && dots.length && prevBtn && nextBtn) {
+    const items = Array.from(track.children);
+    const visibleCards = 3;
+    let currentIndex = 0;
+
+    const render = () => {
+      const offset = currentIndex * (100 / visibleCards);
+      track.style.transform = `translateX(-${offset}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('bg-accent-500', index === currentIndex);
+        dot.classList.toggle('bg-white/20', index !== currentIndex);
+      });
+    };
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      render();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      render();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        currentIndex = Number(dot.getAttribute('data-index'));
+        render();
+      });
+    });
+
+    render();
+  }
+</script>

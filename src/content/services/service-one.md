@@ -1,33 +1,32 @@
 ---
 draft: false
-title: "Service One"
-urlSlug: "service-one"
-shortDesc: "Replace this with your first service description. Keep it to one sentence that clearly states what you do and who it's for."
-icon: "lucide:home"
+title: "Website Design & Lead Capture"
+urlSlug: "website-design"
+shortDesc: "High-converting websites built to capture more calls, more form fills, and more booked jobs for local service businesses."
+icon: "lucide:globe"
 order: 1
 ---
 
 ## What's Included
 
-<!-- CUSTOMIZE: Replace with a detailed description of this service.
-     List exactly what customers get when they hire you for this service. -->
+This service includes a custom, mobile-first website designed around the way homeowners actually browse, compare, and contact local service providers. We build clear service pages, trust-building sections, and strong call-to-action areas that turn traffic into real conversations.
 
-This service includes [list what's included]. We handle [specific tasks] so you don't have to.
+We handle the strategy, messaging, page structure, design, conversion flow, and launch so your business shows up more professionally and converts more of the right leads.
 
 ## What to Expect
 
-When you schedule [Service One] with us, here's what happens:
+When you schedule a website project with us, here's what happens:
 
-- **[Step 1]:** We [do X] so that [benefit].
-- **[Step 2]:** We [do Y] to ensure [outcome].
-- **[Step 3]:** We clean up and confirm you're satisfied before we leave.
+- **Strategy & audit:** We review your current funnel, service mix, and local market to identify the biggest conversion opportunities.
+- **Build & messaging:** We design your site around your services, customer pain points, and the actions you want people to take.
+- **Launch & optimization:** We publish the site, review the conversion flow, and make sure the first impression matches the level of service clients expect.
 
-## Why Customers Choose Us for [Service One]
+## Why Customers Choose Us
 
-- [Differentiator 1 — e.g. "We use [specific equipment/method] that produces better results"]
-- [Differentiator 2 — e.g. "Same team every time, so nothing gets missed"]
-- [Differentiator 3 — e.g. "No long-term contracts — cancel anytime"]
+- **Built to convert:** We focus on the actions that generate revenue, not generic branding or filler content.
+- **Easy to trust:** Your website tells a clear story, shows proof, and removes friction from the inquiry process.
+- **No wasted time:** We keep the process simple and efficient so you can get online quickly without a months-long build.
 
 ## Pricing
 
-Pricing depends on [relevant factors for this service]. Most quotes take under a minute — call or fill out the form below for a free estimate.
+Pricing varies based on your service mix, site size, and any custom lead-capture or conversion work needed. Most projects are quoted quickly, and we can usually provide a clear scope and estimate within a day or two.

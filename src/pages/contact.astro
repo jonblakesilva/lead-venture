@@ -16,7 +16,7 @@ import { business } from "@/config/business";
           Request a Free Quote
         </h1>
         <p class="text-white/70 text-lg mt-4 leading-relaxed">
-          Fill out the form or give us a call. We respond to all inquiries within one business day.
+          Fill out the form or give us a call. We respond to all inquiries within one business day, and the final webhook will be connected once the live endpoint is ready.
         </p>
       </div>
     </div>
@@ -71,7 +71,7 @@ import { business } from "@/config/business";
               <div>
                 <div class="font-semibold text-primary-900 text-sm">Service Area</div>
                 <p class="text-neutral-700 font-medium">{business.city}, {business.state}</p>
-                <p class="text-neutral-500 text-xs mt-1">{business.serviceRadius} · <a href="/service-areas" class="text-accent-600 hover:underline">View all areas</a></p>
+                <p class="text-neutral-500 text-xs mt-1">{business.serviceRadius} · We typically serve nearby homeowners and businesses within this radius.</p>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ import { business } from "@/config/business";
         <div class="lg:col-span-3" data-aos="fade-up" data-aos-delay="200">
           <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 lg:p-10">
             <h2 class="font-heading text-2xl font-bold text-primary-900 mb-2">Tell Us About Your Project</h2>
-            <p class="text-neutral-500 text-sm mb-8">All fields are optional except your contact info. We'll call to get any additional details.</p>
+            <p class="text-neutral-500 text-sm mb-8">All fields are optional except your contact info. The live webhook is not connected yet, so this is ready to plug in when the endpoint is active.</p>
 
             <!-- REPLACE access_key with your web3forms key: https://web3forms.com -->
             <form

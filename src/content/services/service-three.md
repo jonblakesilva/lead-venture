@@ -1,33 +1,33 @@
 ---
 draft: false
-title: "Service Three"
-urlSlug: "service-three"
-shortDesc: "Replace this with your third service description. What problem does this solve for customers in one sentence?"
-icon: "lucide:settings"
+title: "AI Missed-Call Response"
+urlSlug: "ai-missed-call-response"
+shortDesc: "Text every missed call immediately and capture more qualified leads when your team is busy or offline."
+icon: "lucide:message-square"
 order: 3
 ---
 
 ## What's Included
 
-<!-- CUSTOMIZE: List everything customers get with this service. -->
+This service includes an automated missed-call workflow that responds to inquiries in real time, qualifies the lead, and keeps the sales conversation moving even when no one is available to answer the phone. We set up the system to send quick, professional texts and guide people toward the next step.
 
-[Service Three] includes [list]. We handle [tasks] so you get [outcome].
+That means fewer lost opportunities and more consistent follow-up from the very first interaction.
 
 ## Who Needs This Service
 
-[Describe the ideal customer for this service. Who typically calls you for this? What situation are they in?]
+This is ideal for businesses that get a lot of calls, have a small internal team, or lose leads when calls go unanswered. If you want a faster response time without adding more admin work, this service helps close that gap.
 
-## Frequently Asked Questions About [Service Three]
+## Frequently Asked Questions
 
-**How long does it take?**
-[Typical time range and what affects the timeline.]
+**How fast does the response happen?**
+The system is designed to respond immediately after a missed call, so the prospect gets a quick message while the opportunity is still warm.
 
-**Do I need to be home?**
-[Explain whether the customer needs to be present or not.]
+**Does this replace a live person?**
+It complements your team by handling the first response instantly and qualifying the lead before a closer follow-up happens.
 
-**How often do I need this service?**
-[If applicable — recurring vs. one-time guidance.]
+**How often should this be reviewed?**
+We recommend reviewing the flow regularly to refine the text messaging and qualification questions based on the types of leads you get most often.
 
 ## Get a Quote
 
-Pricing varies by [relevant factors]. Call us or fill out the form below and we'll give you a free, accurate estimate.
+Pricing varies based on call volume, your current setup, and how much automation is needed. We can recommend a setup that fits your lead flow and gives you a faster return without adding unnecessary complexity.
