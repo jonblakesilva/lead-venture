@@ -48,6 +48,19 @@ const makeDescription =
         image: { alt: makeTitle },
       }}
     />
+    <meta name="description" content={makeDescription} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="keywords" content={`${business.niche}, ${business.city}, ${business.state}, ${business.name}, lead generation, local SEO, website design, review system, AI receptionist`} />
+    <meta name="author" content={business.name} />
+    <meta name="theme-color" content="#111827" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={makeTitle} />
+    <meta name="twitter:description" content={makeDescription} />
+    <meta name="twitter:image" content={resolvedImageWithDomain} />
+    <meta name="twitter:site" content="@theleadventure" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <slot name="head" />
     <OrganizationSchema />
     <ClientRouter />
