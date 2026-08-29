@@ -33,6 +33,8 @@ export interface TradeJobProfile {
   crewNote: string;
   /** What separates a top performer from an average one in this trade */
   differentiator: string;
+  /** The single best-performing visual content format for this trade (drone, time-lapse, before/after, etc.) */
+  visualContentIdea: string;
 }
 
 export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
@@ -61,6 +63,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "aerial measurement tools like EagleView or Hover for instant, accurate roof measurements without climbing a ladder for every estimate",
     crewNote: "Visible crew safety gear — harnesses, roof jacks, OSHA-compliant fall protection — isn't just a compliance checkbox; it's one of the first things a homeowner researching a $12,000 replacement notices.",
     differentiator: "The roofers who win high-ticket replacements over cheaper competitors are the ones who document everything — drone photos, moisture readings, a written scope — so the homeowner sees exactly what they're paying for.",
+    visualContentIdea: "A drone flyover of a finished roof, shot from an angle no ladder photo can match, shows off clean tear-off lines and proper ridge-vent work in a way that stops the scroll on someone's phone.",
   },
   hvac: {
     slug: "hvac",
@@ -87,6 +90,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "smart thermostats and remote diagnostic tools that let a tech see error codes before ever driving to the property",
     crewNote: "Techs need real EPA 608 refrigerant-handling certification — it's a legal requirement, and calling it out explicitly on the website is a trust signal most competitors skip.",
     differentiator: "The HVAC companies that grow fastest treat every repair call as a maintenance-agreement pitch, not just a one-off fix — that's where the recurring revenue actually comes from.",
+    visualContentIdea: "A quick video of a rusted, failing unit getting hauled out next to the clean new install proves the old system was really failing — no drone needed, just proof a homeowner can point to when a neighbor asks.",
   },
   electrical: {
     slug: "electrical",
@@ -113,6 +117,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "thermal imaging cameras to spot overheating connections and failing breakers before they become a fire risk, not just after",
     crewNote: "Every job that touches the panel should end with a photo of the completed, labeled panel — cheap proof of professionalism a homeowner remembers and a competitor rarely bothers to provide.",
     differentiator: "The electricians who consistently win rewiring and panel-upgrade jobs over cheaper bids are the ones who explain code requirements in plain language instead of just quoting a number.",
+    visualContentIdea: "A close-up video comparing an old, overloaded panel to the clean, labeled replacement is this trade's version of a drone shot — it's the one piece of footage that actually explains why the upgrade mattered.",
   },
   plumbing: {
     slug: "plumbing",
@@ -139,6 +144,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "video inspection cameras that let a customer see the actual problem inside their pipe on a screen, rather than just taking your word for it",
     crewNote: "Trucks stocked for same-visit completion — common parts, a range of water heater sizes — turn a \"we'll have to come back\" job into a same-day close far more often.",
     differentiator: "The plumbers who build the biggest referral base are the ones who show the customer the problem — camera footage, a clear photo — instead of just describing it.",
+    visualContentIdea: "A short video of a corroded, leaking water heater next to its brand-new replacement tells the whole story in ten seconds — exactly the kind of before-and-after a homeowner shares with a neighbor who's been putting off the same fix.",
   },
   "lawn-care": {
     slug: "lawn-care",
@@ -165,6 +171,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "route-optimization software that clusters same-day stops geographically instead of crews crisscrossing town",
     crewNote: "Mowing-height and blade-sharpness standards are invisible to most customers day-to-day, but a scalped or torn-looking lawn is one of the fastest ways to lose a client who won't necessarily tell you why they left.",
     differentiator: "The lawn care companies that scale past a one-truck operation are the ones who sell the annual program — mowing plus aeration, fertilization, and fall cleanup — instead of re-selling a single mow every single week.",
+    visualContentIdea: "A drone flyover comparing an overgrown yard to the same property right after a seasonal cleanup is some of the easiest content in the trade to get shared — the transformation reads instantly, even to someone just scrolling past.",
   },
   "tree-service": {
     slug: "tree-service",
@@ -191,6 +198,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "aerial bucket trucks and professional rigging equipment that let a crew safely remove large limbs over a house or power line instead of just climbing with a chainsaw and hoping",
     crewNote: "Proof of liability insurance and ISA arborist certification, shown clearly before the crew ever shows up, is one of the biggest differentiators in a trade where a mistake can mean real property damage.",
     differentiator: "The tree services that command premium prices are the ones with visible certifications, real insurance, and a fast, organized response to storm damage — not just the biggest chainsaw.",
+    visualContentIdea: "A drone shot of a full canopy removal, or a dangerous limb coming down near a roofline, is the kind of dramatic, real footage that gets shared far and wide — it shows the skill and the risk in a way words never could.",
   },
   landscaping: {
     slug: "landscaping",
@@ -217,6 +225,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "3D rendering software that shows a homeowner their own backyard with the hardscape and softscape already installed, before a single shovel goes in the ground",
     crewNote: "A hardscape install shot at golden hour, cleared of hoses and wheelbarrows, sells the next five estimates harder than any lead the ad budget will buy.",
     differentiator: "The landscaping companies winning the highest-budget hardscape jobs are the ones pitching a full outdoor-living transformation, not a paver count and a mulch quote.",
+    visualContentIdea: "A drone flyover of a finished hardscape install, showing the whole layout at once, is one of the best-performing content formats in the trade — it's the one angle a homeowner standing in their own yard never actually gets to see.",
   },
   painting: {
     slug: "painting",
@@ -243,6 +252,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "color-visualization apps that let a homeowner preview a color on their actual house before committing",
     crewNote: "Drop cloths, careful masking, and daily cleanup are what actually gets remembered and photographed for reviews — customers rarely comment on paint brand, but they always notice a spotless job site.",
     differentiator: "The painting companies that get repeat and referral business are the ones who treat prep work as the product, not an invisible cost to minimize.",
+    visualContentIdea: "A slow video walk-around of a freshly painted exterior, shot in good afternoon light, sells the next job harder than any drone footage — color and finish are what close estimates, and video shows both far better than a static photo.",
   },
   remodeling: {
     slug: "remodeling",
@@ -269,6 +279,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "walkthrough rendering software that puts a client inside their future kitchen or bathroom, tile and fixtures already selected, before demo day",
     crewNote: "A signed change-order sheet before the sledgehammer comes out is what prevents the single most common source of remodeling disputes — scope creep nobody wrote down.",
     differentiator: "The remodelers winning the highest-budget kitchen and bath jobs over cheaper bids are pitching a finished selections package, not a demo-to-drywall bid number.",
+    visualContentIdea: "A time-lapse compressing a full bathroom remodel — demo to finished tile — into thirty seconds is some of the most-shared content in the trade, because it shows a transformation nobody actually gets to watch happen in real time.",
   },
   "general-contractors": {
     slug: "general-contractors",
@@ -295,6 +306,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "project management software that gives clients real-time visibility into schedule, budget, and photos instead of a weekly phone update",
     crewNote: "Clear subcontractor scheduling and a real draw schedule tied to milestones, not just time elapsed, are what keep a multi-trade project from stalling on one missed handoff.",
     differentiator: "The general contractors who win the biggest projects over cheaper bids are the ones with organized, transparent communication — clients are really buying certainty the project won't blow up midway through.",
+    visualContentIdea: "A time-lapse or before-and-after of a full renovation, especially anything structural, builds more credibility than a portfolio page ever will — it's proof of scope, not just a finished photo.",
   },
   "junk-removal": {
     slug: "junk-removal",
@@ -321,6 +333,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "photo-quote and dispatch software that lets a customer text a picture and get a real price in minutes instead of waiting for an in-person estimate",
     crewNote: "Sorting for donation and recycling on-site, not just dumping everything, is a small extra step that shows up directly in reviews and repeat business from environmentally-conscious customers.",
     differentiator: "The junk removal companies that build recurring B2B revenue are the ones who proactively reach out to property managers and real estate agents instead of waiting for one-off residential calls.",
+    visualContentIdea: "A before-and-after video of a packed garage or property turned completely empty is some of the most satisfying, shareable content in the trade — the payoff is immediate and needs almost no explanation.",
   },
   "pest-control": {
     slug: "pest-control",
@@ -347,5 +360,6 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     toolMention: "treatment-tracking software that documents exactly what was applied, where, and when, for compliance and for showing the customer a real service history",
     crewNote: "A technician who explains what they're doing and why, room by room, converts one-time spray customers into quarterly plan customers far more often than one who just sprays and leaves.",
     differentiator: "The pest control companies with the best margins are the ones with the highest percentage of revenue on recurring quarterly plans, not one-time treatments.",
+    visualContentIdea: "A short video of an actual inspection find — a nest, termite damage, a rodent entry point — justifies a treatment far better than any sales pitch, because it's proof of the problem instead of just a claim about it.",
   },
 };
