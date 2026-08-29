@@ -57,9 +57,9 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `${profile.warStory} That's the difference between a busy ${trade.name.toLowerCase()} operation and a profitable one — and it comes down to five numbers, not luck.`,
     tldrBullets: (trade, profile) => [
       `Customer Financed Acquisition: a ${profile.avgJobLabel} paid up front should cover what it cost to win that customer, funding the next one without a loan`,
-      `${profile.terminology[2]} and ${profile.terminology[3]} are real costs — track them or your COGS number is fiction`,
+      `Real costs like ${profile.terminology[2]} and ${profile.terminology[3]} — track them or your COGS number is fiction`,
       `Target 40-55% COGS on a ${trade.name.toLowerCase()} job, which usually means ${profile.crewHourlyCost >= 60 ? "keeping loaded labor cost disciplined" : "keeping fuel, materials, and disposal costs tracked job by job"}`,
-      `${profile.commercialExample} changes your LTGP math by an order of magnitude over a one-off job`,
+      `Landing ${profile.commercialExample} changes your LTGP math by an order of magnitude over a one-off job`,
       profile.differentiator,
     ],
     tldrBottomLine: (trade, profile) =>
@@ -130,7 +130,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
           `5 years ≈ ${fmt(Math.round(profile.commercialAnnualValue * 0.5 * 5))} LTGP`,
         ],
       },
-      { type: "paragraph", text: `${profile.terminology[0]} and ${profile.terminology[4]} both matter less here than the gap above — you can afford 30-50% of LTGP to win ${profile.commercialExample}, which usually means outbidding every competitor still pricing off the first invoice.` },
+      { type: "paragraph", text: `${profile.terminology[0].charAt(0).toUpperCase() + profile.terminology[0].slice(1)} and ${profile.terminology[4]} both matter less here than the gap above — you can afford 30-50% of LTGP to win ${profile.commercialExample}, which usually means outbidding every competitor still pricing off the first invoice.` },
 
       { type: "heading", text: "Customer Financed Acquisition (CFA)" },
       { type: "paragraph", text: `A new customer pays up front for a ${profile.avgJobLabel}; roughly half of that comes back as Gross Profit; that profit buys the next customer. ${profile.terminology[3]} work is exactly the kind of job that shortens this loop, since a fast payback beats a bigger job that takes months to pay for itself.` },
@@ -143,7 +143,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       {
         type: "bullets",
         items: [
-          profile.commercialExample,
+          profile.commercialExample.charAt(0).toUpperCase() + profile.commercialExample.slice(1),
           `Standing ${profile.terminology[4]}-adjacent contracts instead of one-off bidding`,
           profile.differentiator,
           profile.topChannel,
@@ -172,8 +172,8 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `For a ${trade.name.toLowerCase()} business, COGS, Gross Profit, CAC, and LTGP on a real ${profile.avgJobLabel} beat gut-feel pricing every time`,
       `A ${profile.avgJobLabel} paid up front should fund winning the next customer, not just cover the job`,
       profile.differentiator,
-      `${profile.commercialExample} is worth far more over time than the first invoice suggests`,
-      profile.toolMention,
+      `Landing ${profile.commercialExample} is worth far more over time than the first invoice suggests`,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
   },
 
@@ -189,7 +189,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `${profile.seasonalNote}`,
       `Target cost-per-lead at 10-15% of a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel} — ${fmt(Math.round(profile.avgJobValue * 0.1))}–${fmt(Math.round(profile.avgJobValue * 0.15))}`,
       `Referrals close far better than cold leads and cost a fraction of paid ${profile.topChannel.split(":")[0].toLowerCase()}`,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
       `Get the channel behind "${profile.topChannel.split(":")[0]}" dialed in first, then layer paid ads and a referral system on top — in that order, over the next 30 days.`,
@@ -234,7 +234,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
         type: "bullets",
         items: [
           `Property managers who need ongoing ${profile.recurringServiceLabel} across a whole portfolio`,
-          `${profile.commercialExample}, approached directly instead of waiting on an RFP`,
+          `${profile.commercialExample.charAt(0).toUpperCase() + profile.commercialExample.slice(1)}, approached directly instead of waiting on an RFP`,
           "Complementary trades who see the same customers without competing for the same job",
         ],
       },
@@ -279,7 +279,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       "Use email, text, and phone together, not just whichever one you happen to prefer",
       profile.topChannel,
       `Share real ${profile.terminology[0]} and ${profile.terminology[1]} know-how, not just sales pitches — value first, ask second`,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
       `Set a 5-minute response standard, build a 7-touch sequence across email/text/phone that's actually about ${profile.terminology[2]}, and put it in a CRM so nothing on a ${profile.avgJobLabel} falls through the cracks.`,
@@ -322,7 +322,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
         items: [
           `Retargeting ads for anyone who looked at the ${profile.avgJobLabel} page and didn't fill out the form`,
           `A short video after every ${profile.avgJobLabel} estimate, not just a written number`,
-          profile.toolMention,
+          profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
           "A referral ask even from leads who didn't book — they may know someone who's a better fit right now",
         ],
       },
@@ -362,7 +362,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `Qualify before you quote — a quick Budget/Authority/Need/Timeline check catches whether it's a real ${profile.terminology[0]} need before you drive out for it`,
       profile.topChannel,
       profile.differentiator,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
       `Most ${trade.name.toLowerCase()} businesses lose 40-60% of leads between the first call and the appointment — fix speed first, then qualification, then confirmations, and that loss rate drops fast whether the lead is a ${profile.lowJob.label} or ${profile.commercialExample}.`,
@@ -405,7 +405,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
         lines: [
           `Contacted → Set → Showed → Won, each stage roughly 60-80% of the one before it`,
           `A ${profile.terminology[2]} job that stalls usually stalls at one specific stage, not randomly`,
-          profile.toolMention,
+          profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
         ],
       },
     ],
@@ -443,7 +443,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `Sell the outcome, not the ${profile.terminology[0]}: customers are buying peace of mind, not just the job itself`,
       "A Good / Better / Best structure raises average ticket 40%+ on its own",
       profile.seasonalNote,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
       `Master the on-site process for a ${profile.avgJobLabel}, offer three price tiers instead of one number, and have "${profile.commonObjection.objection.replace(/"/g, "")}" scripted before it comes up.`,
@@ -525,7 +525,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       profile.warStory,
       `Funnel hacking around ${profile.commercialExample}-style competitors saves months of guessing`,
       `Local, service-plus-city pages for a ${profile.avgJobLabel} rank and convert better than one generic ${trade.name.toLowerCase()} page`,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
       `Build one platform-specific page for a real, named ${profile.avgJobLabel} offer this week — most ${trade.name.toLowerCase()} businesses are still sending every visitor to the same generic homepage.`,
@@ -776,7 +776,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
 
       { type: "heading", text: "Business Ascension" },
       { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response} That same shift — from one-off labor toward ${profile.commercialExample} — is what business ascension actually looks like.` },
-      { type: "paragraph", text: `${profile.commercialExample}-type accounts run on thinner margins than residential work but bring real predictability. ${profile.seasonalNote}` },
+      { type: "paragraph", text: `${profile.commercialExample.charAt(0).toUpperCase() + profile.commercialExample.slice(1)}-type accounts run on thinner margins than residential work but bring real predictability. ${profile.seasonalNote}` },
 
       { type: "heading", text: "Building a Sellable Business" },
       { type: "paragraph", text: `Valuation drivers for a ${profile.avgJobLabel}-based company: operations that don't depend on the owner, recurring revenue, no single account over 10-15% of revenue, and clean financials. ${profile.differentiator}` },
@@ -798,7 +798,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     keyTakeaways: (trade, profile) => [
       "A designed value ladder converts far more existing customers than hoping it happens naturally",
       "Premium tiers don't need to be complicated — priority access and direct contact go a long way",
-      `${profile.commercialExample} smooths out the seasonality most ${trade.name.toLowerCase()} businesses struggle with`,
+      `Work like ${profile.commercialExample} smooths out the seasonality most ${trade.name.toLowerCase()} businesses struggle with`,
       "Systematized, recurring-revenue businesses are worth meaningfully more, sale or no sale",
     ],
   },
@@ -856,12 +856,12 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       { label: "Month 1 — Foundation", items: ["Audit the current retention rate", "Implement a post-service follow-up sequence", "Build a proper customer database"] },
       { label: "Month 2 — Communication", items: [`Launch a ${profile.terminology[1]}-timed communication calendar`, "Set up email/text automation", "Start requesting reviews systematically"] },
       { label: "Month 3 — Programs", items: [`Launch a ${profile.recurringServiceLabel}`, "Create a referral incentive", "Segment customers by value"] },
-      { label: "Month 4+ — Optimize", items: [`Analyze retention data for real ${profile.avgJobLabel} trends`, "Launch a win-back campaign", profile.toolMention] },
+      { label: "Month 4+ — Optimize", items: [`Analyze retention data for real ${profile.avgJobLabel} trends`, "Launch a win-back campaign", profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1)] },
     ],
     checklist: (trade, profile) => [
       "Customer database with service history in place",
       `Post-${profile.avgJobLabel} follow-up sequence automated`,
-      `${profile.terminology[2]}-timed communication calendar built`,
+      `A ${profile.terminology[2]}-timed communication calendar built`,
       `A ${profile.recurringServiceLabel} offered`,
       "Referral incentive live and promoted",
       "Win-back sequence built for at-risk customers",
@@ -1056,7 +1056,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `Video content on ${profile.terminology[0]} work gets far more engagement than photos alone`,
       "An \"Engage + DM\" habit turns passive followers into booked estimates",
       profile.differentiator,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
       `Put 80% of content effort into Facebook and Instagram, post a real mix built around ${profile.terminology[1]} and ${profile.terminology[2]}, and actively engage rather than just posting and waiting.`,
@@ -1120,7 +1120,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     tldrBullets: (trade, profile) => [
       `AI content creation: draft ${profile.terminology[0]}-focused blog posts, captions, and ad copy in minutes`,
       `AI lead response: automated follow-up can answer a new ${profile.avgJobLabel} inquiry in under a minute, any time of day`,
-      profile.toolMention,
+      profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
       "AI ad testing: generate and test many variations at once, let the data pick the winner",
       profile.differentiator,
     ],
