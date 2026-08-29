@@ -1,19 +1,59 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 import { business } from "@/config/business";
 import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
 
-const partners = [
-  "Google Business Profile",
-  "Google Ads",
-  "Google Analytics",
-  "Meta (Facebook & Instagram)",
-  "HighLevel",
-  "Twilio",
-  "Mailgun",
-  "Zapier",
-  "Stripe",
-  "QuickBooks",
+const integrationGroups = [
+  {
+    category: "Payments & Billing",
+    tools: [
+      { name: "Stripe", icon: "simple-icons:stripe" },
+      { name: "PayPal", icon: "simple-icons:paypal" },
+      { name: "Authorize.net", icon: "lucide:credit-card" },
+      { name: "NMI", icon: "lucide:credit-card" },
+      { name: "QuickBooks", icon: "simple-icons:quickbooks" },
+    ],
+  },
+  {
+    category: "Calls, Texting & Email",
+    tools: [
+      { name: "Twilio", icon: "simple-icons:twilio" },
+      { name: "Mailgun", icon: "simple-icons:mailgun" },
+      { name: "Slack", icon: "simple-icons:slack" },
+    ],
+  },
+  {
+    category: "Scheduling",
+    tools: [
+      { name: "Google Calendar", icon: "simple-icons:googlecalendar" },
+      { name: "Zoom", icon: "simple-icons:zoom" },
+    ],
+  },
+  {
+    category: "Social, Reviews & Ads",
+    tools: [
+      { name: "Facebook", icon: "simple-icons:facebook" },
+      { name: "Instagram", icon: "simple-icons:instagram" },
+      { name: "Google Business Profile", icon: "simple-icons:googlemybusiness" },
+      { name: "Google Ads", icon: "simple-icons:googleads" },
+      { name: "Google Analytics", icon: "simple-icons:googleanalytics" },
+    ],
+  },
+  {
+    category: "E-Commerce & Websites",
+    tools: [
+      { name: "Shopify", icon: "simple-icons:shopify" },
+      { name: "WordPress", icon: "simple-icons:wordpress" },
+    ],
+  },
+  {
+    category: "No-Code Automation",
+    tools: [
+      { name: "Zapier", icon: "simple-icons:zapier" },
+      { name: "Make", icon: "simple-icons:make" },
+    ],
+  },
 ];
 ---
 
@@ -31,13 +71,26 @@ const partners = [
   </section>
 
   <section class="bg-white py-24">
-    <div class="mx-auto max-w-5xl px-4">
-      <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
-        {partners.map((partner) => (
-          <div class="flex h-32 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-50 p-6 text-center shadow-sm">
-            <h3 class="text-sm font-bold text-neutral-500 md:text-base">{partner}</h3>
+    <div class="mx-auto max-w-5xl px-4 space-y-16">
+      {integrationGroups.map((group) => (
+        <div>
+          <h2 class="mb-6 text-sm font-bold tracking-wide text-neutral-400 uppercase">{group.category}</h2>
+          <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
+            {group.tools.map((tool) => (
+              <div class="flex h-32 flex-col items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-6 text-center shadow-sm">
+                <Icon name={tool.icon} class="h-8 w-8 text-neutral-500" />
+                <h3 class="text-sm font-bold text-neutral-500">{tool.name}</h3>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+      ))}
+
+      <div class="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-8 text-center">
+        <p class="text-lg font-semibold text-primary-900">Plus 1,500+ more apps</p>
+        <p class="mx-auto mt-2 max-w-xl text-neutral-600">
+          Everything above connects natively. Need something else? Our platform also connects through Zapier and Make to virtually any tool your business already runs on.
+        </p>
       </div>
     </div>
   </section>
