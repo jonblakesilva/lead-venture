@@ -4,6 +4,7 @@ title: "Roof Repair or Rip-Off? — Turning a Home Inspection Into an Instant Au
 urlSlug: "authority-book-case-study"
 badge: "Lead Generation & PR Case Study"
 excerpt: "We wrote and designed a homeowner's guide for a home exteriors client that turns every inspection into an authority moment and a repeatable PR hook."
+image: "/case-studies/roof-repair-rip-off-cover.jpg"
 order: 16
 ---
 
