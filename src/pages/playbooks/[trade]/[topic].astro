@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import { tradeData, tradeSlugs } from "@/data/trades";
 import { tradeJobProfiles } from "@/data/trade-job-profiles";
 import { playbookTopics, playbookSlugs, type Block } from "@/data/playbooks";
+import { business } from "@/config/business";
 
 export function getStaticPaths() {
   const paths: { params: { trade: string; topic: string } }[] = [];
@@ -33,9 +34,39 @@ const keyTakeaways = topic.keyTakeaways(trade, profile);
 
 const pageTitle = `${topic.title} Playbook for ${trade.name} Companies`;
 const pageDescription = tagline;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? business.website;
+const pageUrl = `${siteUrl}/playbooks/${tradeSlug}/${topicSlug}`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: pageTitle,
+  description: pageDescription,
+  image: `${siteUrl}/opengraph.jpg`,
+  author: {
+    "@type": "Organization",
+    name: business.name,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: business.name,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/favicon.svg`,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": pageUrl,
+  },
+};
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  </Fragment>
   <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
     <div class="mx-auto max-w-4xl px-5 text-center">
       <nav class="mb-6 flex items-center justify-center gap-2 text-sm text-white/50">

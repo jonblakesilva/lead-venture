@@ -50,6 +50,7 @@ This is the single source of truth. Every page, schema, and meta tag derives fro
 Set in Cloudflare Pages → Settings → Environment Variables (or in a local `.env` file for development).
 
 - [ ] `CF_ANALYTICS_TOKEN` — Cloudflare Web Analytics beacon token. The script is omitted entirely when this isn't set — no placeholder script ever loads.
+- [ ] `PUBLIC_GA_MEASUREMENT_ID` — Google Analytics 4 Measurement ID (e.g. `G-XXXXXXX`) from GA4 → Admin → Data Streams. The gtag script is omitted entirely when this isn't set. Also add the same property to Google Search Console (via the GA4 integration or a separate DNS/HTML verification) so you can submit the sitemap and see search query data.
 - [ ] `PUBLIC_GOOGLE_MAPS_KEY` — Maps Embed API key. Required for the service area and service page map embeds. **Must** have domain restrictions configured in Google Cloud Console before going live.
 - [ ] `GOOGLE_PLACES_API_KEY` — Server-side only (no `PUBLIC_` prefix, never exposed to the browser). Required for live Google Reviews via the Places API. Only needed if `business.placeId` is set.
 
