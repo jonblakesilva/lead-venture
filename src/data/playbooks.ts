@@ -181,88 +181,89 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "lead-generation",
     title: "Lead Generation",
     icon: "lucide:target",
-    tagline: (trade) => `The complete system for filling your ${trade.name.toLowerCase()} pipeline — Google, paid ads, referrals, and everything in between.`,
-    tldrSummary: () =>
-      "Lead generation mastery is what separates thriving service businesses from struggling ones. Most owners guess at marketing. This playbook gives you the actual channels, in priority order, and how to measure each one.",
-    tldrBullets: (trade) => [
-      "Google Business Profile optimization is priority #1 — most leads start with a local search",
-      `Paid ads targeting homeowners generate $3-7 in return for every $1 spent when done correctly for a ${trade.name.toLowerCase()} business`,
-      "SEO and content marketing build long-term organic traffic that doesn't disappear when you stop paying for it",
-      "Referral programs turn happy customers into your best salespeople — referred customers close at roughly double the rate of cold leads",
-      "Track cost per lead, conversion rate, and ROI by channel, and double down on whatever is actually working",
+    tagline: (trade, profile) => profile.topChannel,
+    tldrSummary: (trade, profile) =>
+      `${profile.differentiator} That's not luck — it's whichever channel actually fits how ${trade.name.toLowerCase()} customers search and decide, run consistently instead of guessed at.`,
+    tldrBullets: (trade, profile) => [
+      profile.topChannel,
+      `${profile.seasonalNote}`,
+      `Target cost-per-lead at 10-15% of a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel} — ${fmt(Math.round(profile.avgJobValue * 0.1))}–${fmt(Math.round(profile.avgJobValue * 0.15))}`,
+      `Referrals close far better than cold leads and cost a fraction of paid ${profile.topChannel.split(":")[0].toLowerCase()}`,
+      profile.toolMention,
     ],
-    tldrBottomLine: () =>
-      "Optimize your Google Business Profile, launch one paid ad campaign, and set up a referral program — in that order, over the next 30 days.",
-    intro: (trade) => [
-      { type: "paragraph", text: `The customer journey for almost every ${trade.name.toLowerCase()} job starts the same way: a Google search or a recommendation from someone they trust. Businesses that dominate both of those moments get the calls. Businesses that don't, don't.` },
-      { type: "heading", text: "Foundation: Your Digital Presence" },
-      { type: "paragraph", text: "Before spending a dollar on ads, your Google Business Profile and website need to be in shape — otherwise you're paying to send traffic to a leaky bucket." },
+    tldrBottomLine: (trade, profile) =>
+      `Get the channel behind "${profile.topChannel.split(":")[0]}" dialed in first, then layer paid ads and a referral system on top — in that order, over the next 30 days.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: profile.warStory },
+      { type: "heading", text: "Where This Trade's Customers Actually Start Looking" },
+      { type: "paragraph", text: `${profile.topChannel} Everything else in this playbook is secondary to getting that one channel right first.` },
     ],
     sections: (trade, profile) => [
-      { type: "heading", text: "Google Business Profile Mastery" },
+      { type: "heading", text: "Google Business Profile" },
       {
         type: "bullets",
         items: [
-          "Every category filled in — primary and secondary, not just one",
-          "50+ real job photos, uploaded weekly across categories: before/after, team, equipment, completed work",
-          "A review generation system: request within 2-3 days of job completion, respond to every review within 24 hours",
-          "A weekly posting cadence — a service spotlight, a seasonal tip, a project showcase",
+          "Every category filled in, not just one",
+          `50+ real ${profile.terminology[0]}-related job photos, uploaded weekly: before/after, crew, equipment, finished work`,
+          "Reviews requested within 2-3 days of completion, every review answered within 24 hours",
+          `A weekly post — a ${profile.terminology[1]} tip, a seasonal reminder, a finished job`,
         ],
       },
-      { type: "paragraph", text: "This alone generates a meaningful share of inbound calls for most local service businesses, because it directly controls whether you show up in the map pack at the exact moment someone is ready to hire." },
+      { type: "paragraph", text: `${profile.seasonalNote}` },
 
       { type: "heading", text: "Website Conversion" },
-      { type: "paragraph", text: `A well-optimized site can generate 30-50 qualified leads a month from organic search alone. Each service page needs a clear headline, a process overview, safety/trust signals, transparent pricing ranges, and a strong call to action — plus location-specific pages if you serve multiple areas.` },
+      { type: "paragraph", text: `Each service page needs a clear headline, a process overview, ${profile.terminology[2]}-level trust signals, a real price range, and one obvious call to action — plus a page per area if you cover more than one.` },
 
       { type: "heading", text: "Paid Advertising" },
-      { type: "paragraph", text: `${trade.name} searches are high-intent — someone searching "emergency ${profile.avgJobLabel} near me" wants to book today, not browse.` },
+      { type: "paragraph", text: `"${profile.avgJobLabel} near me" is a ready-to-book search, not a browsing one.` },
       {
         type: "example",
-        title: "Google Ads structure",
+        title: "Budget split",
         lines: [
-          "40% budget on emergency/urgent-need campaigns",
+          "40% on urgent/emergency-intent campaigns",
           "35% on your core, highest-margin service",
-          "25% on secondary services",
-          `Target cost-per-lead of 10-15% of your average job value (${fmt(Math.round(profile.avgJobValue * 0.1))}–${fmt(Math.round(profile.avgJobValue * 0.15))} for a ${fmt(profile.avgJobValue)} job)`,
+          "25% on everything else",
+          `Target cost-per-lead: ${fmt(Math.round(profile.avgJobValue * 0.1))}–${fmt(Math.round(profile.avgJobValue * 0.15))} for a ${fmt(profile.avgJobValue)} job`,
         ],
       },
-      { type: "paragraph", text: "Facebook and Instagram ads work best targeting a 15-mile radius, homeowners aged 35-65, using before/after content and lookalike audiences built from your past customers. Third-party lead platforms (Thumbtack, Angi, Yelp Ads) can supplement volume, but response speed is everything — the first business to respond wins the job roughly 75% of the time." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
-      { type: "heading", text: "Referral Programs & Strategic Partnerships" },
-      { type: "paragraph", text: "Referred customers close at 60-70% versus 30-40% for cold leads, and they cost you a fraction of your paid CAC. A simple $100-per-referral cash incentive, promoted after every completed job, is usually enough to get it moving." },
+      { type: "heading", text: "Referrals & Strategic Partnerships" },
+      { type: "paragraph", text: `A simple per-referral cash incentive, promoted after every closed job, usually gets this moving on its own.` },
       {
         type: "bullets",
         items: [
-          `Partner with property managers who need ongoing ${profile.recurringServiceLabel} across their portfolio`,
-          "Partner with real estate agents who need fast turnarounds before a listing goes live",
-          "Partner with complementary trades who see the same customers but don't compete with you",
+          `Property managers who need ongoing ${profile.recurringServiceLabel} across a whole portfolio`,
+          `${profile.commercialExample}, approached directly instead of waiting on an RFP`,
+          "Complementary trades who see the same customers without competing for the same job",
         ],
       },
 
-      { type: "heading", text: "Offline Channels Still Work" },
-      { type: "paragraph", text: "Vehicle wraps generate tens of thousands of impressions per vehicle per year for the cost of a one-time wrap. Yard signs left at every job (with permission) turn every completed project into free local advertising. Direct mail targeted at storm-affected areas or high-value neighborhoods routinely gets a 1-3% response rate." },
+      { type: "heading", text: "What Else Actually Works Here" },
+      { type: "paragraph", text: profile.crewNote },
+      { type: "paragraph", text: profile.differentiator },
     ],
-    implementationPlan: () => [
-      { label: "Month 1 — Foundation", items: ["Fully optimize your Google Business Profile", "Set up an automated review request system", "Audit your website's service pages and mobile experience", "Implement call tracking"] },
-      { label: "Month 2 — Paid Advertising", items: ["Launch a Google Ads campaign on your highest-intent service", "Set up conversion tracking", "Test 3-5 ad variations", "Optimize based on the first month of data"] },
-      { label: "Month 3 — Social & Referrals", items: ["Launch Facebook/Instagram campaigns", "Build a custom audience from past customers", "Launch a formal referral program", "Identify and contact 5-10 potential referral partners"] },
-      { label: "Month 4+ — Optimize & Scale", items: ["Review cost-per-lead and ROI by channel monthly", "Cut or fix underperforming channels", "Double budget on the channel with the best ROI", "Add offline channels (vehicle wrap, yard signs, direct mail) once digital is dialed in"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Month 1 — Foundation", items: ["Fully optimize the Google Business Profile", "Automate review requests", `Audit service pages for a real ${profile.avgJobLabel} price range and mobile speed`, "Set up call tracking"] },
+      { label: "Month 2 — Paid", items: [`Launch one campaign on ${profile.topChannel.split(":")[0].toLowerCase()}`, "Set up conversion tracking", "Test 3-5 ad variations", `Have an answer ready for "${profile.commonObjection.objection.replace(/"/g, "")}"`] },
+      { label: "Month 3 — Referrals", items: [`Launch a referral program built around ${profile.recurringServiceLabel} customers`, "Contact 5-10 potential partners", `Reach out to ${profile.commercialExample} directly`] },
+      { label: "Month 4+ — Scale", items: ["Review cost-per-lead by channel monthly", "Cut what isn't converting", `Double down on ${profile.topChannel.split(":")[0].toLowerCase()} once it's proven`] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Google Business Profile fully optimized with 50+ photos",
       "Automated review request system live",
-      "Website service pages reviewed for conversion",
+      `Service pages show a real ${profile.avgJobLabel} price range`,
       "Call tracking implemented",
-      "First paid ad campaign launched and tracked",
+      `First campaign live on ${profile.topChannel.split(":")[0].toLowerCase()}`,
       "Referral program launched and promoted",
-      "At least 3 referral/strategic partnerships in motion",
+      `At least one ${profile.commercialExample}-type partner contacted`,
       "Cost per lead tracked by channel",
     ],
-    keyTakeaways: (trade) => [
-      "Your Google Business Profile is the highest-leverage, lowest-cost lead source available — treat it as an active asset, not a set-and-forget listing",
-      `Paid ads should target a cost-per-lead around 10-15% of your average ${trade.name.toLowerCase()} job value`,
-      "Referrals close at roughly double the rate of cold leads and cost far less — build a system for asking, don't rely on it happening naturally",
-      "Track every channel's cost per lead and conversion rate, and reinvest in whatever is actually converting, not whatever feels most active",
+    keyTakeaways: (trade, profile) => [
+      profile.topChannel,
+      `Target cost-per-lead around 10-15% of a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel}`,
+      "Referrals close far better than cold leads and cost a fraction as much — build a system for asking",
+      profile.differentiator,
     ],
   },
 
