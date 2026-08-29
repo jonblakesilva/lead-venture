@@ -354,82 +354,79 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "appointment-setting-qualification",
     title: "Appointment Setting & Qualification",
     icon: "lucide:calendar-check",
-    tagline: () => "Stop losing 40-60% of leads to slow response, weak qualification, and no-shows.",
-    tldrSummary: () =>
-      "The appointment is where revenue is made or lost. Most service businesses lose the majority of their leads before an estimate ever happens — not on price, on process.",
-    tldrBullets: () => [
-      "Speed to lead wins: contacting leads within 5 minutes produces roughly 9x higher conversion than waiting 30+ minutes",
-      "Qualify before you quote — use a simple framework (Budget, Authority, Need, Timeline) to spot serious buyers",
-      "Confirm, remind, confirm again — a multi-touch confirmation sequence cuts no-shows by 60%+",
-      "Script for consistency — a written phone script builds confidence across your whole team, not just your best closer",
-      "Automate the workflow in a CRM so no lead is relying on someone's memory",
+    tagline: (trade, profile) => `Stop losing ${profile.avgJobLabel} leads to slow response, weak qualification, and no-shows.`,
+    tldrSummary: (trade, profile) =>
+      `${profile.warStory} The appointment itself is where a ${trade.name.toLowerCase()} lead is actually won or lost — usually well before an estimate happens.`,
+    tldrBullets: (trade, profile) => [
+      `Speed to lead wins on a ${profile.avgJobLabel} — contact within 5 minutes converts roughly 9x higher than waiting half an hour`,
+      `Qualify before you quote — a quick Budget/Authority/Need/Timeline check catches whether it's a real ${profile.terminology[0]} need before you drive out for it`,
+      profile.topChannel,
+      profile.differentiator,
+      profile.toolMention,
     ],
-    tldrBottomLine: () => "Most local service businesses lose 40-60% of their leads to slow response, poor qualification, and no-shows. This is the system that fixes all three.",
-    intro: () => [
-      { type: "paragraph", text: "Leads contacted within 5 minutes convert roughly 9x more often than leads contacted after 30 minutes, and about 78% of buyers go with whichever company responds first. After 10 minutes, your odds drop by roughly 400%." },
+    tldrBottomLine: (trade, profile) =>
+      `Most ${trade.name.toLowerCase()} businesses lose 40-60% of leads between the first call and the appointment — fix speed first, then qualification, then confirmations, and that loss rate drops fast whether the lead is a ${profile.lowJob.label} or ${profile.commercialExample}.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response} That's the qualification conversation happening before a truck ever gets sent out — and getting it right decides whether the appointment is worth keeping.` },
     ],
-    sections: (trade) => [
-      { type: "heading", text: "The Complete Call Workflow" },
+    sections: (trade, profile) => [
+      { type: "heading", text: "The Call Workflow" },
       {
         type: "bullets",
         items: [
-          "Step 1 (0-5 min): initial contact — acknowledge the lead immediately",
-          "Step 2 (5-10 min): qualification — a handful of targeted questions",
-          "Step 3 (2-3 min): appointment setting — offer two specific time slots, never open-ended \"whenever works\"",
-          "Step 4 (automated): confirmation and follow-up — immediate SMS, an email with a calendar invite, a 24-hour reminder, and a 2-hour reminder",
+          `0-5 min: acknowledge the ${profile.avgJobLabel} lead, don't let it sit`,
+          `5-10 min: a few real questions about the ${profile.terminology[0]} or ${profile.terminology[1]} involved`,
+          `2-3 min: two specific time slots, never "whenever works"`,
+          `Automated: text, calendar invite, a reminder, a final nudge before a ${profile.highJob.label}`,
         ],
       },
 
-      { type: "heading", text: "Qualifying With BANT" },
-      { type: "paragraph", text: `Ask enough to know whether this is a real, fundable, urgent need before you invest time on an estimate.` },
+      { type: "heading", text: "Qualifying Before You Drive Out" },
       {
         type: "bullets",
         items: [
-          "Budget — do they have a realistic sense of what this kind of work costs?",
-          "Authority — are you talking to the actual decision-maker?",
-          "Need — what specifically prompted the call, and how serious is it?",
-          `Timeline — are they trying to get this done this week, or just pricing it out for someday?`,
+          `Budget — a realistic sense of what a ${profile.avgJobLabel} costs`,
+          `Authority — the decision-maker, not someone pricing it out for a ${profile.commercialExample}`,
+          `Need — closer to a ${profile.lowJob.label} or a ${profile.highJob.label}?`,
+          `Timeline — this week, or "someday" into nurture`,
         ],
       },
-      { type: "paragraph", text: "Score it simply: 4-for-4 is a hot lead you book immediately, 3-for-4 is warm and worth booking within 24 hours, 2 or fewer goes into a longer nurture sequence instead of an on-site visit." },
 
       { type: "heading", text: "No-Show Prevention" },
-      { type: "paragraph", text: "A multi-touch confirmation sequence — an immediate text, a reminder the day before with a calendar invite, and a final reminder two hours out — is the single highest-leverage fix for no-shows. Offering a narrow arrival window and sending a photo of who's showing up both meaningfully improve show rates too." },
+      { type: "paragraph", text: profile.crewNote },
 
       { type: "heading", text: "Objection Handling on the Phone" },
-      { type: "paragraph", text: `The most common pushback before an appointment is even booked: "I need to get other quotes," "I just want ballpark pricing over the phone," and "I need to talk to my spouse first." Each deserves a prepared, calm response rather than an improvised one — write these out in advance and practice them.` },
+      { type: "paragraph", text: `"I just want ballpark pricing over the phone" is the most common pushback before a ${profile.avgJobLabel} appointment is even booked — a real range instead of a hard number keeps the conversation moving toward booking instead of stalling on a guess.` },
 
-      { type: "heading", text: "Tracking the Full Funnel" },
+      { type: "heading", text: "Tracking the Funnel" },
       {
         type: "example",
-        title: "How the numbers stack up",
+        title: `A ${profile.avgJobLabel} funnel, stage by stage`,
         lines: [
-          "100 leads → 70 contacted (70% contact rate)",
-          "70 contacted → 42 appointments set (60% set rate)",
-          "42 set → 34 showed up (80% show rate)",
-          "34 showed → roughly 14 became jobs (40% close rate on the estimate)",
-          "Overall: about 14% lead-to-sale — and every stage in this chain is a place a fixable process failure quietly costs you money",
+          `Contacted → Set → Showed → Won, each stage roughly 60-80% of the one before it`,
+          `A ${profile.terminology[2]} job that stalls usually stalls at one specific stage, not randomly`,
+          profile.toolMention,
         ],
       },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Foundation", items: ["Document your current appointment-setting process", "Calculate baseline contact rate, set rate, and show rate", "Set up call recording if you don't have it", "Write down your phone scripts"] },
-      { label: "Week 2 — Scripts & Training", items: ["Customize scripts for your business and services", "Train the team on the scripts", "Practice the most common objections out loud", "Start a short daily practice routine"] },
-      { label: "Week 3 — Automation", items: ["Set up lead routing in your CRM", "Configure instant SMS alerts for new leads", "Build the confirmation sequence (SMS + email)", "Test the whole workflow end to end"] },
-      { label: "Week 4+ — Optimize", items: ["Review call recordings weekly", "Adjust scripts based on real conversations", "Track KPIs monthly", "Refresh training quarterly"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Foundation", items: [`Document the current ${profile.avgJobLabel} process end to end`, "Calculate baseline contact, set, and show rates", "Set up call recording", `Write a script for "${profile.commonObjection.objection.replace(/"/g, "")}"`] },
+      { label: "Week 2 — Scripts & Training", items: [`Customize scripts around ${profile.terminology[3]} and ${profile.terminology[4]}`, "Train the team on them", "Practice the top objections out loud", "Run a short daily practice routine"] },
+      { label: "Week 3 — Automation", items: ["Route leads instantly in the CRM", "Turn on instant SMS alerts", `Build the confirmation sequence around a real ${profile.recurringServiceLabel}`, profile.differentiator] },
+      { label: "Week 4+ — Optimize", items: ["Review call recordings weekly", "Adjust scripts from real conversations", profile.crewNote, "Refresh training quarterly"] },
     ],
-    checklist: () => [
-      "5-minute response standard in place and tracked",
-      "BANT qualification questions written down",
+    checklist: (trade, profile) => [
+      "5-minute response standard tracked",
+      `BANT questions written for a real ${profile.avgJobLabel}`,
       "Two-option scheduling used instead of open-ended asks",
       "Multi-touch confirmation sequence automated",
-      "Objection scripts written for the top 3-5 pushbacks",
-      "Contact rate, set rate, and show rate tracked monthly",
+      `Script ready for "${profile.commonObjection.objection.replace(/"/g, "")}"`,
+      `Contact, set, and show rate tracked for ${profile.terminology[5]}-type jobs`,
     ],
-    keyTakeaways: (trade) => [
+    keyTakeaways: (trade, profile) => [
       "Speed to lead is the highest-leverage fix available — 5 minutes or bust",
-      "Qualify before you quote so you're spending on-site time on real buyers",
-      `A written, practiced phone script makes every team member perform like your best closer, not just the ${trade.name.toLowerCase()} owner`,
+      `Qualify before quoting so on-site time goes to real ${profile.avgJobLabel} buyers`,
+      profile.differentiator,
       "No-show prevention is a confirmation-sequence problem, not a customer-reliability problem",
     ],
   },
