@@ -52,8 +52,13 @@ const testimonials = [
             <div class="w-full shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:w-[calc(33.333%-1rem)]">
               <div class="relative aspect-[9/16] overflow-hidden">
                 {t.videoUrl ? (
-                  <div class="h-full w-full bg-black">
-                    <video src={t.videoUrl} class="h-full w-full object-cover" preload="metadata" playsinline controls></video>
+                  <div class="testimonial-video-wrap group/video relative h-full w-full bg-black">
+                    <video src={t.videoUrl} class="h-full w-full object-cover" preload="metadata" playsinline muted></video>
+                    <button type="button" class="testimonial-play-overlay absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-black/20 transition-colors hover:bg-black/30" aria-label={`Play video testimonial from ${t.name}`}>
+                      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent-500/90 text-white shadow-lg transition-transform group-hover/video:scale-110">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </div>
+                    </button>
                   </div>
                 ) : (
                   <>
@@ -134,4 +139,25 @@ const testimonials = [
 
     render();
   }
+
+  document.querySelectorAll('.testimonial-video-wrap').forEach((wrap) => {
+    const video = wrap.querySelector('video');
+    const overlay = wrap.querySelector('.testimonial-play-overlay');
+    if (!video || !overlay) return;
+
+    overlay.addEventListener('click', () => {
+      video.muted = false;
+      video.controls = true;
+      video.play();
+      overlay.style.display = 'none';
+    });
+
+    video.addEventListener('pause', () => {
+      overlay.style.display = 'flex';
+    });
+
+    video.addEventListener('ended', () => {
+      overlay.style.display = 'flex';
+    });
+  });
 </script>
