@@ -664,73 +664,74 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "upsell",
     title: "Upsell",
     icon: "lucide:arrow-up-circle",
-    tagline: (trade) => `Increase your average ${trade.name.toLowerCase()} ticket 30-50% by solving problems customers can't see for themselves.`,
-    tldrSummary: () =>
-      "A 20% increase in average ticket is a 20% revenue increase without acquiring a single new customer. The businesses that do this well aren't being pushy — they're catching things a homeowner would never think to ask about.",
-    tldrBullets: (trade) => [
-      `Adopt a trusted-advisor mindset: you're not "selling more," you're identifying problems the customer can't see`,
-      "Walk the whole property, not just the specific thing they called about",
-      `Use the "while we're here" technique to bundle related work into the same trip`,
-      `Offer a recurring plan (${trade.name === "Lawn Care & Mowing" ? "a seasonal route" : "an annual or seasonal maintenance visit"}) so revenue isn't one-and-done`,
-      "Train the crew, not just the salesperson, to spot and report additional opportunities",
+    tagline: (trade, profile) => `Increase average ticket 30-50% on a ${profile.avgJobLabel} by catching what the customer can't see for themselves.`,
+    tldrSummary: (trade, profile) =>
+      `A 20% increase in average ticket is a 20% revenue increase without a single new customer. ${profile.warStory}`,
+    tldrBullets: (trade, profile) => [
+      `Adopt a trusted-advisor mindset on every ${profile.avgJobLabel}: not "selling more," identifying what the customer can't see`,
+      profile.crewNote,
+      `Use "while we're here" to bundle related ${profile.terminology[0]} work into the same trip`,
+      `Offer a ${profile.recurringServiceLabel} so revenue isn't one-and-done`,
+      profile.differentiator,
     ],
-    tldrBottomLine: () => "Build a property-walk checklist, train the team to notice (not just execute), and offer Good/Better/Best on every estimate.",
+    tldrBottomLine: (trade, profile) =>
+      `Build a property-walk checklist for a ${profile.avgJobLabel}, train the team to notice, and offer Good/Better/Best on every estimate.`,
     intro: (trade, profile) => [
       {
         type: "example",
         title: "Piecemeal vs. comprehensive care",
         lines: [
           `Piecemeal: ${fmt(profile.lowJob.low)} now for the obvious issue, then ${fmt(Math.round(profile.avgJobValue * 2))} later once a related problem gets worse`,
-          `Comprehensive: ${fmt(Math.round(profile.avgJobValue * 1.3))} upfront that catches everything at once — less total spend, and one visit instead of two or three`,
+          `Comprehensive: ${fmt(Math.round(profile.avgJobValue * 1.3))} upfront that catches everything at once — one visit instead of two or three`,
         ],
       },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "Identifying Opportunities" },
-      { type: "paragraph", text: "During the initial estimate, walk the whole property — not just the specific spot the customer mentioned — and document what you see with photos and notes. During the job itself, train crews to notice and flag additional needs, and give the crew leader authority to mention a same-visit add-on (\"while we're already set up here, we can also handle X for $Y\") rather than waiting for a callback." },
+      { type: "paragraph", text: `Walk the whole property during the estimate, not just the ${profile.terminology[1]} spot mentioned on the call — document it with photos. ${profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1)} On the job itself, give the crew leader authority to mention a same-visit add-on rather than waiting for a callback.` },
 
       { type: "heading", text: "The Good / Better / Best Approach" },
       {
         type: "example",
-        title: `Example estimate for a ${profile.avgJobLabel}`,
+        title: `A ${profile.avgJobLabel} estimate`,
         lines: [
           `Good — ${fmt(profile.avgJobValue)} (the core job)`,
           `Better — ${fmt(Math.round(profile.avgJobValue * 1.25))} (core job + one related fix)`,
-          `Best — ${fmt(Math.round(profile.avgJobValue * 1.6))} (core job + related fix + a preventive add-on)`,
+          `Best — ${fmt(Math.round(profile.avgJobValue * 1.6))} (core job + a preventive add-on)`,
         ],
       },
 
       { type: "heading", text: "Bundling and Packages" },
-      { type: "paragraph", text: `A packaged offer — combining an inspection, the core service, and a preventive add-on at a slight discount off buying them separately — increases both average ticket and the odds of ongoing, ${profile.recurringServiceLabel}-style repeat business.` },
+      { type: "paragraph", text: `A packaged offer — inspection, core service, preventive add-on at a slight discount off buying separately — raises average ticket and the odds of ongoing ${profile.recurringServiceLabel}-style business, the same logic that makes ${profile.commercialExample} worth pursuing in the first place.` },
 
       { type: "heading", text: "Education-Based Selling" },
-      { type: "paragraph", text: "Explain the problem, the consequence of ignoring it, and the solution — in that order. People rarely resist a fix once they understand what happens if it's skipped. A quick, real example (\"we saw the same issue at a property two streets over — it turned into a much bigger repair by spring\") does more than any hard sell." },
+      { type: "paragraph", text: `Explain the problem, the consequence of ignoring it, then the solution — people rarely resist once they understand what happens if it's skipped. ${profile.differentiator}` },
 
       { type: "heading", text: "Training and Incentives" },
-      { type: "paragraph", text: "Give crews simple language for flagging opportunities, and consider a small commission (5-10%) on upsold work to make it worth their attention. A monthly recognition for whoever spots the most value for customers reinforces the behavior without turning it into constant pressure." },
+      { type: "paragraph", text: `Give crews simple language for flagging ${profile.terminology[2]} opportunities, and consider a small commission on upsold work to make it worth their attention. ${profile.topChannel}` },
 
       { type: "heading", text: "Handling Pushback" },
-      { type: "paragraph", text: "\"That's too expensive,\" \"I'll think about it,\" and \"I'll just do it myself\" are the three most common objections — each is best met by reconnecting to the actual consequence of not doing it, not by simply discounting the price." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response} That's the same reframe that works on "I'll just do it myself" or "I'll think about it" — reconnect to the actual consequence of skipping it.` },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Assessment", items: ["Review your current average ticket size", "Identify commonly missed upsell opportunities", "Build a property-walk checklist"] },
-      { label: "Week 2 — Training", items: ["Train the team on comprehensive property assessments", "Practice the \"while we're here\" script", "Role-play common objections"] },
-      { label: "Week 3 — Systems", items: ["Build Good/Better/Best pricing templates", "Create 1-2 bundled service packages", "Set up simple upsell tracking"] },
-      { label: "Week 4+ — Launch & Optimize", items: ["Use it on every estimate", "Track results weekly", "Refine messaging based on what's actually landing", "Consider a small incentive for the team"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Assessment", items: [`Review current average ticket on a ${profile.avgJobLabel}`, `Identify commonly missed ${profile.terminology[4]} opportunities`, "Build a property-walk checklist"] },
+      { label: "Week 2 — Training", items: ["Train the team on full property assessments", `Practice the "while we're here" script for ${profile.terminology[3]}`, "Role-play common objections"] },
+      { label: "Week 3 — Systems", items: ["Build Good/Better/Best pricing templates", `Create a bundled ${profile.recurringServiceLabel} package`, "Set up simple upsell tracking"] },
+      { label: "Week 4+ — Launch", items: ["Use it on every estimate", "Track results weekly", profile.seasonalNote] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Property-walk checklist used on every estimate",
       "Crew trained to flag additional opportunities",
-      "Good/Better/Best pricing built for top services",
-      "At least one bundled package created",
-      "Objection responses scripted",
+      `Good/Better/Best pricing built for a ${profile.avgJobLabel}`,
+      `At least one bundled ${profile.recurringServiceLabel} package created`,
+      `Response ready for "${profile.commonObjection.objection.replace(/"/g, "")}"`,
       "Average ticket tracked monthly",
     ],
     keyTakeaways: (trade, profile) => [
-      "A full property walk catches revenue a narrow \"just the one thing they called about\" visit misses",
+      "A full property walk catches revenue a narrow, single-issue visit misses",
       "Three price options consistently raise average ticket more than one number ever will",
-      `Bundled, recurring offers (like a ${profile.recurringServiceLabel}) turn one-off jobs into ongoing ${trade.name.toLowerCase()} revenue`,
-      "The crew on-site is your best opportunity source — train them to notice, not just execute",
+      `A ${profile.recurringServiceLabel} turns one-off jobs into ongoing ${trade.name.toLowerCase()} revenue`,
+      profile.differentiator,
     ],
   },
 
