@@ -517,75 +517,75 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "landing-pages-offers",
     title: "Landing Pages & Offers",
     icon: "lucide:layout",
-    tagline: () => "Most service businesses use one generic page for all their traffic. Platform-specific pages and real offers convert 3-5x better.",
-    tldrSummary: () =>
-      "Facebook traffic and Google traffic need completely different landing pages. Facebook is an interruption — it needs a story and trust-building. Google is intent — it needs speed and a clear next step. And your offer matters more than your design.",
-    tldrBullets: (trade) => [
-      "Facebook needs storytelling and heavy social proof; Google needs speed and a direct answer to the search",
-      "A great offer on an ugly page beats a weak offer on a beautiful page, every time",
-      "Funnel hacking — studying what competitors are already running — saves months of guessing",
-      `Local, service-plus-city landing pages rank faster and convert better than one generic ${trade.name.toLowerCase()} page`,
-      "Urgency + scarcity + a real guarantee is the combination that actually moves people to act",
+    tagline: (trade, profile) => `One generic page for all your traffic is costing you jobs. ${profile.differentiator}`,
+    tldrSummary: (trade, profile) =>
+      `Facebook traffic and Google traffic need different pages for a ${profile.avgJobLabel}. ${profile.commonObjection.objection} A page that answers that before they even ask converts far better than a generic homepage.`,
+    tldrBullets: (trade, profile) => [
+      `Facebook needs a story and heavy ${profile.terminology[4]} proof; Google needs speed and a direct answer to "${profile.avgJobLabel} near me"`,
+      profile.warStory,
+      `Funnel hacking around ${profile.commercialExample}-style competitors saves months of guessing`,
+      `Local, service-plus-city pages for a ${profile.avgJobLabel} rank and convert better than one generic ${trade.name.toLowerCase()} page`,
+      profile.toolMention,
     ],
-    tldrBottomLine: () => "Build one platform-specific landing page with a real, named offer this week — most businesses are still sending every visitor to the same generic homepage.",
-    intro: () => [
-      { type: "paragraph", text: "A landing page isn't your homepage. It has one job: get this specific visitor, who arrived from this specific ad or search, to take one specific action." },
+    tldrBottomLine: (trade, profile) =>
+      `Build one platform-specific page for a real, named ${profile.avgJobLabel} offer this week — most ${trade.name.toLowerCase()} businesses are still sending every visitor to the same generic homepage.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `A landing page isn't a homepage. Its only job is getting this specific visitor, who searched for a ${profile.avgJobLabel} or clicked a specific ad, to take one specific action — not to explain the whole ${trade.name.toLowerCase()} business the way a homepage does.` },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "Facebook vs. Google: Two Different Jobs" },
-      { type: "paragraph", text: "Facebook traffic is cold and interrupted mid-scroll — it needs education, trust, and a story before it will convert, which means a longer page with heavy social proof (10+ testimonials, before/after photos, a clear FAQ). Google PPC traffic already typed the exact problem into a search bar — it needs a short, fast page that matches the search intent immediately, with a clear price range and a single obvious next step." },
+      { type: "paragraph", text: `Facebook traffic is cold and interrupted mid-scroll — it needs a story and heavy proof: before/after ${profile.terminology[0]} photos, real reviews, a clear FAQ. Google traffic already typed the ${profile.avgJobLabel} problem into a search bar — it needs a short, fast page with a real price range and one obvious next step, not a story.` },
 
       { type: "heading", text: "The Anatomy of an Irresistible Offer" },
-      { type: "paragraph", text: "Formula: Core Service + a Unique Name + Bonuses + Urgency/Scarcity + a Guarantee." },
+      { type: "paragraph", text: `Formula: Core Service + a Unique Name + Bonuses + Urgency/Scarcity + a Guarantee. ${profile.commonObjection.response}` },
       {
         type: "example",
-        title: "Stacking value on a core job",
+        title: `Stacking value on a ${profile.avgJobLabel}`,
         lines: [
           `Core service: ${fmt(profile.avgJobValue)} ${profile.avgJobLabel}`,
-          `Bonus 1: a free follow-up inspection (${fmt(Math.round(profile.avgJobValue * 0.1))} value)`,
-          `Bonus 2: 10% off the next service (${fmt(Math.round(profile.avgJobValue * 0.1))} value)`,
+          `Bonus 1: a free follow-up ${profile.terminology[1]} check (${fmt(Math.round(profile.avgJobValue * 0.1))} value)`,
+          `Bonus 2: 10% off a ${profile.recurringServiceLabel}`,
           `Total stacked value: ${fmt(Math.round(profile.avgJobValue * 1.2))} — investment: ${fmt(profile.avgJobValue)}`,
         ],
       },
-      { type: "paragraph", text: "Real scarcity works (\"only 10 spots this month\"); fake scarcity gets noticed and erodes trust fast. A strong guarantee — a satisfaction guarantee, a price match, or an honesty guarantee (\"if we recommend work you don't need, we'll pay you back\") — removes the risk that's actually stopping people from booking." },
 
-      { type: "heading", text: "Funnel Hacking: Study What's Already Working" },
-      { type: "paragraph", text: "Meta's Ad Library and Google's Ads Transparency Center let you see exactly what competitors — including ones in other cities who aren't your direct competition — are currently running. Look at their ad copy, their offer structure, and their landing pages, and adapt the pattern to your own brand rather than copying it outright." },
+      { type: "heading", text: "Funnel Hacking" },
+      { type: "paragraph", text: `Meta's Ad Library and Google's Ads Transparency Center show what ${trade.name.toLowerCase()} competitors elsewhere are running for a ${profile.avgJobLabel} right now — including ${profile.commercialExample}-focused campaigns worth studying even from a non-competing city.` },
 
       { type: "heading", text: "Local Landing Pages for SEO" },
-      { type: "paragraph", text: `Service-plus-city pages (e.g. "${trade.name} in Canton, OH") tend to rank faster and convert meaningfully better than one generic services page, because they match exactly what someone nearby is searching for. Start with your home city plus 3-5 neighboring areas — that's usually enough to meaningfully expand your local footprint.` },
+      { type: "paragraph", text: `${profile.seasonalNote} A page built around "${trade.name} in [City]" ranks faster than one generic services page because it matches exactly what someone nearby is searching for during that window.` },
 
-      { type: "heading", text: "Common Landing Page Mistakes" },
+      { type: "heading", text: "Common Mistakes" },
       {
         type: "bullets",
         items: [
-          "Too many options or links pulling attention away from the one action you want",
-          "No real social proof — a page with zero testimonials or photos reads as unproven",
-          "A weak or generic offer with nothing to actually respond to",
-          "Slow load times, especially on mobile, where most local searches happen",
-          "A page that isn't obviously readable and clickable on a phone",
+          "Too many links pulling attention away from the one action wanted",
+          `No real proof — zero ${profile.terminology[2]} photos or reviews reads as unproven`,
+          `A weak, unnamed offer with nothing specific to a ${profile.lowJob.label} or ${profile.highJob.label} to respond to`,
+          `Slow load times on the exact device someone's searching "${profile.avgJobLabel} near me" from`,
+          profile.crewNote,
         ],
       },
     ],
-    implementationPlan: () => [
-      { label: "Days 1-2 — Choose & Research", items: ["Pick one page type to start: emergency, seasonal offer, or a core service", "Pull 5 competitor examples from Meta Ad Library and Google Ads Transparency Center", "Note what's working across all of them"] },
-      { label: "Days 3-4 — Build the Offer & Copy", items: ["Name the offer using the formula", "Stack in 1-2 real bonuses", "Add genuine urgency and a guarantee", "Write the headline, proof section, and FAQ"] },
-      { label: "Days 5-6 — Design & Mobile", items: ["Build the page (a template tool is fine to start)", "Add photos, testimonials, and trust badges", "Test thoroughly on a phone", "Confirm click-to-call works"] },
-      { label: "Day 7 — Launch & Track", items: ["Connect the page to your domain", "Set up analytics and conversion tracking", "Send a small amount of test traffic", "Monitor conversion rate and iterate"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Days 1-2 — Research", items: [`Pick one page type: emergency, seasonal offer, or the core ${profile.avgJobLabel}`, "Pull 5 competitor examples from Meta Ad Library and Google Ads Transparency Center", `Note what ${profile.commercialExample}-focused competitors are doing differently`] },
+      { label: "Days 3-4 — Offer & Copy", items: ["Name the offer using the stacking formula", `Add 1-2 real bonuses tied to ${profile.terminology[3]}`, "Add genuine urgency and a real guarantee", "Write the headline, proof section, and FAQ"] },
+      { label: "Days 5-6 — Design & Mobile", items: [`Build the page around the ${profile.avgJobLabel} offer`, "Add photos, testimonials, and trust badges", "Test thoroughly on a phone", "Confirm click-to-call works"] },
+      { label: "Day 7 — Launch", items: ["Connect the page to the domain", "Set up conversion tracking", `Send traffic through ${profile.topChannel.split(":")[0].toLowerCase()}`, profile.differentiator] },
     ],
-    checklist: () => [
-      "Separate landing pages exist for Facebook traffic vs. Google traffic",
-      "Offer is named and includes at least one bonus",
+    checklist: (trade, profile) => [
+      "Separate pages exist for Facebook traffic vs. Google traffic",
+      `Offer is named and built around a real ${profile.avgJobLabel}`,
       "A real guarantee is stated clearly",
-      "Genuine urgency or scarcity is present (not fabricated)",
-      "Page has been checked against 3-5 competitor pages",
+      "Genuine urgency or scarcity is present, not fabricated",
+      `Page has been checked against real ${profile.commercialExample}-focused competitor pages`,
       "At least one local service-plus-city page is live",
       "Page loads fast and works cleanly on mobile",
     ],
-    keyTakeaways: () => [
+    keyTakeaways: (trade, profile) => [
       "Match the page to the traffic source — Facebook needs a story, Google needs speed",
-      "The offer does more work than the design — build it deliberately using the stacking formula",
-      "Don't guess at what converts — study what competitors are already running",
+      `The offer on a ${profile.avgJobLabel} does more work than the design — build it deliberately`,
+      profile.differentiator,
       "Local, service-plus-city pages outperform one generic page for both SEO and conversion",
     ],
   },
