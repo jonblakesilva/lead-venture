@@ -5,6 +5,8 @@ import { Icon } from "astro-icon/components";
 import FaqAccordion from "@/components/faqaccordion.astro";
 import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
 
+const yearsInBusiness = new Date().getFullYear() - business.yearFounded;
+
 const plans = [
   {
     name: "Starter",
@@ -164,10 +166,10 @@ const pricingSchema = {
     <div class="marquee-track flex w-[200%] items-center">
       {[0, 1].map((i) => (
         <div class="flex w-1/2 shrink-0 items-center justify-around">
-          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">★ 5.0 Average Rating</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">★ {business.rating} Average Rating</span>
           <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">200+ Businesses Coached</span>
-          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">10,000+ Leads Generated</span>
-          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">$5M+ Revenue Recovered</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">{yearsInBusiness}+ Years in Business</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">$500K+ Documented in Case Studies</span>
           <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">Trusted Nationwide</span>
         </div>
       ))}
@@ -477,15 +479,15 @@ const pricingSchema = {
           <span class="text-sm font-medium text-slate-500">Businesses Coached</span>
         </div>
         <div class="flex flex-col items-center">
-          <span class="mb-1 text-4xl font-bold text-slate-900">10k+</span>
-          <span class="text-sm font-medium text-slate-500">Leads Generated</span>
+          <span class="mb-1 text-4xl font-bold text-slate-900">{yearsInBusiness}+</span>
+          <span class="text-sm font-medium text-slate-500">Years in Business</span>
         </div>
+        <a href="/proof/case-studies" class="flex flex-col items-center transition-colors hover:text-accent-600">
+          <span class="mb-1 text-4xl font-bold text-slate-900">$500K+</span>
+          <span class="text-sm font-medium text-slate-500 underline decoration-dotted">Documented in Case Studies</span>
+        </a>
         <div class="flex flex-col items-center">
-          <span class="mb-1 text-4xl font-bold text-slate-900">$5M+</span>
-          <span class="text-sm font-medium text-slate-500">Revenue Recovered</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <span class="mb-1 text-4xl font-bold text-slate-900">5.0</span>
+          <span class="mb-1 text-4xl font-bold text-slate-900">{business.rating}</span>
           <span class="text-sm font-medium text-slate-500">Average Rating</span>
         </div>
       </div>
