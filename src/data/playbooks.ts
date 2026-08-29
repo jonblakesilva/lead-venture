@@ -807,70 +807,71 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "retention",
     title: "Retention",
     icon: "lucide:repeat",
-    tagline: (trade) => `Repeat ${trade.name.toLowerCase()} customers are worth 3-6x more than one-time buyers — and cost far less to keep than new ones cost to acquire.`,
-    tldrSummary: () =>
-      "Acquiring a new customer typically costs 5-7x more than keeping an existing one. A modest improvement in retention rate compounds into a large increase in long-term profit.",
+    tagline: (trade, profile) => `Repeat ${profile.avgJobLabel} customers are worth 3-6x more than one-time buyers, and cost far less to keep than new ones cost to acquire.`,
+    tldrSummary: (trade, profile) =>
+      `Acquiring a new customer typically costs 5-7x more than keeping one. ${profile.warStory}`,
     tldrBullets: (trade, profile) => [
       `Repeat customers are worth roughly ${fmt(Math.round(profile.avgJobValue * 3))}-${fmt(Math.round(profile.avgJobValue * 6))} in lifetime value versus ${fmt(profile.avgJobValue)} for a one-time buyer`,
-      "Seasonal stay-in-touch campaigns (email/text) keep you top of mind between jobs",
-      "A simple loyalty structure — a discount or an annual plan — gives customers a reason to stay rather than shop around next time",
+      profile.seasonalNote,
+      `A ${profile.recurringServiceLabel} gives customers a reason to stay rather than shop around next time`,
       "A referral incentive turns happy repeat customers into a low-cost acquisition channel",
-      "Following up 6-12 months after a job, before they've thought to call you, is what actually drives the next booking",
+      profile.differentiator,
     ],
-    tldrBottomLine: () => "Build a customer database, set up seasonal follow-up campaigns, and launch a simple maintenance plan or referral program — retention is mostly a systems problem, not a relationship-luck problem.",
+    tldrBottomLine: (trade, profile) =>
+      `Build a customer database, set up seasonal follow-up tied to ${profile.terminology[0]}, and launch a ${profile.recurringServiceLabel} or referral program — retention is a systems problem, not luck.`,
     intro: (trade, profile) => [
       {
         type: "example",
         title: "Why retention rate matters so much",
         lines: [
-          "Starting from 100 new customers a year at a 30% retention rate (industry average), year-5 revenue is meaningfully lower than the same starting point at a 60% retention rate (top performers)",
-          "Doubling retention from 30% to 60% can increase year-5 revenue by well over half, from the exact same new-customer acquisition effort",
+          `Starting from 100 new ${profile.avgJobLabel} customers a year at a 30% retention rate, year-5 revenue is meaningfully lower than the same start at 60%`,
+          "Doubling retention from 30% to 60% can increase year-5 revenue by well over half, from the same acquisition effort",
         ],
       },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "The Foundation: Retention-Worthy Service" },
-      { type: "paragraph", text: "Retention starts with the moments that actually shape how a customer remembers you: the first job experience, how quickly and gracefully any problem gets resolved, and small unexpected touches that cost little but get remembered." },
+      { type: "paragraph", text: profile.crewNote },
 
       { type: "heading", text: "Maintenance and Service Plans" },
       {
         type: "example",
         title: "A simple two-tier plan structure",
         lines: [
-          `Basic — an annual check-in plus priority scheduling and a small discount, roughly ${fmt(Math.round(profile.avgJobValue * 0.25))}–${fmt(Math.round(profile.avgJobValue * 0.4))}/year`,
-          `Premium — more frequent visits, a bigger discount, and priority emergency response, roughly ${fmt(Math.round(profile.avgJobValue * 0.6))}–${fmt(Math.round(profile.avgJobValue * 1.2))}/year`,
+          `Basic — an annual ${profile.terminology[4]} check-in plus priority scheduling, roughly ${fmt(Math.round(profile.avgJobValue * 0.25))}–${fmt(Math.round(profile.avgJobValue * 0.4))}/year`,
+          `Premium — more frequent visits and priority emergency response, roughly ${fmt(Math.round(profile.avgJobValue * 0.6))}–${fmt(Math.round(profile.avgJobValue * 1.2))}/year`,
         ],
       },
 
       { type: "heading", text: "Communication Cadence" },
-      { type: "paragraph", text: "A short post-service follow-up sequence — a quality check within days, a thank-you and review request within a week, then check-ins at 3, 6, and 12 months — keeps the relationship active without being intrusive. Seasonal reminders tied to the actual calendar (spring prep, storm season, winter maintenance) tend to land as genuinely useful rather than salesy." },
+      { type: "paragraph", text: `A short post-${profile.avgJobLabel} sequence — a quality check within days, a review request within a week, check-ins at 3, 6, and 12 months — keeps the relationship active.` },
 
       { type: "heading", text: "Loyalty and Referral Rewards" },
-      { type: "paragraph", text: "A simple points system or a tiered membership (based on lifetime spend, with better discounts and priority at higher tiers) gives customers a reason to keep choosing you specifically. A straightforward referral credit — for both the referrer and the new customer — turns your best customers into an acquisition channel that costs a fraction of paid ads." },
+      { type: "paragraph", text: `A tiered membership based on lifetime spend gives customers a reason to keep choosing this ${trade.name.toLowerCase()} company specifically over a ${profile.terminology[3]} competitor. ${profile.topChannel}` },
 
       { type: "heading", text: "Proactive Win-Back" },
-      { type: "paragraph", text: "Watch for the early signs of an at-risk customer: declining engagement, an unresolved service issue, or a life change like moving or selling the property. A short win-back sequence — a \"we miss you\" message, a real offer, and a direct \"what could we have done better\" ask — recovers a meaningful share of customers who were simply drifting, not lost for good." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response} The same directness works on an at-risk customer who's gone quiet — a real offer and a "what could we have done better" ask recovers people who were just drifting, not lost for good.` },
     ],
-    implementationPlan: () => [
-      { label: "Month 1 — Foundation", items: ["Audit your current retention rate", "Implement a post-service follow-up sequence", "Build a proper customer database"] },
-      { label: "Month 2 — Communication", items: ["Launch a seasonal communication calendar", "Set up email/text automation", "Start requesting reviews systematically"] },
-      { label: "Month 3 — Programs", items: ["Launch a maintenance plan offering", "Create a referral incentive", "Segment customers by value and engagement"] },
-      { label: "Month 4+ — Optimize", items: ["Analyze retention data for trends", "Launch a win-back campaign for at-risk customers", "Consider a tiered loyalty structure for top customers"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Month 1 — Foundation", items: ["Audit the current retention rate", "Implement a post-service follow-up sequence", "Build a proper customer database"] },
+      { label: "Month 2 — Communication", items: [`Launch a ${profile.terminology[1]}-timed communication calendar`, "Set up email/text automation", "Start requesting reviews systematically"] },
+      { label: "Month 3 — Programs", items: [`Launch a ${profile.recurringServiceLabel}`, "Create a referral incentive", "Segment customers by value"] },
+      { label: "Month 4+ — Optimize", items: [`Analyze retention data for real ${profile.avgJobLabel} trends`, "Launch a win-back campaign", profile.toolMention] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Customer database with service history in place",
-      "Post-service follow-up sequence automated",
-      "Seasonal communication calendar built",
-      "At least one maintenance/service plan offered",
+      `Post-${profile.avgJobLabel} follow-up sequence automated`,
+      `${profile.terminology[2]}-timed communication calendar built`,
+      `A ${profile.recurringServiceLabel} offered`,
       "Referral incentive live and promoted",
       "Win-back sequence built for at-risk customers",
       "Retention rate tracked annually",
     ],
-    keyTakeaways: (trade) => [
-      "Retention is dramatically cheaper than acquisition — a modest improvement compounds into significant long-term revenue",
+    keyTakeaways: (trade, profile) => [
+      "Retention is dramatically cheaper than acquisition — a modest improvement compounds fast",
       "Systematic follow-up, not memory or luck, is what actually keeps customers coming back",
-      "A maintenance plan converts one-time jobs into predictable recurring revenue",
-      `Referrals from happy, repeat ${trade.name.toLowerCase()} customers close far better and cost far less than paid acquisition`,
+      `A ${profile.recurringServiceLabel} converts one-time jobs into predictable recurring revenue`,
+      profile.differentiator,
     ],
   },
 
