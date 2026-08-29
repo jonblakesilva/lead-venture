@@ -254,11 +254,11 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     commercialAnnualValue: 60000,
     crewHourlyCost: 70,
     recurringServiceLabel: "annual maintenance walkthrough",
-    terminology: ["change order", "design-build", "permit and inspection", "punch list", "rough-in", "selections (fixtures and finishes)"],
+    terminology: ["scope revision", "kitchen/bath teardown sequencing", "permit and inspection", "final walkthrough list", "rough-in", "selections (fixtures and finishes)"],
     seasonalNote:
       "Demand is less weather-driven than most trades but still bumps in spring as homeowners plan projects around tax refunds and the summer selling season, with a slower stretch around the holidays.",
     topChannel:
-      "A design-build model — one company handling both design and construction instead of separate architects and contractors — is a genuine differentiator that justifies premium pricing and shortens the sales cycle.",
+      "Handling both the design work and the construction under one roof, instead of a separate architect and contractor, is a genuine differentiator that justifies premium pricing and shortens the sales cycle.",
     commonObjection: {
       objection: "\"$12,000 for a bathroom remodel is way more than I expected.\"",
       response:
