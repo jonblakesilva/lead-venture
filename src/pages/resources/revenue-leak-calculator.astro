@@ -1,24 +1,100 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import RoiCalculator from "@/components/RoiCalculator";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import FaqAccordion from "@/components/faqaccordion.astro";
+import RevenueLeakFinder from "@/components/RevenueLeakFinder";
+
+const faqs = [
+  {
+    question: "How accurate is this calculator?",
+    answer:
+      "The calculator uses industry-standard benchmarks and the exact data you input. While it provides an estimate, most local service businesses find these numbers closely align with their actual hidden revenue potential once they start tracking no-shows.",
+  },
+  {
+    question: "How do I actually fix my show rate?",
+    answer:
+      "The fastest way to improve show rates is through automated, multi-channel reminders (SMS and email) leading up to the appointment, combined with easy rescheduling options. This is built into every Lead Venture build by default.",
+  },
+  {
+    question: "Why does a 70% show rate matter so much?",
+    answer:
+      "Because it's pure profit. You've already paid the marketing cost to generate the lead, and you've already paid the operational cost to book the appointment. Every additional percentage point of show rate drops straight to your bottom line without increasing your ad spend.",
+  },
+  {
+    question: "Where do these benchmarks come from?",
+    answer:
+      "These benchmarks are based on data from hundreds of local service businesses. While a 30-50% show rate is common for businesses relying on manual follow-up or basic calendar invites, a 70%+ show rate is consistently achievable when automated reminders, quick response times, and clear expectations are implemented.",
+  },
+  {
+    question: "Does this really work for my trade?",
+    answer:
+      "Yes. Whether you're in roofing, HVAC, landscaping, or cleaning, the principles of human behavior remain the same. People get busy and forget. A multi-touch reminder sequence (email and SMS) significantly reduces no-shows across every home service industry we've worked with.",
+  },
+  {
+    question: "How hard is it to set up these automated reminders?",
+    answer:
+      "If you build it yourself, it takes some time to connect your calendar, CRM, and messaging tools, then write the sequence. If you use The Lead Venture, it's already built in. The automations are live from day one, so you don't have to piece anything together.",
+  },
+];
 ---
 
-<Layout title="$50K Leak Finder" description="Estimate how much missed calls, slow responses, and old leads are costing your business.">
-  <section class="py-20 lg:py-28">
-    <div class="max-w-4xl mx-auto px-5 text-center">
-      <p class="text-accent-600 font-semibold text-sm uppercase tracking-widest mb-3">Revenue Recovery</p>
-      <h1 class="font-heading text-4xl lg:text-5xl font-bold text-primary-900 leading-tight">$50K Leak Finder</h1>
-      <p class="text-neutral-500 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-        Adjust the sliders to estimate how much revenue your business could recover by fixing missed calls, slow responses, and reactivating old contacts.
-      </p>
+<Layout
+  title="$50K Revenue Leak Finder - Free Calculator for Contractors"
+  description="Calculate how much revenue your local service business is losing to no-shows and un-optimized appointment follow-ups. See exact numbers in under 60 seconds."
+>
+  <section class="bg-[#0A0E14] py-12 md:py-16">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <RevenueLeakFinder client:load />
     </div>
   </section>
 
-  <section class="py-12">
-    <div class="max-w-5xl mx-auto px-5">
-      <div class="rounded-2xl border bg-white p-6 shadow-sm">
-        <RoiCalculator client:load />
+  <section class="border-t border-slate-200 bg-white py-24">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-heading text-3xl font-bold text-slate-900 md:text-5xl">How It Works</h2>
+        <p class="mx-auto max-w-2xl text-lg text-slate-600">
+          Finding your revenue leak is just the first step. Here is how we help you plug the holes and capture the money you're leaving on the table.
+        </p>
       </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-100 text-xl font-bold text-accent-700">1</div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900">Identify the Leak</h3>
+          <p class="leading-relaxed text-slate-600">Use the calculator above to pinpoint exactly how much revenue you're losing each month to no-shows and poor follow-up.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-100 text-xl font-bold text-accent-700">2</div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900">Deploy the System</h3>
+          <p class="leading-relaxed text-slate-600">We implement automated reminders, 2-way texting, and quick response systems directly into your business operations.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-100 text-xl font-bold text-accent-700">3</div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900">Recover Revenue</h3>
+          <p class="leading-relaxed text-slate-600">Watch your show rates climb to 70%+ as leads automatically get nurtured, reminded, and confirmed without manual effort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-slate-200 bg-[#F8F9FA] py-24">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <h2 class="mb-6 font-heading text-3xl font-bold text-slate-900 md:text-5xl">Built by operators, trusted by hundreds</h2>
+      <div class="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">
+        <div class="flex items-center gap-2 font-medium text-slate-700">✓ $0 upfront, live in 24-72 hours</div>
+        <div class="flex items-center gap-2 font-medium text-slate-700">✓ 40+ websites launched and counting</div>
+        <div class="flex items-center gap-2 font-medium text-slate-700">✓ Average client stays 30+ months</div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-4xl px-4">
+      <div class="mb-16 text-center">
+        <h2 class="font-heading text-3xl font-bold text-slate-900 md:text-5xl">Frequently Asked Questions</h2>
+      </div>
+      <FaqAccordion items={faqs} />
     </div>
   </section>
 </Layout>

@@ -1,80 +1,113 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { business } from "@/config/business";
 import RoiCalculator from "@/components/RoiCalculator";
+import ReviewWidget from "@/components/ReviewWidget.astro";
+import FaqAccordion from "@/components/faqaccordion.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { Icon } from "astro-icon/components";
 
-const tools = [
-  { title: "$50K Leak Finder", description: "Estimate the monthly value of missed calls, slow follow-up, cold leads, and lost reactivations.", href: "/resources/revenue-leak-calculator" },
-  { title: "Assessments", description: "Take our free Business Growth Score assessment to find where your company is leaking revenue.", href: "/resources/assessments" },
+const faqs = [
+  { question: "How accurate are these calculators?", answer: "These calculators use industry averages and realistic conversion rates, but every business is different. Use them as a baseline to understand the potential revenue you're currently leaving on the table." },
+  { question: "Do I need all of these features?", answer: "Not necessarily. We recommend starting with the areas where you're losing the most revenue, usually missed calls or slow response times. You can add more automations as you grow." },
+  { question: "How hard is it to set this up?", answer: "It's completely done-for-you. Our team builds, tests, and launches these systems for your business within 24-72 hours. You don't have to learn any complicated software." },
 ];
 ---
 
-<Layout title="Free Revenue Tools" description={`Use ${business.name} calculators to estimate missed call cost, lead recovery opportunity, and the revenue impact of better follow-up.`}>
-  <section class="bg-[#1A1D27] py-16 text-white md:py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="max-w-3xl">
-        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Resources</p>
-        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">Revenue recovery calculators built for contractor businesses.</h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-          See what lost calls, slow response times, weak follow-up, and old leads are actually costing your business. These tools help uncover the biggest opportunities fast.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/resources/revenue-leak-calculator" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-6 text-sm font-semibold text-white transition hover:bg-accent-600">Use the leak finder</a>
-          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition hover:bg-white/10">Get a custom quote</a>
+<Layout title="Resources & Tools" description="Free calculators, assessments, and case studies to help you grow your contracting business.">
+  <section class="relative overflow-hidden border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,138,30,0.1)_0%,#1A1D27_70%)]"></div>
+    <div class="relative z-10 mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-xl">
+        <Icon name="lucide:zap" class="h-8 w-8 text-accent-500" />
+      </div>
+      <h1 class="font-heading mb-6 text-4xl font-bold tracking-tight md:text-6xl">Revenue Recovery Calculators</h1>
+      <p class="mx-auto max-w-2xl text-xl text-white/70">See what missed calls, slow responses, and cold leads are actually costing your business each month.</p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-semibold shadow-sm"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-500" /> $0 Setup Cost</span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-semibold shadow-sm"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-500" /> Live in 24-72 Hours</span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-semibold shadow-sm"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-500" /> No Long-Term Contracts</span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-semibold shadow-sm"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-500" /> Cancel Anytime</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-12">
+    <div class="mx-auto max-w-4xl px-5">
+      <div class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 shadow-sm md:grid-cols-3">
+        <div class="bg-white p-6 text-center">
+          <div class="mb-1 text-4xl font-black text-accent-500">50+</div>
+          <div class="text-sm font-medium text-slate-500">Trade Businesses Automated</div>
+        </div>
+        <div class="bg-white p-6 text-center">
+          <div class="mb-1 text-4xl font-black text-accent-500">10K+</div>
+          <div class="text-sm font-medium text-slate-500">Leads Recovered</div>
+        </div>
+        <div class="bg-white p-6 text-center">
+          <div class="mb-1 text-4xl font-black text-accent-500">4.9/5</div>
+          <div class="text-sm font-medium text-slate-500">Average Client Rating</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-[#f6f7f9] py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="grid gap-6 md:grid-cols-2">
-        {tools.map((tool) => (
-          <a href={tool.href} class="group rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-            <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent-100 text-lg font-bold text-accent-700">→</div>
-            <h2 class="text-2xl font-bold text-primary-900">{tool.title}</h2>
-            <p class="mt-3 text-base leading-relaxed text-slate-600">{tool.description}</p>
-            <div class="mt-6 text-sm font-semibold text-accent-600">Open tool →</div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white py-20 border-b text-center">
+  <section class="border-b border-slate-200 bg-white py-24 text-center">
     <div class="mx-auto max-w-3xl px-5">
-      <h2 class="mb-6 font-heading text-3xl font-bold text-primary-900">Want to See Real Results?</h2>
+      <h2 class="font-heading mb-6 text-3xl font-bold text-slate-900">Want to See Real Results?</h2>
       <p class="mb-10 text-xl text-slate-600">
         We've helped local service businesses double their calls, boost their page speed from 62 to 98, and grow from 48 to 156 reviews in under 120 days.
       </p>
-      <a href="/proof/case-studies" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">
-        View All Case Studies
-      </a>
+      <a href="/proof/case-studies" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition-colors hover:bg-accent-600">View All Case Studies</a>
     </div>
   </section>
 
   <section class="bg-slate-50 py-16">
     <div class="mx-auto max-w-5xl px-5">
       <div class="mb-12 text-center">
-        <h2 class="mb-4 font-heading text-3xl font-bold text-primary-900">Revenue Recovery Calculators</h2>
+        <h2 class="font-heading mb-4 text-3xl font-bold text-slate-900">Revenue Recovery Calculators</h2>
         <p class="text-slate-600">Adjust the sliders to see how much revenue you could recover with automation.</p>
+      </div>
+      <div class="mb-16 flex justify-center">
+        <a href="/resources/revenue-leak-calculator" class="inline-flex h-12 items-center justify-center rounded-full border border-accent-500/30 px-8 text-base font-semibold text-slate-900 transition-colors hover:bg-accent-500/5">Try the $50K Leak Finder</a>
       </div>
       <RoiCalculator client:load />
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="mx-auto max-w-4xl px-5">
-      <div class="rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">Want real results?</p>
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">If the numbers point to missed revenue, we can fix it.</h2>
-        <p class="mt-5 text-lg leading-relaxed text-slate-600">
-          Most local service businesses don't need more traffic — they need a better conversion system. Our goal is to shorten the path from first call to booked job while improving the customer experience from the first touch.
-        </p>
-        <div class="mt-8 flex justify-center">
-          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Book a strategy call</a>
+  <section class="border-t border-slate-200 bg-slate-50 py-24">
+    <div class="mx-auto mb-12 max-w-3xl px-5 text-center">
+      <h2 class="font-heading mb-4 text-3xl font-bold text-slate-900">What Trade Businesses Are Saying</h2>
+      <p class="text-slate-600">Real results from contractors using our automations.</p>
+    </div>
+    <div class="mx-auto max-w-6xl space-y-12 px-5">
+      <ReviewWidget />
+    </div>
+  </section>
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-5">
+      <div class="mb-12 text-center">
+        <h2 class="font-heading text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
+      </div>
+      <FaqAccordion items={faqs} />
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-[#1A1D27] py-24 text-center text-white">
+    <div class="relative mx-auto flex max-w-(--breakpoint-xl) flex-col items-center px-5">
+      <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(255,138,30,0.1)_0%,transparent_70%)]"></div>
+      <h2 class="font-heading mb-4 text-4xl font-bold">Want This Running For Your Business?</h2>
+      <p class="mb-8 max-w-2xl text-lg text-white/70">See exactly which automations make sense for your call volume, lead flow, and database — no cost to start.</p>
+      <a href="/contact" class="mb-8 inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white shadow-lg shadow-accent-500/20 transition-colors hover:bg-accent-600">Book Your Free Automation Audit</a>
+      <div class="flex flex-col items-center gap-3 text-sm text-white/70">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Month to Month</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> No Hard Sell</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Cancel Anytime</div>
         </div>
       </div>
     </div>
   </section>
+
+  <TestimonialCarousel />
 </Layout>

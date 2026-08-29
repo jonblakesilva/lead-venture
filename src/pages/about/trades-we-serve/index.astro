@@ -1,43 +1,117 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import FaqAccordion from "@/components/faqaccordion.astro";
+import ReviewWidget from "@/components/ReviewWidget.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { tradeData, tradeSlugs } from "@/data/trades";
 
-const trades = [
-  { slug: 'roofing', name: 'Roofing', description: 'Dominate storm-season demand and win more high-ticket roof replacements.' },
-  { slug: 'hvac', name: 'HVAC', description: 'Capture emergency calls and turn maintenance into recurring revenue.' },
-  { slug: 'electrical', name: 'Electrical', description: 'Build trust fast and close more rewiring, panel, and service upgrades.' },
-  { slug: 'plumbing', name: 'Plumbing', description: 'Win urgent calls with faster response and better local visibility.' },
-  { slug: 'lawn-care', name: 'Lawn Care & Mowing', description: 'Increase route density and retain more customers with text-based follow-up.' },
-  { slug: 'tree-service', name: 'Tree Service', description: 'Showcase expertise and convert storm-demand into booked removals.' },
-  { slug: 'landscaping', name: 'Landscaping', description: 'Turn design-build leads into a consistent flow of premium outdoor projects.' },
-  { slug: 'painting', name: 'Painting', description: 'Make your portfolio and reviews do the selling for you.' },
-  { slug: 'remodeling', name: 'Remodeling', description: 'Position your company as the premium choice for larger home projects.' },
-  { slug: 'general-contractors', name: 'General Contractors', description: 'Give homeowners confidence before they ever pick up the phone.' },
-  { slug: 'junk-removal', name: 'Junk Removal', description: 'Turn urgent cleanup calls into revenue with faster follow-up.' },
-  { slug: 'pest-control', name: 'Pest Control', description: 'Capture recurring service demand and boost retention with automation.' },
+const trades = tradeSlugs.map((slug) => ({ name: tradeData[slug].name, slug, icon: tradeData[slug].icon }));
+
+const faqs = [
+  { question: "Do my guys in the field need to learn a complicated app?", answer: "Not at all. The mobile app is designed to be as simple as your phone's native texting app. Your team can easily see their schedule, tap to call customers, and send review requests with a single button." },
+  { question: "Does this replace my job management software (like ServiceTitan or Housecall Pro)?", answer: "No, it works right alongside it! While your job management software handles dispatching and invoicing, Trade Sites handles your front-end marketing: capturing leads, missed call text-backs, automated follow-ups, and review generation." },
+  { question: "What if I'm not good with computers?", answer: "That's exactly why we built this. Our \"Done-For-You\" approach means our team handles the heavy lifting, building your site, setting up the automations, and optimizing your profile. You just download the app and watch the leads come in." },
+  { question: "How fast can we get started?", answer: "Our typical onboarding takes just 7-10 days from your initial demo call to your system being fully live and ready to capture leads." },
 ];
 ---
 
-<Layout title="Trades We Serve" description="See the trades and home-services businesses The Lead Venture helps grow through better websites, reviews, and lead follow-up systems.">
-  <section class="bg-primary-900 py-16 text-white lg:py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="max-w-3xl">
-        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Trades we serve</p>
-        <h1 class="font-heading text-4xl font-bold leading-tight md:text-5xl">Built for home-service businesses that need more predictable lead flow.</h1>
-      </div>
+<Layout title="Trades We Serve" description="We build high-converting websites and lead generation systems for local service businesses.">
+  <section class="relative overflow-hidden border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,138,30,0.1)_0%,#1A1D27_70%)]"></div>
+    <div class="relative z-10 mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading mb-6 text-4xl font-bold tracking-tight md:text-6xl">Built for Your Trade</h1>
+      <p class="mx-auto max-w-2xl text-xl text-white/80">Our platform is designed specifically for local service businesses.</p>
     </div>
   </section>
 
-  <section class="bg-neutral-50 py-20">
+  <section class="bg-[#F8F9FA] py-24">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div class="mx-auto grid max-w-5xl grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
         {trades.map((trade) => (
-          <a href={`/about/trades-we-serve/${trade.slug}`} class="rounded-3xl border border-neutral-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-            <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-100 text-2xl">⚡</div>
-            <h2 class="text-2xl font-bold text-primary-900">{trade.name}</h2>
-            <p class="mt-4 text-neutral-600 leading-relaxed">{trade.description}</p>
+          <a href={`/about/trades-we-serve/${trade.slug}`} class="group flex flex-col items-center justify-center gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-colors hover:border-accent-500">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 transition-colors group-hover:bg-accent-500/10">
+              <Icon name={trade.icon} class="h-8 w-8 text-accent-500" />
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">{trade.name}</h3>
           </a>
         ))}
       </div>
     </div>
   </section>
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-16 max-w-3xl text-center">
+        <h2 class="font-heading mb-6 text-3xl font-bold text-slate-900 md:text-4xl">Software Built for the Field, Not the Cubicle</h2>
+        <p class="text-lg text-slate-600">We understand that you're running a business from your truck, not a desk. Our tools are designed to be dead-simple, fast, and effective for contractors on the go.</p>
+      </div>
+
+      <div class="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 text-center">
+          <div class="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-500/10 text-accent-600">
+            <Icon name="lucide:smartphone" class="h-7 w-7" />
+          </div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900">Mobile-First Design</h3>
+          <p class="text-slate-600">Manage leads, reply to texts, and request reviews right from your phone between jobs. No laptop required.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 text-center">
+          <div class="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-500/10 text-accent-600">
+            <Icon name="lucide:clock" class="h-7 w-7" />
+          </div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900">Automates the Busywork</h3>
+          <p class="text-slate-600">Stop manually texting leads back or begging for reviews. The system does the heavy lifting so you can focus on the work.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 text-center">
+          <div class="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-500/10 text-accent-600">
+            <Icon name="lucide:shield-check" class="h-7 w-7" />
+          </div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900">No Tech Degree Needed</h3>
+          <p class="text-slate-600">If you can send a text message, you can use our platform. We handle all the complex setup and optimization for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-slate-200 bg-slate-50 py-24">
+    <div class="mx-auto max-w-3xl px-5">
+      <div class="mb-12 text-center">
+        <h2 class="font-heading mb-4 text-3xl font-bold text-slate-900 md:text-4xl">Frequently Asked Questions</h2>
+        <p class="text-lg text-slate-600">Common questions from contractors like you.</p>
+      </div>
+      <FaqAccordion items={faqs} />
+    </div>
+  </section>
+
+  <section class="border-y bg-slate-100 py-16">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-slate-900">Don't See Your Trade?</h2>
+      <p class="mx-auto mb-8 max-w-2xl text-lg text-slate-600">If you run a local service business that relies on phone calls, leads, and reviews, this system will work for you. Let's talk about your specific needs.</p>
+      <a href="/contact" class="inline-flex items-center justify-center rounded-full bg-accent-500 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-accent-600">Let's Talk</a>
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-[#1A1D27] px-4 py-24">
+    <div class="mx-auto max-w-5xl">
+      <div class="relative overflow-hidden rounded-3xl bg-[#1A1D27] p-12 text-center text-white md:p-20">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,138,30,0.1)_0%,#1A1D27_70%)]"></div>
+        <div class="relative z-10 mx-auto max-w-3xl">
+          <h2 class="font-heading mb-6 text-4xl font-bold tracking-tight md:text-5xl">Ready to Grow Your Business?</h2>
+          <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-accent-600">Request a Website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-slate-200 bg-white py-24">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto mb-16 max-w-3xl text-center">
+        <h2 class="font-heading mb-4 text-3xl font-bold text-slate-900 md:text-4xl">What Trade Businesses Are Saying</h2>
+        <p class="text-lg text-slate-600">Real results from real contractors using our platform.</p>
+      </div>
+      <ReviewWidget />
+    </div>
+  </section>
+
+  <TestimonialCarousel />
 </Layout>

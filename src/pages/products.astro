@@ -1,153 +1,145 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { business } from "@/config/business";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { Icon } from "astro-icon/components";
 
 const features = [
   {
     title: "Modern Website",
+    description: "Stop losing jobs because your website looks outdated. We build fast, beautiful sites designed specifically to convert visitors into leads.",
+    items: ["Mobile-responsive design", "Built-in lead capture forms", "Lightning fast loading speeds", "Local SEO optimized structure"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/9eaa31a4-3106-4938-b024-cb23c678a57e.png",
     slug: "website",
-    subtitle: "Turn traffic into high-paying jobs.",
-    description: "Professional, mobile-first websites built to convert visitors into paying customers. Stand out from competitors with stunning design that captures leads 24/7.",
-    icon: "⚡",
     caseStudyLink: "/proof/website-rebuild-case-study",
     caseStudyTitle: "Read the Website Case Study",
   },
   {
     title: "Business Mobile App",
+    description: "Run your entire business from the truck. See all your leads, messages, and reviews in one simple app.",
+    items: ["All leads in one place", "Manage your calendar on the go", "Respond to messages instantly", "Request reviews from the job site"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/1e8bf1c1-f136-46bc-8625-ab1ede39a28b.png",
     slug: "mobile-app",
-    subtitle: "Run your entire business from your pocket.",
-    description: "See all your leads, messages, and reviews in one simple app. Manage your calendar, respond to messages instantly, and request reviews from the job site.",
-    icon: "📱",
   },
   {
     title: "5-Star Auto Review System",
+    description: "More reviews mean more trust and better Google rankings. Our system asks for reviews automatically when a job is done.",
+    items: ["Automated SMS review requests", "Negative feedback filtered privately", "Boost your Google Maps ranking", "Monitor your reputation 24/7"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/11ae4843-bffa-41ed-a71f-212f82de5351.png",
     slug: "reviews",
-    subtitle: "Automate review requests without extra work.",
-    description: "More reviews mean more trust and better Google rankings. Our system asks for reviews automatically when a job is done, and filters negative feedback privately.",
-    icon: "★",
     caseStudyLink: "/proof/reputation-case-study",
     caseStudyTitle: "Read the Reputation Case Study",
   },
   {
     title: "Missed Call Text-Back",
+    description: "Never lose a lead to voicemail again. When you miss a call, our system instantly texts them back to start a conversation.",
+    items: ["Instant text response", "Custom messaging", "Lead capture", "24/7 coverage"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/94adcac0-6ebb-4bfc-81ee-6c9f05886405.png",
     slug: "missed-call-text-back",
-    subtitle: "Recover leads you would otherwise lose.",
-    description: "Never lose a lead to voicemail again. When you miss a call, our system instantly texts them back to start a conversation and keep them engaged.",
-    icon: "📲",
-    caseStudyLink: "/proof/speed-to-lead-case-study",
-    caseStudyTitle: "Read the Speed-to-Lead Case Study",
-  },
-  {
-    title: "Local SEO",
-    slug: "local-seo",
-    subtitle: "Dominate your local market.",
-    description: "We optimize your Google Business Profile, build citations, and target the exact local keywords your customers are searching for to get you into the top of the map pack.",
-    icon: "📍",
-    caseStudyLink: "/proof/seo-case-study",
-    caseStudyTitle: "Read the Local SEO Case Study",
   },
   {
     title: "Revenue Campaigns",
+    description: "Turn past customers into repeat business with done-for-you email and SMS campaigns that drive seasonal revenue.",
+    items: ["Email + SMS campaigns", "Seasonal promotions", "Customer retention", "One-click send"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/c17c583d-a6ea-4eb4-b312-1489d9caa75d.png",
     slug: "rev-gen-campaigns",
-    subtitle: "Turn past customers into repeat business.",
-    description: "Stay top-of-mind with past customers through strategic email and SMS campaigns that drive repeat business, seasonal promotions, and referrals.",
-    icon: "↺",
     caseStudyLink: "/proof/reactivation-case-study",
     caseStudyTitle: "Read the Reactivation Case Study",
   },
   {
+    title: "Local SEO",
+    description: "Dominate your local market. We optimize your Google Business Profile to get you ranking in the top 3 map pack results.",
+    items: ["Google Business optimization", "Local citation building", "Map pack visibility", "Keyword ranking"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/b13ba67a-f80f-4149-84ba-ad948d602a68.png",
+    slug: "local-seo",
+    caseStudyLink: "/proof/seo-case-study",
+    caseStudyTitle: "Read the Local SEO Case Study",
+  },
+  {
     title: "3-Click Ad System",
+    description: "Launch high-converting Facebook, Instagram, and Google ads in seconds using pre-built, proven contractor templates without paying heavy agency retainers.",
+    items: ["Launch ads in just 3 clicks", "Pre-tested contractor templates for Meta & Google", "Automated lead sync to CRM & SMS follow-up", "Zero agency retainers required"],
+    image: "https://vibe.filesafe.space/1785706415045236708/attachments/997d77ac-88de-4c95-8255-032efbe16a24.png",
     slug: "3-click-ad-system",
-    subtitle: "Launch high-converting ads in seconds.",
-    description: "Launch pre-built, proven contractor ad templates on Meta and Google in just 3 clicks, without paying heavy agency retainers.",
-    icon: "🎯",
   },
 ];
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Contractor Growth System Products",
+  itemListElement: features.map((f) => ({
+    "@type": "Offer",
+    itemOffered: { "@type": "Product", name: f.title },
+  })),
+};
 ---
 
-<Layout title="Products & Services" description={`Explore the core tools and growth systems behind ${business.name}, including lead generation, reviews, AI follow-up, and local SEO for contracting businesses.`}>
-  <section class="bg-[#1A1D27] py-16 text-white md:py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="max-w-3xl">
-        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">The growth stack</p>
-        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">Built to turn attention into booked work.</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-          Every piece of the system is designed around the same goal: more qualified leads, faster follow-up, and less chaos in your sales process.
-        </p>
-      </div>
+<Layout title="Products & Growth Tools for Trade Contractors" description="Explore our high-converting modern websites, 3-Click Ad System, 5-Star Review Funnels, Missed Call Text-Back, and Local SEO tools built for contractors.">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
+  </Fragment>
+
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading text-4xl font-bold md:text-6xl">Everything You Need to Grow Your Business</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/70">A complete suite of tools to help you manage leads, close more deals, and get paid faster.</p>
     </div>
   </section>
 
-  <section class="bg-[#F8F9FA] py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
-        {features.map((feature) => (
-          <div class="flex flex-col rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm">
-            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-100 text-2xl">{feature.icon}</div>
-            <h2 class="text-2xl font-bold text-primary-900">{feature.title}</h2>
-            <p class="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{feature.subtitle}</p>
-            <p class="mt-4 flex-1 text-base leading-relaxed text-slate-600">{feature.description}</p>
-            <div class="mt-6 flex flex-wrap items-center gap-4">
-              <a href={`/products/${feature.slug}`} class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600 hover:text-accent-700">
-                Learn More →
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-(--breakpoint-xl) space-y-32 px-5">
+      {features.map((feature, i) => (
+        <div class="grid items-center gap-12 md:grid-cols-2">
+          <div class:list={["order-2 space-y-6", i % 2 === 0 ? "md:order-1" : "md:order-2"]}>
+            <h2 class="text-3xl font-bold text-slate-900">{feature.title}</h2>
+            <p class="text-lg text-slate-600">{feature.description}</p>
+            <ul class="space-y-3">
+              {feature.items.map((item) => (
+                <li class="flex items-start gap-3">
+                  <Icon name="lucide:check-circle-2" class="h-6 w-6 shrink-0 text-accent-500" />
+                  <span class="text-slate-700">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-4 flex flex-wrap items-center gap-4">
+              <a href={`/products/${feature.slug}`} class="inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-600">
+                Learn More <Icon name="lucide:arrow-right" class="h-4 w-4" />
               </a>
               {feature.caseStudyLink && (
-                <a href={feature.caseStudyLink} class="text-sm font-medium text-slate-500 hover:text-slate-700">
-                  {feature.caseStudyTitle}
+                <a href={feature.caseStudyLink} class="inline-flex items-center gap-1.5 text-base font-semibold text-accent-600 hover:text-accent-700">
+                  {feature.caseStudyTitle} <Icon name="lucide:arrow-right" class="h-3 w-3" />
                 </a>
               )}
             </div>
           </div>
-        ))}
-      </div>
+          <div class:list={["order-1 flex items-center justify-center rounded-2xl bg-slate-100 p-8", i % 2 === 0 ? "md:order-2" : "md:order-1"]}>
+            <img src={feature.image} alt={`${feature.title} Mockup`} loading="lazy" class="h-auto w-full max-w-md rounded-lg border object-contain shadow-xl" />
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
-  <section class="bg-white py-20">
+  <section class="border-t border-white/10 bg-[#1A1D27] py-24 text-center text-white">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="mx-auto mb-10 max-w-3xl text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">How it works</p>
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">One system. More booked jobs.</h2>
+      <h2 class="mb-6 text-4xl font-bold">Ready to Get Started?</h2>
+      <div class="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact" class="inline-flex h-14 w-full items-center justify-center rounded-xl bg-accent-500 px-8 text-base font-semibold text-white transition-colors hover:bg-accent-600 sm:w-auto">Request a Website</a>
+        <a href="/pricing" class="inline-flex h-14 w-full items-center justify-center rounded-xl border border-white/20 px-8 text-base font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto">View Pricing</a>
       </div>
-      <div class="grid gap-6 md:grid-cols-3">
-        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-6">
-          <div class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">01</div>
-          <h3 class="text-2xl font-bold text-primary-900">Get found</h3>
-          <p class="mt-3 text-slate-600">Your site and local visibility work together so homeowners find you when they need your service.</p>
+      <div class="flex flex-col items-center gap-3 text-sm text-white/70">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> $0 upfront, live in 24-72 hours</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> 40+ websites launched and counting</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Average client stays 30+ months</div>
         </div>
-        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-6">
-          <div class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">02</div>
-          <h3 class="text-2xl font-bold text-primary-900">Convert faster</h3>
-          <p class="mt-3 text-slate-600">Clear offers, trust signals, and faster response logic help people book instead of bouncing.</p>
-        </div>
-        <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-6">
-          <div class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">03</div>
-          <h3 class="text-2xl font-bold text-primary-900">Stay in control</h3>
-          <p class="mt-3 text-slate-600">AI follow-up, review generation, and reporting keep your pipeline moving even when your crew is on-site.</p>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> No contracts. No risk. Cancel anytime.</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Built by actual trade operators</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-[#1A1D27] py-20 text-white">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-xl lg:p-12">
-        <div class="grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">The result</p>
-            <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-5xl">More opportunities. Less manual chasing.</h2>
-          </div>
-          <div class="space-y-4 text-lg text-white/80">
-            <p>• Stronger visibility in your service area</p>
-            <p>• Faster lead response times and better follow-up</p>
-            <p>• A review and trust system that compounds over time</p>
-          </div>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Book a strategy call</a>
-          <a href="/pricing" class="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white transition hover:bg-white/10">See pricing</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <TestimonialCarousel />
 </Layout>

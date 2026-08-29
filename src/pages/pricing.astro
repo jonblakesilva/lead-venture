@@ -1,36 +1,107 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { business } from "@/config/business";
+import { Icon } from "astro-icon/components";
+import FaqAccordion from "@/components/faqaccordion.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
 
 const plans = [
   {
     name: "Starter",
-    price: "$49",
-    value: "A clean customer-facing website that gets you online fast and makes your service business look more credible from day one.",
-    features: ["Custom lead-gen website", "Mobile-first design", "Basic SEO setup", "Lead form + call tracking", "Monthly optimization review"],
+    monthly: "49",
+    annual: "490",
+    valueYear: "$6,797/yr",
     featured: false,
+    intro: null,
+    features: [
+      "Free Website Build (Just pay hosting)",
+      "Mobile-responsive design",
+      "Lead capture forms",
+      "Fast loading & SEO optimized",
+      "Basic Local SEO / Google Business Profile setup",
+      "Community Access & Free Training",
+      "Weekly Live Office Hours",
+    ],
+    cta: { label: "Request a Website", style: "outline" },
+    trustLines: ["14-Day Free Trial", "Cancel Anytime", "Setup in under 5 mins"],
   },
   {
     name: "Growth",
-    price: "$97",
-    value: "The most popular option for contractors who need better conversion, faster follow-up, and more review momentum without agency headaches.",
-    features: ["Everything in Starter", "AI text-to-lead follow-up", "Review request automation", "Google Business Profile optimization", "Conversion reporting dashboard"],
+    monthly: "97",
+    annual: "970",
+    valueYear: "$12,044/yr",
     featured: true,
+    intro: "Everything in Starter, plus:",
+    features: [
+      "Missed Call Text-Back",
+      "5-Star Auto Review System",
+      "Business Mobile App",
+      "Quarterly Re-Marketing Campaigns (Avg $18k return per 1k contacts)",
+      "Bonus: Full Google Business Profile Optimization",
+      "Expanded Local SEO (citation building, map pack visibility)",
+      "NFC Cards & QR Codes for Reviews",
+      "Premium listing on our local directory",
+    ],
+    cta: { label: "Start 14-Day Free Trial", style: "solid" },
+    trustLines: ["100% No-Brainer Guarantee", "Cancel Anytime", "Setup in under 5 mins"],
   },
   {
     name: "Full Suite",
-    price: "$297",
-    value: "For businesses ready to run a complete local marketing system: web, reviews, AI receptionist, and nurture campaigns working together.",
-    features: ["Everything in Growth", "AI receptionist + missed-call recovery", "Advanced CRM + automation setup", "Re-marketing and lead nurturing", "Priority support and strategy calls"],
+    monthly: "297",
+    annual: "2,970",
+    valueYear: "$18,294/yr",
     featured: false,
+    intro: "Everything in Growth, plus:",
+    tagline: "We help you capture, nurture and close more business.",
+    features: [
+      "Quarterly Re-Marketing Campaigns (Avg $18k return per 1k contacts)",
+      "Bonus: 30 Days of Done-For-You Content",
+      "2 Years of Newsletter Follow-up",
+      "Appointment Reminders",
+      "NFC Cards & QR Codes for Reviews",
+      "Discounts on Direct Mail",
+      "Sales Scripts, Coaching & Accountability",
+      "Complementary email & SMS credits",
+      "3-Click Ad System with proven templates",
+      "Priority support",
+    ],
+    cta: { label: "Start 14-Day Free Trial", style: "outline" },
+    trustLines: ["100% No-Brainer Guarantee", "Cancel Anytime", "Setup in under 5 mins"],
   },
 ];
 
+const compareFeatures = [
+  { label: "Community Access & Free Training", value: "$997 Value", starter: true, growth: true, suite: true, tooltip: "Join our exclusive community of contractors and access weekly training materials." },
+  { label: "Weekly Live Office Hours", value: "$1,200 Value", starter: true, growth: true, suite: true, tooltip: "Get direct access to our team for Q&A and strategic guidance every week." },
+  { label: "Free Website Build", value: "$3,500 Value", starter: true, growth: true, suite: true, tooltip: "A custom-designed, high-converting website tailored to your specific trade." },
+  { label: "Website Hosting", value: "$600 Value", starter: true, growth: true, suite: true, tooltip: "Fast, secure cloud hosting to ensure your site is always online and loads quickly." },
+  { label: "Basic Local SEO", value: "$500 Value", starter: true, growth: true, suite: true, tooltip: "Essential on-page optimization to help your website rank for local search terms." },
+  { label: "Missed Call Text-Back", value: "$300 Value", starter: false, growth: true, suite: true, tooltip: "Automatically text back any caller you miss, turning lost leads into booked jobs." },
+  { label: "5-Star Review System", value: "$500 Value", starter: false, growth: true, suite: true, tooltip: "Automated review requests to build your reputation on Google and other platforms." },
+  { label: "Business Mobile App", value: "$997 Value", starter: false, growth: true, suite: true, tooltip: "Manage leads, conversations, and your calendar from anywhere using our mobile app." },
+  { label: "Expanded Local SEO", value: "$1,000 Value", starter: false, growth: true, suite: true, tooltip: "Advanced citation building and optimization to dominate the Google Map Pack." },
+  { label: "Bonus: GMB Optimization", value: "$500 Value", starter: false, growth: true, suite: true, highlight: true, tooltip: "A complete overhaul of your Google Business Profile to maximize local visibility." },
+  { label: "Quarterly Re-Marketing Campaigns", value: "$1,500 Value", starter: false, growth: true, suite: true, tooltip: "Targeted campaigns sent to your past customers to generate repeat business." },
+  { label: "Bonus: 30 Days DFY Content", value: "$1,000 Value", starter: false, growth: false, suite: true, highlight: true, tooltip: "A full month of custom social media content created and scheduled for you." },
+  { label: "2 Years Newsletter Follow-up", value: "$1,200 Value", starter: false, growth: false, suite: true, tooltip: "Automated email newsletters to keep your brand top-of-mind with your audience." },
+  { label: "Appointment Reminders", value: "$200 Value", starter: false, growth: false, suite: true, tooltip: "Automated SMS and email reminders to reduce no-shows and keep your schedule full." },
+  { label: "NFC Cards & QR Codes", value: "$150 Value", starter: false, growth: true, suite: true, tooltip: "Physical tap cards and QR displays to effortlessly collect reviews on the job site." },
+  { label: "Premium Local Directory Listing", value: "$300 Value", starter: false, growth: true, suite: true, tooltip: "Get a premium featured listing on our local contractor directory, driving referral traffic and boosting your local SEO." },
+  { label: "Discounts on Direct Mail", value: "$250 Value", starter: false, growth: false, suite: true, tooltip: "Exclusive partner pricing on targeted direct mail campaigns in your service area." },
+  { label: "Sales Scripts & Coaching", value: "$1,500 Value", starter: false, growth: false, suite: true, tooltip: "Proven scripts and coaching to help you close more leads and increase your average ticket." },
+  { label: "Complementary Email & SMS Credits", value: "$100 Value", starter: false, growth: false, suite: true, tooltip: "A monthly allowance of credits to cover your essential communication costs." },
+  { label: "3-Click Ad System (Meta & Google)", value: "$2,000 Value", starter: false, growth: false, suite: true, tooltip: "Launch proven, pre-built ad campaigns on Facebook, Instagram, and Google in seconds." },
+];
+
 const faqs = [
-  { question: "Is there really no contract?", answer: "Yes. We keep it simple and low-risk. No long-term lock-in, no setup fee trap, and no pressure to stay if the system isn't delivering." },
-  { question: "Can I change plans later?", answer: "Absolutely. Most contractors start with one package and upgrade as their lead flow grows. We can expand the system without starting over from scratch." },
-  { question: "What happens after the first spots are filled?", answer: "We cap new partner spots to keep quality high and ensure every client still gets real attention. When space opens up, the waitlist receives priority access." },
-  { question: "What happens to my data if I cancel?", answer: "You keep your website assets and content. We will walk you through the handoff steps and make sure your business isn't left with an unusable setup." },
+  { question: "Is there really no contract?", answer: "Yes, really. We believe in earning your business every single month. You can cancel your subscription at any time with no hidden cancellation fees or penalties." },
+  { question: "Can I change plans later?", answer: "Absolutely. You can upgrade or downgrade your plan at any time as your business needs change. Upgrades are prorated for the remainder of your billing cycle." },
+  { question: "What happens to my data if I cancel?", answer: "Your data is yours. If you decide to leave, we provide an easy export of all your contacts, leads, and customer history. We'll never hold your business hostage." },
+  { question: "Do you offer discounts for annual billing?", answer: "Yes! If you choose to pay annually, you get 2 months free (about a 17% discount). Ask about this option on your demo call." },
+  { question: "What happens after the first 50 spots are filled?", answer: "Founding Member pricing is limited to the first 50 businesses. After that, new signups pay standard rates, but anyone who joins during the Founding Member window keeps their locked-in price permanently." },
+  { question: "What happens if I want to switch providers and take my website elsewhere?", answer: "You're always free to switch, there's no long-term contract holding you in. If you'd like us to rebuild and hand off your website on a different platform, there's a one-time $1,500 transition fee to cover that rebuild. It's important to know that the automations and systems built on top of your website, things like appointment reminders, review request automations, and estimate follow-ups, are part of our platform and don't transfer over. Those would need to be rebuilt separately (by you or another provider) on whatever new platform you switch to." },
+  { question: "Do you offer any discounts or help for non-profits?", answer: "Yes, we're happy to work with non-profits. Reach out to us directly and we'll go over what we can do for your organization." },
+  { question: "What is web hosting, and do I need it?", answer: "Web hosting is what actually keeps your website live and accessible on the internet, without it, your site simply can't be viewed by anyone. Think of it like renting the space your website lives on. We handle hosting for you as part of our service for $49/month, which keeps your site fast, secure, and running without you having to think about it or manage anything technical yourself." },
 ];
 
 const pricingSchema = {
@@ -42,14 +113,13 @@ const pricingSchema = {
     itemOffered: {
       "@type": "Service",
       name: plan.name,
-      description: plan.value,
       provider: {
         "@type": "LocalBusiness",
         name: business.name,
       },
       offers: {
         "@type": "Offer",
-        price: plan.price.replace(/[^\d.]/g, ""),
+        price: plan.monthly.replace(/[^\d.]/g, ""),
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
       },
@@ -69,89 +139,427 @@ const pricingSchema = {
 };
 ---
 
-<Layout title="Simple Pricing" description={`See transparent pricing for ${business.name} website design, review systems, AI follow-up, and local lead-generation services.`}>
+<Layout title="Simple, Transparent Pricing" description="No hidden fees. No contracts. 14-day trial before you pay.">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
   </Fragment>
-  <section class="bg-[#1A1D27] py-16 text-white md:py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="max-w-3xl">
-        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">Simple, transparent pricing</p>
-        <h1 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] md:text-6xl">The system that makes growth easier without the agency mess.</h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-          Choose the plan that matches your business today and scale into a fuller system when you're ready. No bloated retainers, no hidden fees, no pressure.
-        </p>
+
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <h1 class="font-heading text-4xl font-black tracking-[-0.03em] md:text-6xl">Simple, Transparent Pricing</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-white/70">No hidden fees. No contracts. 14-day trial before you pay.</p>
+      <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-accent-500/15 px-4 py-2 text-sm font-semibold text-accent-300">
+        <Icon name="lucide:check-circle-2" class="h-4 w-4" /> Avg client stays with us 30+ months
       </div>
     </div>
   </section>
 
-  <section class="bg-[#f7f7f7] py-20">
+  <div class="border-b border-accent-600/20 bg-accent-500 py-4 text-center text-white">
+    <div class="mx-auto max-w-lg px-5">
+      <p class="mb-2 text-lg font-bold">Founding Member Pricing — Limited to the First 50 Businesses</p>
+      <div class="mb-1.5 flex items-center justify-between text-sm font-medium">
+        <span>Spots Filled</span>
+        <span>41 / 50</span>
+      </div>
+      <div class="h-2.5 w-full overflow-hidden rounded-full bg-white/20">
+        <div class="h-full rounded-full bg-white" style="width: 82%"></div>
+      </div>
+      <p class="mt-2 text-xs opacity-90">Only 9 spots remaining at this rate.</p>
+    </div>
+  </div>
+
+  <section class="relative overflow-hidden border-b border-slate-200 bg-white py-8">
+    <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent"></div>
+    <div class="marquee-track flex w-[200%] items-center">
+      {[0, 1].map((i) => (
+        <div class="flex w-1/2 shrink-0 items-center justify-around">
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">★ 5.0 Average Rating</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">200+ Businesses Coached</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">10,000+ Leads Generated</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">$5M+ Revenue Recovered</span>
+          <span class="whitespace-nowrap px-8 text-lg font-bold text-slate-500">Trusted Nationwide</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="sticky top-16 z-40 overflow-x-auto border-b bg-white/95 px-4 py-3 shadow-sm backdrop-blur-md md:hidden">
+    <div class="flex min-w-max justify-start gap-5 whitespace-nowrap px-2 text-sm font-medium">
+      <a href="#pricing" class="text-slate-500 transition-colors hover:text-slate-900">Pricing</a>
+      <a href="#compare" class="text-slate-500 transition-colors hover:text-slate-900">Compare</a>
+      <a href="#faq" class="text-slate-500 transition-colors hover:text-slate-900">FAQ</a>
+      <a href="#guarantee" class="text-slate-500 transition-colors hover:text-slate-900">Guarantee</a>
+      <a href="#reviews" class="text-slate-500 transition-colors hover:text-slate-900">Reviews</a>
+    </div>
+  </div>
+
+  <section id="pricing" class="scroll-mt-28 bg-white py-24 md:scroll-mt-20">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="grid gap-8 lg:grid-cols-3">
+      <div class="mb-12 flex items-center justify-center gap-3">
+        <span id="billing-label-monthly" class="text-sm font-semibold text-slate-900">Monthly</span>
+        <label class="relative inline-flex h-6 w-11 cursor-pointer items-center">
+          <input type="checkbox" id="billing-toggle" class="peer sr-only" />
+          <span class="h-6 w-11 rounded-full bg-slate-200 transition-colors peer-checked:bg-accent-500"></span>
+          <span class="absolute left-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-5"></span>
+        </label>
+        <span id="billing-label-annual" class="text-sm font-semibold text-slate-500">
+          Annually <span class="ml-1 text-accent-600">(2 Months Free)</span>
+        </span>
+      </div>
+
+      <div class="pricing-scope mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
         {plans.map((plan) => (
-          <div class:list={["rounded-[30px] border p-8 shadow-sm", plan.featured ? "border-[#1A1D27] bg-[#1A1D27] text-white shadow-xl" : "border-slate-200 bg-white text-slate-900"]}>
-            <div class="flex items-center justify-between gap-3">
-              <h2 class:list={["text-2xl font-bold", plan.featured ? "text-white" : "text-primary-900"]}>{plan.name}</h2>
-              {plan.featured && <span class="rounded-full bg-accent-500 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white">Most popular</span>}
+          <div class:list={["relative flex flex-col rounded-2xl border p-8 shadow-sm", plan.featured ? "border-2 border-accent-500 shadow-xl md:-translate-y-4" : "border-slate-200 bg-white"]}>
+            <div class:list={["absolute left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase", plan.featured ? "-top-4 bg-accent-500 px-4 py-1.5 text-sm text-white shadow-sm" : "-top-3 border border-slate-200 bg-slate-100 text-slate-500"]}>
+              {plan.featured ? "Most Popular" : "Founding Member Rate"}
+            </div>
+            {plan.featured && (
+              <div class="absolute top-4 right-4 rounded border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase">
+                Founding Member Rate
+              </div>
+            )}
+
+            <div class:list={["mb-8", plan.featured ? "mt-4" : "mt-2"]}>
+              <h2 class="mb-2 text-2xl font-bold text-slate-900">{plan.name}</h2>
+              <div class:list={["mb-1 text-sm line-through", plan.featured ? "text-accent-600/70" : "text-slate-500"]}>Value: {plan.valueYear}</div>
+              <div class="mb-2 flex items-baseline gap-2">
+                <span class="text-4xl font-bold text-slate-900">
+                  <span class="price-monthly">${plan.monthly}</span>
+                  <span class="price-annual hidden">${plan.annual}</span>
+                </span>
+                <span class="text-slate-500">
+                  /<span class="price-monthly">month</span><span class="price-annual hidden">year</span>
+                </span>
+              </div>
+              <p class="mb-4 text-xs leading-tight text-slate-500">Locked in for life — this price increases to standard rate for new customers after the first 50 spots are filled.</p>
+              {plan.tagline && <p class="mt-2 text-sm font-medium text-accent-600">{plan.tagline}</p>}
             </div>
 
-            <div class="mt-6 flex items-baseline gap-2">
-              <span class:list={["font-heading text-5xl font-black tracking-tight", plan.featured ? "text-white" : "text-primary-900"]}>{plan.price}</span>
-              <span class:list={["text-sm", plan.featured ? "text-white/70" : "text-slate-500"]}>/mo</span>
-            </div>
-
-            <p class:list={["mt-4 text-sm leading-relaxed", plan.featured ? "text-white/75" : "text-slate-600"]}>{plan.value}</p>
-
-            <ul class="mt-8 space-y-3">
+            <ul class="mb-8 flex-1 space-y-4">
+              {plan.intro && <li class="border-b border-slate-200 pb-2 text-sm font-semibold text-slate-900">{plan.intro}</li>}
               {plan.features.map((feature) => (
-                <li class="flex items-start gap-3">
-                  <span class:list={["mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold", plan.featured ? "bg-white/10 text-accent-300" : "bg-accent-100 text-accent-700"]}>✓</span>
-                  <span class:list={["text-sm", plan.featured ? "text-white/85" : "text-slate-700"]}>{feature}</span>
+                <li class="flex items-start gap-3 text-sm">
+                  <Icon name="lucide:check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                  <span class="leading-tight text-slate-700">{feature}</span>
                 </li>
               ))}
             </ul>
 
-            <a href="/contact" class:list={["mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-base font-semibold transition-colors", plan.featured ? "bg-accent-500 text-white hover:bg-accent-600" : "bg-slate-900 text-white hover:bg-slate-800"]}>Get started</a>
+            <a
+              href="/contact"
+              class:list={[
+                "inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-base font-semibold transition-colors",
+                plan.cta.style === "solid" ? "bg-accent-500 text-white hover:bg-accent-600" : "border border-slate-300 text-slate-900 hover:bg-slate-50",
+              ]}
+            >
+              {plan.cta.label}
+            </a>
+
+            <div class="mt-4 flex flex-col items-center gap-2 text-xs font-medium text-slate-500">
+              {plan.trustLines.map((line, i) => (
+                <div class="flex items-center gap-1">
+                  <Icon name={i === 0 ? "lucide:shield-check" : "lucide:check-circle-2"} class="h-3.5 w-3.5 text-accent-500" />
+                  {line}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
+      </div>
+
+      <div class="mx-auto mt-16 max-w-5xl rounded-3xl border border-accent-500/20 bg-[#1A1D27] p-8 text-white shadow-xl md:p-12">
+        <div class="mb-10 text-center">
+          <h2 class="font-heading mb-4 text-3xl font-bold md:text-4xl">Two guarantees. Zero risk.</h2>
+          <p class="text-lg text-white/80">We're confident enough in this to guarantee it twice.</p>
+        </div>
+        <div class="mb-8 grid gap-8 md:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="rounded-full bg-accent-500/20 p-2"><Icon name="lucide:shield-check" class="h-6 w-6 text-accent-400" /></div>
+              <h3 class="text-xl font-bold">The Performance Guarantee</h3>
+            </div>
+            <p class="leading-relaxed text-white/80">If we don't help you make double what you pay us in the first month, we'll work for free until we do.</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="rounded-full bg-accent-500/20 p-2"><Icon name="lucide:check-circle-2" class="h-6 w-6 text-accent-400" /></div>
+              <h3 class="text-xl font-bold">The No-Regrets Guarantee</h3>
+            </div>
+            <p class="leading-relaxed text-white/80">Try it free for 14 days. If it's not a fit for any reason, walk away, no cost, no hard feelings, no cancellation runaround.</p>
+          </div>
+        </div>
+        <p class="text-center text-lg font-medium text-white/90">No contracts. No setup fees. Cancel anytime, for any reason.</p>
+      </div>
+
+      <div class="mx-auto mt-12 flex max-w-6xl flex-col items-center gap-8 rounded-3xl border border-accent-500/20 bg-white p-8 shadow-sm md:flex-row md:p-10">
+        <div class="shrink-0 rounded-full bg-accent-500/10 p-5 text-accent-600">
+          <Icon name="lucide:monitor" class="h-10 w-10" />
+        </div>
+        <div>
+          <h3 class="mb-3 text-2xl font-bold text-slate-900">The Real Value of Our "Free" Website Build</h3>
+          <p class="text-lg leading-relaxed text-slate-600">
+            Traditional agency website builds typically cost <strong class="text-slate-900">$3,000 to $8,000+</strong> depending on complexity and page count.
+            We include a complete, high-converting website build at zero upfront cost. We build <strong class="text-slate-900">20 to 25 SEO-optimized pages</strong> per site,
+            and integrate <strong class="text-slate-900">interactive calculators and assessments</strong> specifically designed to capture more leads.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="mx-auto max-w-4xl rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
-        <p class="mb-3 text-center text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">Two guarantees. Zero risk.</p>
-        <h2 class="text-center font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">The double guarantee.</h2>
-        <div class="mt-10 grid gap-6 md:grid-cols-2">
-          <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
-            <div class="text-sm font-semibold uppercase tracking-[0.15em] text-accent-600">The performance guarantee</div>
-            <p class="mt-4 text-slate-700">We double your investment in month one, or we keep working until we do. That's the accountability standard we stand behind.</p>
+  <section id="compare" class="relative scroll-mt-28 overflow-hidden border-y border-slate-200 bg-white py-24 md:scroll-mt-20">
+    <div class="mx-auto max-w-5xl px-5">
+      <div class="mb-16 text-center">
+        <h2 class="font-heading text-3xl font-black tracking-[-0.03em] text-slate-900 md:text-5xl">Compare Plans</h2>
+        <p class="mt-4 text-slate-500">Find the perfect fit for your business goals.</p>
+      </div>
+
+      <div class="pricing-scope hidden overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-2xl md:block">
+        <table class="w-full min-w-[800px] border-collapse text-left">
+          <thead>
+            <tr>
+              <th class="w-1/3 border-b border-slate-200 p-6 font-semibold text-slate-500">Features</th>
+              <th class="w-2/9 border-b border-slate-200 p-6 text-center font-semibold">
+                <div class="text-lg text-slate-900">Starter</div>
+                <div class="mt-1 text-sm font-normal text-slate-500"><span class="price-monthly">$49/mo</span><span class="price-annual hidden">$490/yr</span></div>
+              </th>
+              <th class="relative w-2/9 border-x border-b border-accent-500/20 bg-accent-500/5 p-6 text-center font-semibold">
+                <div class="absolute inset-x-0 top-0 h-1 bg-accent-500"></div>
+                <div class="text-lg text-accent-600">Growth</div>
+                <div class="mt-1 text-sm font-normal text-accent-600/70"><span class="price-monthly">$97/mo</span><span class="price-annual hidden">$970/yr</span></div>
+              </th>
+              <th class="w-2/9 border-b border-slate-200 p-6 text-center font-semibold">
+                <div class="text-lg text-slate-900">Full Suite</div>
+                <div class="mt-1 text-sm font-normal text-slate-500"><span class="price-monthly">$297/mo</span><span class="price-annual hidden">$2,970/yr</span></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            {compareFeatures.map((row) => (
+              <tr class="group transition-colors hover:bg-slate-50">
+                <td class:list={["border-b border-slate-200 p-5 font-medium", row.highlight ? "text-accent-600" : "text-slate-900"]}>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex items-center gap-2">
+                      {row.label}
+                      <span class="group/tip relative inline-flex">
+                        <Icon name="lucide:info" class="h-4 w-4 shrink-0 cursor-help text-slate-400 transition-colors hover:text-accent-500" />
+                        <span class="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-56 -translate-x-1/2 rounded-lg bg-slate-900 p-2.5 text-xs font-normal text-white opacity-0 shadow-lg transition-opacity group-hover/tip:opacity-100">
+                          {row.tooltip}
+                        </span>
+                      </span>
+                    </div>
+                    <div class="text-xs font-normal text-slate-500">{row.value}</div>
+                  </div>
+                </td>
+                <td class="border-b border-slate-200 p-5 text-center">
+                  {row.starter ? <Icon name="lucide:check-circle-2" class="inline-block h-5 w-5 text-accent-500" /> : <span class="text-slate-300">-</span>}
+                </td>
+                <td class="border-x border-b border-accent-500/20 bg-accent-500/5 p-5 text-center transition-colors group-hover:bg-accent-500/10">
+                  {row.growth ? <Icon name="lucide:check-circle-2" class="inline-block h-5 w-5 text-accent-500" /> : <span class="text-slate-300">-</span>}
+                </td>
+                <td class="border-b border-slate-200 p-5 text-center">
+                  {row.suite ? <Icon name="lucide:check-circle-2" class="inline-block h-5 w-5 text-accent-500" /> : <span class="text-slate-300">-</span>}
+                </td>
+              </tr>
+            ))}
+            <tr class="bg-slate-50 font-bold">
+              <td class="border-b border-slate-200 p-5 text-slate-900">Total Real World Value</td>
+              <td class="border-b border-slate-200 p-5 text-center text-lg">$6,797/yr<br /><span class="text-sm font-normal text-slate-500">($566/mo)</span></td>
+              <td class="border-x border-b border-accent-500/20 bg-accent-500/5 p-5 text-center text-lg text-accent-600">$12,044/yr<br /><span class="text-sm font-normal text-accent-600/70">($1,003/mo)</span></td>
+              <td class="border-b border-slate-200 p-5 text-center text-lg">$18,294/yr<br /><span class="text-sm font-normal text-slate-500">($1,524/mo)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="space-y-4 md:hidden">
+        {plans.map((plan, planIdx) => {
+          const key = planIdx === 0 ? "starter" : planIdx === 1 ? "growth" : "suite";
+          const total = planIdx === 0 ? "$6,797/yr" : planIdx === 1 ? "$12,044/yr" : "$18,294/yr";
+          return (
+            <details class:list={["group overflow-hidden rounded-xl border px-4 shadow-sm", plan.featured ? "relative border-accent-500/30 bg-accent-500/5" : "border-slate-200 bg-white"]}>
+              {plan.featured && <div class="absolute inset-x-0 top-0 h-1 bg-accent-500"></div>}
+              <summary class="flex cursor-pointer list-none flex-col items-start py-4 text-left">
+                <div class="flex items-center gap-2">
+                  <span class:list={["text-lg font-bold", plan.featured ? "text-accent-600" : "text-slate-900"]}>{plan.name}</span>
+                  {plan.featured && <span class="rounded-full bg-accent-500 px-2 py-0.5 text-[10px] font-bold tracking-wider text-white uppercase">Most Popular</span>}
+                </div>
+                <span class:list={["text-sm font-normal", plan.featured ? "text-accent-600/70" : "text-slate-500"]}>
+                  <span class="price-monthly">${plan.monthly}/mo</span><span class="price-annual hidden">${plan.annual}/yr</span>
+                </span>
+              </summary>
+              <div class="pt-2 pb-4">
+                <ul class="space-y-3">
+                  {compareFeatures.map((f) => (
+                    <li class="flex items-center justify-between border-b border-slate-200 pb-2 text-sm last:border-0 last:pb-0">
+                      <span class:list={["pr-4", f.highlight ? "text-accent-600" : "text-slate-500"]}>{f.label}</span>
+                      <span class="shrink-0">
+                        {(key === "starter" ? f.starter : key === "growth" ? f.growth : f.suite) ? (
+                          <Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-500" />
+                        ) : (
+                          <span class="text-slate-300">-</span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                  <li class:list={["mt-2 flex items-center justify-between border-t border-slate-200 pt-2 text-sm font-bold", plan.featured && "text-accent-600"]}>
+                    <span>Total Value</span>
+                    <span>{total}</span>
+                  </li>
+                </ul>
+              </div>
+            </details>
+          );
+        })}
+      </div>
+
+      <div class="mx-auto mt-8 flex max-w-3xl items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <Icon name="lucide:info" class="mt-0.5 h-5 w-5 shrink-0 text-slate-500" />
+        <div class="text-sm leading-relaxed text-slate-600">
+          <strong class="font-semibold text-slate-900">Standard telecom fees apply.</strong> Base plans cover the platform and features. You will be billed separately for direct usage costs including purchasing a business phone number, A2P 10DLC or Toll-Free registration fees, and standard per-segment rates for SMS and email sending.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-5xl px-5">
+      <div class="rounded-3xl border border-accent-500/20 bg-[#f7f7f7] p-8 shadow-sm md:p-12">
+        <div class="mb-8 text-center">
+          <div class="mb-4 inline-flex items-center rounded-full border border-accent-500/30 bg-accent-500/10 px-3 py-1 text-sm font-medium text-accent-600">
+            LIMITED TIME EXTRAS
           </div>
-          <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
-            <div class="text-sm font-semibold uppercase tracking-[0.15em] text-accent-600">The no-regrets guarantee</div>
-            <p class="mt-4 text-slate-700">If you don't love the system after 14 days, walk away and pay nothing. No hard feelings, no bait-and-switch, no wasted time.</p>
+          <h2 class="text-3xl font-bold text-slate-900">Exclusive Founding Member Bonuses</h2>
+          <p class="mt-2 text-slate-500">Limited to the first 50 businesses only.</p>
+        </div>
+        <div class="grid gap-8 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-white p-6">
+            <div class="mb-2 text-lg font-bold text-accent-600">Bonus #1 (Growth &amp; Full Suite)</div>
+            <h3 class="mb-2 text-xl font-bold text-slate-900">Optimized GMB Profile</h3>
+            <div class="mb-3 inline-block rounded border border-slate-200 bg-[#f7f7f7] px-2 py-1 text-xs font-medium text-slate-500 line-through decoration-accent-500 decoration-2">$500 Value</div>
+            <p class="text-sm leading-relaxed text-slate-600">We'll fully optimize your Google My Business profile to help you rank higher in the map pack, driving more organic local calls to your business.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-6">
+            <div class="mb-2 text-lg font-bold text-accent-600">Bonus #2 (Full Suite Only)</div>
+            <h3 class="mb-2 text-xl font-bold text-slate-900">30 Days of DFY Content</h3>
+            <div class="mb-3 inline-block rounded border border-slate-200 bg-[#f7f7f7] px-2 py-1 text-xs font-medium text-slate-500 line-through decoration-accent-500 decoration-2">$1,000 Value</div>
+            <p class="text-sm leading-relaxed text-slate-600">A full month of "Done-For-You" social media content tailored to your brand to build trust and authority in your local market without lifting a finger.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-[#f7f7f7] py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="mx-auto mb-12 max-w-3xl text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">FAQ</p>
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.05em] text-primary-900 md:text-5xl">Frequently asked questions</h2>
-      </div>
-
-      <div class="mx-auto max-w-4xl space-y-4">
-        {faqs.map((faq) => (
-          <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 class="text-xl font-bold text-primary-900">{faq.question}</h3>
-            <p class="mt-3 text-base leading-relaxed text-slate-600">{faq.answer}</p>
-          </div>
-        ))}
+  <section class="border-b border-slate-200 bg-[#f7f7f7] py-16">
+    <div class="mx-auto max-w-5xl px-5 text-center">
+      <p class="mb-8 text-sm font-bold tracking-wider text-slate-500 uppercase">Powered by Industry-Leading Technology</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 opacity-70 grayscale transition-all duration-500 hover:grayscale-0 md:gap-16">
+        <div class="flex items-center gap-2 text-xl font-bold text-slate-700"><Icon name="simple-icons:google" class="h-6 w-6" /> Google Partner</div>
+        <div class="flex items-center gap-2 text-xl font-bold text-slate-700"><Icon name="simple-icons:meta" class="h-6 w-6 text-[#0668E1]" /> Meta Partner</div>
+        <div class="flex items-center gap-2 text-xl font-bold text-slate-700"><Icon name="simple-icons:twilio" class="h-6 w-6 text-[#F22F46]" /> Twilio</div>
       </div>
     </div>
   </section>
+
+  <section id="faq" class="scroll-mt-28 bg-[#f7f7f7] py-24 md:scroll-mt-20">
+    <div class="mx-auto max-w-3xl px-5">
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
+      </div>
+      <FaqAccordion items={faqs} />
+    </div>
+  </section>
+
+  <section id="guarantee" class="scroll-mt-28 border-y border-slate-200 bg-white py-24 md:scroll-mt-20">
+    <div class="mx-auto max-w-4xl px-5 text-center">
+      <div class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-accent-500/10 text-accent-600 shadow-sm">
+        <Icon name="lucide:shield-check" class="h-10 w-10" />
+      </div>
+      <h2 class="font-heading mb-6 text-3xl font-bold text-slate-900 md:text-5xl">The Double Guarantee, in Full</h2>
+      <div class="mb-10 space-y-4 text-xl leading-relaxed font-medium text-slate-700 md:text-2xl">
+        <p><strong>Guarantee #1: The Performance Guarantee.</strong> If we don't help you make double the amount of revenue that you pay us in the first month, we will work for free until we do.</p>
+        <p><strong>Guarantee #2: The No-Regrets Guarantee.</strong> Try it free for 14 days. If it's not the right fit for any reason, walk away. No cost, no hard feelings, and no cancellation runaround.</p>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-[#f7f7f7] p-8 text-left shadow-sm md:p-10">
+        <ul class="space-y-6 text-lg text-slate-700">
+          <li class="flex items-start gap-4"><Icon name="lucide:check-circle-2" class="mt-0.5 h-7 w-7 shrink-0 text-accent-500" /> <span><strong>No long-term contracts.</strong> We earn your business every single month.</span></li>
+          <li class="flex items-start gap-4"><Icon name="lucide:check-circle-2" class="mt-0.5 h-7 w-7 shrink-0 text-accent-500" /> <span><strong>No setup fees.</strong> You only pay the flat monthly rate.</span></li>
+          <li class="flex items-start gap-4"><Icon name="lucide:check-circle-2" class="mt-0.5 h-7 w-7 shrink-0 text-accent-500" /> <span><strong>Cancel anytime.</strong> If our system doesn't save you time and help you close more jobs, you can walk away with zero penalties.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-slate-200 bg-[#f7f7f7] py-16">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5 text-center">
+      <p class="mb-8 text-sm font-bold tracking-wider text-slate-500 uppercase">The Results Speak For Themselves</p>
+      <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+        <div class="flex flex-col items-center">
+          <span class="mb-1 text-4xl font-bold text-slate-900">200+</span>
+          <span class="text-sm font-medium text-slate-500">Businesses Coached</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="mb-1 text-4xl font-bold text-slate-900">10k+</span>
+          <span class="text-sm font-medium text-slate-500">Leads Generated</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="mb-1 text-4xl font-bold text-slate-900">$5M+</span>
+          <span class="text-sm font-medium text-slate-500">Revenue Recovered</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="mb-1 text-4xl font-bold text-slate-900">5.0</span>
+          <span class="text-sm font-medium text-slate-500">Average Rating</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1A1D27] py-24 pb-32 text-center text-white md:pb-24">
+    <div class="mx-auto flex max-w-(--breakpoint-xl) flex-col items-center px-5">
+      <h2 class="mb-6 text-4xl font-bold">Still Have Questions?</h2>
+      <a href="/contact" class="mb-8 inline-flex h-14 items-center justify-center rounded-xl bg-accent-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-accent-600">Request a Website</a>
+      <div class="flex flex-col items-center gap-3 text-sm text-white/70">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> $0 upfront, live in 24-72 hours</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> 40+ websites launched and counting</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Average client stays 30+ months</div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> No contracts. No risk. Cancel anytime.</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Built by actual trade operators</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="reviews" class="scroll-mt-28 pb-24 md:scroll-mt-20 md:pb-0">
+    <TestimonialCarousel />
+  </div>
 </Layout>
+
+<style>
+  .marquee-track {
+    animation: pricing-marquee 28s linear infinite;
+  }
+  @keyframes pricing-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById("billing-toggle") as HTMLInputElement | null;
+  const monthlyLabel = document.getElementById("billing-label-monthly");
+  const annualLabel = document.getElementById("billing-label-annual");
+
+  toggle?.addEventListener("change", () => {
+    const isAnnual = toggle.checked;
+    document.querySelectorAll(".pricing-scope .price-monthly").forEach((el) => el.classList.toggle("hidden", isAnnual));
+    document.querySelectorAll(".pricing-scope .price-annual").forEach((el) => el.classList.toggle("hidden", !isAnnual));
+    monthlyLabel?.classList.toggle("text-slate-900", !isAnnual);
+    monthlyLabel?.classList.toggle("text-slate-500", isAnnual);
+    annualLabel?.classList.toggle("text-slate-900", isAnnual);
+    annualLabel?.classList.toggle("text-slate-500", !isAnnual);
+  });
+</script>

@@ -1,0 +1,169 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TestimonialCarousel from "@/components/TestimonialCarousel.astro";
+import { Icon } from "astro-icon/components";
+import { tradeData, tradeSlugs } from "@/data/trades";
+import { tradeJobProfiles } from "@/data/trade-job-profiles";
+import { playbookTopics, playbookSlugs, type Block } from "@/data/playbooks";
+
+export function getStaticPaths() {
+  const paths: { params: { trade: string; topic: string } }[] = [];
+  for (const trade of tradeSlugs) {
+    for (const topic of playbookSlugs) {
+      paths.push({ params: { trade, topic } });
+    }
+  }
+  return paths;
+}
+
+const { trade: tradeSlug, topic: topicSlug } = Astro.params;
+const trade = tradeData[tradeSlug as keyof typeof tradeData];
+const profile = tradeJobProfiles[tradeSlug as keyof typeof tradeJobProfiles];
+const topic = playbookTopics[topicSlug as string];
+
+const tagline = topic.tagline(trade, profile);
+const tldrSummary = topic.tldrSummary(trade, profile);
+const tldrBullets = topic.tldrBullets(trade, profile);
+const tldrBottomLine = topic.tldrBottomLine(trade, profile);
+const introBlocks = topic.intro(trade, profile);
+const sectionBlocks = topic.sections(trade, profile);
+const implementationPlan = topic.implementationPlan(trade, profile);
+const checklist = topic.checklist(trade, profile);
+const keyTakeaways = topic.keyTakeaways(trade, profile);
+
+const pageTitle = `${topic.title} Playbook for ${trade.name} Companies`;
+const pageDescription = tagline;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="border-b border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-4xl px-5 text-center">
+      <nav class="mb-6 flex items-center justify-center gap-2 text-sm text-white/50">
+        <a href="/" class="transition-colors hover:text-white">Home</a>
+        <span>›</span>
+        <a href="/playbooks" class="transition-colors hover:text-white">Playbooks</a>
+        <span>›</span>
+        <a href={`/playbooks/${tradeSlug}`} class="transition-colors hover:text-white">{trade.name}</a>
+      </nav>
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent-500/20">
+        <Icon name={topic.icon} class="h-8 w-8 text-accent-400" />
+      </div>
+      <h1 class="font-heading text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl">
+        {topic.title} Playbook for <span class="text-accent-400">{trade.name}</span> Companies
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-xl leading-relaxed text-white/80">{tagline}</p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-3xl px-5">
+      <div class="rounded-3xl border border-accent-200 bg-accent-50/50 p-8">
+        <p class="mb-3 text-xs font-bold tracking-[0.2em] text-accent-600 uppercase">TL;DR — Too Long; Didn't Read</p>
+        <p class="mb-4 text-lg leading-relaxed text-slate-700">{tldrSummary}</p>
+        <ul class="mb-4 space-y-2">
+          {tldrBullets.map((b) => (
+            <li class="flex items-start gap-2 text-slate-700">
+              <Icon name="lucide:check-circle-2" class="mt-1 h-4 w-4 shrink-0 text-accent-500" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="border-t border-accent-200 pt-4 font-semibold text-slate-900">Bottom line: {tldrBottomLine}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white pb-20">
+    <div class="prose prose-neutral prose-headings:font-heading prose-headings:text-primary-900 prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-2xl mx-auto max-w-3xl px-5">
+      {[...introBlocks, ...sectionBlocks].map((block: Block) => {
+        if (block.type === "heading") return <h2>{block.text}</h2>;
+        if (block.type === "paragraph") return <p>{block.text}</p>;
+        if (block.type === "formula") return <p class="rounded-lg bg-slate-100 px-4 py-3 font-mono text-sm text-slate-800">{block.text}</p>;
+        if (block.type === "bullets")
+          return (
+            <ul>
+              {block.items.map((item) => <li>{item}</li>)}
+            </ul>
+          );
+        if (block.type === "example")
+          return (
+            <div class="not-prose my-6 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <p class="mb-3 text-sm font-bold text-slate-500 uppercase tracking-wide">{block.title}</p>
+              <ul class="space-y-1.5">
+                {block.lines.map((line) => <li class="text-sm text-slate-700">{line}</li>)}
+              </ul>
+            </div>
+          );
+        return null;
+      })}
+    </div>
+  </section>
+
+  <section class="border-y border-slate-200 bg-slate-50 py-20">
+    <div class="mx-auto max-w-3xl px-5">
+      <h2 class="mb-10 text-center font-heading text-3xl font-bold text-primary-900">Implementation Plan</h2>
+      <div class="space-y-6">
+        {implementationPlan.map((step, i) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-900 text-sm font-bold text-white">{i + 1}</div>
+              <h3 class="text-lg font-bold text-primary-900">{step.label}</h3>
+            </div>
+            <ul class="ml-11 space-y-1.5">
+              {step.items.map((item) => (
+                <li class="flex items-start gap-2 text-slate-600">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-400"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-3xl px-5">
+      <h2 class="mb-8 text-center font-heading text-3xl font-bold text-primary-900">{topic.title} Checklist</h2>
+      <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {checklist.map((item) => (
+            <li class="flex items-start gap-2.5 text-sm text-slate-700">
+              <Icon name="lucide:square-check" class="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-[#1A1D27] py-20 text-white">
+    <div class="mx-auto max-w-3xl px-5">
+      <h2 class="mb-8 text-center font-heading text-3xl font-bold">Key Takeaways</h2>
+      <ul class="space-y-4">
+        {keyTakeaways.map((item, i) => (
+          <li class="flex items-start gap-4">
+            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-500/20 text-sm font-bold text-accent-400">{i + 1}</div>
+            <span class="text-lg text-white/85">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-[#13151D] py-24 text-center text-white">
+    <div class="mx-auto max-w-2xl px-5">
+      <h2 class="mb-4 font-heading text-3xl font-bold md:text-4xl">Ready to Put This to Work?</h2>
+      <p class="mb-10 text-lg text-white/70">
+        We build the {trade.name.toLowerCase()} website, systems, and follow-up that make playbooks like this one run automatically instead of living in a document.
+      </p>
+      <a href="/contact" class="inline-flex h-14 items-center justify-center rounded-full bg-accent-500 px-8 text-lg font-semibold text-white transition hover:bg-accent-600">
+        Get Your Free Marketing Audit
+      </a>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+</Layout>

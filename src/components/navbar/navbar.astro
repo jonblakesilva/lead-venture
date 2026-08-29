@@ -18,6 +18,7 @@ const resourceLinks = [
   { title: "$50K Leak Finder", path: "/resources/revenue-leak-calculator" },
   { title: "ROI Calculator", path: "/resources/calculators" },
   { title: "Assessments", path: "/resources/assessments" },
+  { title: "Growth Playbooks", path: "/playbooks" },
 ];
 const aboutLinks = [
   { title: "Trades We Serve", path: "/about/trades-we-serve" },
@@ -54,6 +55,11 @@ const mobileGroups = [
           </a>
         </li>
         <Dropdown title="Proof" children={proofLinks} />
+        <li>
+          <a href="/blog" class:list={["rounded-md px-3 py-2 text-sm font-medium transition-colors", isActive("/blog") ? "text-white" : "text-white/80 hover:text-white"]}>
+            Blog
+          </a>
+        </li>
         <Dropdown title="Resources" children={resourceLinks} />
         <Dropdown title="About" lastItem children={aboutLinks} />
       </ul>
@@ -84,7 +90,7 @@ const mobileGroups = [
       </div>
     </div>
 
-    <div id="mobile-menu" class="hidden border-t border-white/10 py-4 lg:hidden">
+    <div id="mobile-menu" class="hidden max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 py-4 lg:hidden">
       <a href="/contact" class="mb-4 flex w-full flex-col items-center justify-center rounded-xl bg-accent-500 py-3 text-center transition-colors hover:bg-accent-600">
         <span class="mb-0.5 block text-[16px] font-bold leading-tight">Claim my free build</span>
         <span class="block text-[12px] font-semibold leading-tight text-white/80">Try free for 14 days</span>
@@ -105,6 +111,9 @@ const mobileGroups = [
         ))}
         <li>
           <a href="/pricing" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Pricing</a>
+        </li>
+        <li>
+          <a href="/blog" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Blog</a>
         </li>
         <li>
           <a href="/contact" class="block rounded-md px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white">Contact</a>
