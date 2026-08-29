@@ -594,68 +594,69 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "fulfillment",
     title: "Fulfillment",
     icon: "lucide:clipboard-check",
-    tagline: (trade) => `Turn every ${trade.name.toLowerCase()} job into a 5-star review and a referral, not just a completed invoice.`,
-    tldrSummary: () =>
-      "How a job is delivered determines whether it turns into a review, a referral, and a repeat customer — or just a one-time transaction. Small, consistent touches matter more than most owners realize.",
-    tldrBullets: () => [
+    tagline: (trade, profile) => `Turn every ${profile.avgJobLabel} into a 5-star review and a referral, not just a completed invoice.`,
+    tldrSummary: (trade, profile) =>
+      `${profile.crewNote} That's what actually determines whether a ${profile.avgJobLabel} turns into a review and a repeat customer, or just a one-time transaction.`,
+    tldrBullets: (trade, profile) => [
       "Confirm the appointment 24-48 hours out so nothing is a surprise on either side",
-      "Visible safety protocols and a professional appearance build trust the moment you arrive",
-      "A few small \"wow factor\" touches at the end of a job cost almost nothing and get remembered",
+      profile.differentiator,
+      profile.warStory,
       "Following up within 24 hours after the job is when you win the review, not weeks later",
-      "A recorded testimonial captured right after the final walk-through is worth more than any ad you'll run",
+      "A recorded testimonial right after the final walk-through beats any ad",
     ],
-    tldrBottomLine: () => "Build a simple pre-job, on-site, and post-job checklist — most of what separates a 5-star review from silence is process, not luck.",
-    intro: () => [
-      { type: "paragraph", text: "Three promises should hold on every job: safety first, always; professional execution; and exceeding what the customer expected, even in small ways." },
+    tldrBottomLine: (trade, profile) =>
+      `Build a simple pre-job, on-site, and post-job checklist for a ${profile.avgJobLabel} — most of what separates a 5-star review from silence is process, not luck.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `Three promises hold on every ${profile.avgJobLabel}: safety first, professional execution, and exceeding what the customer expected in small ways. ${profile.seasonalNote}` },
     ],
-    sections: (trade) => [
+    sections: (trade, profile) => [
       { type: "heading", text: "Pre-Job: Setting Up for Success" },
-      { type: "paragraph", text: "A quick confirmation call 24-48 hours before arrival — confirming scope, timing, and access — prevents the majority of on-site surprises. Match crew skill to job complexity, and make sure equipment and materials are checked off the night before, not scrambled together that morning." },
+      { type: "paragraph", text: `A quick confirmation call 24-48 hours out — confirming ${profile.terminology[0]}, timing, and access — prevents most on-site surprises on a ${profile.avgJobLabel}. ${profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1)}` },
 
       { type: "heading", text: "On-Site: Delivering Exceptional Service" },
       {
         type: "bullets",
         items: [
-          "Park considerately and arrive in clean, branded gear",
-          "Do a quick property walk-through with the customer before starting so expectations are shared",
-          "Keep safety visible — cones, signage, PPE — it builds trust even for people who never ask about it",
-          "Protect the property proactively rather than cleaning up damage after the fact",
-          "Leave the site cleaner than you found it — the \"white glove\" standard is what gets photographed and shared",
+          `Arrive in clean, branded gear, not just whatever's in the ${profile.terminology[3]} truck that day`,
+          `A quick walk-through before starting so expectations on the ${profile.avgJobLabel} are shared`,
+          `Keep ${profile.terminology[1]}-related safety visible — it builds trust even from people who never ask about it`,
+          `Protect the property proactively — ${profile.crewNote.charAt(0).toLowerCase() + profile.crewNote.slice(1)}`,
+          `Leave the site cleaner than found — that's what gets photographed for a ${profile.terminology[4]} review`,
         ],
       },
 
       { type: "heading", text: "The Magic Question" },
-      { type: "paragraph", text: "Before you leave, ask: \"On a scale of 1 to 10, how would you rate your experience today?\" If it's not a 9 or 10, ask what would have made it one — and fix it on the spot if you possibly can. This single habit catches small dissatisfaction before it becomes a bad review." },
+      { type: "paragraph", text: `Before leaving a ${profile.avgJobLabel}, ask: "1 to 10, how was today?" Anything under a 9 gets a fix on the spot if possible — ${profile.differentiator.charAt(0).toLowerCase() + profile.differentiator.slice(1)}` },
 
       { type: "heading", text: "Post-Job Follow-Up & Reviews" },
-      { type: "paragraph", text: "A same-day text and a 48-hour quality check are what actually generate reviews — waiting a week and hoping someone remembers to leave one rarely works. Send a direct link, ask specifically, and respond to every review you get within 24 hours, good or bad." },
+      { type: "paragraph", text: `A same-day text and a 48-hour check generate reviews on a ${profile.avgJobLabel} — waiting a week rarely works. ${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
       { type: "heading", text: "Capturing Video Testimonials" },
-      { type: "paragraph", text: "The best moment to ask for a video testimonial is right after the final walk-through, while satisfaction is highest. A short phone-recorded clip answering a few simple questions — was there any hesitation before booking, how did the estimate process feel, what was the work itself like, how do they feel now — produces genuinely useful marketing material, and it directly answers the objections future customers are silently having." },
+      { type: "paragraph", text: `Ask for a video right after the ${profile.avgJobLabel} walk-through, while satisfaction is highest — was there hesitation before booking, how did the estimate feel, how do they feel now. That answers the exact ${profile.terminology[2]} objections future customers are silently having, better than any ad about ${profile.terminology[5]} ever could.` },
 
       { type: "heading", text: "Service Recovery" },
-      { type: "paragraph", text: "When something does go wrong: acknowledge it within an hour, take ownership without excuses, offer a real solution, and follow through completely. A well-handled complaint often turns into a more loyal customer than one who never had a problem at all." },
+      { type: "paragraph", text: `When a ${profile.avgJobLabel} goes wrong: acknowledge it within an hour, own it without excuses, offer a real fix, and follow through completely. A well-handled complaint on a ${profile.commercialExample} account often builds more loyalty than a job that never had a problem.` },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Document the Process", items: ["Write down your current pre-job, on-site, and post-job steps", "Identify the gaps", "Build simple checklists for each stage"] },
-      { label: "Week 2 — Train the Team", items: ["Walk the crew through the new checklists", "Practice the \"magic question\" out loud", "Reinforce safety and cleanup standards"] },
-      { label: "Week 3 — Systemize Follow-Up", items: ["Set up same-day text/email templates", "Build a 48-hour quality-check step", "Create a direct review-request link"] },
-      { label: "Week 4 — Launch & Refine", items: ["Run the full process on every job", "Collect crew and customer feedback", "Track review rate and average rating", "Adjust based on what's actually landing"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Document the Process", items: [`Write down the current pre-job, on-site, and post-job steps for a ${profile.avgJobLabel}`, "Identify the gaps", "Build simple checklists per stage"] },
+      { label: "Week 2 — Train the Team", items: ["Walk the crew through the new checklists", "Practice the magic question out loud", profile.crewNote] },
+      { label: "Week 3 — Systemize Follow-Up", items: [`Set up same-day text/email templates for a ${profile.avgJobLabel}`, "Build a 48-hour quality-check step", "Create a direct review-request link"] },
+      { label: "Week 4 — Launch & Refine", items: ["Run the full process on every job", "Collect crew and customer feedback", profile.topChannel] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Pre-job confirmation call happening 24-48 hours out",
       "On-site safety visibly maintained on every job",
-      "The \"magic question\" asked before leaving every site",
+      "The magic question asked before leaving every site",
       "Same-day follow-up text or email sent",
       "48-hour quality check in place",
-      "Direct review link sent to every satisfied customer",
-      "At least one video testimonial captured per month",
+      `Direct review link sent to every satisfied ${profile.avgJobLabel} customer`,
+      `At least one video testimonial captured per month from a real ${profile.highJob.label}`,
     ],
-    keyTakeaways: (trade) => [
-      "Fulfillment is a process, not a personality trait — checklists produce consistency even when the crew changes",
-      "Small, low-cost touches (a clean site, a quick check-in question) drive reviews more than the quality of the work alone",
+    keyTakeaways: (trade, profile) => [
+      "Fulfillment is a process, not a personality trait — checklists hold up even when the crew changes",
+      "Small, low-cost touches drive reviews more than the quality of the work alone",
       "The 24-48 hour window after a job is when review requests actually convert",
-      `A ${trade.name.toLowerCase()} job well delivered is marketing content, not just completed work — capture it while satisfaction is highest`,
+      profile.differentiator,
     ],
   },
 
