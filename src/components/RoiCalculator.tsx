@@ -221,7 +221,7 @@ export default function RoiCalculator() {
               </div>
               <div>
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="text-sm font-semibold">Human Answering Cost / Min</span>
+                  <span className="text-sm font-semibold">Human Answering Cost / Hour</span>
                   <span className="rounded-full bg-primary/10 px-3 py-0.5 text-sm font-bold text-primary">${vaRate}</span>
                 </div>
                 <input className={controlClasses} type="range" min={5} max={60} value={vaRate} onChange={(e) => setVaRate(Number(e.target.value))} />

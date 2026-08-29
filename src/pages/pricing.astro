@@ -10,7 +10,6 @@ const plans = [
     name: "Starter",
     monthly: "49",
     annual: "490",
-    valueYear: "$6,797/yr",
     featured: false,
     intro: null,
     features: [
@@ -29,14 +28,13 @@ const plans = [
     name: "Growth",
     monthly: "97",
     annual: "970",
-    valueYear: "$12,044/yr",
     featured: true,
     intro: "Everything in Starter, plus:",
     features: [
       "Missed Call Text-Back",
       "5-Star Auto Review System",
       "Business Mobile App",
-      "Quarterly Re-Marketing Campaigns (Avg $18k return per 1k contacts)",
+      "Quarterly Re-Marketing Campaigns to past customers",
       "Bonus: Full Google Business Profile Optimization",
       "Expanded Local SEO (citation building, map pack visibility)",
       "NFC Cards & QR Codes for Reviews",
@@ -49,12 +47,11 @@ const plans = [
     name: "Full Suite",
     monthly: "297",
     annual: "2,970",
-    valueYear: "$18,294/yr",
     featured: false,
     intro: "Everything in Growth, plus:",
     tagline: "We help you capture, nurture and close more business.",
     features: [
-      "Quarterly Re-Marketing Campaigns (Avg $18k return per 1k contacts)",
+      "Quarterly Re-Marketing Campaigns to past customers",
       "Bonus: 30 Days of Done-For-You Content",
       "2 Years of Newsletter Follow-up",
       "Appointment Reminders",
@@ -71,26 +68,26 @@ const plans = [
 ];
 
 const compareFeatures = [
-  { label: "Community Access & Free Training", value: "$997 Value", starter: true, growth: true, suite: true, tooltip: "Join our exclusive community of contractors and access weekly training materials." },
-  { label: "Weekly Live Office Hours", value: "$1,200 Value", starter: true, growth: true, suite: true, tooltip: "Get direct access to our team for Q&A and strategic guidance every week." },
-  { label: "Free Website Build", value: "$3,500 Value", starter: true, growth: true, suite: true, tooltip: "A custom-designed, high-converting website tailored to your specific trade." },
-  { label: "Website Hosting", value: "$600 Value", starter: true, growth: true, suite: true, tooltip: "Fast, secure cloud hosting to ensure your site is always online and loads quickly." },
-  { label: "Basic Local SEO", value: "$500 Value", starter: true, growth: true, suite: true, tooltip: "Essential on-page optimization to help your website rank for local search terms." },
-  { label: "Missed Call Text-Back", value: "$300 Value", starter: false, growth: true, suite: true, tooltip: "Automatically text back any caller you miss, turning lost leads into booked jobs." },
-  { label: "5-Star Review System", value: "$500 Value", starter: false, growth: true, suite: true, tooltip: "Automated review requests to build your reputation on Google and other platforms." },
-  { label: "Business Mobile App", value: "$997 Value", starter: false, growth: true, suite: true, tooltip: "Manage leads, conversations, and your calendar from anywhere using our mobile app." },
-  { label: "Expanded Local SEO", value: "$1,000 Value", starter: false, growth: true, suite: true, tooltip: "Advanced citation building and optimization to dominate the Google Map Pack." },
-  { label: "Bonus: GMB Optimization", value: "$500 Value", starter: false, growth: true, suite: true, highlight: true, tooltip: "A complete overhaul of your Google Business Profile to maximize local visibility." },
-  { label: "Quarterly Re-Marketing Campaigns", value: "$1,500 Value", starter: false, growth: true, suite: true, tooltip: "Targeted campaigns sent to your past customers to generate repeat business." },
-  { label: "Bonus: 30 Days DFY Content", value: "$1,000 Value", starter: false, growth: false, suite: true, highlight: true, tooltip: "A full month of custom social media content created and scheduled for you." },
-  { label: "2 Years Newsletter Follow-up", value: "$1,200 Value", starter: false, growth: false, suite: true, tooltip: "Automated email newsletters to keep your brand top-of-mind with your audience." },
-  { label: "Appointment Reminders", value: "$200 Value", starter: false, growth: false, suite: true, tooltip: "Automated SMS and email reminders to reduce no-shows and keep your schedule full." },
-  { label: "NFC Cards & QR Codes", value: "$150 Value", starter: false, growth: true, suite: true, tooltip: "Physical tap cards and QR displays to effortlessly collect reviews on the job site." },
-  { label: "Premium Local Directory Listing", value: "$300 Value", starter: false, growth: true, suite: true, tooltip: "Get a premium featured listing on our local contractor directory, driving referral traffic and boosting your local SEO." },
-  { label: "Discounts on Direct Mail", value: "$250 Value", starter: false, growth: false, suite: true, tooltip: "Exclusive partner pricing on targeted direct mail campaigns in your service area." },
-  { label: "Sales Scripts & Coaching", value: "$1,500 Value", starter: false, growth: false, suite: true, tooltip: "Proven scripts and coaching to help you close more leads and increase your average ticket." },
-  { label: "Complementary Email & SMS Credits", value: "$100 Value", starter: false, growth: false, suite: true, tooltip: "A monthly allowance of credits to cover your essential communication costs." },
-  { label: "3-Click Ad System (Meta & Google)", value: "$2,000 Value", starter: false, growth: false, suite: true, tooltip: "Launch proven, pre-built ad campaigns on Facebook, Instagram, and Google in seconds." },
+  { label: "Community Access & Free Training", starter: true, growth: true, suite: true, tooltip: "Join our exclusive community of contractors and access weekly training materials." },
+  { label: "Weekly Live Office Hours", starter: true, growth: true, suite: true, tooltip: "Get direct access to our team for Q&A and strategic guidance every week." },
+  { label: "Free Website Build", starter: true, growth: true, suite: true, tooltip: "A custom-designed, high-converting website tailored to your specific trade." },
+  { label: "Website Hosting", starter: true, growth: true, suite: true, tooltip: "Fast, secure cloud hosting to ensure your site is always online and loads quickly." },
+  { label: "Basic Local SEO", starter: true, growth: true, suite: true, tooltip: "Essential on-page optimization to help your website rank for local search terms." },
+  { label: "Missed Call Text-Back", starter: false, growth: true, suite: true, tooltip: "Automatically text back any caller you miss, turning lost leads into booked jobs." },
+  { label: "5-Star Review System", starter: false, growth: true, suite: true, tooltip: "Automated review requests to build your reputation on Google and other platforms." },
+  { label: "Business Mobile App", starter: false, growth: true, suite: true, tooltip: "Manage leads, conversations, and your calendar from anywhere using our mobile app." },
+  { label: "Expanded Local SEO", starter: false, growth: true, suite: true, tooltip: "Advanced citation building and optimization to dominate the Google Map Pack." },
+  { label: "Bonus: GMB Optimization", starter: false, growth: true, suite: true, highlight: true, tooltip: "A complete overhaul of your Google Business Profile to maximize local visibility." },
+  { label: "Quarterly Re-Marketing Campaigns", starter: false, growth: true, suite: true, tooltip: "Targeted campaigns sent to your past customers to generate repeat business." },
+  { label: "Bonus: 30 Days DFY Content", starter: false, growth: false, suite: true, highlight: true, tooltip: "A full month of custom social media content created and scheduled for you." },
+  { label: "2 Years Newsletter Follow-up", starter: false, growth: false, suite: true, tooltip: "Automated email newsletters to keep your brand top-of-mind with your audience." },
+  { label: "Appointment Reminders", starter: false, growth: false, suite: true, tooltip: "Automated SMS and email reminders to reduce no-shows and keep your schedule full." },
+  { label: "NFC Cards & QR Codes", starter: false, growth: true, suite: true, tooltip: "Physical tap cards and QR displays to effortlessly collect reviews on the job site." },
+  { label: "Premium Local Directory Listing", starter: false, growth: true, suite: true, tooltip: "Get a premium featured listing on our local contractor directory, driving referral traffic and boosting your local SEO." },
+  { label: "Discounts on Direct Mail", starter: false, growth: false, suite: true, tooltip: "Exclusive partner pricing on targeted direct mail campaigns in your service area." },
+  { label: "Sales Scripts & Coaching", starter: false, growth: false, suite: true, tooltip: "Proven scripts and coaching to help you close more leads and increase your average ticket." },
+  { label: "Complementary Email & SMS Credits", starter: false, growth: false, suite: true, tooltip: "A monthly allowance of credits to cover your essential communication costs." },
+  { label: "3-Click Ad System (Meta & Google)", starter: false, growth: false, suite: true, tooltip: "Launch proven, pre-built ad campaigns on Facebook, Instagram, and Google in seconds." },
 ];
 
 const faqs = [
@@ -98,7 +95,7 @@ const faqs = [
   { question: "Can I change plans later?", answer: "Absolutely. You can upgrade or downgrade your plan at any time as your business needs change. Upgrades are prorated for the remainder of your billing cycle." },
   { question: "What happens to my data if I cancel?", answer: "Your data is yours. If you decide to leave, we provide an easy export of all your contacts, leads, and customer history. We'll never hold your business hostage." },
   { question: "Do you offer discounts for annual billing?", answer: "Yes! If you choose to pay annually, you get 2 months free (about a 17% discount). Ask about this option on your demo call." },
-  { question: "What happens after the first 50 spots are filled?", answer: "Founding Member pricing is limited to the first 50 businesses. After that, new signups pay standard rates, but anyone who joins during the Founding Member window keeps their locked-in price permanently." },
+  { question: "What happens to Founding Member pricing over time?", answer: "We're capped at 10 new partners a month, and the rate goes up as we take on more. Anyone who joins at today's rate keeps it locked in permanently, even as pricing increases for new signups after them." },
   { question: "What happens if I want to switch providers and take my website elsewhere?", answer: "You're always free to switch, there's no long-term contract holding you in. If you'd like us to rebuild and hand off your website on a different platform, there's a one-time $1,500 transition fee to cover that rebuild. It's important to know that the automations and systems built on top of your website, things like appointment reminders, review request automations, and estimate follow-ups, are part of our platform and don't transfer over. Those would need to be rebuilt separately (by you or another provider) on whatever new platform you switch to." },
   { question: "Do you offer any discounts or help for non-profits?", answer: "Yes, we're happy to work with non-profits. Reach out to us directly and we'll go over what we can do for your organization." },
   { question: "What is web hosting, and do I need it?", answer: "Web hosting is what actually keeps your website live and accessible on the internet, without it, your site simply can't be viewed by anyone. Think of it like renting the space your website lives on. We handle hosting for you as part of our service for $49/month, which keeps your site fast, secure, and running without you having to think about it or manage anything technical yourself." },
@@ -156,15 +153,8 @@ const pricingSchema = {
 
   <div class="border-b border-accent-600/20 bg-accent-500 py-4 text-center text-white">
     <div class="mx-auto max-w-lg px-5">
-      <p class="mb-2 text-lg font-bold">Founding Member Pricing — Limited to the First 50 Businesses</p>
-      <div class="mb-1.5 flex items-center justify-between text-sm font-medium">
-        <span>Spots Filled</span>
-        <span>41 / 50</span>
-      </div>
-      <div class="h-2.5 w-full overflow-hidden rounded-full bg-white/20">
-        <div class="h-full rounded-full bg-white" style="width: 82%"></div>
-      </div>
-      <p class="mt-2 text-xs opacity-90">Only 9 spots remaining at this rate.</p>
+      <p class="text-lg font-bold">Founding Member Pricing — Capped at 10 New Partners a Month</p>
+      <p class="mt-1 text-sm opacity-90">Lock in this rate now. It goes up as we take on more partners.</p>
     </div>
   </div>
 
@@ -222,7 +212,6 @@ const pricingSchema = {
 
             <div class:list={["mb-8", plan.featured ? "mt-4" : "mt-2"]}>
               <h2 class="mb-2 text-2xl font-bold text-slate-900">{plan.name}</h2>
-              <div class:list={["mb-1 text-sm line-through", plan.featured ? "text-accent-600/70" : "text-slate-500"]}>Value: {plan.valueYear}</div>
               <div class="mb-2 flex items-baseline gap-2">
                 <span class="text-4xl font-bold text-slate-900">
                   <span class="price-monthly">${plan.monthly}</span>
@@ -232,7 +221,7 @@ const pricingSchema = {
                   /<span class="price-monthly">month</span><span class="price-annual hidden">year</span>
                 </span>
               </div>
-              <p class="mb-4 text-xs leading-tight text-slate-500">Locked in for life — this price increases to standard rate for new customers after the first 50 spots are filled.</p>
+              <p class="mb-4 text-xs leading-tight text-slate-500">Locked in for life at this rate — pricing increases for new partners as we take on more each month.</p>
               {plan.tagline && <p class="mt-2 text-sm font-medium text-accent-600">{plan.tagline}</p>}
             </div>
 
@@ -349,7 +338,6 @@ const pricingSchema = {
                         </span>
                       </span>
                     </div>
-                    <div class="text-xs font-normal text-slate-500">{row.value}</div>
                   </div>
                 </td>
                 <td class="border-b border-slate-200 p-5 text-center">
@@ -363,12 +351,6 @@ const pricingSchema = {
                 </td>
               </tr>
             ))}
-            <tr class="bg-slate-50 font-bold">
-              <td class="border-b border-slate-200 p-5 text-slate-900">Total Real World Value</td>
-              <td class="border-b border-slate-200 p-5 text-center text-lg">$6,797/yr<br /><span class="text-sm font-normal text-slate-500">($566/mo)</span></td>
-              <td class="border-x border-b border-accent-500/20 bg-accent-500/5 p-5 text-center text-lg text-accent-600">$12,044/yr<br /><span class="text-sm font-normal text-accent-600/70">($1,003/mo)</span></td>
-              <td class="border-b border-slate-200 p-5 text-center text-lg">$18,294/yr<br /><span class="text-sm font-normal text-slate-500">($1,524/mo)</span></td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -376,7 +358,6 @@ const pricingSchema = {
       <div class="space-y-4 md:hidden">
         {plans.map((plan, planIdx) => {
           const key = planIdx === 0 ? "starter" : planIdx === 1 ? "growth" : "suite";
-          const total = planIdx === 0 ? "$6,797/yr" : planIdx === 1 ? "$12,044/yr" : "$18,294/yr";
           return (
             <details class:list={["group overflow-hidden rounded-xl border px-4 shadow-sm", plan.featured ? "relative border-accent-500/30 bg-accent-500/5" : "border-slate-200 bg-white"]}>
               {plan.featured && <div class="absolute inset-x-0 top-0 h-1 bg-accent-500"></div>}
@@ -403,10 +384,6 @@ const pricingSchema = {
                       </span>
                     </li>
                   ))}
-                  <li class:list={["mt-2 flex items-center justify-between border-t border-slate-200 pt-2 text-sm font-bold", plan.featured && "text-accent-600"]}>
-                    <span>Total Value</span>
-                    <span>{total}</span>
-                  </li>
                 </ul>
               </div>
             </details>
@@ -431,7 +408,7 @@ const pricingSchema = {
             LIMITED TIME EXTRAS
           </div>
           <h2 class="text-3xl font-bold text-slate-900">Exclusive Founding Member Bonuses</h2>
-          <p class="mt-2 text-slate-500">Limited to the first 50 businesses only.</p>
+          <p class="mt-2 text-slate-500">Included free while you're locked in at the Founding Member rate.</p>
         </div>
         <div class="grid gap-8 md:grid-cols-2">
           <div class="rounded-2xl border border-slate-200 bg-white p-6">
@@ -521,7 +498,7 @@ const pricingSchema = {
       <a href="/contact" class="mb-8 inline-flex h-14 items-center justify-center rounded-xl bg-accent-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-accent-600">Request a Website</a>
       <div class="flex flex-col items-center gap-3 text-sm text-white/70">
         <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> $0 upfront, live in 24-72 hours</div>
+          <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> $0 upfront, website live in as little as 72 hours</div>
           <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> 40+ websites launched and counting</div>
           <div class="flex items-center gap-1.5"><Icon name="lucide:check-circle-2" class="h-4 w-4 text-accent-400" /> Average client stays 30+ months</div>
         </div>
