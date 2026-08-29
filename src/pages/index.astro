@@ -13,7 +13,7 @@ const featuredCaseStudies = (await getCollection("case-studies", ({ data }) => !
 const homepageFaqs = [
   {
     question: "What does The Lead Venture actually do for contractors?",
-    answer: "We build and manage the digital growth system for home service businesses, including lead-generation websites, local SEO, review automation, AI follow-up, and conversion-focused messaging.",
+    answer: "We help contractors get found, capture leads, follow up, book jobs, get reviews, and bring old customers back — all through one growth system instead of a pile of separate tools.",
   },
   {
     question: "Do you work with roofing, landscaping, plumbing, and other trade businesses?",
@@ -43,7 +43,7 @@ const homepageSchema = {
 };
 ---
 
-<Layout title="Built In The Trades. Not In A Marketing Agency." description="Get a modern website plus the systems that turn missed calls, Google searches, and past customers into booked jobs. Built by operators, not marketers.">
+<Layout title="The Growth System Built for Contractors" description="We help contractors get found, capture leads, follow up, book jobs, get reviews, and bring old customers back. Built by operators, not marketers.">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} />
   </Fragment>
@@ -53,15 +53,15 @@ const homepageSchema = {
       <div class="mx-auto max-w-5xl text-center">
         <div class="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/80">
           <span class="mr-2 h-2 w-2 rounded-full bg-accent-400"></span>
-          One System. Built By Contractors, For Contractors.
+          Built In The Trades. Not In A Marketing Agency.
         </div>
 
         <h1 class="mx-auto max-w-[16ch] font-heading text-5xl font-black leading-[0.92] tracking-[-0.06em] md:text-7xl lg:text-[4.5rem]">
-          Built In The Trades. <span class="text-accent-400">Not In A Marketing Agency.</span>
+          The <span class="text-accent-400">Growth System</span> Built for Contractors
         </h1>
 
         <p class="mx-auto mt-6 max-w-3xl text-lg text-white/75 md:text-2xl">
-          We install the system that helps you get found, follow up faster, book more jobs, and get more reviews — get a modern website plus the automation that turns missed calls, Google searches, and past customers into booked jobs.
+          We help contractors get found, capture leads, follow up, book jobs, get reviews, and bring old customers back.
         </p>
 
         <HeroVideo src="https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/c0d59bec-d221-4eef-a987-9cdba06f740f.mp4" />
