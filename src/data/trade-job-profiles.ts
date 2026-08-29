@@ -1,6 +1,8 @@
 import type { TradeSlug } from "./trades";
 
 export interface TradeJobProfile {
+  /** The trade slug this profile belongs to (matches TradeSlug / tradeData key) */
+  slug: TradeSlug;
   /** Typical mid-tier job used in worked examples */
   avgJobLabel: string;
   avgJobValue: number;
@@ -35,6 +37,7 @@ export interface TradeJobProfile {
 
 export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
   roofing: {
+    slug: "roofing",
     avgJobLabel: "roof repair",
     avgJobValue: 1800,
     lowJob: { label: "minor leak repair", low: 400, high: 900 },
@@ -60,6 +63,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The roofers who win high-ticket replacements over cheaper competitors are the ones who document everything — drone photos, moisture readings, a written scope — so the homeowner sees exactly what they're paying for.",
   },
   hvac: {
+    slug: "hvac",
     avgJobLabel: "AC repair",
     avgJobValue: 650,
     lowJob: { label: "diagnostic + minor repair", low: 150, high: 450 },
@@ -85,6 +89,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The HVAC companies that grow fastest treat every repair call as a maintenance-agreement pitch, not just a one-off fix — that's where the recurring revenue actually comes from.",
   },
   electrical: {
+    slug: "electrical",
     avgJobLabel: "panel upgrade",
     avgJobValue: 2400,
     lowJob: { label: "fixture or outlet install", low: 150, high: 400 },
@@ -110,6 +115,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The electricians who consistently win rewiring and panel-upgrade jobs over cheaper bids are the ones who explain code requirements in plain language instead of just quoting a number.",
   },
   plumbing: {
+    slug: "plumbing",
     avgJobLabel: "water heater replacement",
     avgJobValue: 1600,
     lowJob: { label: "drain clearing", low: 150, high: 350 },
@@ -135,6 +141,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The plumbers who build the biggest referral base are the ones who show the customer the problem — camera footage, a clear photo — instead of just describing it.",
   },
   "lawn-care": {
+    slug: "lawn-care",
     avgJobLabel: "seasonal cleanup",
     avgJobValue: 450,
     lowJob: { label: "one-time mow", low: 50, high: 100 },
@@ -160,6 +167,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The lawn care companies that scale past a one-truck operation are the ones who sell the annual program — mowing plus aeration, fertilization, and fall cleanup — instead of re-selling a single mow every single week.",
   },
   "tree-service": {
+    slug: "tree-service",
     avgJobLabel: "tree removal",
     avgJobValue: 2000,
     lowJob: { label: "pruning / trim", low: 300, high: 700 },
@@ -185,6 +193,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The tree services that command premium prices are the ones with visible certifications, real insurance, and a fast, organized response to storm damage — not just the biggest chainsaw.",
   },
   landscaping: {
+    slug: "landscaping",
     avgJobLabel: "landscape refresh",
     avgJobValue: 3500,
     lowJob: { label: "seasonal bed cleanup", low: 300, high: 800 },
@@ -210,6 +219,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The landscaping companies that win the highest-budget design-build projects are the ones who sell a full outdoor living vision, not a list of individual line items.",
   },
   painting: {
+    slug: "painting",
     avgJobLabel: "exterior repaint",
     avgJobValue: 3800,
     lowJob: { label: "single interior room", low: 400, high: 900 },
@@ -235,6 +245,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The painting companies that get repeat and referral business are the ones who treat prep work as the product, not an invisible cost to minimize.",
   },
   remodeling: {
+    slug: "remodeling",
     avgJobLabel: "bathroom remodel",
     avgJobValue: 12000,
     lowJob: { label: "bathroom refresh", low: 5000, high: 10000 },
@@ -260,6 +271,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The remodelers who win the highest-budget jobs over cheaper bids are the ones who show a real design vision and a professional selections process, not just a bid number.",
   },
   "general-contractors": {
+    slug: "general-contractors",
     avgJobLabel: "renovation project",
     avgJobValue: 15000,
     lowJob: { label: "small repair project", low: 1000, high: 3000 },
@@ -285,6 +297,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The general contractors who win the biggest projects over cheaper bids are the ones with organized, transparent communication — clients are really buying certainty the project won't blow up midway through.",
   },
   "junk-removal": {
+    slug: "junk-removal",
     avgJobLabel: "full truckload pickup",
     avgJobValue: 400,
     lowJob: { label: "single item pickup", low: 75, high: 150 },
@@ -310,6 +323,7 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     differentiator: "The junk removal companies that build recurring B2B revenue are the ones who proactively reach out to property managers and real estate agents instead of waiting for one-off residential calls.",
   },
   "pest-control": {
+    slug: "pest-control",
     avgJobLabel: "initial pest treatment",
     avgJobValue: 350,
     lowJob: { label: "one-time spray", low: 100, high: 200 },
