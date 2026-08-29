@@ -1048,65 +1048,65 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "content-marketing-social-media",
     title: "Content Marketing & Social Media",
     icon: "lucide:megaphone",
-    tagline: (trade) => `The exact content mix, posting schedule, and engagement tactics that turn organic social into real ${trade.name.toLowerCase()} leads.`,
-    tldrSummary: () =>
-      "Content marketing is the most underused lead channel for local service businesses. Facebook and Instagram alone can generate 20-50 qualified leads a month organically, for the cost of a phone and some consistency.",
-    tldrBullets: (trade) => [
-      "Facebook and Instagram should get the majority of your content effort for a local service business — they're built for local targeting and visual proof",
-      "Video content gets far more engagement than photos — before/afters, educational clips, and behind-the-scenes footage all perform well",
-      "An \"Engage + DM\" habit (friend-request and message anyone who engages, with a personalized offer) turns passive followers into booked jobs",
-      "Consistency beats perfection — a smartphone video posted 3-5x a week beats a polished video posted once a month",
-      "Different platforms need different content — what works on TikTok falls flat on LinkedIn, and vice versa",
+    tagline: (trade, profile) => `The content mix and engagement tactics that turn organic social into real ${profile.avgJobLabel} leads.`,
+    tldrSummary: (trade, profile) =>
+      `Content marketing is the most underused lead channel in this trade. ${profile.warStory}`,
+    tldrBullets: (trade, profile) => [
+      "Facebook and Instagram should get the majority of content effort — they're built for local targeting and visual proof",
+      `Video content on ${profile.terminology[0]} work gets far more engagement than photos alone`,
+      "An \"Engage + DM\" habit turns passive followers into booked estimates",
+      profile.differentiator,
+      profile.toolMention,
     ],
-    tldrBottomLine: () => "Put 80% of your content effort into Facebook and Instagram, post consistently with a real mix of before/afters, education, and behind-the-scenes, and actively engage rather than just posting and waiting.",
-    intro: () => [
-      { type: "paragraph", text: "Facebook and Instagram outperform every other platform for local service businesses because of local targeting, the visual nature of before/after work, an older homeowner demographic, and genuinely useful business tools." },
+    tldrBottomLine: (trade, profile) =>
+      `Put 80% of content effort into Facebook and Instagram, post a real mix built around ${profile.terminology[1]} and ${profile.terminology[2]}, and actively engage rather than just posting and waiting.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `Facebook and Instagram outperform every other platform here because of local targeting and the visual nature of ${profile.terminology[3]} work — an older homeowner demographic and genuinely useful business tools do the rest.` },
     ],
-    sections: (trade) => [
+    sections: (trade, profile) => [
       { type: "heading", text: "The Content Mix" },
       {
         type: "bullets",
         items: [
-          "Before/after photos or carousels — roughly twice a week",
-          "Educational content (a tip, a common mistake, a seasonal reminder) — roughly twice a week",
-          "Behind-the-scenes video from an actual job — about once a week",
+          `Before/after ${profile.terminology[4]} photos or carousels — twice a week`,
+          `Educational content — a ${profile.terminology[5]} tip or seasonal reminder — twice a week`,
+          `Behind-the-scenes video from a real ${profile.avgJobLabel} — about once a week`,
           "Customer testimonials — about once a week",
-          "Seasonal or promotional posts — as relevant",
+          profile.seasonalNote,
         ],
       },
-      { type: "paragraph", text: "A simple 5-3-2 rule keeps the mix healthy: for every 10 posts, roughly 5 educational, 3 promotional, and 2 personal/behind-the-scenes." },
 
       { type: "heading", text: "The 3-Shot Video Framework" },
-      { type: "paragraph", text: "Hook in the first 3 seconds, deliver real value for the next 20-50 seconds, then a clear call to action in the last 5-10 seconds. This structure works across Reels, TikTok, and YouTube Shorts with only minor tweaks." },
+      { type: "paragraph", text: `Hook in the first 3 seconds with the ${profile.avgJobLabel} problem, deliver real value on ${profile.terminology[0]} for 20-50 seconds, then a clear call to action. Works across Reels, TikTok, and YouTube Shorts with minor tweaks.` },
 
       { type: "heading", text: "The \"Engage + DM\" Strategy" },
-      { type: "paragraph", text: "Friend-request or follow-back everyone who meaningfully engages with your content, then send a short, personalized direct message — not a hard pitch, just a genuine offer relevant to what they engaged with. This consistently converts a real share of engaged followers into booked estimates, at essentially zero ad cost." },
+      { type: "paragraph", text: `Follow back everyone who meaningfully engages, then send a short, personalized message about their ${profile.terminology[1]} question — not a pitch, a genuine offer. ${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
       { type: "heading", text: "Platform Notes" },
-      { type: "paragraph", text: "YouTube works well for longer project walkthroughs and educational content that keeps generating views long after posting. TikTok rewards fast, satisfying, or dramatic clips more than polish. LinkedIn is worth a modest, separate effort if you're pursuing commercial or property-management clients — case studies and industry insight land better there than anywhere else." },
+      { type: "paragraph", text: `YouTube works for longer ${profile.avgJobLabel} walkthroughs. TikTok rewards fast, satisfying clips over polish. LinkedIn is worth a modest effort for pursuing ${profile.commercialExample} — case studies land better there than anywhere else. ${profile.crewNote}` },
 
       { type: "heading", text: "Tracking What Actually Works" },
-      { type: "paragraph", text: "Track leads generated by platform, not just likes and follower count — a unique phone number or a simple \"how did you hear about us\" question at booking tells you which platform is actually producing revenue, not just engagement." },
+      { type: "paragraph", text: `Track leads by platform, not just likes — a unique phone number or a simple "how did you hear about us" question tells you which platform actually produces a ${profile.avgJobLabel} booking, not just engagement. ${profile.topChannel}` },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Foundation", items: ["Set up or clean up profiles on Facebook, Instagram, and YouTube", "Optimize bios with phone number, website, and location", "Build a simple content calendar"] },
-      { label: "Week 2 — Content Batch", items: ["Record 10-15 short videos from current jobs", "Take 50+ photos across categories", "Write out a week of captions in advance"] },
-      { label: "Week 3 — Engagement", items: ["Start the Engage + DM habit daily", "Join relevant local community groups and contribute genuinely", "Respond to every comment and DM within 24 hours"] },
-      { label: "Week 4+ — Optimize", items: ["Review what content actually drove leads", "Double down on the best-performing formats", "Keep a consistent 3-5x/week posting cadence going forward"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Foundation", items: ["Set up or clean up profiles on Facebook, Instagram, and YouTube", `Optimize bios with phone number and service area for ${profile.avgJobLabel} searches`, `Build a content calendar around ${profile.terminology[2]}`] },
+      { label: "Week 2 — Content Batch", items: [`Record 10-15 short videos from current ${profile.avgJobLabel} jobs`, "Take 50+ photos across categories", "Write a week of captions in advance"] },
+      { label: "Week 3 — Engagement", items: ["Start the Engage + DM habit daily", `Join local ${profile.terminology[0]} community groups and contribute genuinely`, "Respond to every comment and DM within 24 hours"] },
+      { label: "Week 4+ — Optimize", items: ["Review what content actually drove leads", "Double down on the best-performing formats", profile.crewNote] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Business profiles set up and optimized on Facebook, Instagram, and YouTube",
       "Content calendar built with a real content mix",
-      "At least 10 videos and 50 photos in a content bank",
+      `At least 10 videos and 50 photos from real ${profile.avgJobLabel} jobs`,
       "Engage + DM habit running daily",
       "Leads tracked by platform, not just engagement",
-      "Posting consistently 3-5x/week"
+      "Posting consistently 3-5x/week",
     ],
-    keyTakeaways: (trade) => [
-      "Facebook and Instagram deserve the majority of a local service business's content effort",
+    keyTakeaways: (trade, profile) => [
+      "Facebook and Instagram deserve the majority of content effort for this trade",
       "Video consistently outperforms static photos for engagement and trust-building",
-      "Engage + DM turns passive followers into booked jobs — it's the step most businesses skip",
-      "Consistency beats production value — post 3-5x a week with a phone rather than once a month with a crew",
+      "Engage + DM turns passive followers into booked jobs — most businesses skip this step",
+      profile.differentiator,
     ],
   },
 
