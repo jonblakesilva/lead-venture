@@ -206,17 +206,17 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     seasonalNote:
       "Design consultations and contract signings cluster in late winter and early spring as homeowners plan for the season, while installation work runs through spring, summer, and early fall.",
     topChannel:
-      "A strong visual portfolio does more selling than almost anything else in this trade — homeowners are buying a vision for their yard, and photos of finished, similar projects close jobs a written estimate alone never would.",
+      "Hardscape and outdoor-living renders sell harder than any written estimate — a homeowner staring at a patio-and-fire-pit rendering of their own backyard closes faster than one reading a scope of work.",
     commonObjection: {
       objection: "\"$15,000 for a patio and fire pit feels high.\"",
       response:
-        "Walk through the design-build difference — grading and drainage work that isn't visible in the final photo but prevents problems for the next twenty years, versus a cheaper installer skipping that step entirely.",
+        "The grading and drainage work under a hardscape installation never shows up in the final photo, but skip it and the patio heaves within two winters — that's the twenty-year difference between a design-build crew and a paver installer working off a level and a prayer.",
     },
     warStory:
-      "A client wanted to skip the drainage plan to save money on a hardscape project — six months later, a neighbor's yard installed by a competitor who skipped the same step had standing water after every storm, which became the exact story that closed the next three estimates.",
-    toolMention: "3D design and rendering software that lets a homeowner see their finished yard before a single shovel goes in the ground",
-    crewNote: "A finished project photographed properly — good light, a clean job site, no equipment in frame — is worth more in future sales than the next several leads combined.",
-    differentiator: "The landscaping companies that win the highest-budget design-build projects are the ones who sell a full outdoor living vision, not a list of individual line items.",
+      "A client wanted to skip the drainage plan to save money on a hardscape install — six months later, a neighbor's yard installed by a competitor who skipped the same step had standing water pooling against the softscape beds after every storm, which became the exact pitch that closed the next three estimates.",
+    toolMention: "3D rendering software that shows a homeowner their own backyard with the hardscape and softscape already installed, before a single shovel goes in the ground",
+    crewNote: "A hardscape install shot at golden hour, cleared of hoses and wheelbarrows, sells the next five estimates harder than any lead the ad budget will buy.",
+    differentiator: "The landscaping companies winning the highest-budget hardscape jobs are the ones pitching a full outdoor-living transformation, not a paver count and a mulch quote.",
   },
   painting: {
     slug: "painting",
@@ -254,21 +254,21 @@ export const tradeJobProfiles: Record<TradeSlug, TradeJobProfile> = {
     commercialAnnualValue: 60000,
     crewHourlyCost: 70,
     recurringServiceLabel: "annual maintenance walkthrough",
-    terminology: ["scope revision", "kitchen/bath teardown sequencing", "permit and inspection", "final walkthrough list", "rough-in", "selections (fixtures and finishes)"],
+    terminology: ["scope revision", "kitchen/bath teardown sequencing", "permit and inspection", "final walkthrough list", "tile-and-fixture sequencing", "selections (fixtures and finishes)"],
     seasonalNote:
       "Demand is less weather-driven than most trades but still bumps in spring as homeowners plan projects around tax refunds and the summer selling season, with a slower stretch around the holidays.",
     topChannel:
-      "Handling both the design work and the construction under one roof, instead of a separate architect and contractor, is a genuine differentiator that justifies premium pricing and shortens the sales cycle.",
+      "One crew running both the design work and the teardown-to-finish build, instead of handing a client off between a separate architect and contractor, shortens the sales cycle and justifies charging more than either one alone.",
     commonObjection: {
       objection: "\"$12,000 for a bathroom remodel is way more than I expected.\"",
       response:
-        "Break the number into its real components — demo, rough plumbing and electrical, tile, fixtures, and finish work — most sticker shock comes from not realizing how many trades and inspections are actually involved in what looks like one job.",
+        "A bathroom gut involves a plumber, an electrician, a tile setter, and two inspections before the vanity ever goes in — the sticker shock almost always comes from picturing it as one trade's invoice instead of four.",
     },
     warStory:
-      "A client wanted to skip a permit on a bathroom remodel to save time — walking through the resale and insurance risk of unpermitted work turned that conversation into the client insisting on doing everything by the book on every future project since.",
-    toolMention: "3D rendering and design software that lets a client see their finished kitchen or bathroom before demo day",
-    crewNote: "A clear written change-order process, agreed to before the project starts, is what prevents the single most common source of remodeling disputes — scope creep nobody wrote down.",
-    differentiator: "The remodelers who win the highest-budget jobs over cheaper bids are the ones who show a real design vision and a professional selections process, not just a bid number.",
+      "A client wanted to skip the permit on a bathroom gut to save a week — walking through the resale disclosure risk and the insurance gap on unpermitted plumbing turned that conversation into the same client insisting on pulling permits for every phase of the kitchen job that followed.",
+    toolMention: "walkthrough rendering software that puts a client inside their future kitchen or bathroom, tile and fixtures already selected, before demo day",
+    crewNote: "A signed change-order sheet before the sledgehammer comes out is what prevents the single most common source of remodeling disputes — scope creep nobody wrote down.",
+    differentiator: "The remodelers winning the highest-budget kitchen and bath jobs over cheaper bids are pitching a finished selections package, not a demo-to-drywall bid number.",
   },
   "general-contractors": {
     slug: "general-contractors",
