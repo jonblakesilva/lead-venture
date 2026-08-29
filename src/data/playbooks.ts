@@ -879,39 +879,40 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "operations",
     title: "Operations",
     icon: "lucide:settings",
-    tagline: (trade) => `Crew, equipment, scheduling, and cash flow — the operational backbone that lets a ${trade.name.toLowerCase()} business scale without falling apart.`,
-    tldrSummary: () =>
-      "Growth doesn't fail because of a lack of leads — it fails because operations can't keep up with them. Crew management, equipment maintenance, smart scheduling, and real financial tracking are what let a business scale profitably instead of just getting busier and less profitable.",
+    tagline: (trade, profile) => `Crew, equipment, scheduling, and cash flow — the backbone that lets a ${trade.name.toLowerCase()} business handle a ${profile.avgJobLabel} without falling apart.`,
+    tldrSummary: (trade, profile) =>
+      `Growth doesn't fail from too few leads — it fails when operations can't keep up with them. ${profile.crewNote}`,
     tldrBullets: (trade, profile) => [
-      "Crew management is everything: hire for attitude, train for skill, and build a real career path so good people stay",
-      "Preventive equipment maintenance prevents the disasters that quietly eat a whole month's profit",
-      "Smart scheduling — clustering jobs geographically and prioritizing by margin — recovers hours of lost drive time every week",
-      `Know your true cost per hour (loaded at roughly ${fmt(profile.crewHourlyCost)}/hour for a ${trade.name.toLowerCase()} crew) so every job is priced to actually make money`,
+      "Crew management is everything: hire for attitude, train for skill, build a real career path",
+      profile.differentiator,
+      "Smart scheduling — clustering jobs geographically and by margin — recovers hours of drive time every week",
+      `True loaded cost per hour runs around ${fmt(profile.crewHourlyCost)} for a ${trade.name.toLowerCase()} crew, so pricing without that number is a guess`,
       "Track cash flow weekly, not just profit monthly — a profitable month can still leave you cash-short",
     ],
-    tldrBottomLine: () => "Fix crew hiring and training first, then equipment maintenance, then scheduling efficiency, then the financial tracking that ties it all together.",
-    intro: () => [
-      { type: "paragraph", text: "Most owners chase more leads when the business is actually straining at the seams operationally. More leads on top of an inefficient operation just means more chaos, not more profit." },
+    tldrBottomLine: (trade, profile) =>
+      `Fix crew hiring first, then ${profile.terminology[0]}-related equipment maintenance, then scheduling, then the ${fmt(profile.crewHourlyCost)}/hour math that ties it together.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `Most owners chase more leads when the business is straining operationally on a ${profile.avgJobLabel}. More leads on top of that just means more chaos, not more profit.` },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "Crew Management" },
-      { type: "paragraph", text: "Hire for attitude and coachability — technical skill can be trained, work ethic and reliability are much harder to install after the fact. A structured onboarding (safety and orientation in week one, hands-on shadowing for the first month, real skill development over the next quarter) sets the tone for everything that follows." },
-      { type: "paragraph", text: "Regular one-on-ones with a real career path — ground crew to lead, lead to supervisor — reduce the turnover that quietly costs far more than most owners realize once you account for hiring and retraining. A simple weekly toolbox talk plus monthly skills workshops keep standards from slipping." },
+      { type: "paragraph", text: `Hire for attitude — technical skill trains, reliability doesn't. A structured onboarding (safety in week one, shadowing the first month, real ${profile.terminology[1]} skill development after that) sets the tone.` },
+      { type: "paragraph", text: `Regular one-on-ones with a real path from ground crew toward a lead role, aimed at eventually handling ${profile.commercialExample}, cut the turnover that costs more than most owners realize.` },
 
       { type: "heading", text: "Equipment: Maximizing Uptime" },
-      { type: "paragraph", text: "A quick daily pre-use inspection catches small issues before they become a truck or a major piece of equipment down for a week. Track a real replacement schedule — when repair costs consistently exceed a meaningful share of replacement cost, it's time to replace, not keep patching." },
+      { type: "paragraph", text: `A daily pre-use check catches small ${profile.terminology[2]} issues before a truck or a major piece of equipment goes down for a week. ${profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1)}` },
 
       { type: "heading", text: "Scheduling for Profit, Not Just Fullness" },
-      { type: "paragraph", text: "A fully booked schedule isn't the same as a profitable one. Prioritize jobs by a combination of margin and geographic proximity — a cluster of closer, higher-margin jobs almost always beats a scattered set of lower-margin ones, even if the total revenue looks similar on paper." },
+      { type: "paragraph", text: `A fully booked schedule isn't a profitable one. A cluster of closer, higher-margin ${profile.avgJobLabel} jobs beats a scattered set of lower-margin ones, even at similar total revenue. ${profile.differentiator}` },
       {
         type: "example",
-        title: "Same day, two different schedules",
+        title: `Same day, two ${profile.avgJobLabel} schedules`,
         lines: [
-          `Option A — geographically clustered, prioritized by margin: higher total profit for the day`,
-          `Option B — same total jobs, but scattered and unprioritized: meaningfully lower profit from extra drive time and lower-margin jobs eating the schedule`,
+          "Option A — geographically clustered, prioritized by margin: higher total profit",
+          `Option B — same jobs, scattered across town: meaningfully lower profit from ${profile.terminology[3]}-related drive time`,
         ],
       },
-      { type: "paragraph", text: "Watch your booking window too — customers who book 6+ weeks out cancel at a much higher rate than those booked within 2-3 weeks. Build in a bit of flexible capacity for slower stretches rather than pushing everyone out to a distant date." },
+      { type: "paragraph", text: profile.seasonalNote },
 
       { type: "heading", text: "The Numbers That Matter" },
       {
@@ -920,38 +921,38 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       },
       {
         type: "example",
-        title: "Cost-plus pricing worked out",
+        title: `Cost-plus pricing for a ${trade.name.toLowerCase()} crew`,
         lines: [
-          `Loaded labor: ${fmt(profile.crewHourlyCost)}/hour`,
+          `Loaded labor: ${fmt(profile.crewHourlyCost)}/hour, mostly ${profile.terminology[4]}-related`,
           `Equipment + overhead: roughly ${fmt(Math.round(profile.crewHourlyCost * 0.5))}/hour`,
-          `Total cost: ${fmt(Math.round(profile.crewHourlyCost * 1.5))}/hour — at a 25% margin, billable rate should be roughly ${fmt(Math.round(profile.crewHourlyCost * 1.5 * 1.25))}/hour`,
+          `At a 25% margin: roughly ${fmt(Math.round(profile.crewHourlyCost * 1.5 * 1.25))}/hour billable`,
         ],
       },
-      { type: "paragraph", text: "Track revenue per crew, revenue per billable hour, and utilization rate (target 70-85% billable). If those numbers aren't visible weekly, problems compound for months before anyone notices." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response} ${profile.topChannel}` },
 
       { type: "heading", text: "Cash Flow Management" },
-      { type: "paragraph", text: "A business can be profitable on paper and still run out of cash if payment terms and job costs are mismatched — deposits on larger jobs, prompt invoicing, and a disciplined follow-up cadence on anything unpaid past 7-14 days keep this from becoming a real problem. Keep 2-3 months of operating expenses in reserve if at all possible." },
+      { type: "paragraph", text: `A business can be profitable on paper and still run out of cash if a ${profile.avgJobLabel}'s payment terms lag the crew's payroll. ${profile.warStory}` },
     ],
-    implementationPlan: () => [
-      { label: "Month 1 — Assessment", items: ["Document current processes end to end", "Identify the biggest pain points", "Benchmark your key numbers (utilization, revenue per crew, margin)"] },
-      { label: "Month 2 — Quick Wins", items: ["Fix the easiest, highest-impact inefficiencies", "Start tracking key metrics weekly", "Establish a regular team meeting cadence"] },
-      { label: "Month 3 — Systems", items: ["Evaluate scheduling/CRM software if you don't have it", "Implement a preventive maintenance schedule", "Set a weekly financial reporting habit"] },
-      { label: "Month 4+ — Scale", items: ["Refine processes based on real data", "Build out a management layer as volume grows", "Revisit pricing against your true cost per hour"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Month 1 — Assessment", items: [`Document the current ${profile.avgJobLabel} process end to end`, `Identify the biggest ${profile.terminology[0]}-related pain points`, "Benchmark utilization, revenue per crew, margin"] },
+      { label: "Month 2 — Quick Wins", items: [`Fix the easiest, highest-impact ${profile.terminology[1]} inefficiencies`, "Start tracking key metrics weekly", profile.crewNote] },
+      { label: "Month 3 — Systems", items: ["Evaluate scheduling/CRM software", `Implement preventive ${profile.terminology[2]} maintenance`, "Set a weekly financial reporting habit"] },
+      { label: "Month 4+ — Scale", items: [`Refine ${profile.terminology[4]} processes based on real data`, `Build toward ${profile.commercialExample} as volume grows`, `Revisit pricing against the real ${fmt(profile.crewHourlyCost)}/hour cost`] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Structured onboarding process in place",
-      "Regular one-on-ones and a career path defined",
+      `A path toward ${profile.commercialExample} work defined for good crew`,
       "Daily equipment inspection habit in place",
-      "Jobs scheduled by margin + geography, not just availability",
-      "True cost per hour calculated and pricing checked against it",
+      `Jobs scheduled by margin + geography for a ${profile.avgJobLabel}`,
+      `True cost per hour (${fmt(profile.crewHourlyCost)}) calculated and pricing checked against it`,
       "Cash flow reviewed weekly, not just monthly",
       "2-3 months of operating reserve targeted",
     ],
-    keyTakeaways: (trade) => [
+    keyTakeaways: (trade, profile) => [
       "Operational capacity, not lead volume, is usually the real constraint on growth",
-      "Hire for attitude and build a real training and career path — turnover is more expensive than most owners realize",
+      "Hire for attitude and build a real career path — turnover is more expensive than most owners realize",
       "Schedule by margin and geography, not just by whoever called first",
-      `Know your true loaded cost per hour so every ${trade.name.toLowerCase()} job is priced to actually make money, not just stay busy`,
+      profile.differentiator,
     ],
   },
 
