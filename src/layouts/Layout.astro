@@ -74,6 +74,18 @@ const makeDescription =
     {import.meta.env.CF_ANALYTICS_TOKEN && (
       <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${import.meta.env.CF_ANALYTICS_TOKEN}"}`}></script>
     )}
+    <!-- Google Analytics 4 — set PUBLIC_GA_MEASUREMENT_ID (e.g. G-XXXXXXX) in your environment variables -->
+    {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+      <>
+        <script defer src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}></script>
+        <script defer define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag("js", new Date());
+          gtag("config", gaId);
+        </script>
+      </>
+    )}
   </head>
   <body>
     <Navbar />
