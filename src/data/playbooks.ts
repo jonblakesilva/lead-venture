@@ -739,66 +739,67 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "ascension",
     title: "Ascension",
     icon: "lucide:trending-up",
-    tagline: (trade) => `Move customers up a real value ladder, and evolve your ${trade.name.toLowerCase()} business from a job shop into a sellable company.`,
-    tldrSummary: () =>
-      "Ascension means two things: moving individual customers to higher-value tiers of service, and evolving the business itself toward higher sophistication — commercial work, recurring contracts, and eventually a company someone would actually want to buy.",
-    tldrBullets: (trade) => [
-      "Build a value ladder: start with a low-commitment entry point and guide customers toward higher-value, recurring services",
-      "Offer real service tiers — Standard, Premium, and a VIP/concierge level — not just one flat price for everyone",
-      "Evolve the business itself: from residential to commercial, from one-off labor to recurring contracts",
-      `Premium service tiers (property care programs, priority contracts) can run ${fmt(5000)}–${fmt(50000)}+ a year per account`,
-      "Businesses built on recurring revenue and real management systems sell for meaningfully higher multiples than owner-dependent ones",
+    tagline: (trade, profile) => `Move customers up a real value ladder, and evolve a ${trade.name.toLowerCase()} job shop into something built on ${profile.recurringServiceLabel}s.`,
+    tldrSummary: (trade, profile) =>
+      `Ascension means two things: moving customers to higher-value tiers, and evolving the business itself toward ${profile.commercialExample}-style sophistication. ${profile.differentiator}`,
+    tldrBullets: (trade, profile) => [
+      "Build a value ladder: a low-commitment entry point that guides customers toward higher-value, recurring work",
+      "Offer real tiers — Standard, Premium, VIP — not one flat price for everyone",
+      `Evolve the business itself toward ${profile.commercialExample}, not just bigger residential jobs`,
+      `Premium tiers built around a ${profile.recurringServiceLabel} can run ${fmt(5000)}–${fmt(50000)}+ a year per account`,
+      profile.crewNote,
     ],
-    tldrBottomLine: () => "Build a clear value ladder, launch a premium tier for your best customers, and start developing commercial or recurring-contract offerings deliberately rather than by accident.",
-    intro: () => [
-      { type: "paragraph", text: "Most service businesses have an accidental value ladder — some customers happen to spend more, but there's no deliberate path guiding them there. A designed ladder converts far more of your existing base into higher-value, recurring relationships." },
+    tldrBottomLine: (trade, profile) =>
+      `Build a clear value ladder, launch a premium tier for the best customers, and start developing ${profile.commercialExample}-style offerings deliberately rather than by accident.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `Most ${trade.name.toLowerCase()} businesses have an accidental value ladder — some customers happen to spend more, with no deliberate path guiding them there. ${profile.warStory}` },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "The Value Ladder" },
       {
         type: "bullets",
         items: [
-          `Free entry point — an estimate, assessment, or useful piece of content, $0`,
-          `First transaction — a one-time or emergency job, roughly ${fmt(profile.lowJob.low)}–${fmt(profile.highJob.high)}`,
-          `Recurring service — a seasonal or maintenance package, ${fmt(Math.round(profile.avgJobValue * 1.5))}–${fmt(Math.round(profile.avgJobValue * 3))}/year`,
+          `Free entry point — an estimate or a useful ${profile.terminology[0]} tip, $0`,
+          `First transaction — a ${profile.lowJob.label} to a ${profile.highJob.label}, roughly ${fmt(profile.lowJob.low)}–${fmt(profile.highJob.high)}`,
+          `Recurring service — a ${profile.recurringServiceLabel}, ${fmt(Math.round(profile.avgJobValue * 1.5))}–${fmt(Math.round(profile.avgJobValue * 3))}/year`,
           `Comprehensive care — an annual plan bundling several services, ${fmt(Math.round(profile.commercialAnnualValue * 0.3))}+/year`,
-          `Premium / concierge — priority access and a dedicated point of contact for your best clients, ${fmt(Math.round(profile.commercialAnnualValue * 0.5))}–${fmt(profile.commercialAnnualValue)}+/year`,
-          "Consulting or advisory — expert assessments, insurance/legal work, or specialized projects billed at a premium",
+          `Premium / concierge — priority access for the best clients, ${fmt(Math.round(profile.commercialAnnualValue * 0.5))}–${fmt(profile.commercialAnnualValue)}+/year`,
+          `Advisory — expert ${profile.terminology[1]} assessments billed at a premium`,
         ],
       },
 
       { type: "heading", text: "Moving Customers Up" },
-      { type: "paragraph", text: "The best moments to offer the next tier are right after exceptional service, when you spot an additional need during a job, at renewal time, and around life changes (a new home, a property sale, storm damage). Introduce the next tier, back it with social proof, offer a low-risk trial or discount, and address hesitation directly." },
+      { type: "paragraph", text: `The best moments to offer the next ${profile.avgJobLabel} tier: right after exceptional service, when a related ${profile.terminology[2]} need turns up mid-job, and at renewal time. ${profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1)}` },
 
       { type: "heading", text: "Premium Service Tiers" },
-      { type: "paragraph", text: `A simple three-tier structure works well: Standard (your normal service and scheduling), Premium (priority scheduling, an annual assessment, a modest membership fee and discount), and VIP/Concierge (24/7 priority response, quarterly check-ins, direct access to you, at a meaningfully higher annual rate). Even a small share of customers moving into Premium changes your revenue mix significantly.` },
+      { type: "paragraph", text: `A three-tier structure works well for a ${profile.avgJobLabel}-based business: Standard (normal service), Premium (priority scheduling, an annual ${profile.terminology[3]} assessment), and VIP (24/7 response, direct access). ${profile.crewNote}` },
 
       { type: "heading", text: "Business Ascension" },
-      { type: "paragraph", text: `Beyond individual customers, the business itself can ascend: from purely residential toward ${profile.commercialExample}s and other recurring commercial accounts, from one-off labor toward diversified complementary services, and eventually toward a genuinely sellable company.` },
-      { type: "paragraph", text: "Commercial accounts run on thinner margins than residential work but bring real predictability — property managers, HOAs, and institutional clients pay on net-30/60 terms but commit to standing contracts, which smooths out seasonal swings most residential-only businesses struggle with." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response} That same shift — from one-off labor toward ${profile.commercialExample} — is what business ascension actually looks like.` },
+      { type: "paragraph", text: `${profile.commercialExample}-type accounts run on thinner margins than residential work but bring real predictability. ${profile.seasonalNote}` },
 
       { type: "heading", text: "Building a Sellable Business" },
-      { type: "paragraph", text: "The factors that drive a real valuation: systematized operations that don't depend entirely on the owner, recurring revenue, a diversified customer base with no single account over 10-15% of revenue, a real management layer, and clean financials. Owner-operated businesses with none of that typically sell for 2-4x EBITDA; systematized businesses with a management team and recurring revenue can reach 6-8x." },
+      { type: "paragraph", text: `Valuation drivers for a ${profile.avgJobLabel}-based company: operations that don't depend on the owner, recurring revenue, no single account over 10-15% of revenue, and clean financials. ${profile.differentiator}` },
     ],
-    implementationPlan: () => [
-      { label: "Quarter 1 — Customer Ascension Foundation", items: ["Map your current value ladder", "Define 2-3 real service tiers", "Create ascension offers and pricing", "Identify customers ready to move up"] },
-      { label: "Quarter 2 — Launch Premium Tiers", items: ["Introduce premium tiers to existing customers", "Train the team on ascension conversations", "Track ascension rate"] },
-      { label: "Quarter 3 — Business Expansion Planning", items: ["Assess readiness for commercial or geographic expansion", "Identify 10 target commercial accounts", "Build a simple expansion plan"] },
-      { label: "Quarter 4+ — Execute & Scale", items: ["Launch the expansion", "Build out management infrastructure as volume grows", "Revisit pricing and tiers annually based on data"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Quarter 1 — Foundation", items: ["Map the current value ladder", "Define 2-3 real service tiers", `Price a ${profile.recurringServiceLabel} tier`, "Identify customers ready to move up"] },
+      { label: "Quarter 2 — Launch Premium", items: [`Introduce premium ${profile.terminology[4]} tiers to existing customers`, "Train the team on ascension conversations", "Track ascension rate"] },
+      { label: "Quarter 3 — Business Expansion", items: [`Assess readiness for ${profile.commercialExample}-style work`, "Identify 10 target accounts", profile.topChannel] },
+      { label: "Quarter 4+ — Execute", items: ["Launch the expansion", "Build management infrastructure as volume grows", "Revisit pricing annually"] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Value ladder mapped from entry point to premium tier",
       "At least 2 real service tiers defined and priced",
       "Ascension conversation trained across the team",
-      "10 target commercial or recurring-contract accounts identified",
-      "Recurring revenue tracked as a percentage of total revenue",
+      `10 ${profile.commercialExample}-type accounts identified`,
+      `Recurring revenue from a ${profile.recurringServiceLabel} tracked as a share of total`,
       "Customer concentration checked (no single account over 10-15% of revenue)",
     ],
-    keyTakeaways: (trade) => [
-      "A designed value ladder converts far more existing customers into higher-value relationships than hoping it happens naturally",
-      "Premium tiers don't need to be complicated — priority access and a dedicated point of contact go a long way",
-      `Commercial and recurring-contract work smooths out the seasonality most ${trade.name.toLowerCase()} businesses struggle with`,
-      "Systematized, recurring-revenue businesses are worth meaningfully more than owner-dependent ones, whether or not you ever plan to sell",
+    keyTakeaways: (trade, profile) => [
+      "A designed value ladder converts far more existing customers than hoping it happens naturally",
+      "Premium tiers don't need to be complicated — priority access and direct contact go a long way",
+      `${profile.commercialExample} smooths out the seasonality most ${trade.name.toLowerCase()} businesses struggle with`,
+      "Systematized, recurring-revenue businesses are worth meaningfully more, sale or no sale",
     ],
   },
 
