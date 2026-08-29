@@ -1,14 +1,21 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 
+const credibilityStats = [
+  { value: "25,000+", label: "Doors Knocked" },
+  { value: "10,000+", label: "Sales Conversations" },
+  { value: "500+", label: "Websites & Landing Pages Built" },
+  { value: "100s", label: "Businesses Taught (Courses & YouTube)" },
+];
+
 const founders = [
   {
     name: "Tye Norden",
     role: "Co-Founder",
     image: "https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/ac4470f1-66de-4a33-b18e-2842f005e148.jpeg",
     paragraphs: [
-      "Tye is the co-founder of The Lead Venture, where he leads sales. He holds a bachelor's degree in marketing and has spent 5 years in sales, including selling millions in direct sales and $1.3 million in roofing alone. He's worked both sides of the business, production and sales, so he understands firsthand what it actually takes to close the deal and deliver on it.",
-      "Tye is currently building his third successful business, on top of running a multi six-figure-a-year super affiliate business and owning real estate investments. That mix of experience — direct sales, affiliate marketing, and real estate — gives him a wide-angle view of what actually drives growth for a business, not just theory.",
+      "Tye is the co-founder of The Lead Venture, where he leads sales. He holds a bachelor's degree in marketing and has spent 5 years in sales, including selling millions in direct sales and $1.3 million gross ($800K+ net) in residential roofing exteriors alone. He's worked both sides of the business, production and sales, so he understands firsthand what it actually takes to close the deal and deliver on it.",
+      "Tye is currently building his third successful business, on top of running a multi six-figure-a-year super affiliate business — one that's generated over 10 million views and thousands of leads — and owning real estate investments. That mix of experience — direct sales, affiliate marketing, and real estate — gives him a wide-angle view of what actually drives growth for a business, not just theory.",
       "At The Lead Venture, Tye brings that same results-first approach to helping local service businesses sell more, close faster, and grow with confidence.",
     ],
   },
@@ -18,18 +25,18 @@ const founders = [
     image: "https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/babb3410-7d25-4408-8cd3-f11a437f4b38.jpg",
     paragraphs: [
       "I grew up severely dyslexic and barely scraped through school. The traditional path wasn't built for me, so I built my own. I discovered online marketing and self-education, and it changed everything.",
-      "In 2015, I started a tree service. I didn't just learn how to cut trees, I had to learn how to survive. I struggled for years figuring out how to market, sell, create irresistible offers, and build websites that actually converted. Once I cracked the code, I scaled it to mid-six figures a year until 2020.",
-      "Then I pivoted to the cutthroat roofing niche. I knocked on 25,000 doors, had over 8,000 conversations, set 1,000+ leads, and sold $1.3 million in residential roofing in my very first year.",
-      "Today, I help run a multi-million dollar lawn care and landscaping business, and I've personally closed over $600k in one-on-one sales in just the last 6 months. I don't just build websites; I build revenue engines based on a decade of bleeding in the trenches of local service businesses.",
+      "In 2015, I started a tree service. I didn't just learn how to cut trees, I had to learn how to survive. I struggled for years figuring out how to market, sell, create irresistible offers, and build websites that actually converted. Once I cracked the code, I ran that business for 5 years and scaled it to six figures a month before moving on in 2020.",
+      "Then I pivoted into residential home exterior sales, door to door. I knocked on 25,000 doors, had over 10,000 conversations, and personally closed more than 1,000 leads. In non-insurance exterior sales alone — no storm claims, straight retail — I generated over $1 million, netting $800K in a single year.",
+      "Today, I run a lawn care and landscaping business with a $1.3 million book of maintenance contracts and about $2 million in total revenue once enhancement work is added in, on top of personally selling millions of dollars in lawn care services over the years. I've been doing marketing and sales since 2015, I've run Facebook ad campaigns for my own businesses and for more than 30 others, and I've taught hundreds of business owners through courses and YouTube. I don't just build websites; I build revenue engines based on a decade of bleeding in the trenches of local service businesses.",
     ],
   },
 ];
 
 const journey = [
-  { year: "2015", title: "In the Trenches", desc: "Building a tree service from scratch. Learning the hard lessons of local marketing, sales, and survival." },
-  { year: "2020", title: "The Pivot", desc: "Scaling into the cutthroat roofing niche. Knocking 25,000 doors, generating 1,000+ leads, and closing $1.3M in year one." },
+  { year: "2015", title: "In the Trenches", desc: "Building a tree service from scratch, scaling it to six figures a month over 5 years. Learning the hard lessons of local marketing, sales, and survival." },
+  { year: "2020", title: "The Pivot", desc: "Moving into residential home exterior sales, door to door. Knocking 25,000 doors, 10,000+ conversations, and generating over $1M in non-insurance exterior sales — $800K net in year one." },
   { year: "2022", title: "Mastering Sales", desc: "Selling millions in direct sales. Combining field production experience with high-ticket closing strategies." },
-  { year: "Today", title: "The Lead Venture", desc: "Building rugged, high-converting revenue engines for local service businesses to dominate their markets." },
+  { year: "Today", title: "The Lead Venture", desc: "Running a $1.3M+ lawn care book of business, building 500+ websites and landing pages, and building rugged, high-converting revenue engines for local service businesses." },
 ];
 ---
 
@@ -40,6 +47,15 @@ const journey = [
         <h1 class="font-heading text-4xl font-black uppercase leading-tight tracking-tight md:text-6xl">
           We Know The Grind Because <span class="text-accent-400">We've Lived It.</span>
         </h1>
+      </div>
+
+      <div class="mx-auto mb-20 grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
+        {credibilityStats.map((stat) => (
+          <div class="text-center">
+            <div class="font-heading text-3xl font-black text-accent-400 md:text-4xl">{stat.value}</div>
+            <div class="mt-2 text-sm text-white/60">{stat.label}</div>
+          </div>
+        ))}
       </div>
 
       <div class="mx-auto max-w-5xl space-y-20">
