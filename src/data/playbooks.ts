@@ -189,6 +189,8 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       `${profile.seasonalNote}`,
       `Target cost-per-lead at 10-15% of a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel} — ${fmt(Math.round(profile.avgJobValue * 0.1))}–${fmt(Math.round(profile.avgJobValue * 0.15))}`,
       `Referrals close far better than cold leads and cost a fraction of paid ${profile.topChannel.split(":")[0].toLowerCase()}`,
+      `A drone or live-video post from a real ${profile.avgJobLabel} job, followed by a DM to everyone who engages, turns online attention into actual conversations`,
+      `Local Facebook group ads, direct mail around a finished ${profile.avgJobLabel}, and CTV are worth testing — most ${trade.name.toLowerCase()} companies never try them, so there's less competition for attention`,
       profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1),
     ],
     tldrBottomLine: (trade, profile) =>
@@ -228,6 +230,26 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       },
       { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
+      { type: "heading", text: "Content That Turns Engagement Into Leads" },
+      { type: "paragraph", text: profile.visualContentIdea },
+      {
+        type: "bullets",
+        items: [
+          `A Live video from an active ${profile.avgJobLabel} job — customer's OK first — shows real ${profile.terminology[0]} in progress, the kind of proof a static photo can't match.`,
+          `Engaged with a post like that? DM a quick thank-you, then ask softly: "Not sure if you know anyone who needs ${profile.avgJobLabel} work, but we're running [current offer] right now." That's the whole pitch for a ${trade.name.toLowerCase()} lead — nothing pushier.`,
+        ],
+      },
+
+      { type: "heading", text: `Channels Most ${trade.name}${profile.slug === "general-contractors" ? "" : " Companies"} Never Try` },
+      {
+        type: "bullets",
+        items: [
+          `Local Facebook groups — neighborhood pages, town boards — reach a hyper-local ${trade.name.toLowerCase()} audience for a fraction of a standard ad, and a ${profile.recurringServiceLabel} offer posted there lands differently than the same pitch in a cold ad.`,
+          `Direct mail to the streets around your last ${profile.terminology[2]} job works because a fresh ${profile.avgJobLabel} is its own billboard — the neighbors already saw the trucks.`,
+          `CTV ads on local news apps and streaming services now reach ${trade.name} customers researching ${profile.terminology[3]} at the neighborhood level, for what used to be national-brand-only money.`,
+        ],
+      },
+
       { type: "heading", text: "Referrals & Strategic Partnerships" },
       { type: "paragraph", text: `A simple per-referral cash incentive, promoted after every closed job, usually gets this moving on its own.` },
       {
@@ -247,7 +269,7 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       { label: "Month 1 — Foundation", items: ["Fully optimize the Google Business Profile", "Automate review requests", `Audit service pages for a real ${profile.avgJobLabel} price range and mobile speed`, "Set up call tracking"] },
       { label: "Month 2 — Paid", items: [`Launch one campaign on ${profile.topChannel.split(":")[0].toLowerCase()}`, "Set up conversion tracking", "Test 3-5 ad variations", `Have an answer ready for "${profile.commonObjection.objection.replace(/"/g, "")}"`] },
       { label: "Month 3 — Referrals", items: [`Launch a referral program built around ${profile.recurringServiceLabel} customers`, "Contact 5-10 potential partners", `Reach out to ${profile.commercialExample} directly`] },
-      { label: "Month 4+ — Scale", items: ["Review cost-per-lead by channel monthly", "Cut what isn't converting", `Double down on ${profile.topChannel.split(":")[0].toLowerCase()} once it's proven`] },
+      { label: "Month 4+ — Scale", items: ["Review cost-per-lead by channel monthly", "Cut what isn't converting", `Double down on ${profile.topChannel.split(":")[0].toLowerCase()} once it's proven`, `Post one drone or live-video piece from a real ${profile.avgJobLabel} job and DM everyone who engages with it`, "Test one under-used channel: local Facebook group ads, direct mail, or CTV"] },
     ],
     checklist: (trade, profile) => [
       "Google Business Profile fully optimized with 50+ photos",
@@ -256,6 +278,8 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       "Call tracking implemented",
       `First campaign live on ${profile.topChannel.split(":")[0].toLowerCase()}`,
       "Referral program launched and promoted",
+      "Drone footage or a live-video job walkthrough posted, with a DM sent to everyone who engaged",
+      "At least one under-used channel tested: local Facebook group ads, direct mail, or CTV",
       `At least one ${profile.commercialExample}-type partner contacted`,
       "Cost per lead tracked by channel",
     ],
@@ -263,6 +287,8 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       profile.topChannel,
       `Target cost-per-lead around 10-15% of a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel}`,
       "Referrals close far better than cold leads and cost a fraction as much — build a system for asking",
+      `Every like, comment, or share on a drone or live-video post is a warm DM waiting to happen — don't let it just sit there`,
+      "Local Facebook group ads, direct mail, and CTV are worth testing precisely because most competitors never do",
       profile.differentiator,
     ],
   },

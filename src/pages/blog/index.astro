@@ -26,9 +26,10 @@ function formatDate(date: Date) {
   <section class="bg-neutral-50 py-20">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       {categories.length > 0 && (
-        <div class="mb-12 flex flex-wrap justify-center gap-3">
+        <div id="blog-filters" class="mb-12 flex flex-wrap justify-center gap-3">
+          <button type="button" data-category="all" class="blog-filter-btn rounded-full border px-4 py-1.5 text-sm font-medium transition-colors">All Posts</button>
           {categories.map((cat) => (
-            <span class="rounded-full border border-neutral-200 bg-white px-4 py-1.5 text-sm font-medium text-neutral-600">{cat}</span>
+            <button type="button" data-category={cat} class="blog-filter-btn rounded-full border px-4 py-1.5 text-sm font-medium transition-colors">{cat}</button>
           ))}
         </div>
       )}
@@ -36,9 +37,9 @@ function formatDate(date: Date) {
       {posts.length === 0 ? (
         <p class="text-center text-lg text-neutral-500">New posts coming soon.</p>
       ) : (
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div id="blog-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <a href={`/blog/${post.id.replace(/\.mdx?$/, "")}`} class="group flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <a href={`/blog/${post.id.replace(/\.mdx?$/, "")}`} data-category={post.data.category} class="blog-card group flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               {post.data.image && (
                 <div class="relative aspect-[16/10] overflow-hidden border-b bg-neutral-100">
                   <img src={post.data.image} alt={post.data.title} loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -57,6 +58,7 @@ function formatDate(date: Date) {
           ))}
         </div>
       )}
+      <p id="blog-empty-state" class="hidden text-center text-lg text-neutral-500">No posts in this category yet.</p>
     </div>
   </section>
 
@@ -72,3 +74,41 @@ function formatDate(date: Date) {
     </div>
   </section>
 </Layout>
+
+<style>
+  .blog-filter-btn {
+    border-color: var(--color-neutral-200);
+    background: white;
+    color: var(--color-neutral-600);
+  }
+  .blog-filter-btn.is-active {
+    border-color: transparent;
+    background: var(--color-accent-500);
+    color: white;
+  }
+</style>
+
+<script>
+  const filterBar = document.getElementById("blog-filters");
+  const cards = Array.from(document.querySelectorAll<HTMLElement>(".blog-card"));
+  const emptyState = document.getElementById("blog-empty-state");
+
+  filterBar?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>(".blog-filter-btn");
+    if (!btn) return;
+
+    filterBar.querySelectorAll(".blog-filter-btn").forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+
+    const category = btn.dataset.category;
+    let visibleCount = 0;
+    cards.forEach((card) => {
+      const matches = category === "all" || card.dataset.category === category;
+      card.classList.toggle("hidden", !matches);
+      if (matches) visibleCount++;
+    });
+    emptyState?.classList.toggle("hidden", visibleCount > 0);
+  });
+
+  filterBar?.querySelector<HTMLElement>('[data-category="all"]')?.classList.add("is-active");
+</script>
