@@ -6,6 +6,7 @@ const testimonials = [
     trade: 'Local Remodeling Business',
     text: 'The Lead Venture completely transformed how we handle incoming calls. We no longer miss leads when we\'re on the roof.',
     videoUrl: 'https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/c6301d61-dd32-40c9-825f-3596ecc655bc.mp4',
+    poster: '/testimonials/brandon-poster.jpg',
   },
   {
     id: 2,
@@ -13,6 +14,7 @@ const testimonials = [
     trade: 'Daycare',
     text: 'Our Google reviews doubled in the first month. The automated system makes it so easy for customers to leave feedback.',
     videoUrl: 'https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/fc6ab205-0c49-4843-8e88-d5cac7ca36bd.mov',
+    poster: '/testimonials/jamie-poster.jpg',
   },
   {
     id: 3,
@@ -53,7 +55,7 @@ const testimonials = [
               <div class="relative aspect-[9/16] overflow-hidden">
                 {t.videoUrl ? (
                   <div class="testimonial-video-wrap group/video relative h-full w-full bg-black">
-                    <video src={t.videoUrl} class="h-full w-full object-cover" preload="metadata" playsinline muted></video>
+                    <video src={t.videoUrl} poster={t.poster} class="h-full w-full object-cover" preload="metadata" playsinline muted></video>
                     <button type="button" class="testimonial-play-overlay absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-black/20 transition-colors hover:bg-black/30" aria-label={`Play video testimonial from ${t.name}`}>
                       <div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent-500/90 text-white shadow-lg transition-transform group-hover/video:scale-110">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
@@ -108,17 +110,28 @@ const testimonials = [
 
   if (track && dots.length && prevBtn && nextBtn) {
     const items = Array.from(track.children);
-    const visibleCards = 3;
     let currentIndex = 0;
 
+    const getVisibleCards = () => {
+      const cardWidth = items[0]?.getBoundingClientRect().width;
+      const containerWidth = track.parentElement?.clientWidth;
+      if (!cardWidth || !containerWidth) return 1;
+      return Math.max(1, Math.round(containerWidth / cardWidth));
+    };
+
     const render = () => {
-      const offset = currentIndex * (100 / visibleCards);
+      const visibleCards = getVisibleCards();
+      const step = 100 / visibleCards;
+      const maxOffset = Math.max(0, (items.length - visibleCards) * step);
+      const offset = Math.min(currentIndex * step, maxOffset);
       track.style.transform = `translateX(-${offset}%)`;
       dots.forEach((dot, index) => {
         dot.classList.toggle('bg-accent-500', index === currentIndex);
         dot.classList.toggle('bg-white/20', index !== currentIndex);
       });
     };
+
+    window.addEventListener('resize', render);
 
     prevBtn.addEventListener('click', () => {
       currentIndex = (currentIndex - 1 + items.length) % items.length;
