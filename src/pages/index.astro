@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { business } from "@/config/business";
 import RoiCalculator from "@/components/RoiCalculator";
+import HeroVideo from "@/components/HeroVideo.astro";
 
 const homepageFaqs = [
   {
@@ -57,12 +58,7 @@ const homepageSchema = {
           Automate your leads, fill your calendar, and get more 5-star reviews. Built by operators, not marketers.
         </p>
 
-        <div class="mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur-sm">
-          <div class="rounded-[22px] bg-[#2d2d38] p-2 text-left text-white/60">
-            <div class="mb-2 text-sm font-medium">Turn Your Sound On 🔊</div>
-            <video class="w-full rounded-xl object-cover" src="https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/c0d59bec-d221-4eef-a987-9cdba06f740f.mp4" autoplay muted loop playsinline></video>
-          </div>
-        </div>
+        <HeroVideo src="https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/c0d59bec-d221-4eef-a987-9cdba06f740f.mp4" />
 
         <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a href="/about/how-it-works" class="inline-flex h-12 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-base font-semibold text-white transition hover:bg-white/10">
