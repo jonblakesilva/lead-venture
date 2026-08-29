@@ -1114,36 +1114,37 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "ai-powered-marketing",
     title: "AI-Powered Marketing",
     icon: "lucide:sparkles",
-    tagline: (trade) => `Use AI to 10x your ${trade.name.toLowerCase()} marketing output without a marketing team.`,
-    tldrSummary: () =>
-      "AI tools let a small operator produce the volume of content and follow-up that used to require a whole marketing department — ad copy, blog posts, social captions, and instant lead responses, all in a fraction of the time.",
-    tldrBullets: (trade) => [
-      "AI content creation: draft blog posts, social captions, email sequences, and ad copy in minutes instead of hours",
-      "AI lead response: automated chat and email follow-up can respond to a new lead in under a minute, any time of day",
-      "AI image generation: create marketing visuals and social graphics without a designer",
-      "AI ad testing: generate and test many ad variations at once, and let the data pick the winner",
-      "Bottom line: this can realistically cut weekly marketing time from 15-20 hours down to 1-2, while producing more content than before",
+    tagline: (trade, profile) => `Use AI to 10x ${profile.avgJobLabel} marketing output without hiring a marketing team.`,
+    tldrSummary: (trade, profile) =>
+      `AI tools let a small operator produce the content and follow-up volume that used to require a department. ${profile.warStory}`,
+    tldrBullets: (trade, profile) => [
+      `AI content creation: draft ${profile.terminology[0]}-focused blog posts, captions, and ad copy in minutes`,
+      `AI lead response: automated follow-up can answer a new ${profile.avgJobLabel} inquiry in under a minute, any time of day`,
+      profile.toolMention,
+      "AI ad testing: generate and test many variations at once, let the data pick the winner",
+      profile.differentiator,
     ],
-    tldrBottomLine: () => "Start with a written knowledge base about your business, learn to prompt well, and use AI for content creation and instant lead response first — those two alone save the most time.",
-    intro: (trade) => [
-      { type: "paragraph", text: `Competitors are already using AI to post more often, run more ad variations, and follow up faster than a small ${trade.name.toLowerCase()} business can do by hand. The gap isn't which specific tool you use — tools change every few months — it's whether you've built the underlying skill of using them well.` },
+    tldrBottomLine: (trade, profile) =>
+      `Start with a written knowledge base about ${profile.terminology[1]} specifics, learn to prompt well, and use AI for content creation and instant ${profile.avgJobLabel} lead response first.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `Competitors are already using AI to post more often and follow up faster than a small ${trade.name.toLowerCase()} business can by hand. ${profile.crewNote}` },
     ],
-    sections: (trade) => [
+    sections: (trade, profile) => [
       { type: "heading", text: "The Prompting Framework" },
-      { type: "paragraph", text: "Every good AI prompt has three parts: Context (who you are — company name, location, credentials, specialization, target customer, brand voice), a Specific Task (exactly what you want and how long it should be), and Constraints (tone, what must be included, what to avoid). A vague prompt gets a vague, generic result; a specific one gets something close to usable on the first try." },
+      { type: "paragraph", text: `Every good prompt has three parts: Context (company, credentials, ${profile.terminology[2]} specialization, brand voice), a Specific Task, and Constraints (tone, what to include). A vague prompt gets a generic result on a ${profile.avgJobLabel} post; a specific one is usable on the first try.` },
 
       { type: "heading", text: "Building a Knowledge Base" },
-      { type: "paragraph", text: `Write up a simple reference document once: company information, your specific ${trade.name.toLowerCase()} expertise and common local issues, your ideal customer profile, your brand voice, and your best proof points (testimonials, credentials, before/afters). Paste relevant pieces of this into every AI prompt so the output actually sounds like your business, not a generic template.` },
+      { type: "paragraph", text: `Write a reference document once: company info, ${profile.terminology[3]} expertise and common local issues, ${profile.commercialExample} as an ideal customer profile, and real proof points. ${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
       { type: "heading", text: "Where AI Saves the Most Time" },
       {
         type: "bullets",
         items: [
-          "Blog posts and educational content — drafted in minutes, then lightly edited rather than written from scratch",
-          "Social captions and a month of content ideas — generated in one sitting instead of daily scrambling",
-          "Ad copy variations — testing 5-10 headlines at once instead of guessing at one",
-          "Instant lead response — a chatbot or auto-responder that engages a new lead within a minute, even after hours",
-          "Follow-up email sequences — personalized at scale instead of one generic template for everyone",
+          `Blog posts on ${profile.terminology[4]} topics — drafted in minutes, lightly edited rather than written from scratch`,
+          `Social captions and a month of ${profile.terminology[0]} content ideas generated in one sitting`,
+          `Ad copy testing 5-10 ${profile.avgJobLabel} headlines instead of guessing at one`,
+          `Instant response to a ${profile.avgJobLabel} inquiry, even after hours`,
+          profile.crewNote,
         ],
       },
 
@@ -1151,34 +1152,34 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
       {
         type: "bullets",
         items: [
-          "Publishing AI output without editing it — always give it a real human pass",
-          "Giving too little context and expecting a great result anyway",
-          "Expecting a perfect result on the first try instead of iterating",
-          "Ignoring your own brand voice and letting everything sound generic",
-          "Never testing or measuring what the content actually produces",
+          "Publishing AI output without a real human pass",
+          `Giving too little ${profile.terminology[5]} context and expecting a great result anyway`,
+          `Expecting a perfect ${profile.avgJobLabel} post on the first try instead of iterating`,
+          "Letting everything sound generic instead of like this specific business",
+          profile.topChannel,
         ],
       },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Foundation", items: ["Write your business knowledge base document", "Pick one or two AI tools to start with", "Practice the prompting framework on 10 real prompts", "Generate a month of social content"] },
-      { label: "Week 2 — Advertising", items: ["Generate several ad variations for your top service", "Write a few Google ad headline/description sets", "Draft landing page copy for your top 2-3 services"] },
-      { label: "Week 3 — Content Marketing", items: ["Draft 3-4 blog posts and publish them", "Write out a season of email content", "Build an FAQ section for your website"] },
-      { label: "Week 4 — Automation", items: ["Build a short lead nurture sequence and load it into your CRM", "Write SMS follow-up templates", "Set up basic review-response templates"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Foundation", items: ["Write the business knowledge base document", "Pick one or two AI tools to start with", `Practice the prompting framework on 10 real ${profile.avgJobLabel} prompts`] },
+      { label: "Week 2 — Advertising", items: [`Generate ad variations for the top ${profile.avgJobLabel} service`, "Write Google ad headline/description sets", "Draft landing page copy for the top 2-3 services"] },
+      { label: "Week 3 — Content Marketing", items: ["Draft 3-4 blog posts and publish them", "Write a season of email content", "Build an FAQ section for the website"] },
+      { label: "Week 4 — Automation", items: ["Build a short lead nurture sequence in the CRM", "Write SMS follow-up templates", profile.crewNote] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Written knowledge base document exists",
       "Comfortable with the Context / Task / Constraints prompting framework",
       "A month of social content generated in advance",
       "At least one ad campaign has AI-generated variations being tested",
-      "3+ blog posts published using AI as a first draft",
-      "An automated first-response message live for new leads",
+      `3+ blog posts on ${profile.terminology[0]} topics published using AI as a first draft`,
+      `An automated first-response message live for new ${profile.avgJobLabel} leads`,
       "Everything published gets a human edit pass before going live",
     ],
-    keyTakeaways: (trade) => [
+    keyTakeaways: (trade, profile) => [
       "The specific AI tool matters less than the underlying skill of prompting well with real context",
-      "A written knowledge base is what makes AI output sound like your business instead of a generic template",
-      "Instant AI-assisted lead response is one of the highest-leverage use cases — it directly improves speed to lead",
-      "Always edit AI output before it goes out — it's a fast first draft, not a finished, ready-to-publish piece",
+      "A written knowledge base is what makes AI output sound like this business, not a generic template",
+      "Instant AI-assisted lead response is one of the highest-leverage use cases here",
+      profile.differentiator,
     ],
   },
 };
