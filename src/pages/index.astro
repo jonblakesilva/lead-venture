@@ -1,8 +1,14 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { business } from "@/config/business";
 import RoiCalculator from "@/components/RoiCalculator";
 import HeroVideo from "@/components/HeroVideo.astro";
+
+const featuredCaseStudySlugs = ["cold-outreach-case-study", "reputation-case-study", "speed-to-lead-case-study"];
+const featuredCaseStudies = (await getCollection("case-studies", ({ data }) => !data.draft))
+  .filter((study) => featuredCaseStudySlugs.includes(study.data.urlSlug))
+  .sort((a, b) => featuredCaseStudySlugs.indexOf(a.data.urlSlug) - featuredCaseStudySlugs.indexOf(b.data.urlSlug));
 
 const homepageFaqs = [
   {
@@ -15,7 +21,7 @@ const homepageFaqs = [
   },
   {
     question: "How fast can a contractor get started?",
-    answer: "Most clients launch within a few days once content, assets, and goals are aligned. The process is built to be fast, simple, and low-friction.",
+    answer: "Website live in as little as 72 hours. Full system setup — CRM, missed-call text-back, review automation — typically takes 3 to 7 days.",
   },
   {
     question: "Is there a contract or long-term commitment?",
@@ -37,7 +43,7 @@ const homepageSchema = {
 };
 ---
 
-<Layout title="Run Your Contracting Business Like a Pro" description="Automate your leads, fill your calendar, and get more 5-star reviews. Built by operators, not marketers.">
+<Layout title="Built In The Trades. Not In A Marketing Agency." description="Get a modern website plus the systems that turn missed calls, Google searches, and past customers into booked jobs. Built by operators, not marketers.">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} />
   </Fragment>
@@ -47,15 +53,15 @@ const homepageSchema = {
       <div class="mx-auto max-w-5xl text-center">
         <div class="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/80">
           <span class="mr-2 h-2 w-2 rounded-full bg-accent-400"></span>
-          Trusted by Contractors Nationwide
+          One System. Built By Contractors, For Contractors.
         </div>
 
-        <h1 class="mx-auto max-w-[13ch] font-heading text-5xl font-black leading-[0.92] tracking-[-0.06em] md:text-7xl lg:text-[5.5rem]">
-          Run Your Contracting Business Like a <span class="text-accent-400">Pro</span>
+        <h1 class="mx-auto max-w-[16ch] font-heading text-5xl font-black leading-[0.92] tracking-[-0.06em] md:text-7xl lg:text-[4.5rem]">
+          Built In The Trades. <span class="text-accent-400">Not In A Marketing Agency.</span>
         </h1>
 
-        <p class="mx-auto mt-6 max-w-2xl text-lg text-white/75 md:text-2xl">
-          Automate your leads, fill your calendar, and get more 5-star reviews. Built by operators, not marketers.
+        <p class="mx-auto mt-6 max-w-3xl text-lg text-white/75 md:text-2xl">
+          We install the system that helps you get found, follow up faster, book more jobs, and get more reviews — get a modern website plus the automation that turns missed calls, Google searches, and past customers into booked jobs.
         </p>
 
         <HeroVideo src="https://storage.googleapis.com/msgsndr/6B4reCngPYfDkJwOtiM0/media/c0d59bec-d221-4eef-a987-9cdba06f740f.mp4" />
@@ -65,13 +71,13 @@ const homepageSchema = {
             Watch Demo
           </a>
           <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">
-            Request a Website
+            Claim Your Free Website
           </a>
         </div>
 
         <div class="mt-10 flex flex-col items-center gap-4 text-sm text-white/70">
           <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> $0 upfront, live in 24-72 hours</div>
+            <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> $0 upfront, website live in as little as 72 hours</div>
             <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> 40+ websites launched and counting</div>
             <div class="flex items-center gap-2"><span class="text-accent-400">✓</span> Average client stays 30+ months</div>
           </div>
@@ -84,17 +90,35 @@ const homepageSchema = {
     </div>
   </section>
 
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
+      <div class="mx-auto max-w-4xl rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Why The Hell Is The Website Free?</h2>
+        <div class="mt-6 space-y-4 text-lg text-slate-700">
+          <p>We know contractors are skeptical. You get pitched by marketing agencies 10 times a day promising the moon.</p>
+          <p>Here's the truth: the website build, custom copy, and asset engineering are 100% free. You only cover the secure monthly cloud hosting and optimization framework, or have us handle the live deployment for you.</p>
+          <p>If the site doesn't make you money, you leave, and we lose. We're putting our own skin in the game.</p>
+          <p class="font-bold text-primary-900">We Only Win When You Win.</p>
+        </div>
+
+        <div class="mt-8 flex justify-center">
+          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Claim Your Free Website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-[#F8F9FA] py-20 text-slate-900">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="mx-auto mb-14 max-w-3xl text-center">
         <div class="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">
-          OUR SERVICES
+          ONE SYSTEM
         </div>
         <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-6xl">
-          Everything You Need to <span class="text-accent-500">Dominate</span> Your Market
+          One System. <span class="text-accent-500">Every Piece Included.</span>
         </h2>
         <p class="mt-5 text-lg text-slate-600 md:text-xl">
-          Stop losing leads and leaving money on the table. Our proven systems help contractors get more calls, win more jobs, and grow faster.
+          This isn't five separate tools bolted together. It's one system — the website, the follow-up, the reviews, and the local search all working off the same leads, so nothing falls through the cracks.
         </p>
       </div>
 
@@ -122,8 +146,9 @@ const homepageSchema = {
               <img src="https://vibe.filesafe.space/1785706415045236708/attachments/21fa6495-6da1-4344-b113-474f0d5ef741.png" alt="5-Star Review Funnel Mockup" class="mx-auto h-48 w-full max-w-xs rounded-xl object-contain" />
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-primary-900">5-Star Review Funnel</h3>
-              <p class="mt-3 text-slate-600">Automated system that turns happy customers into 5-star Google reviews. Build the reputation that wins more jobs and dominates your local market.</p>
+              <div class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">5-Star Review Funnel</div>
+              <h3 class="text-2xl font-bold text-primary-900">Turn happy customers into 5-star reviews, automatically.</h3>
+              <p class="mt-3 text-slate-600">Build the reputation that wins more jobs, with zero extra work for you or your crew.</p>
               <ul class="mt-6 space-y-2 text-slate-700">
                 <li>• Automated review requests</li>
                 <li>• Negative feedback filtered</li>
@@ -138,8 +163,9 @@ const homepageSchema = {
               <img src="https://vibe.filesafe.space/1785706415045236708/attachments/c3a1cc7e-f0ca-4319-8412-e18f35e7f309.png" alt="Missed Call Text Back Mockup" class="mx-auto h-48 w-full max-w-xs rounded-xl object-contain" />
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-primary-900">Missed Call Text Back</h3>
-              <p class="mt-3 text-slate-600">Never lose a lead again. When you miss a call, an instant text is sent automatically keeping that customer engaged until you can follow up.</p>
+              <div class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Missed Call Text Back</div>
+              <h3 class="text-2xl font-bold text-primary-900">Never lose another lead to voicemail.</h3>
+              <p class="mt-3 text-slate-600">Miss a call and an instant text goes out automatically, keeping the customer engaged until you can follow up.</p>
               <ul class="mt-6 space-y-2 text-slate-700">
                 <li>• Instant text response</li>
                 <li>• Custom messaging</li>
@@ -154,8 +180,9 @@ const homepageSchema = {
               <img src="https://vibe.filesafe.space/1785706415045236708/attachments/c17c583d-a6ea-4eb4-b312-1489d9caa75d.png" alt="Revenue Campaigns Mockup" class="mx-auto h-48 w-full max-w-xs rounded-xl object-contain" />
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-primary-900">Revenue Campaigns</h3>
-              <p class="mt-3 text-slate-600">Stay top-of-mind with past customers through strategic email and SMS campaigns that drive repeat business and referrals.</p>
+              <div class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Revenue Campaigns</div>
+              <h3 class="text-2xl font-bold text-primary-900">Turn past customers into repeat business.</h3>
+              <p class="mt-3 text-slate-600">Stay top-of-mind with strategic email and SMS campaigns that drive repeat jobs and referrals on autopilot.</p>
               <ul class="mt-6 space-y-2 text-slate-700">
                 <li>• Email campaigns</li>
                 <li>• Seasonal promotions</li>
@@ -170,8 +197,9 @@ const homepageSchema = {
               <img src="https://vibe.filesafe.space/1785706415045236708/attachments/d371f79f-7d92-48b3-af71-fdd790709aa4.png" alt="Local SEO Mockup" class="mx-auto h-48 w-full max-w-xs rounded-xl object-contain" />
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-primary-900">Local SEO</h3>
-              <p class="mt-3 text-slate-600">Dominate local search results so customers find you first. Get more calls from people in your area who are ready to hire.</p>
+              <div class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Local SEO</div>
+              <h3 class="text-2xl font-bold text-primary-900">Show up first when customers search for you.</h3>
+              <p class="mt-3 text-slate-600">Get more calls from people in your area who are already searching and ready to hire.</p>
               <ul class="mt-6 space-y-2 text-slate-700">
                 <li>• Google Business optimization</li>
                 <li>• Citation building</li>
@@ -212,7 +240,7 @@ const homepageSchema = {
   <section class="bg-[#1A1D27] py-20 text-white">
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="mx-auto mb-10 max-w-3xl text-center">
-        <div class="mb-4 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-white/70">NEW SERVICE</div>
+        <div class="mb-4 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-white/70">PART OF YOUR SYSTEM</div>
         <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-5xl">AI Voice & Conversational Agents</h2>
       </div>
 
@@ -235,30 +263,28 @@ const homepageSchema = {
     <div class="mx-auto max-w-(--breakpoint-xl) px-5">
       <div class="mx-auto mb-10 max-w-3xl text-center">
         <div class="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">REAL RESULTS</div>
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">The Difference a Modern System Makes</h2>
-        <p class="mt-4 text-lg text-slate-600">See how we transform outdated websites into automated lead-generation machines.</p>
+        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Real Businesses. Real Numbers.</h2>
+        <p class="mt-4 text-lg text-slate-600">Every stat below comes from a documented case study — click through to see exactly what we did and how it was measured.</p>
       </div>
 
-      <div class="grid gap-8 lg:grid-cols-2">
-        <div class="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
-          <div class="mb-4 text-lg font-semibold text-slate-700">Before: The "Ugly" Roofing Site</div>
-          <img src="https://vibe.filesafe.space/1785706415045236708/attachments/a630cf3b-707c-4fd2-bd09-3dd039133188.png" alt="Old, outdated roofing website" class="h-64 w-full rounded-[20px] object-cover object-top" />
-          <div class="mt-5 grid gap-4 sm:grid-cols-3">
-            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Monthly Traffic</div><div class="mt-2 text-2xl font-bold text-primary-900">450</div></div>
-            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Lead Conversion Rate</div><div class="mt-2 text-2xl font-bold text-primary-900">1.2%</div></div>
-            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Leads Generated</div><div class="mt-2 text-2xl font-bold text-primary-900">5 / mo</div></div>
-          </div>
-        </div>
+      <div class="grid gap-6 lg:grid-cols-3">
+        {featuredCaseStudies.map((study) => (
+          <a href={`/proof/${study.data.urlSlug}`} class="group flex flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="bg-slate-100 p-4">
+              <img src={study.data.image} alt={study.data.title} class="mx-auto h-40 w-full max-w-xs rounded-xl object-cover" />
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <div class="mb-3 inline-flex w-fit items-center rounded-full border border-accent-200 bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700">{study.data.badge}</div>
+              <h3 class="text-lg font-bold leading-snug text-primary-900">{study.data.title}</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{study.data.excerpt}</p>
+              <div class="mt-5 text-sm font-semibold text-accent-600">Read the case study →</div>
+            </div>
+          </a>
+        ))}
+      </div>
 
-        <div class="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
-          <div class="mb-4 text-lg font-semibold text-slate-700">After: The Lead Venture System</div>
-          <img src="https://vibe.filesafe.space/1785706415045236708/attachments/78d6fb3f-b557-4b4e-b883-ac8442bbaa13.png" alt="Modern high-converting roofing website" class="h-64 w-full rounded-[20px] object-cover object-top" />
-          <div class="mt-5 grid gap-4 sm:grid-cols-3">
-            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Monthly Traffic</div><div class="mt-2 text-2xl font-bold text-primary-900">1,200</div></div>
-            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Lead Conversion Rate</div><div class="mt-2 text-2xl font-bold text-primary-900">8.5%</div></div>
-            <div class="rounded-2xl bg-slate-50 p-4 text-center"><div class="text-xs uppercase tracking-[0.12em] text-slate-500">Leads Generated</div><div class="mt-2 text-2xl font-bold text-primary-900">102 / mo</div></div>
-          </div>
-        </div>
+      <div class="mt-10 text-center">
+        <a href="/proof/case-studies" class="inline-flex h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-8 text-base font-semibold text-primary-900 transition hover:bg-slate-50">See All Case Studies</a>
       </div>
     </div>
   </section>
@@ -297,7 +323,7 @@ const homepageSchema = {
         <div class="rounded-[30px] border border-slate-200 bg-primary-900 p-6 text-white shadow-sm">
           <div class="mb-6 text-2xl font-bold text-white">{business.name}</div>
           <ul class="space-y-4 text-white/85">
-            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Flat, affordable monthly fee</strong> ($0 upfront, live in 24-72 hours)</div></li>
+            <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Flat, affordable monthly fee</strong> ($0 upfront, website live in as little as 72 hours)</div></li>
             <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">No contracts. No risk.</strong> Cancel anytime.</div></li>
             <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Built by operators</strong> who've run a multi-million dollar trade business, not just marketers.</div></li>
             <li class="flex gap-3"><span class="text-lg text-accent-400">✓</span><div><strong class="font-bold text-white">Capped at 10 new partners a month</strong>, so you get real attention.</div></li>
@@ -340,21 +366,4 @@ const homepageSchema = {
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-5">
-      <div class="mx-auto max-w-4xl rounded-[32px] border border-slate-200 bg-slate-50 p-8 md:p-12">
-        <h2 class="font-heading text-4xl font-black leading-[0.95] tracking-[-0.06em] text-primary-900 md:text-5xl">Why The Hell Is It Free?</h2>
-        <div class="mt-6 space-y-4 text-lg text-slate-700">
-          <p>We know contractors are skeptical. You get pitched by marketing agencies 10 times a day promising the moon.</p>
-          <p>Here’s the truth: the website build, custom copy, and asset engineering are 100% free. You only cover the secure monthly cloud hosting and optimization framework, or have us handle the live deployment for you.</p>
-          <p>If the site doesn’t make you money, you leave, and we lose. We’re putting our own skin in the game.</p>
-          <p class="font-bold text-primary-900">We Only Win When You Win.</p>
-        </div>
- 
-        <div class="mt-8 flex justify-center">
-          <a href="/contact" class="inline-flex h-12 items-center justify-center rounded-full bg-accent-500 px-8 text-base font-semibold text-white transition hover:bg-accent-600">Claim Your Free Build</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </Layout>
