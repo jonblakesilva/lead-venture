@@ -960,86 +960,87 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "business-leverage-financing",
     title: "Business Leverage & Financing",
     icon: "lucide:landmark",
-    tagline: (trade) => `How to use strategic debt to scale a ${trade.name.toLowerCase()} business faster — without the cash flow trap that sinks fast-growing companies.`,
-    tldrSummary: () =>
-      "Debt used well is a growth tool. Debt used carelessly is how profitable, busy companies go under. This is the difference between the two, and the specific ways smart leverage — customer-financed growth, equipment financing, and working capital — actually work.",
+    tagline: (trade, profile) => `Strategic debt scales a ${profile.avgJobLabel}-based business faster — without the cash flow trap that sinks fast-growing companies.`,
+    tldrSummary: (trade, profile) =>
+      `Debt used well is a growth tool; used carelessly it's how busy companies go under. ${profile.warStory}`,
     tldrBullets: (trade, profile) => [
-      "Customer Financed Acquisition (CFA): use the cash from new customers to pay for acquiring the next ones — enables growth without outside capital",
-      "Aim for a payback period under 30 days: structure offers so the upfront payment covers your acquisition cost",
-      "Equipment financing works when the asset pays for itself — buy income-generating equipment with debt, then pay it off with the revenue it generates",
-      "Debt is a tool, not a burden, when used on assets that generate more than the payment",
-      "Understand the difference between profit and cash flow — a profitable month can still leave you cash-short if timing is off",
+      `Customer Financed Acquisition: cash from a new ${profile.avgJobLabel} customer pays for winning the next one — growth without outside capital`,
+      "Aim for a payback period under 30 days: structure offers so the upfront payment covers acquisition cost",
+      `Equipment financing works when the ${profile.terminology[0]} asset pays for itself, not because a loan happened to be available`,
+      profile.differentiator,
+      "Profit and cash flow are different things — a profitable month can still leave you cash-short if timing is off",
     ],
-    tldrBottomLine: () => "Calculate your CAC, LTGP, and payback period; structure offers to hit a sub-30-day payback; and only finance equipment that clearly pays for itself.",
-    intro: () => [
-      { type: "paragraph", text: "This is the same Customer Financed Acquisition framework used to scale service businesses without ever raising outside capital: use the cash flow from customers you already have to fund acquiring the next ones." },
+    tldrBottomLine: (trade, profile) =>
+      `Calculate CAC, LTGP, and payback period for a ${profile.avgJobLabel}; structure offers to hit a sub-30-day payback; and only finance equipment that clearly pays for itself.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: `The same Customer Financed Acquisition framework used to scale a ${trade.name.toLowerCase()} business without raising capital: use cash flow from a ${profile.lowJob.label} customer to fund winning the next one.` },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "The Three Levers of CFA" },
-      { type: "paragraph", text: `Lever 1 — Cost to Acquire a Customer (CAC): total marketing spend divided by customers acquired. Target CAC under 20% of your average job value — for a ${fmt(profile.avgJobValue)} job, that's roughly ${fmt(Math.round(profile.avgJobValue * 0.2))} or less.` },
-      { type: "paragraph", text: "Lever 2 — Lifetime Gross Profit (LTGP): total profit a customer generates over the relationship, not just the first job. Target LTGP at least 5x your CAC." },
-      { type: "paragraph", text: "Lever 3 — Payback Period: CAC divided by average monthly profit per customer. The goal is under 30 days, ideally instant — meaning the first payment alone covers what it cost to acquire that customer." },
+      { type: "paragraph", text: `Lever 1 — CAC: target under 20% of a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel}, roughly ${fmt(Math.round(profile.avgJobValue * 0.2))} or less.` },
+      { type: "paragraph", text: `Lever 2 — LTGP: total profit over the relationship, not just the first ${profile.terminology[1]} job. Target at least 5x CAC.` },
+      { type: "paragraph", text: `Lever 3 — Payback Period: under 30 days, ideally instant. ${profile.differentiator}` },
 
       { type: "heading", text: "CFA in Action" },
       {
         type: "example",
         title: "A simple CFA loop",
         lines: [
-          `Spend on marketing to acquire a batch of customers at a modest CAC per customer`,
+          `Spend on ${profile.topChannel.split(":")[0].toLowerCase()} to acquire a batch of customers at a modest CAC`,
           `Those customers pay upfront for a ${profile.avgJobLabel}, generating real gross profit`,
-          "Reinvest that profit into acquiring the next batch",
-          "Repeat — this compounds without ever needing outside capital, as long as the payback period stays short",
+          "Reinvest that profit into the next batch — this compounds without outside capital",
         ],
       },
-      { type: "paragraph", text: "Ways to shorten payback: collect a meaningful deposit upfront, lead with your highest-ticket services, offer a same-visit upsell at the estimate, or offer third-party financing so the customer pays nothing upfront while you still get paid in full immediately." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response}` },
+      { type: "paragraph", text: `Ways to shorten payback on a ${profile.avgJobLabel}: a meaningful deposit upfront, leading with the ${profile.highJob.label}, or a same-visit upsell at the estimate.` },
 
       { type: "heading", text: "Equipment Financing" },
-      { type: "paragraph", text: `Financing makes sense when the asset clearly pays for itself: it replaces a recurring cost (subcontracting, renting) or unlocks new revenue, and the monthly payment is comfortably less than the extra profit it generates.` },
+      { type: "paragraph", text: `Financing makes sense when the ${profile.terminology[2]} asset clearly pays for itself — it replaces a recurring rental or subcontractor cost, and the monthly payment is comfortably less than the extra profit it generates. ${profile.toolMention.charAt(0).toUpperCase() + profile.toolMention.slice(1)}` },
       {
         type: "example",
-        title: "Worked example",
+        title: `Financing a real ${profile.terminology[3]} asset`,
         lines: [
-          "A piece of equipment financed with a modest down payment and a 4-5 year term",
+          "A modest down payment over a 4-5 year term",
           "Replaces a recurring rental or subcontractor cost each month",
-          "Net monthly profit after the loan payment comfortably exceeds the down payment within a matter of months",
+          "Net monthly profit after the payment exceeds the down payment within months",
         ],
       },
 
       { type: "heading", text: "Working Capital & Cash Flow" },
-      { type: "paragraph", text: "A working capital loan makes sense for bridging a real, known gap — payroll during a slow season, or the gap between finishing a job and getting paid on it. It's a bad idea when it's covering an ongoing loss rather than a timing gap. The core trap: profit and cash flow are not the same thing. A big month of booked, profitable work can still leave you cash-short if customer payment terms lag behind what you owe your crew and suppliers." },
-      { type: "paragraph", text: "A rolling 13-week cash flow forecast — cash in, cash out, and running balance — catches this before it becomes an emergency." },
+      { type: "paragraph", text: `${profile.seasonalNote} A working capital loan makes sense for bridging that real gap, or the gap between finishing a ${profile.highJob.label} and getting paid — not for covering an ongoing loss.` },
+      { type: "paragraph", text: `A rolling 13-week cash flow forecast — cash in, cash out, running balance — catches this before it becomes an emergency on a ${profile.avgJobLabel} business.` },
 
       { type: "heading", text: "Using Debt Safely" },
       {
         type: "bullets",
         items: [
-          "Only borrow for assets that generate income, not for covering an ongoing shortfall",
-          "Make sure the asset's return clearly covers the payment, with margin to spare",
+          `Only borrow for ${profile.terminology[3]} assets that generate income, not to cover an ongoing shortfall`,
+          `Make sure the asset's return clearly covers the payment on a ${profile.avgJobLabel}-driven business, with margin to spare`,
           "Keep 2-3 months of cash reserve on hand",
           "Cap total debt at roughly 30% of annual revenue",
-          "Have a concrete repayment plan before you borrow, not after",
+          profile.differentiator,
         ],
       },
     ],
-    implementationPlan: () => [
-      { label: "Weeks 1-2 — Foundation", items: ["Calculate your current CAC, LTGP, and payback period", "Build a 13-week cash flow forecast", "Identify equipment or marketing investments that would clearly pay for themselves"] },
-      { label: "Weeks 3-4 — CFA Implementation", items: ["Structure one offer to hit a sub-30-day payback (deposit, financing option, or upsell)", "Test it on one marketing channel", "Track CAC and payback period closely"] },
-      { label: "Weeks 5-8 — Equipment Financing", items: ["Identify equipment that would clearly pay for itself", "Run the ROI math before applying", "Finance and track the actual revenue impact"] },
-      { label: "Ongoing — Scale Safely", items: ["Reinvest profit into acquisition using the CFA model", "Keep debt-to-revenue under 30%", "Maintain a 2-3 month cash reserve at all times"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Weeks 1-2 — Foundation", items: [`Calculate current CAC, LTGP, and payback period for a ${profile.avgJobLabel}`, "Build a 13-week cash flow forecast", `Identify ${profile.terminology[4]} equipment that would clearly pay for itself`] },
+      { label: "Weeks 3-4 — CFA", items: ["Structure one offer to hit a sub-30-day payback", `Test it through ${profile.topChannel.split(":")[0].toLowerCase()}`, "Track CAC and payback closely"] },
+      { label: "Weeks 5-8 — Equipment", items: [`Identify ${profile.terminology[5]} equipment worth financing`, "Run the ROI math before applying", "Finance and track the real revenue impact"] },
+      { label: "Ongoing — Scale Safely", items: ["Reinvest profit into acquisition using CFA", "Keep debt-to-revenue under 30%", profile.crewNote] },
     ],
-    checklist: () => [
-      "CAC, LTGP, and payback period calculated",
+    checklist: (trade, profile) => [
+      `CAC, LTGP, and payback period calculated for a ${profile.avgJobLabel}`,
       "13-week cash flow forecast built and maintained",
       "At least one offer structured for sub-30-day payback",
-      "Equipment financing decisions run through a clear ROI check first",
+      `Equipment financing run through a clear ROI check for ${profile.terminology[2]} assets`,
       "Debt-to-revenue ratio tracked and kept under 30%",
       "2-3 month cash reserve maintained",
     ],
-    keyTakeaways: (trade) => [
-      "Customer Financed Acquisition lets a business scale using its own cash flow instead of outside capital",
-      "A sub-30-day payback period is the real goal — the faster you're repaid, the faster you can reinvest",
+    keyTakeaways: (trade, profile) => [
+      "Customer Financed Acquisition scales a business using its own cash flow instead of outside capital",
+      "A sub-30-day payback period is the real goal — the faster repaid, the faster reinvested",
       "Finance equipment only when the numbers clearly show it pays for itself",
-      "Profit and cash flow are different things — a rolling cash flow forecast catches the gap before it becomes a crisis",
+      profile.differentiator,
     ],
   },
 
