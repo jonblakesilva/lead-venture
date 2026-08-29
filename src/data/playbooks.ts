@@ -435,81 +435,81 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "sales",
     title: "Sales",
     icon: "lucide:handshake",
-    tagline: (trade) => `The on-site sales system that doubles your average ticket without losing the job — built for ${trade.name.toLowerCase()} estimates.`,
-    tldrSummary: () =>
-      "If you're closing 60-85% of your estimates, you're undercharging. The right close rate at premium pricing is 30-45% — and a real sales process gets you there without feeling pushy.",
+    tagline: (trade, profile) => `${profile.differentiator} That's a sales process, not luck.`,
+    tldrSummary: (trade, profile) =>
+      `If you're closing 60-85% of ${profile.avgJobLabel} estimates, you're undercharging. The right rate at real pricing is 30-45%, and ${profile.commercialExample} pays enough that it's worth pricing to that standard, not the lowest bid in the room.`,
     tldrBullets: (trade, profile) => [
-      "First impressions win jobs — show up looking like a real, insured company, not a guy with a truck",
-      `Sell the outcome, not the service: homeowners are buying safety and peace of mind, not just "${profile.avgJobLabel}"`,
-      "A Good / Better / Best pricing structure increases average ticket by 40%+ on its own",
-      "\"I need to think about it\" almost always means you didn't build enough value before showing the price",
-      `Bottom line: a real sales process can move your close rate from an unprofitable 70-80% down to a profitable 30-45% at higher prices`,
+      `First impressions matter: showing up looking like a real, insured ${trade.name.toLowerCase()} company beats a guy with a truck every time`,
+      `Sell the outcome, not the ${profile.terminology[0]}: customers are buying peace of mind, not just the job itself`,
+      "A Good / Better / Best structure raises average ticket 40%+ on its own",
+      profile.seasonalNote,
+      profile.toolMention,
     ],
-    tldrBottomLine: () => "Master the on-site process, offer three price tiers instead of one number, and practice objection handling until it's second nature.",
+    tldrBottomLine: (trade, profile) =>
+      `Master the on-site process for a ${profile.avgJobLabel}, offer three price tiers instead of one number, and have "${profile.commonObjection.objection.replace(/"/g, "")}" scripted before it comes up.`,
     intro: (trade, profile) => [
       {
         type: "example",
         title: "The math that changes everything",
         lines: [
-          `Close 80% of jobs at ${fmt(profile.avgJobValue)} — roughly 8 of 10 estimates become jobs, but margins get squeezed to hit that rate`,
-          `Close 35% of jobs at ${fmt(Math.round(profile.avgJobValue * 1.6))} — fewer jobs, but at a real margin, total profit ends up higher`,
+          `Close 80% at ${fmt(profile.avgJobValue)} — margins get squeezed to hit that rate`,
+          `Close 35% at ${fmt(Math.round(profile.avgJobValue * 1.6))} — fewer jobs, but total profit ends up higher`,
         ],
       },
-      { type: "paragraph", text: "The goal isn't the highest close rate — it's the highest profit. That usually means closing 30-45% of estimates at prices that actually reflect the value of the work." },
+      { type: "paragraph", text: `The goal isn't the highest close rate on a ${profile.avgJobLabel} — it's the highest profit, which usually means closing 30-45% of estimates at prices that reflect the ${profile.terminology[1]} actually involved. ${profile.warStory}` },
     ],
     sections: (trade, profile) => [
       { type: "heading", text: "Before You Even Leave for the Estimate" },
-      { type: "paragraph", text: "Look like a professional business, not a guy who happened to answer the phone: a branded shirt, a clean and marked vehicle, a clipboard or tablet, and a business card. Then confirm the appointment — a 24-hour text, a 2-hour reminder, and a \"here's what I look like\" text right before arrival cuts no-shows dramatically." },
+      { type: "paragraph", text: profile.crewNote },
 
-      { type: "heading", text: "The Process → Proof → Price Framework" },
+      { type: "heading", text: "Process → Proof → Price" },
       {
         type: "bullets",
         items: [
-          "PROCESS — walk them through exactly what you'll do, step by step, so nothing feels uncertain",
-          "PROOF — years in business, insurance, licensing, before/after photos, and real reviews, shown before you ever mention price",
-          "PRICE — state it clearly once, then stop talking. The first person to speak after the price is stated usually loses leverage",
+          `PROCESS — walk through the ${profile.terminology[2]} step by step so nothing feels uncertain`,
+          `PROOF — insurance, licensing, ${profile.terminology[1]} photos, real reviews, shown before price ever comes up`,
+          `PRICE — state the ${profile.avgJobLabel} number once, then stop talking`,
         ],
       },
-      { type: "paragraph", text: "Present sitting down at a table, not standing on the driveway — it changes the psychology from a transaction to a decision being made calmly." },
 
-      { type: "heading", text: "Good / Better / Best Pricing" },
+      { type: "heading", text: "Good / Better / Best" },
       {
         type: "example",
-        title: `Example: a ${fmt(profile.avgJobValue)} ${profile.avgJobLabel}`,
+        title: `A ${fmt(profile.avgJobValue)} ${profile.avgJobLabel}`,
         lines: [
-          `Good — ${fmt(profile.avgJobValue)} (the core job, done right)`,
-          `Better — ${fmt(Math.round(profile.avgJobValue * 1.3))} (core job + one meaningful add-on)`,
-          `Best — ${fmt(Math.round(profile.avgJobValue * 1.75))} (core job + add-ons + a warranty or priority service)`,
+          `Good — ${fmt(profile.avgJobValue)}, the core ${profile.terminology[4]} work`,
+          `Better — ${fmt(Math.round(profile.avgJobValue * 1.3))}, plus one add-on tied to ${profile.terminology[5]}`,
+          `Best — ${fmt(Math.round(profile.avgJobValue * 1.75))}, plus a warranty or priority ${profile.recurringServiceLabel}`,
         ],
       },
-      { type: "paragraph", text: "Most customers pick the middle option when given three real choices — which raises your average ticket without you ever having to \"upsell\" anyone." },
+      { type: "paragraph", text: `Most customers pick the middle option on a ${profile.avgJobLabel} when given three real choices — average ticket goes up without ever "upselling" anyone.` },
 
       { type: "heading", text: "Handling Objections" },
-      { type: "paragraph", text: "Use a simple four-step pattern on any pushback: identify the real objection, isolate it (\"if we can solve that, is there anything else stopping you?\"), ask a question that gets them talking, then address what they actually said. A price-match or satisfaction guarantee removes most of the risk they're worried about, which often dissolves the objection before you even have to argue the price." },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
       { type: "heading", text: "The Leave-Behind & Follow-Up" },
-      { type: "paragraph", text: "A simple one-page leave-behind — a summary, a few before/after photos, testimonials, and your credentials — costs almost nothing and makes a small operation look established. For anyone who doesn't sign on the spot, a structured follow-up over the next week (a text, a call, a testimonial, a gentle urgency nudge) closes a meaningful share of \"I need to think about it\" leads that would otherwise just go cold." },
+      { type: "paragraph", text: `A one-page leave-behind — before/after photos, testimonials, credentials — makes a small operation look established. For anyone who doesn't sign on the spot, follow-up through ${profile.topChannel.split(":")[0].toLowerCase()} over the next week closes a real share of "I need to think about it" leads that would otherwise go cold.` },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Fix Your Appearance", items: ["Get magnetic signs or a wrap for your vehicle", "Order branded shirts", "Put together a leave-behind packet", "Take a few professional photos of your team and equipment"] },
-      { label: "Week 2 — Confirmation System", items: ["Set up 24-hour confirmation texts", "Set up 2-hour reminder texts", "Set up an arrival text with a photo"] },
-      { label: "Week 3 — Master the Presentation", items: ["Write your Process script", "Gather your Proof materials", "Practice presenting seated at a table", "Role-play with a teammate"] },
-      { label: "Week 4 — Objection Handling", items: ["Write out your top 5 objections", "Script responses using identify → isolate → question → address", "Practice until it feels natural", "Consider a satisfaction or price-match guarantee"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Fix Your Appearance", items: ["Get magnetic signs or a wrap for the vehicle", "Order branded shirts", "Put together a leave-behind packet", `Photograph the crew and ${profile.terminology[3]}`] },
+      { label: "Week 2 — Confirmation System", items: [`Set up confirmation texts ahead of the ${profile.avgJobLabel} visit`, "Add a 2-hour reminder", "Add an arrival text with a photo"] },
+      { label: "Week 3 — Master the Presentation", items: [`Write the Process script for a ${profile.avgJobLabel}`, `Gather Proof: licensing, ${profile.terminology[2]}, real reviews`, "Practice presenting seated at a table"] },
+      { label: "Week 4 — Objection Handling", items: [`Script a response to "${profile.commonObjection.objection.replace(/"/g, "")}"`, "Write out the next 4 most common objections", profile.differentiator] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "Vehicle and team look professional on arrival",
       "Confirmation text sequence automated",
-      "Process → Proof → Price script written and practiced",
-      "Good / Better / Best pricing built for your top services",
-      "Objection responses scripted for the top 3-5 pushbacks",
-      "A structured 5-7 day follow-up sequence in place for non-closes",
+      `Process → Proof → Price script written for a ${profile.avgJobLabel}`,
+      `Good / Better / Best pricing built with a real ${profile.terminology[5]} add-on`,
+      `Response ready for "${profile.commonObjection.objection.replace(/"/g, "")}"`,
+      `${profile.topChannel.split(":")[0]}-based follow-up sequence in place for non-closes`,
       "Close rate and average ticket tracked weekly",
     ],
-    keyTakeaways: () => [
-      "A high close rate is often a sign you're leaving money on the table, not a sign of great salesmanship",
-      "Presenting Process, then Proof, then Price — in that order — builds enough value that the price lands as reasonable",
-      "Three price options beat one — most customers pick the middle",
-      "\"I need to think about it\" is a signal to ask a better question, not to walk away",
+    keyTakeaways: (trade, profile) => [
+      `A high close rate on a ${profile.avgJobLabel} is often a sign of leaving money on the table, not great salesmanship`,
+      "Process, then Proof, then Price — in that order — builds enough value that the price lands as reasonable",
+      `Three price options beat one — most customers pick the ${profile.recurringServiceLabel}-adjacent middle tier`,
+      profile.differentiator,
     ],
   },
 
