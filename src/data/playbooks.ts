@@ -271,83 +271,82 @@ export const playbookTopics: Record<string, PlaybookTopic> = {
     slug: "lead-nurture",
     title: "Lead Nurture",
     icon: "lucide:mail",
-    tagline: () => "Turn a 30% close rate into 60%+ with a real follow-up system instead of hoping people call back.",
-    tldrSummary: () =>
-      "Most leads don't buy on the first touch. Businesses that follow up systematically close at double the rate of businesses that follow up once and give up.",
-    tldrBullets: (trade) => [
+    tagline: (trade, profile) => `${profile.differentiator} A follow-up system built around a real ${profile.avgJobLabel} does most of that work.`,
+    tldrSummary: (trade, profile) =>
+      `${profile.warStory} Most "lost" leads on a ${profile.avgJobLabel} weren't lost on price — they just went cold waiting on a callback.`,
+    tldrBullets: (trade, profile) => [
       "Speed matters: contact leads within 5 minutes — response time is the single biggest predictor of conversion",
-      "Use a multi-channel approach: email, text, and phone, not just one",
-      "A 7-14 day automated sequence that educates and builds trust outperforms a single hard sales pitch",
-      `Share genuinely useful ${trade.name.toLowerCase()} tips and seasonal advice, not just sales pitches — value-first content builds trust before the ask`,
-      "A CRM is essential — track every interaction and never let a lead go silent",
+      "Use email, text, and phone together, not just whichever one you happen to prefer",
+      profile.topChannel,
+      `Share real ${profile.terminology[0]} and ${profile.terminology[1]} know-how, not just sales pitches — value first, ask second`,
+      profile.toolMention,
     ],
-    tldrBottomLine: () => "Set a 5-minute response standard, build a 7-touch follow-up sequence across email/text/phone, and put it in a CRM so nothing falls through the cracks.",
-    intro: () => [
-      { type: "paragraph", text: "Industry average close rate on inbound leads is 30-40%. Businesses with a real nurture system routinely hit 60-75% — not because they're better at selling, but because they simply don't let leads go cold." },
-      { type: "heading", text: "Understanding the Three Buyer Types" },
+    tldrBottomLine: (trade, profile) =>
+      `Set a 5-minute response standard, build a 7-touch sequence across email/text/phone that's actually about ${profile.terminology[2]}, and put it in a CRM so nothing on a ${profile.avgJobLabel} falls through the cracks.`,
+    intro: (trade, profile) => [
+      { type: "paragraph", text: profile.crewNote },
+      { type: "heading", text: "Three Kinds of Buyers, Same Trade" },
       {
         type: "bullets",
         items: [
-          "The Researcher (~40% of leads) — weeks-to-months timeline, needs education, not pressure",
-          "The Comparison Shopper (~35%) — decides in 7-14 days, needs differentiation from competitors",
-          "The Urgent Buyer (~25%) — decides in 24-48 hours, needs reassurance you're available and reliable",
+          `The Researcher — weeks out from a ${profile.highJob.label}, wants education, not pressure`,
+          `The Comparison Shopper — decides in 7-14 days, wants to know why you and not the next ${trade.name.toLowerCase()} company quoting the same ${profile.terminology[2]}`,
+          `The Urgent Buyer — needs a ${profile.lowJob.label} handled now and just wants proof you'll actually show up`,
         ],
       },
     ],
-    sections: () => [
-      { type: "heading", text: "The 7-Touch Follow-Up Framework" },
-      { type: "paragraph", text: "5-7 touches spread over 14 days is the proven sweet spot — enough to stay top of mind without becoming annoying." },
+    sections: (trade, profile) => [
+      { type: "heading", text: "A 7-Touch Sequence That Fits This Trade" },
       {
         type: "bullets",
         items: [
-          "Day 0 (within 5 minutes): immediate acknowledgment — a quick email plus a phone call",
-          "Day 1: a value-added follow-up relevant to what they asked about",
-          "Day 3: social proof — a relevant case study or before/after",
-          "Day 5: a short personal video message",
-          "Day 7: a limited-time offer (a discount, a free add-on, or priority scheduling)",
-          "Day 10: one more value touch, no sales pressure",
-          "Day 14: a soft final attempt before moving to long-term nurture",
+          "Day 0 (within 5 minutes): a quick text plus a call, not just an auto-reply",
+          `Day 1: something genuinely useful about ${profile.terminology[3]}, tied to what they asked about`,
+          `Day 3: proof — a ${profile.terminology[4]} before/after or a quick story like the one above`,
+          `Day 5: a short personal video about their specific ${profile.avgJobLabel}, not a template`,
+          `Day 7: a real, limited-time offer on the ${profile.avgJobLabel}`,
+          `Day 10: one more ${profile.terminology[5]} tip, no pitch attached`,
+          "Day 14: a last soft check-in before moving to long-term nurture",
         ],
       },
 
-      { type: "heading", text: "Multi-Channel Communication" },
-      { type: "paragraph", text: "Text messages get roughly a 98% open rate versus about 20% for email, which makes texting the fastest way to get a response — but email is still where longer-term nurture content lives. Direct mail is worth the cost for your highest-value leads." },
-      { type: "paragraph", text: "Phone scripts should open with a clear introduction, ask a handful of qualifying questions, and move straight to scheduling. Prepare responses in advance for the most common pushback: \"still getting other quotes,\" \"need to think about it,\" and \"what's your price.\"" },
+      { type: "heading", text: "Channel Mix" },
+      { type: "paragraph", text: `${profile.commonObjection.objection} ${profile.commonObjection.response}` },
 
       { type: "heading", text: "CRM and Automation" },
-      { type: "paragraph", text: "A CRM should handle lead capture, automated follow-up sequences, task reminders, communication tracking, and pipeline stages (New Lead → Contacted → Estimate Scheduled → Estimate Delivered → Negotiating). Without this, follow-up depends entirely on someone remembering — and someone always forgets." },
+      { type: "paragraph", text: `A CRM needs to capture the lead, run the sequence automatically, and move it through real stages — New → Contacted → ${profile.highJob.label.charAt(0).toUpperCase() + profile.highJob.label.slice(1)} Scheduled → Quoted → Won/Lost. ${profile.seasonalNote}` },
 
-      { type: "heading", text: "Advanced Nurture Tactics" },
+      { type: "heading", text: "Beyond the Basic Sequence" },
       {
         type: "bullets",
         items: [
-          "Retargeting ads to anyone who visited your site or engaged with a form but didn't convert",
-          "A personalized video follow-up after every estimate, not just a written proposal",
-          "Seasonal reactivation campaigns for leads that went cold months ago",
-          "A referral ask even for leads who didn't convert — they may know someone who's a better fit right now",
+          `Retargeting ads for anyone who looked at the ${profile.avgJobLabel} page and didn't fill out the form`,
+          `A short video after every ${profile.avgJobLabel} estimate, not just a written number`,
+          profile.toolMention,
+          "A referral ask even from leads who didn't book — they may know someone who's a better fit right now",
         ],
       },
     ],
-    implementationPlan: () => [
-      { label: "Week 1 — Foundation", items: ["Set up a CRM or lead management system", "Create email templates for the 7-touch sequence", "Write phone scripts for common scenarios", "Set up automated first-response emails"] },
-      { label: "Week 2 — Content", items: ["Write out a year of educational follow-up content", "Create 2-3 case studies with before/after proof", "Record a short video introduction", "Design a direct mail piece for high-value leads"] },
-      { label: "Week 3 — Automation", items: ["Configure the automated sequence in your CRM", "Set up text templates", "Create manual task reminders as a backstop", "Test the full sequence with a dummy lead"] },
-      { label: "Week 4 — Team & Ongoing", items: ["Train the team on phone scripts and response-time standards", "Assign clear follow-up ownership", "Review metrics weekly", "Refine scripts based on what's actually working"] },
+    implementationPlan: (trade, profile) => [
+      { label: "Week 1 — Foundation", items: ["Set up a CRM if you don't have one", "Write the 7-touch email/text templates", `Script a response to "${profile.commonObjection.objection.replace(/"/g, "")}"`, "Turn on automated first-response texts"] },
+      { label: "Week 2 — Content", items: [`Write a year of ${profile.terminology[0]} follow-up content`, `Pull together 2-3 real ${profile.terminology[4]} proof pieces`, "Record a short video introduction"] },
+      { label: "Week 3 — Automation", items: [`Build the sequence around a real ${profile.avgJobLabel} inquiry`, `Set up text templates using ${profile.terminology[1]} language, not generic copy`, "Test it end to end with a dummy lead"] },
+      { label: "Week 4 — Team", items: ["Train the team on the response-time standard", "Assign clear follow-up ownership", profile.crewNote, profile.differentiator] },
     ],
-    checklist: () => [
+    checklist: (trade, profile) => [
       "5-minute response standard in place",
-      "7-touch follow-up sequence built across email, text, and phone",
+      "7-touch sequence built across email, text, and phone",
       "CRM tracking every lead interaction",
-      "Phone scripts written for common objections",
-      "At least 2 case studies ready to send as proof",
-      "Retargeting ads live for site visitors who didn't convert",
-      "Weekly metrics review scheduled",
+      `Response ready for "${profile.commonObjection.objection.replace(/"/g, "")}"`,
+      `2-3 real ${profile.terminology[4]} proof pieces ready to send`,
+      `Retargeting live for ${profile.avgJobLabel} page visitors who didn't convert`,
+      "Weekly review of what's actually converting",
     ],
-    keyTakeaways: () => [
+    keyTakeaways: (trade, profile) => [
       "Speed to first contact is the single biggest lever — 5 minutes or less",
-      "One touch is not a follow-up system; plan for 5-7 touches across 14 days",
-      "Text for speed, email for depth, phone for the close",
-      "A CRM isn't optional once you're running more than a handful of leads a week",
+      "One touch isn't a system; plan for 5-7 touches across 14 days",
+      profile.topChannel,
+      profile.differentiator,
     ],
   },
 
