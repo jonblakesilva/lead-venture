@@ -70,6 +70,25 @@ const makeDescription =
     <slot name="head" />
     <OrganizationSchema />
     <ClientRouter />
+    <script is:inline>
+      window.history.scrollRestoration = "manual";
+
+      function resetScrollPosition() {
+        if (window.location.hash) {
+          const target = document.getElementById(window.location.hash.slice(1));
+          if (target) {
+            target.scrollIntoView({ behavior: "auto", block: "start" });
+            return;
+          }
+        }
+
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      document.addEventListener("astro:before-swap", resetScrollPosition);
+      document.addEventListener("astro:page-load", resetScrollPosition);
+      document.addEventListener("DOMContentLoaded", resetScrollPosition);
+    </script>
     <!-- Cloudflare Web Analytics — set CF_ANALYTICS_TOKEN in your environment variables -->
     {import.meta.env.CF_ANALYTICS_TOKEN && (
       <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${import.meta.env.CF_ANALYTICS_TOKEN}"}`}></script>
